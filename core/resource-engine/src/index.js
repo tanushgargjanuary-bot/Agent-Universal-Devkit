@@ -162,8 +162,10 @@ export function compareResources(resources, options = {}) {
   })).sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
 
   const best = ranked[0];
+  const singleCandidates = ranked.filter((candidate) => required.every((capability) => candidate.capabilities.includes(capability)));
+  const bestSingle = singleCandidates[0] ?? null;
   const bestCoverage = required.filter((capability) => best.capabilities.includes(capability));
-  const singleMeetsRequirements = bestCoverage.length === required.length;
+  const singleMeetsRequirements = bestSingle !== null;
   let hybrid = null;
   if (allowHybrid && ranked.length > 1) {
     for (const other of ranked.slice(1)) {
@@ -188,12 +190,12 @@ export function compareResources(resources, options = {}) {
   }
 
   return {
-    recommended: singleMeetsRequirements ? best : null,
-    alternatives: ranked.slice(singleMeetsRequirements ? 1 : 0),
+    recommended: bestSingle,
+    alternatives: ranked.filter((candidate) => candidate.id !== bestSingle?.id),
     hybrid, rejected,
     decision: singleMeetsRequirements ? "select_single" : hybrid ? "hybrid_candidate" : "none_meet_constraints",
     decision_note: singleMeetsRequirements
-      ? "The highest-ranked eligible resource meets all mandatory capability requirements."
+      ? "The highest-ranked resource that meets all mandatory capability requirements is selected."
       : hybrid
         ? "No single resource meets all mandatory capabilities. A declared complementary hybrid covers them; assess its operational cost before adoption."
         : "No single resource or validated hybrid covers all mandatory capabilities.",
