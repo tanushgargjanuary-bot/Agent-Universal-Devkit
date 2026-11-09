@@ -14,7 +14,7 @@ export function validateApprovalAttestation(item, { pullRequest, review, changed
   if (pullRequest?.head?.sha?.toLowerCase() !== record.approval_commit.toLowerCase()) errors.push("Approval commit is not the final pull request head");
   if (repository && pullRequest?.head?.repo?.full_name !== repository) errors.push("Approval pull request head repository does not match");
   const author = pullRequest?.user?.login?.toLowerCase();
-  const reviewer = record.approved_by?.toLowerCase();
+  const reviewer = typeof record.approved_by === "string" ? record.approved_by.toLowerCase() : "";
   if (!author || !reviewer || author === reviewer) errors.push("The pull request author cannot approve their own knowledge change");
   if (review?.id !== record.approval_review_id) errors.push("GitHub review ID does not match the recorded approval");
   if (review?.state !== "APPROVED") errors.push("Recorded GitHub review is not currently approved");
@@ -22,7 +22,7 @@ export function validateApprovalAttestation(item, { pullRequest, review, changed
   if (review?.commit_id?.toLowerCase() !== record.approval_commit.toLowerCase()) errors.push("GitHub review is not anchored to the approved commit");
   if (!["OWNER", "MEMBER", "COLLABORATOR"].includes(review?.author_association)) errors.push("Reviewer is not a repository owner, member, or collaborator");
   if (Date.parse(record.approved_at) !== Date.parse(review?.submitted_at ?? "")) errors.push("approved_at must match the GitHub review submission timestamp");
-  if (!review?.submitted_at || !pullRequest?.merged_at || Date.parse(review.submitted_at) > Date.parse(pullRequest.merged_at)) {
+  if (!review?.submitted_at || !pullRequest?.merged_at || !Number.isFinite(Date.parse(review.submitted_at)) || !Number.isFinite(Date.parse(pullRequest.merged_at)) || Date.parse(review.submitted_at) > Date.parse(pullRequest.merged_at)) {
     errors.push("Approval must be submitted before the pull request is merged");
   }
   const files = new Set(changedFiles ?? []);
