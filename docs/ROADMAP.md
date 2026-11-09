@@ -12,7 +12,7 @@ Resource Intelligence and Agent Orchestration have equal priority. The native Kn
 - [x] Add scoped JSON Schema contract validation in CI.
 - [x] Add labelled retrieval regression cases for precision, recall, false positives, and abstention.
 - [x] Require approval metadata bound to the exact item version and SHA-256 content digest.
-- [ ] Add authenticated reviewer identity and protected review/approval workflow.
+- [x] Verify reviewer identity against GitHub review records and bind approval to the reviewed commit and exact content digest.\n- [x] Require a separate reviewed PR for approval metadata and verify its final-head approval.\n- [ ] Configure required branch protection and status checks on main (repository owner action).
 - [x] Add initial reference implementations with independent algorithm cross-checks and formula tests.
 - [ ] Expand independent tests across the remaining algorithm and formula library.
 
