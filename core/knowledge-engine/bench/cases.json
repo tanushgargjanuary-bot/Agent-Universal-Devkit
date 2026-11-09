@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "description": "Labelled deterministic retrieval regression cases. Draft preview is explicit because current entries are drafts.",
+  "cases": [
+    {
+      "id": "shortest-path",
+      "task": {
+        "description": "Find the shortest path in a weighted graph with non-negative edges",
+        "tags": [
+          "graph",
+          "shortest-path",
+          "weighted-graph"
+        ],
+        "domain": "algorithms"
+      },
+      "expected": [
+        "algo.shortest-path-selection"
+      ],
+      "forbidden": [
+        "math.optimisation"
+      ]
+    },
+    {
+      "id": "bfs",
+      "task": {
+        "description": "Run breadth first search to find reachable graph nodes",
+        "tags": [
+          "graph",
+          "bfs"
+        ],
+        "domain": "algorithms"
+      },
+      "expected": [
+        "algo.graph-traversal"
+      ],
+      "forbidden": [
+        "math.formula.bayes-theorem"
+      ]
+    },
+    {
+      "id": "bayes",
+      "task": {
+        "description": "Calculate posterior probability with Bayes theorem",
+        "tags": [
+          "probability"
+        ],
+        "domain": "statistics"
+      },
+      "expected": [
+        "math.probability-statistics",
+        "math.formula.bayes-theorem"
+      ],
+      "forbidden": [
+        "algo.graph-traversal"
+      ]
+    },
+    {
+      "id": "gradient",
+      "task": {
+        "description": "Apply the gradient descent update using a learning rate",
+        "tags": [
+          "gradient-descent",
+          "learning-rate"
+        ],
+        "domain": "machine-learning"
+      },
+      "expected": [
+        "math.formula.gradient-descent"
+      ],
+      "forbidden": [
+        "algo.graph-traversal"
+      ]
+    },
+    {
+      "id": "least-squares",
+      "task": {
+        "description": "Find a least squares solution using normal equations",
+        "tags": [
+          "least-squares",
+          "linear-regression"
+        ],
+        "domain": "statistics"
+      },
+      "expected": [
+        "math.formula.least-squares"
+      ],
+      "forbidden": [
+        "algo.graph-traversal"
+      ]
+    },
+    {
+      "id": "vague",
+      "task": {
+        "description": "Improve the application",
+        "tags": [],
+        "domain": "business"
+      },
+      "expected": [],
+      "forbidden": []
+    },
+    {
+      "id": "substring-trap",
+      "task": {
+        "description": "Build a graphical user interface",
+        "tags": [],
+        "domain": "algorithms"
+      },
+      "expected": [],
+      "forbidden": [
+        "algo.graph-traversal"
+      ]
+    },
+    {
+      "id": "domain-only",
+      "task": {
+        "description": "Implement a feature",
+        "tags": [],
+        "domain": "machine-learning"
+      },
+      "expected": [],
+      "forbidden": [
+        "math.optimisation"
+      ]
+    }
+  ]
+}
