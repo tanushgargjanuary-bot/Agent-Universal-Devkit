@@ -5,7 +5,9 @@ const DEVKIT_REF = process.env.DEVKIT_REF || "main";
 const BOOTSTRAP_FILES = [
   "bootstrap/template/AGENTS.md",
   "bootstrap/template/.agent-universal-devkit/config.yaml",
-  "bootstrap/template/CLAUDE.md"
+  "bootstrap/template/CLAUDE.md",
+  "bootstrap/template/GEMINI.md",
+  "bootstrap/template/.github/copilot-instructions.md"
 ];
 
 async function getFile(octokit, owner, repo, path, ref) {

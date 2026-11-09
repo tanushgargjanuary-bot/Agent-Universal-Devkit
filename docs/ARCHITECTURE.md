@@ -1,78 +1,56 @@
 # Architecture
 
 ## Goal
-
-Make useful engineering knowledge and tools discoverable by AI coding agents in every project, without copying a large toolbox into each repository.
+Make useful engineering knowledge and tools discoverable by AI coding agents without copying a large toolbox into every project.
 
 ## Core idea
+A new project receives a small bootstrap payload. It points to this repository and explains how compatible agents find relevant instructions.
 
-A new project gets a small bootstrap payload. That payload points to this repository and tells compatible agents how to find the right instructions.
+A pointer is not magic: the agent must support the local instruction file, have repository or network access, and follow instructions. A GitHub App can install files but cannot force an arbitrary agent to read remote content.
 
-A pointer is not magic: an agent must support the local instruction file, have network or repository access, and follow the instructions. The GitHub App can install files, but it cannot force an arbitrary agent to read remote content.
-
-## Four parts
+## Main systems
 
 ### 1. Central Devkit
-
-This repository stores:
-- Shared engineering rules.
-- Harness-specific adapters.
-- Tool, skill, and workflow catalogs.
-- Bootstrap templates.
-- Tests and compatibility records.
+Stores shared rules, harness adapters, tool/skill catalogs, bootstrap templates, tests, and compatibility records.
 
 ### 2. Bootstrap payload
-
-Files in `bootstrap/template/` are copied to new repositories. They stay small and include:
-- `AGENTS.md` for agents that support it.
+Files in `bootstrap/template/` are copied into new projects. The current payload includes:
+- `AGENTS.md` for harnesses that support it.
+- `CLAUDE.md` importing the shared instructions.
+- `GEMINI.md` importing the shared instructions.
+- `.github/copilot-instructions.md` for GitHub Copilot.
 - `.agent-universal-devkit/config.yaml` as the stable pointer.
-- Native harness files where the harness has a documented instruction mechanism.
 
-The bootstrap must never claim that every agent reads the same file.
+The payload stays small. It does not copy the Devkit tool collection.
 
 ### 3. GitHub distribution
+- **Template payload:** files under `bootstrap/template/` are the source for new repositories. This is an internal template folder, not a separate GitHub repository.
+- **GitHub App:** `integrations/github-app/` contains a Probot app. It listens for `repository.created`, reads the payload from this repository, and adds missing files.
+- Existing files are not overwritten.
+- A repository can opt out by adding `.agent-universal-devkit/opt-out`.
 
-Two distribution paths are planned:
-
-- **Template repository mode:** users create repositories from a GitHub template that contains the bootstrap payload.
-- **GitHub App mode:** an installed GitHub App receives repository-created events and installs or updates the bootstrap payload.
-
-A normal GitHub template copies files. It does not create a live link to this repository. The App provides the later update path.
+The App is source code only. It must be registered, installed with the required permissions, and deployed before automatic events work.
 
 ### 4. Agent adapters
+Each harness gets its own adapter. An adapter records instruction discovery, configuration, skills/tools support, MCP support, hooks, tested versions, and known limitations. Do not treat a shared file as universal compatibility.
 
-Each harness gets its own adapter. An adapter documents:
-- Instruction file names and discovery rules.
-- Configuration format.
-- Skills and tool support.
-- MCP support.
-- Hooks or lifecycle support.
-- Minimum tested version.
-- Known limitations.
+### 5. Orchestration layer
+The orchestration layer plans and coordinates work:
+1. Inspect project and task context.
+2. Break the goal into tasks.
+3. Route tasks to tested harness adapters and relevant tools.
+4. Apply permission and approval rules.
+5. Execute through a harness adapter.
+6. Verify with tests and independent evidence.
+7. Report results.
 
-Do not treat a shared `AGENTS.md` as universal compatibility.
+The current release defines the task schema and safety policy. Harness executor adapters and a running coordinator are future work.
 
 ## Update model
-
-1. Monitor upstream releases and documentation changes.
-2. Detect relevant changes.
-3. Update the adapter in a proposed change.
-4. Run schema and compatibility tests.
-5. Publish an update or create a pull request.
-6. Distribute safe instruction updates.
-7. Require approval for dependency, permission, or destructive changes.
+Monitor upstream releases and documentation. Detect relevant changes. Propose adapter updates. Run schema and compatibility tests. Create update PRs. Require approval for dependency, permission, and destructive changes.
 
 ## Tool selection
+Catalog entries describe tools; they do not install them. A future analyzer will inspect language, framework, build system, and deployment target, then recommend a small relevant set.
 
-Catalog entries describe tools. They do not install tools.
-
-A future project analyzer will inspect language, framework, build system, and deployment target. It will recommend a small set of relevant tools. The project owner decides what to install.
-
-## Security boundaries
-
-- Treat catalog metadata and remote instructions as untrusted until reviewed.
-- Never execute tools automatically during discovery.
-- Pin versions and verify checksums where available.
-- Apply least-privilege permissions.
-- Do not send secrets to external services.
-- Keep project-specific instructions higher priority where they define local requirements.
+## Security
+Treat catalog metadata and remote instructions as untrusted until reviewed. Never execute tools during discovery. Pin versions. Use least privilege. Do not send secrets to external services. Preserve project-specific requirements.
