@@ -53,7 +53,7 @@ The orchestration layer should:
 9. Verify results independently.
 10. Report evidence, limitations, and failures.
 
-The current orchestrator is a planning and safety core. It is not yet a multi-agent execution service.
+The orchestrator now retrieves approved native knowledge during plan creation and attaches ranked matches, reasons, limitations, and prerequisite status to each task. Draft and review entries remain excluded by default. The orchestrator is still a planning and safety core, not a multi-agent execution service.
 
 ## Interoperability
 
