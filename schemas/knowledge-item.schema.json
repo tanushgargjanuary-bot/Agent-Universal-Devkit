@@ -190,6 +190,18 @@
         "content_sha256": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "approval_pr": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "approval_review_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "approval_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
         }
       },
       "additionalProperties": false
@@ -218,7 +230,10 @@
               "approved_at",
               "reviewed_version",
               "sources",
-              "content_sha256"
+              "content_sha256",
+              "approval_pr",
+              "approval_review_id",
+              "approval_commit"
             ],
             "properties": {
               "sources": {
