@@ -42,7 +42,7 @@ The workflow is a required status check only if repository rules require it. Con
 5. Require the Knowledge quality / validate status check.
 6. Restrict direct pushes and force pushes to main.
 
-The connected GitHub integration could not read branch protection settings and does not expose a branch-protection write action. Therefore, these settings are documented but not claimed to be enabled. An owner must configure them in GitHub repository Settings.
+The connected GitHub integration could not read branch protection settings and does not expose a branch-protection write action. The GitHub rulesets endpoint also returned a plan restriction: upgrade to GitHub Pro or make the repository public. Keep this repository private unless you deliberately choose to publish it. Therefore, these settings are documented but not claimed to be enabled. An owner must enable an eligible plan and configure them in GitHub repository Settings.
 
 ## Retrieval benchmark
 
