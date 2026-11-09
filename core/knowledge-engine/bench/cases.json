@@ -14,7 +14,8 @@
         "domain": "algorithms"
       },
       "expected": [
-        "algo.shortest-path-selection"
+        "algo.shortest-path-selection",
+        "algo.graph-traversal"
       ],
       "forbidden": [
         "math.optimisation"
@@ -65,7 +66,8 @@
         "domain": "machine-learning"
       },
       "expected": [
-        "math.formula.gradient-descent"
+        "math.formula.gradient-descent",
+        "math.optimisation"
       ],
       "forbidden": [
         "algo.graph-traversal"
@@ -82,7 +84,8 @@
         "domain": "statistics"
       },
       "expected": [
-        "math.formula.least-squares"
+        "math.formula.least-squares",
+        "math.linear-algebra"
       ],
       "forbidden": [
         "algo.graph-traversal"
