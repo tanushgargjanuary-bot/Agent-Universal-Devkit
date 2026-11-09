@@ -28,9 +28,7 @@ Popularity, recency, and star growth are signals, not quality guarantees.
 
 ## Comparing alternatives
 
-Use the resource engine in `core/resource-engine/`. It ranks resources using
-explicit 0-5 evaluations and configurable weights. Each evaluation must include
-evidence links.
+Use the resource engine in `core/resource-engine/`. It first applies mandatory hard constraints, then ranks eligible resources using explicit 0-5 evaluations and configurable weights. Each evaluation must include evidence links. A high weighted score cannot override a failed hard constraint.
 
 A hybrid is suggested only when:
 - At least one resource explicitly declares the other as complementary.
@@ -39,8 +37,9 @@ A hybrid is suggested only when:
 - Integration cost stays within the configured limit.
 
 The engine does not inspect source code or prove compatibility by itself. Agents
-must gather evidence and score resources honestly. Unknown facts must remain
-unknown, not be guessed.
+must gather evidence and score resources honestly. Unknown facts must remain unknown, not be guessed. If a mandatory fact is missing, the candidate is excluded and the result reports insufficient evidence rather than treating the missing fact as a pass.
+
+Supported hard constraints include allowed SPDX license IDs, reviewed-license status, minimum security and compatibility scores, maximum integration cost, required platforms, required capabilities, and evidence age. The engine returns rejected candidates with separate violation and unknown reasons. A hybrid must cover every required capability before it can be proposed as a viable outcome.
 
 ## Adoption rules
 
