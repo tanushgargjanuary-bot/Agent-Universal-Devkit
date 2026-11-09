@@ -1,46 +1,55 @@
 # Agent-Universal-Devkit
 
-A central, modular engineering toolkit for AI coding agents and the repositories they work in.
+A central engineering ecosystem for AI agents and the repositories they work on.
 
-The Devkit provides:
-- Shared engineering instructions and native harness entry points.
-- A curated registry of tools, skills, and workflows.
-- A small bootstrap payload for new repositories.
-- A GitHub App that can distribute the bootstrap payload on repository creation.
-- An orchestration core for planning, routing, approval checks, and verification.
+The Devkit has **two equal priorities**:
 
-## Design rule
+1. **Resource Intelligence:** discover, evaluate, compare, and maintain excellent open-source repositories, tools, libraries, frameworks, and reusable engineering resources.
+2. **Agent Orchestration:** help AI agents plan, route, coordinate, execute, and verify engineering work.
 
-**Centralise discovery and knowledge. Distribute only small pointers and project-specific configuration.**
+## What it provides
 
-Do not copy the whole Devkit into every project. Do not install every tool by default. Recommend tools based on project needs.
+- A curated, evidence-backed open-source resource catalog.
+- Automated GitHub discovery for new and growing projects.
+- Comparison of similar tools, including justified hybrid recommendations.
+- Shared engineering knowledge, instructions, and harness adapters.
+- A general orchestration core that is not tied to one model or vendor.
+- A small bootstrap payload and optional GitHub App distribution.
 
 ## Main systems
 
 | Directory | Purpose |
 |---|---|
-| `agents/` | Instructions and adapters for AI harnesses |
-| `bootstrap/template/` | Small files installed in new repositories |
-| `catalog/` | Machine-readable tool, skill, and harness registries |
+| `catalog/` | Approved resources, tools, skills, and discovery candidates |
+| `core/resource-engine/` | Evidence-based resource comparison and hybrid suggestions |
 | `core/orchestrator/` | Task planning, dependency ordering, and safety gates |
-| `integrations/github-app/` | GitHub App bootstrap webhook handler |
-| `policies/` | Security and engineering policies |
-| `docs/` | Architecture and roadmap |
+| `agents/` | Instructions and harness adapters |
+| `bootstrap/template/` | Small files installed in new repositories |
+| `integrations/` | GitHub distribution and future protocol integrations |
+| `knowledge/` | Engineering guides and reference material |
+| `evaluations/` | Quality and compatibility evaluations |
+| `docs/` | Architecture, resource intelligence, and roadmap |
+
+## Important rules
+
+- Popularity is a discovery signal, not proof of quality.
+- Discovery candidates are not approved recommendations.
+- Compare alternatives against the actual project requirements.
+- Suggest a hybrid only when it adds real capability without unjustified complexity.
+- Do not install or execute catalog entries automatically.
+- Keep the resource ecosystem useful even when the orchestrator is not running.
+- Keep orchestration useful even when no curated resource is suitable.
+
+Read [Architecture](docs/ARCHITECTURE.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), and [Roadmap](docs/ROADMAP.md).
 
 ## Current status
 
-The first bootstrap webhook handler and orchestration core are in place. The GitHub App is not yet registered or deployed. Harness execution adapters are not yet implemented.
-
-Read [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), and [Contributing](CONTRIBUTING.md).
-
-## Safety
-
-- Never run an unreviewed tool just because it appears in the catalog.
-- Pin versions for reproducible builds.
-- Review licenses before adopting third-party software.
-- Do not expose secrets in logs, prompts, issues, or pull requests.
-- Require approval before installing dependencies, changing permissions, or applying destructive actions.
+The resource comparison engine and scheduled discovery workflow are initial implementations.
+The discovery workflow proposes candidate updates for review; it does not approve resources.
+The orchestrator is still a planning and safety core, not yet a multi-agent execution service.
+The GitHub App is source code only and is not registered or deployed.
 
 ## License
 
-The Devkit's original code and documentation are licensed under the MIT License. Third-party tools keep their own licenses.
+The Devkit's original code and documentation are licensed under MIT. Third-party
+resources retain their own licenses and terms.

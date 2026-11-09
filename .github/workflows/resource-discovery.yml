@@ -1,0 +1,54 @@
+name: Discover Open-Source Repositories
+
+on:
+  schedule:
+    - cron: "23 4 * * 1"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days back to search"
+        required: false
+        default: "30"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Discover candidates
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCOVERY_DAYS: ${{ inputs.days || '30' }}
+          DISCOVERY_MIN_STARS: "15"
+          DISCOVERY_PER_CATEGORY: "10"
+        run: python scripts/discover_repositories.py
+      - name: Open review pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- catalog/inbox/discovery-candidates.json; then
+            echo "No discovery changes."
+            exit 0
+          fi
+          branch="automation/resource-discovery"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add catalog/inbox/discovery-candidates.json
+          git commit -m "chore: refresh open-source discovery candidates"
+          git push --force-with-lease origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "chore: refresh open-source discovery candidates" \
+            --body "Automated GitHub discovery results. These are candidates only, not approved recommendations. Review project fit, maintenance, security, compatibility, and license before adding entries to the approved catalog." \
+            || gh pr view "$branch" --json url

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/agent-universal-devkit/resource.schema.json",
+  "title": "Devkit Resource",
+  "type": "object",
+  "required": ["id", "name", "url", "kind", "categories", "license", "status", "evidence"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "format": "uri" },
+    "kind": { "enum": ["repository", "tool", "library", "framework", "dataset", "template", "service"] },
+    "categories": { "type": "array", "items": { "type": "string" }, "minItems": 1, "uniqueItems": true },
+    "description": { "type": "string" },
+    "license": {
+      "type": "object",
+      "required": ["spdx_id", "source_url", "review_status"],
+      "properties": {
+        "spdx_id": { "type": "string" },
+        "source_url": { "type": "string", "format": "uri" },
+        "review_status": { "enum": ["unreviewed", "approved", "restricted", "unknown"] }
+      },
+      "additionalProperties": false
+    },
+    "status": { "enum": ["candidate", "approved", "deprecated", "rejected"] },
+    "capabilities": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "alternatives": { "type": "array", "items": { "type": "string" } },
+    "complements": { "type": "array", "items": { "type": "string" } },
+    "compatibility": { "type": "object" },
+    "maintenance": { "type": "object" },
+    "security": { "type": "object" },
+    "evaluation": { "type": "object" },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "url", "checked_at"],
+        "properties": {
+          "claim": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "checked_at": { "type": "string", "format": "date-time" }
+        }
+      },
+      "minItems": 1
+    },
+    "last_reviewed": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

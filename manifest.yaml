@@ -1,9 +1,14 @@
-schema_version: 1
+schema_version: 2
 devkit:
   name: Agent-Universal-Devkit
   repository: tanushgargjanuary-bot/Agent-Universal-Devkit
   default_branch: main
-  support_policy: tested-per-harness
+  support_policy: evidence-and-tests
+
+priorities:
+  - resource_intelligence
+  - agent_orchestration
+  equal_weight: true
 
 distribution:
   mode: pointer-and-selective-adapters
@@ -11,17 +16,25 @@ distribution:
   default_channel: stable
 
 discovery:
-  project_analysis: planned
-  tool_recommendations: planned
-  remote_instructions: opt_in_per_harness
+  source: github-search-api
+  schedule: weekly
+  auto_approve_candidates: false
+  popularity_is_quality_signal: false
+
+registries:
+  resources: catalog/resources.yaml
+  tools: catalog/tools.yaml
+  skills: catalog/skills.yaml
+  harnesses: catalog/harnesses.yaml
+  discovery_candidates: catalog/inbox/discovery-candidates.json
+
+engines:
+  resource_comparison: core/resource-engine
+  orchestration: core/orchestrator
 
 security:
   execute_catalog_tools_automatically: false
   require_license_review: true
+  require_evidence_for_evaluations: true
   require_version_pinning_for_critical_tools: true
   require_human_approval_for_dependency_changes: true
-
-registries:
-  tools: catalog/tools.yaml
-  skills: catalog/skills.yaml
-  harnesses: catalog/harnesses.yaml
