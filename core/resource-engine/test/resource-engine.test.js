@@ -57,3 +57,56 @@ test("rejects out-of-range scores", () => {
     make("a", { evaluation: { security: 8 } })
   ]), /security scored from 0 to 5/);
 });
+
+test("hard license constraints filter candidates before ranking", () => {
+  const allowed = make("allowed", { license: { spdx_id: "MIT", review_status: "approved" } });
+  const rejected = make("rejected", { license: { spdx_id: "AGPL-3.0-only", review_status: "approved" }, evaluation: { quality: 5, project_fit: 5 } });
+  const result = compareResources([allowed, rejected], { constraints: { allowedLicenseIds: ["MIT"] } });
+  assert.equal(result.recommended.id, "allowed");
+  assert.deepEqual(result.rejected.map((item) => item.id), ["rejected"]);
+  assert.match(result.rejected[0].reasons[0], /not in the allowed list/);
+});
+
+test("unknown mandatory license evidence fails closed and is reported", () => {
+  const result = compareResources([make("unknown")], { constraints: { requireReviewedLicense: true } });
+  assert.equal(result.recommended, null);
+  assert.equal(result.decision, "insufficient_evidence");
+  assert.match(result.rejected[0].unknowns[0], /review_status is missing/);
+});
+
+test("security, platform, and integration constraints are hard filters", () => {
+  const weak = make("weak", {
+    compatibility: { platforms: ["linux"] },
+    evaluation: { security: 2, integration_cost: 4 }
+  });
+  const strong = make("strong", {
+    compatibility: { platforms: ["linux", "windows"] },
+    evaluation: { security: 4, integration_cost: 1 }
+  });
+  const result = compareResources([weak, strong], {
+    constraints: { minimumSecurity: 3, maximumIntegrationCost: 2, requiredPlatforms: ["windows"] }
+  });
+  assert.equal(result.recommended.id, "strong");
+  assert.equal(result.rejected.length, 1);
+});
+
+test("no candidate can win through a high weighted score after violating a hard constraint", () => {
+  const dangerous = make("dangerous", { evaluation: { security: 0, quality: 5, project_fit: 5 } });
+  const safe = make("safe", { evaluation: { security: 4, quality: 3, project_fit: 3 } });
+  const result = compareResources([dangerous, safe], { constraints: { minimumSecurity: 3 } });
+  assert.equal(result.recommended.id, "safe");
+  assert.equal(result.rejected[0].id, "dangerous");
+});
+
+test("hybrid candidates must collectively satisfy all required capabilities", () => {
+  const a = make("a", { complements: ["b"], capabilities: ["static-analysis"] });
+  const b = make("b", { capabilities: ["dynamic-analysis"] });
+  const result = compareResources([a, b], { requiredCapabilities: ["static-analysis", "dynamic-analysis"] });
+  assert.equal(result.recommended, null);
+  assert.deepEqual(result.hybrid.resources, ["a", "b"]);
+  assert.equal(result.decision, "hybrid_candidate");
+});
+
+test("rejects malformed hard constraints", () => {
+  assert.throws(() => compareResources([make("a")], { constraints: { minimumSecurity: 9 } }), /minimumSecurity/);
+});
