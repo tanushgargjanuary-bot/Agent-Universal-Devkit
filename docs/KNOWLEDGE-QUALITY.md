@@ -4,6 +4,8 @@
 
 CI validates each registry entry against the schema keywords used by this repository. It also validates registry relationships and recomputes the SHA-256 digest of every approved Markdown file.
 
+Use [the technical review checklist](KNOWLEDGE-REVIEW-CHECKLIST.md) during every content review.
+
 ## Authenticated approval
 
 An approved entry must record:
