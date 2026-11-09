@@ -30,3 +30,23 @@ export function validateApprovalAttestation(item, { pullRequest, review, changed
   if (!files.has(item.path)) errors.push("Approval pull request did not change the approved knowledge content");
   return { valid: errors.length === 0, errors };
 }
+
+
+export function validatePullRequestApproval(pullRequest, reviews, repository) {
+  const errors = [];
+  if (!pullRequest || pullRequest.base?.ref !== "main") errors.push("Current pull request must target main");
+  if (repository && pullRequest?.head?.repo?.full_name !== repository) errors.push("Current pull request head repository does not match");
+  const author = pullRequest?.user?.login?.toLowerCase();
+  const headSha = pullRequest?.head?.sha?.toLowerCase();
+  const validReviews = (reviews ?? []).filter((review) =>
+    review?.state === "APPROVED" &&
+    review?.commit_id?.toLowerCase() === headSha &&
+    review?.user?.login &&
+    review.user.login.toLowerCase() !== author &&
+    ["OWNER", "MEMBER", "COLLABORATOR"].includes(review.author_association) &&
+    Number.isFinite(Date.parse(review.submitted_at ?? "")) &&
+    (!pullRequest.merged_at || Date.parse(review.submitted_at) <= Date.parse(pullRequest.merged_at))
+  );
+  if (validReviews.length === 0) errors.push("Current approval PR has no trusted human approval on its final head commit");
+  return { valid: errors.length === 0, errors, approving_review_ids: validReviews.map((review) => review.id) };
+}
