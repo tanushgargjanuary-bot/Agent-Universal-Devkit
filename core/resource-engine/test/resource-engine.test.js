@@ -132,3 +132,17 @@ test("reports no solution when every fully evidenced candidate violates constrai
   assert.equal(result.recommended, null);
   assert.equal(result.decision, "none_meet_constraints");
 });
+
+test("selects a lower-ranked single resource when the top candidate misses a mandatory capability", () => {
+  const partial = make("partial", {
+    capabilities: ["one"],
+    evaluation: { project_fit: 5, quality: 5, security: 5 }
+  });
+  const complete = make("complete", {
+    capabilities: ["one", "two"],
+    evaluation: { project_fit: 2, quality: 2, security: 3 }
+  });
+  const result = compareResources([partial, complete], { requiredCapabilities: ["one", "two"] });
+  assert.equal(result.recommended.id, "complete");
+  assert.equal(result.decision, "select_single");
+});
