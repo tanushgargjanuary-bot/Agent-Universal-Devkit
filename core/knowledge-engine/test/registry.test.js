@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { validateKnowledgeRegistry, validateKnowledgeContent } from "../src/index.js";
+import { validateApprovalAttestation } from "../src/approval.js";
 import { validateSchema } from "../src/json-schema.js";
 import registry from "../../../knowledge/registry.json" with { type: "json" };
 const schema = JSON.parse(readFileSync(new URL("../../../schemas/knowledge-item.schema.json", import.meta.url), "utf8"));
@@ -41,10 +42,44 @@ test("approval digest is bound to exact UTF-8 content bytes", () => {
     id:"approved.example",title:"Approved example",kind:"algorithm",path:"knowledge/example.md",version:"1.0.0",status:"approved",
     domains:["algorithms"],tags:["example"],prerequisites:[],related:[],limitations:[],
     activation:{any_tags:["example"],any_phrases:[]},
-    review:{approved_by:"reviewer",approved_at:"2026-11-10T00:00:00Z",reviewed_version:"1.0.0",content_sha256:digest,
+    review:{approved_by:"reviewer",approved_at:"2026-11-10T00:00:00Z",reviewed_version:"1.0.0",content_sha256:digest,approval_pr:1,approval_review_id:2,approval_commit:"a".repeat(40),
       sources:[{title:"Reference",url:"https://example.com/reference",purpose:"Verification"}]}
   };
   assert.equal(validateKnowledgeContent({items:[item]},()=>content).verified_count,1);
   assert.throws(()=>validateKnowledgeContent({items:[item]},()=>content+"changed"),/digest mismatch/);
   assert.throws(()=>validateKnowledgeRegistry({items:[{...item,review:{...item.review,content_sha256:undefined}}]}),/needs reviewer/);
+});
+
+test("approval attestation requires a merged PR, trusted reviewer, exact commit, and both changed files", () => {
+  const item = { path: "knowledge/example.md", review: {
+    approved_by: "trusted-reviewer", approval_pr: 42, approval_review_id: 9001, approval_commit: "a".repeat(40)
+  }};
+  const pullRequest = {
+    number: 42, state: "closed", merged: true, merged_at: "2026-11-10T00:05:00Z",
+    base: { ref: "main" }, head: { sha: "a".repeat(40), repo: { full_name: "owner/repo" } },
+    user: { login: "contributor" }
+  };
+  const review = {
+    id: 9001, state: "APPROVED", commit_id: "a".repeat(40), submitted_at: "2026-11-10T00:04:00Z",
+    author_association: "COLLABORATOR", user: { login: "trusted-reviewer" }
+  };
+  const valid = validateApprovalAttestation(item, {
+    pullRequest, review, changedFiles: ["knowledge/registry.json", item.path], repository: "owner/repo"
+  });
+  assert.deepEqual(valid, { valid: true, errors: [] });
+  assert.ok(validateApprovalAttestation(item, {
+    pullRequest: { ...pullRequest, head: { ...pullRequest.head, sha: "b".repeat(40) } },
+    review, changedFiles: ["knowledge/registry.json", item.path], repository: "owner/repo"
+  }).errors.some((error) => error.includes("final pull request head")));
+  assert.ok(validateApprovalAttestation(item, {
+    pullRequest: { ...pullRequest, user: { login: "trusted-reviewer" } },
+    review, changedFiles: ["knowledge/registry.json", item.path], repository: "owner/repo"
+  }).errors.some((error) => error.includes("cannot approve their own")));
+  assert.ok(validateApprovalAttestation(item, {
+    pullRequest, review: { ...review, state: "DISMISSED" },
+    changedFiles: ["knowledge/registry.json", item.path], repository: "owner/repo"
+  }).errors.some((error) => error.includes("not currently approved")));
+  assert.ok(validateApprovalAttestation(item, {
+    pullRequest, review, changedFiles: [item.path], repository: "owner/repo"
+  }).errors.some((error) => error.includes("did not change the knowledge registry")));
 });
