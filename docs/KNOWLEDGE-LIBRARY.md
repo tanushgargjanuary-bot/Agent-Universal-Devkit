@@ -87,6 +87,7 @@ The first pack covers complexity analysis, graph traversal, shortest-path select
 - `knowledge/algorithms/`: algorithm explanations.
 - `knowledge/mathematics/`: mathematics, statistics, and optimisation.
 - `knowledge/mathematics/formulas/`: focused formula cards.
+- `knowledge/implementations/`: readable reference implementations used by independent tests.
 - `knowledge/registry.json`: machine-readable index and activation metadata.
 - `schemas/knowledge-item.schema.json`: item contract.
 - `core/knowledge-engine/`: local retrieval and validation logic.
