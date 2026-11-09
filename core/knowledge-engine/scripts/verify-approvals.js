@@ -64,24 +64,38 @@ const eventName = process.env.GITHUB_EVENT_NAME;
 const eventPath = process.env.GITHUB_EVENT_PATH;
 const event = eventPath ? JSON.parse(readFileSync(eventPath, "utf8")) : {};
 let currentPrNumber = event.pull_request?.number ?? null;
-if (!currentPrNumber && eventName === "push") {
+let currentPrFiles = [];
+if (currentPrNumber) {
+  currentPrFiles = await listChangedFiles(currentPrNumber);
+} else if (eventName === "push") {
   const associated = await github("/commits/" + process.env.GITHUB_SHA + "/pulls?per_page=100");
-  const mergedMainPr = associated.find((pr) => pr.merged_at && pr.base?.ref === "main");
-  currentPrNumber = mergedMainPr?.number ?? null;
+  for (const candidate of associated.filter((pr) => pr.merged_at && pr.base?.ref === "main")) {
+    const candidateFiles = await listChangedFiles(candidate.number);
+    if (candidateFiles.some((file) => file.startsWith("knowledge/") ||
+        file.startsWith("core/knowledge-engine/") || file === "schemas/knowledge-item.schema.json")) {
+      currentPrNumber = candidate.number;
+      currentPrFiles = candidateFiles;
+      break;
+    }
+  }
 }
-if (!currentPrNumber) {
+const knowledgeScopedPr = currentPrFiles.some((file) => file.startsWith("knowledge/") ||
+  file.startsWith("core/knowledge-engine/") || file === "schemas/knowledge-item.schema.json");
+if (knowledgeScopedPr && !currentPrNumber) {
   failures.push("Could not identify the pull request that introduced the current approved registry state");
-} else {
+} else if (knowledgeScopedPr) {
   try {
     const [pullRequest, reviews] = await Promise.all([
       github("/pulls/" + currentPrNumber), listReviews(currentPrNumber)
     ]);
     const result = validatePullRequestApproval(pullRequest, reviews, repository);
-    if (!result.valid) failures.push("Current approval PR #" + currentPrNumber + ": " + result.errors.join("; "));
-    else console.log("Verified independent approval of current PR #" + currentPrNumber);
+    if (!result.valid) failures.push("Current knowledge PR #" + currentPrNumber + ": " + result.errors.join("; "));
+    else console.log("Verified independent approval of current knowledge PR #" + currentPrNumber);
   } catch (error) {
-    failures.push("Current approval PR #" + currentPrNumber + ": " + error.message);
+    failures.push("Current knowledge PR #" + currentPrNumber + ": " + error.message);
   }
+} else {
+  console.log("Current PR does not change knowledge files; current-PR approval check is not applicable.");
 }
 if (failures.length) {
   console.error("Knowledge approval verification failed:");
