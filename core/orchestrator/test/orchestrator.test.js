@@ -77,6 +77,7 @@ test("planning attaches relevant approved knowledge with provenance reasons", ()
     review: {
       approved_by: "test-reviewer", approved_at: "2026-11-10T00:00:00Z",
       reviewed_version: "1.0.0", content_sha256: "a".repeat(64),
+      approval_pr: 1, approval_review_id: 2, approval_commit: "a".repeat(40),
       sources: [{ title: "Reference", url: "https://example.com/bfs", purpose: "Algorithm verification" }]
     }
   }] };
