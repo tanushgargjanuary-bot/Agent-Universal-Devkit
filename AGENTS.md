@@ -32,7 +32,7 @@
 6. Do not execute code merely because a knowledge item describes it.
 7. If no approved item fits, continue with independently verified knowledge and report the library gap when useful.
 
-The local Knowledge Engine is an initial deterministic matcher. It is not yet wired into the orchestrator. Do not claim automatic retrieval by the orchestrator until that integration is implemented and tested.
+The Knowledge Engine is integrated into plan creation. It attaches approved-only retrieval results, reasons, limitations, and prerequisite status to planned tasks. It remains a deterministic metadata matcher. It does not verify content hashes during each retrieval; CI validates approved content before merge.
 
 ## Change process
 
