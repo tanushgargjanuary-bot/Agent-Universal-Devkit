@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { validateKnowledgeRegistry } from "../src/index.js";
 import registry from "../../../knowledge/registry.json" with { type: "json" };
 
 const schema = JSON.parse(readFileSync(
@@ -12,28 +13,17 @@ test("knowledge schema and registry are valid JSON documents", () => {
   assert.equal(schema.title, "Devkit Knowledge Item");
   assert.ok(Array.isArray(registry.items));
   assert.ok(registry.items.length > 0);
+  assert.deepEqual(validateKnowledgeRegistry(registry), {
+    valid: true, item_count: registry.items.length
+  });
 });
 
 test("registry IDs are unique and every item points to a native file", () => {
-  const ids = new Set();
   for (const item of registry.items) {
-    assert.ok(!ids.has(item.id), "duplicate ID: " + item.id);
-    ids.add(item.id);
-    assert.ok(item.path.startsWith("knowledge/"), "non-native path: " + item.path);
-    assert.ok(item.path.endsWith(".md"), "expected Markdown: " + item.path);
     const content = readFileSync(new URL("../../../" + item.path, import.meta.url), "utf8");
     assert.ok(content.includes(item.id), "item ID missing from content: " + item.id);
     assert.ok(item.activation && Array.isArray(item.activation.any_tags));
     assert.ok(Array.isArray(item.activation.any_phrases));
-  }
-});
-
-test("all prerequisites and related IDs resolve", () => {
-  const ids = new Set(registry.items.map((item) => item.id));
-  for (const item of registry.items) {
-    for (const relatedId of [...(item.prerequisites ?? []), ...(item.related ?? [])]) {
-      assert.ok(ids.has(relatedId), item.id + " references unknown item " + relatedId);
-    }
   }
 });
 

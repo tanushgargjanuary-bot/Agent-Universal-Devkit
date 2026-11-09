@@ -2,66 +2,57 @@
 
 Resource Intelligence and Agent Orchestration have equal priority. The native Knowledge Library supports both.
 
-## Phase 1 — Foundation
-- [x] Establish repository structure and core rules.
-- [x] Define bootstrap pointer format.
-- [x] Define initial tool, skill, and harness catalogs.
-- [x] Define orchestration task schema and safety policy.
-- [x] Define resource catalog contract and comparison rules.
-- [x] Define product principles and target architecture.
-- [x] Define native knowledge item contract and initial registry.
-
-## Phase 2 — Resource Intelligence
-- [x] Add initial evidence-based resource comparison engine.
-- [x] Add scheduled GitHub candidate discovery.
-- [ ] Add hard-constraint filtering and explicit unknown values to comparisons.
-- [ ] Add evidence quality, provenance, and confidence reporting.
-- [ ] Add category-specific evaluation profiles.
-- [ ] Add duplicate detection against the approved catalog.
-- [ ] Add richer maintenance, release, and security checks.
-- [ ] Add agent-facing resource search API and CLI.
-- [ ] Populate the catalog with carefully reviewed, high-value projects.
-- [ ] Add resource health history and deprecation workflow.
-
-## Phase 3 — Native Knowledge and Methods
-- [x] Establish repository-native authoring and attribution rules.
-- [x] Add initial algorithm and mathematics study material.
-- [x] Add focused formula cards with task activation metadata.
-- [x] Add deterministic, explainable knowledge retrieval.
-- [x] Add registry-to-file and relationship consistency tests.
+## Gate A — Trustworthy foundations
+- [x] Establish repository structure, core rules, and product principles.
+- [x] Add initial resource discovery and comparison.
+- [x] Add initial orchestration planning and risk gates.
+- [x] Add native knowledge records and deterministic retrieval.
+- [x] Add token-boundary matching, registry integrity checks, and prerequisite visibility.
+- [x] Require auditable review metadata before knowledge can be marked approved.
 - [ ] Add full JSON Schema validation in CI.
-- [ ] Add technical review and approval workflow for knowledge entries.
-- [ ] Expand algorithms, data structures, mathematics, statistics, and domain methods.
-- [ ] Add more worked examples, reference implementations, and executable tests.
-- [ ] Build a benchmark set for retrieval precision and recall.
-- [ ] Add semantic retrieval only when it improves measured results and remains locally usable.
+- [ ] Add benchmark cases for retrieval precision, recall, and abstention.
+- [ ] Add a review workflow that binds approval to an exact content version.
+- [ ] Add reference implementations and independent tests for important algorithms and formulas.
 
-## Phase 4 — Orchestration
-- [x] Define task lifecycle and safety policy.
-- [x] Implement dependency ordering and execution gates.
+## Gate B — Evidence-driven Resource Intelligence
+- [ ] Add hard-constraint filtering before weighted evaluation.
+- [ ] Represent unknown, stale, and conflicting evidence explicitly.
+- [ ] Add evidence provenance, quality, and confidence reporting.
+- [ ] Add category-specific evaluation profiles.
+- [ ] Add duplicate and alternative detection.
+- [ ] Add resource health history and deprecation workflow.
+- [ ] Add an agent-facing resource search API and CLI.
+
+## Gate C — Knowledge and method depth
+- [ ] Expand algorithms, data structures, discrete mathematics, calculus, linear algebra, probability, statistics, optimisation, numerical methods, and information theory.
+- [ ] Add worked problems, derivations, visual explanations, and reference implementations.
+- [ ] Add property-based and numerical tests where appropriate.
+- [ ] Add prerequisites and related-concept navigation.
+- [ ] Add domain-specific knowledge packs for software, AI/ML, cybersecurity, systems, and other engineering fields.
+- [ ] Approve only reviewed, version-bound entries.
+- [ ] Add local semantic retrieval only if benchmarks show a measurable improvement.
+
+## Gate D — Knowledge-aware orchestration
 - [ ] Add requirements extraction and acceptance criteria.
-- [ ] Add project inspection and general task planner.
-- [ ] Add agent registry and capability-based routing.
-- [ ] Add resource- and knowledge-aware planning.
-- [ ] Add optional MCP and A2A integrations.
-- [ ] Add one tested executor adapter and run history.
-- [ ] Add independent verification and recovery.
+- [ ] Retrieve approved knowledge and resources during planning.
+- [ ] Add capability-based agent and harness routing.
+- [ ] Add scoped approvals and re-check policy at execution time.
+- [ ] Add tested executor adapters and run history.
+- [ ] Add independent verification contracts and recovery paths.
 
-## Phase 5 — Solution Design and Verification
-- [ ] Compare complete solution architectures, not only individual tools.
-- [ ] Include cost, integration effort, maintenance, security, and license constraints.
-- [ ] Support select-single, select-hybrid, custom-solution, select-none, and insufficient-evidence outcomes.
-- [ ] Add independent verification contracts for common engineering tasks.
-- [ ] Create benchmark engineering problems with independently assessed outcomes.
+## Gate E — Complete solution intelligence
+- [ ] Compare complete architectures, not only individual tools.
+- [ ] Support single, hybrid, custom, none, and insufficient-evidence decisions.
+- [ ] Include lifecycle cost, security, licensing, integration, and maintenance.
+- [ ] Record rejected options and conditions that would change decisions.
+- [ ] Benchmark recommendation quality against independently labelled cases.
 
-## Phase 6 — Distribution and Reliability
-- [x] Create a small internal bootstrap payload.
-- [x] Build the first GitHub App webhook handler.
+## Gate F — Distribution and controlled evolution
 - [ ] Register, install, and deploy the GitHub App.
 - [ ] Add tested adapters for supported harnesses.
-- [ ] Add API, CLI, and file-based discovery interfaces.
-- [ ] Add security and dependency review automation.
-- [ ] Add controlled update pull requests.
-- [ ] Document support levels, benchmark results, and known limitations.
+- [ ] Add API, CLI, and file-based interfaces.
+- [ ] Add supply-chain and dependency review automation.
+- [ ] Add controlled update pull requests and health monitoring.
+- [ ] Record compatibility, benchmark results, and known limitations.
 
-A capability is not complete until it has tests, documentation, evidence, and a clear security model. A knowledge entry is not approved until its technical claims and examples have been reviewed.
+A capability is not complete until its contract, tests, evidence, security model, and documentation exist. Knowledge approval is tied to an exact reviewed version.

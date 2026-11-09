@@ -15,7 +15,7 @@ test("selects graph and shortest-path material for a weighted path problem", () 
   assert.ok(result.matches.some((item) => item.id === "algo.graph-traversal"));
 });
 
-test("selects mathematics when the task asks for Bayes theorem", () => {
+test("selects mathematics and its formula for Bayes theorem", () => {
   const result = selectKnowledge(registry, {
     description: "Calculate posterior probability with Bayes theorem",
     tags: ["probability"],
@@ -43,7 +43,25 @@ test("does not return unrelated material for a vague task", () => {
   assert.deepEqual(result.matches, []);
 });
 
-test("honours exclusion phrases", () => {
+test("does not match a phrase as a substring inside a different word", () => {
+  const result = selectKnowledge(registry, {
+    description: "Build a graphical user interface",
+    tags: [],
+    domain: "algorithms"
+  }, draftPreview);
+  assert.deepEqual(result.matches, []);
+});
+
+test("domain alone is not enough to retrieve knowledge", () => {
+  const result = selectKnowledge(registry, {
+    description: "Implement a feature",
+    tags: [],
+    domain: "machine-learning"
+  }, draftPreview);
+  assert.deepEqual(result.matches, []);
+});
+
+test("honours exclusion phrases with token boundaries", () => {
   const result = selectKnowledge(registry, {
     description: "Optimise image file size",
     tags: ["optimization"],
@@ -62,29 +80,34 @@ test("excludes draft material by default", () => {
   assert.deepEqual(result.matches, []);
 });
 
-test("can restrict results to approved items", () => {
+test("draft preview never reports material as ready to apply", () => {
   const result = selectKnowledge(registry, {
-    description: "Use breadth first search on a graph",
-    tags: ["graph", "bfs"],
-    domain: "algorithms"
-  }, { statuses: ["approved"] });
-  assert.deepEqual(result.matches, []);
+    description: "Apply the gradient descent update using a learning rate",
+    tags: ["gradient-descent", "learning-rate"],
+    domain: "machine-learning"
+  }, { ...draftPreview, limit: 10 });
+  const formula = result.matches.find((item) => item.id === "math.formula.gradient-descent");
+  assert.ok(formula);
+  assert.equal(formula.ready_to_apply, false);
+  assert.ok(formula.unresolved_prerequisites.includes("math.optimisation"));
 });
 
 test("enforces all_tags activation requirements", () => {
   const custom = { items: [{
-    id: "required.tags", title: "Required tags", path: "knowledge/example.md",
-    status: "approved", domains: [],
+    id: "required.tags", title: "Required tags", kind: "algorithm", path: "knowledge/example.md",
+    version: "1.0.0", status: "draft", domains: ["graphs"], tags: ["graph", "weighted"],
+    prerequisites: [], related: [], limitations: [],
     activation: { any_tags: [], all_tags: ["graph", "weighted"], any_phrases: [] }
   }] };
   assert.equal(selectKnowledge(custom, { tags: ["graph"] }).matches.length, 0);
   assert.equal(selectKnowledge(custom, { tags: ["graph", "weighted"] }).matches.length, 1);
 });
 
-test("enforces required_capabilities activation requirements", () => {
+test("required capabilities are enforced as prerequisites", () => {
   const custom = { items: [{
-    id: "required.capabilities", title: "Required capabilities", path: "knowledge/example.md",
-    status: "approved", domains: [],
+    id: "required.capabilities", title: "Required capabilities", kind: "algorithm",
+    path: "knowledge/example.md", version: "1.0.0", status: "draft",
+    domains: ["graphs"], tags: ["graph"], prerequisites: [], related: [], limitations: [],
     activation: {
       any_tags: ["graph"], all_tags: [], any_phrases: [],
       required_capabilities: ["pathfinding", "weighted-graphs"]
@@ -96,11 +119,46 @@ test("enforces required_capabilities activation requirements", () => {
   }).matches.length, 1);
 });
 
-test("rejects duplicate IDs", () => {
+test("rejects duplicate IDs and unsafe paths", () => {
+  const base = {
+    title: "Example", kind: "algorithm", version: "1.0.0", status: "draft",
+    domains: ["algorithms"], tags: ["test"], prerequisites: [], related: [], limitations: [],
+    activation: { any_tags: ["test"], any_phrases: [] }
+  };
   assert.throws(() => selectKnowledge({ items: [
-    { id: "same", title: "A", path: "a.md", activation: {} },
-    { id: "same", title: "B", path: "b.md", activation: {} }
-  ] }, { description: "test" }), /Duplicate knowledge item id/);
+    { ...base, id: "same", path: "knowledge/a.md" },
+    { ...base, id: "same", path: "knowledge/b.md" }
+  ] }, { description: "test", tags: ["test"] }), /Duplicate knowledge item id/);
+  assert.throws(() => selectKnowledge({ items: [
+    { ...base, id: "unsafe", path: "knowledge/../../secrets.md" }
+  ] }, { description: "test", tags: ["test"] }), /Unsafe or invalid knowledge path/);
+});
+
+test("rejects missing prerequisite references and prerequisite cycles", () => {
+  const base = {
+    title: "Example", kind: "algorithm", version: "1.0.0", status: "draft",
+    domains: ["algorithms"], tags: ["test"], related: [], limitations: [],
+    activation: { any_tags: ["test"], any_phrases: [] }
+  };
+  assert.throws(() => selectKnowledge({ items: [
+    { ...base, id: "a", path: "knowledge/a.md", prerequisites: ["missing"] }
+  ] }, { tags: ["test"] }), /Unknown knowledge relationship/);
+  assert.throws(() => selectKnowledge({ items: [
+    { ...base, id: "a", path: "knowledge/a.md", prerequisites: ["b"] },
+    { ...base, id: "b", path: "knowledge/b.md", prerequisites: ["a"] }
+  ] }, { tags: ["test"] }), /prerequisite cycle/);
+});
+
+test("rejects approved content without an auditable review", () => {
+  const item = registry.items[0];
+  const approved = { ...item, status: "approved" };
+  assert.throws(() => selectKnowledge({ items: [approved] }, { tags: ["complexity"] }), /needs reviewer/);
+});
+
+test("validates caller options and task types", () => {
+  assert.throws(() => selectKnowledge(registry, { tags: ["graph", 7] }), /non-empty strings/);
+  assert.throws(() => selectKnowledge(registry, { tags: ["graph"] }, { limit: 100 }), /limit/);
+  assert.throws(() => selectKnowledge(registry, { tags: ["graph"] }, { statuses: ["trusted"] }), /known knowledge statuses/);
 });
 
 test("returns reasons and respects the result limit", () => {
@@ -111,4 +169,5 @@ test("returns reasons and respects the result limit", () => {
   }, { ...draftPreview, limit: 2 });
   assert.equal(result.matches.length, 2);
   assert.ok(result.matches[0].reasons.length > 0);
+  assert.equal(result.retrieval_mode, "deterministic_metadata");
 });
