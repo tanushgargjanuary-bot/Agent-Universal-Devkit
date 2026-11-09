@@ -7,19 +7,22 @@ const evidence = [{
   claim: "Official documentation",
   checked_at: "2026-11-10T00:00:00Z"
 }];
-const make = (id, overrides = {}) => ({
-  id, name: id, url: `https://github.com/example/${id}`,
-  capabilities: ["scan"],
-  complements: [],
-  evaluation: {
-    project_fit: 5, quality: 4, maintenance: 4, security: 4,
-    documentation: 4, license: 5, compatibility: 4,
-    performance: 4, integration_cost: 1,
-    ...(overrides.evaluation ?? {})
-  },
-  evidence,
-  ...overrides
-});
+const make = (id, overrides = {}) => {
+  const { evaluation = {}, ...rest } = overrides;
+  return {
+    id, name: id, url: `https://github.com/example/${id}`,
+    capabilities: ["scan"],
+    complements: [],
+    evaluation: {
+      project_fit: 5, quality: 4, maintenance: 4, security: 4,
+      documentation: 4, license: 5, compatibility: 4,
+      performance: 4, integration_cost: 1,
+      ...evaluation
+    },
+    evidence,
+    ...rest
+  };
+};
 
 test("ranks the stronger fit first", () => {
   const result = compareResources([
