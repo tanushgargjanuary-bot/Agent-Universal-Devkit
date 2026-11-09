@@ -1,3 +1,6 @@
+import { selectKnowledge } from "../../knowledge-engine/src/index.js";
+import defaultKnowledgeRegistry from "../../../knowledge/registry.json" with { type: "json" };
+
 const APPROVAL_ACTIONS = new Set([
   "install_or_upgrade_dependencies",
   "change_repository_permissions",
@@ -47,7 +50,7 @@ export function orderTasks(tasks) {
   return ordered;
 }
 
-export function createPlan({ task_id, goal, repository, tasks, risk = "low" }) {
+export function createPlan({ task_id, goal, repository, tasks, risk = "low", knowledgeRegistry = defaultKnowledgeRegistry }) {
   if (!task_id || !goal || !repository?.full_name || !repository?.default_branch) {
     throw new Error("task_id, goal, repository.full_name, and repository.default_branch are required");
   }
@@ -68,7 +71,16 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low" }) {
     tasks: ordered.map((task) => ({
       ...task,
       status: "planned",
-      evidence: task.evidence ?? []
+      evidence: task.evidence ?? [],
+      knowledge_retrieval: selectKnowledge(knowledgeRegistry, {
+        description: task.description ?? "",
+        goal: task.goal ?? "",
+        problem: task.problem ?? "",
+        context: task.context ?? "",
+        domain: task.domain,
+        tags: task.tags ?? [],
+        required_capabilities: task.required_capabilities ?? []
+      })
     }))
   };
 }
