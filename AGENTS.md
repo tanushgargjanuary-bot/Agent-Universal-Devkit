@@ -31,6 +31,7 @@
 5. Verify formulas, algorithm guarantees, edge cases, and implementation details independently when correctness matters.
 6. Do not execute code merely because a knowledge item describes it.
 7. If no approved item fits, continue with independently verified knowledge and report the library gap when useful.
+8. Never change an item to approved by editing its status alone. Follow the two-pull-request process in docs/KNOWLEDGE-QUALITY.md and use docs/KNOWLEDGE-REVIEW-CHECKLIST.md. Approval metadata must refer to a real GitHub review and the exact reviewed content.
 
 The Knowledge Engine is integrated into plan creation. It attaches approved-only retrieval results, reasons, limitations, and prerequisite status to planned tasks. It remains a deterministic metadata matcher. It does not verify content hashes during each retrieval; CI validates approved content before merge.
 
