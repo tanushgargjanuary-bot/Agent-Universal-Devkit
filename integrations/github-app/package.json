@@ -1,0 +1,13 @@
+{
+  "name": "@agent-universal-devkit/github-bootstrap-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "GitHub App that adds Agent-Universal-Devkit bootstrap files to newly created repositories.",
+  "scripts": {
+    "start": "probot run ./src/index.js"
+  },
+  "dependencies": {
+    "probot": "^13.4.0"
+  }
+}
