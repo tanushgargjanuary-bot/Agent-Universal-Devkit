@@ -109,4 +109,6 @@ test("approval metadata PR itself needs an independent review on its final head"
   assert.equal(validatePullRequestApproval(pullRequest, [review], "owner/repo").valid, true);
   assert.equal(validatePullRequestApproval(pullRequest, [{ ...review, commit_id: "d".repeat(40) }], "owner/repo").valid, false);
   assert.equal(validatePullRequestApproval(pullRequest, [{ ...review, user: { login: "contributor" } }], "owner/repo").valid, false);
+  assert.equal(validatePullRequestApproval(pullRequest, [review, { ...review, id: 9003, state: "CHANGES_REQUESTED" }], "owner/repo").valid, false);
+  assert.equal(validatePullRequestApproval({ ...pullRequest, head: { ...pullRequest.head, sha: undefined } }, [review], "owner/repo").valid, false);
 });
