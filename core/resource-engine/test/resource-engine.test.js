@@ -110,3 +110,25 @@ test("hybrid candidates must collectively satisfy all required capabilities", ()
 test("rejects malformed hard constraints", () => {
   assert.throws(() => compareResources([make("a")], { constraints: { minimumSecurity: 9 } }), /minimumSecurity/);
 });
+
+test("stale evidence is rejected as a hard constraint", () => {
+  const stale = make("stale", {
+    evidence: [{ url: "https://example.com/docs", claim: "Old claim", checked_at: "2024-01-01T00:00:00Z" }]
+  });
+  const fresh = make("fresh", {
+    evidence: [{ url: "https://example.com/docs", claim: "Current claim", checked_at: "2026-11-09T00:00:00Z" }]
+  });
+  const result = compareResources([stale, fresh], {
+    constraints: { maxEvidenceAgeDays: 30, asOf: "2026-11-10T00:00:00Z" }
+  });
+  assert.equal(result.recommended.id, "fresh");
+  assert.match(result.rejected[0].reasons[0], /older than/);
+});
+
+test("reports no solution when every fully evidenced candidate violates constraints", () => {
+  const result = compareResources([make("weak", { evaluation: { security: 1 } })], {
+    constraints: { minimumSecurity: 4 }
+  });
+  assert.equal(result.recommended, null);
+  assert.equal(result.decision, "none_meet_constraints");
+});
