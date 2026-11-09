@@ -1,5 +1,6 @@
+import { readFileSync } from "node:fs";
 import registry from "../../../knowledge/registry.json" with { type: "json" };
-import { validateApprovalAttestation } from "../src/approval.js";
+import { validateApprovalAttestation, validatePullRequestApproval } from "../src/approval.js";
 
 const token = process.env.GITHUB_TOKEN;
 const repository = process.env.GITHUB_REPOSITORY;
@@ -20,6 +21,15 @@ async function listChangedFiles(prNumber) {
     if (batch.length < 100) return files;
   }
   throw new Error("Approval PR changes more than 1,000 files; refusing incomplete verification");
+}
+async function listReviews(prNumber) {
+  const reviews = [];
+  for (let page = 1; page <= 10; page += 1) {
+    const batch = await github("/pulls/" + prNumber + "/reviews?per_page=100&page=" + page);
+    reviews.push(...batch);
+    if (batch.length < 100) return reviews;
+  }
+  throw new Error("Pull request has more than 1,000 reviews; refusing incomplete verification");
 }
 const approved = registry.items.filter((item) => item.status === "approved");
 if (approved.length === 0) {
@@ -44,9 +54,33 @@ for (const item of approved) {
     const evidence = await getApproval(record.approval_pr, record.approval_review_id);
     const result = validateApprovalAttestation(item, { ...evidence, repository });
     if (!result.valid) failures.push(item.id + ": " + result.errors.join("; "));
-    else console.log("Verified GitHub approval for " + item.id + " by @" + record.approved_by);
+    else console.log("Verified content approval for " + item.id + " by @" + record.approved_by);
   } catch (error) {
     failures.push(item.id + ": " + error.message);
+  }
+}
+
+const eventName = process.env.GITHUB_EVENT_NAME;
+const eventPath = process.env.GITHUB_EVENT_PATH;
+const event = eventPath ? JSON.parse(readFileSync(eventPath, "utf8")) : {};
+let currentPrNumber = event.pull_request?.number ?? null;
+if (!currentPrNumber && eventName === "push") {
+  const associated = await github("/commits/" + process.env.GITHUB_SHA + "/pulls?per_page=100");
+  const mergedMainPr = associated.find((pr) => pr.merged_at && pr.base?.ref === "main");
+  currentPrNumber = mergedMainPr?.number ?? null;
+}
+if (!currentPrNumber) {
+  failures.push("Could not identify the pull request that introduced the current approved registry state");
+} else {
+  try {
+    const [pullRequest, reviews] = await Promise.all([
+      github("/pulls/" + currentPrNumber), listReviews(currentPrNumber)
+    ]);
+    const result = validatePullRequestApproval(pullRequest, reviews, repository);
+    if (!result.valid) failures.push("Current approval PR #" + currentPrNumber + ": " + result.errors.join("; "));
+    else console.log("Verified independent approval of current PR #" + currentPrNumber);
+  } catch (error) {
+    failures.push("Current approval PR #" + currentPrNumber + ": " + error.message);
   }
 }
 if (failures.length) {
