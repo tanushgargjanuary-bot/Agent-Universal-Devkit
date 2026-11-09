@@ -3,7 +3,7 @@ import registry from "../../../knowledge/registry.json" with { type: "json" };
 import schema from "../../../schemas/knowledge-item.schema.json" with { type: "json" };
 import { validateSchema } from "../src/json-schema.js";
 import { validateKnowledgeRegistry, validateKnowledgeContent } from "../src/index.js";
-const errors=validateSchema(registry.items,schema);
+const errors=registry.items.flatMap((item,index)=>validateSchema(item,schema,`items[${index}]`));
 if(errors.length){console.error(errors.join("\n"));process.exit(1);}
 validateKnowledgeRegistry(registry);
 const result=validateKnowledgeContent(registry,(path)=>readFileSync(new URL("../../../"+path,import.meta.url),"utf8"));
