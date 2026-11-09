@@ -1,0 +1,30 @@
+name: Resource quality
+
+on:
+  push:
+    paths:
+      - "core/resource-engine/**"
+      - "schemas/resource.schema.json"
+      - "catalog/resources.yaml"
+      - ".github/workflows/resource-quality.yml"
+  pull_request:
+    paths:
+      - "core/resource-engine/**"
+      - "schemas/resource.schema.json"
+      - "catalog/resources.yaml"
+      - ".github/workflows/resource-quality.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Test resource hard constraints and ranking
+        working-directory: core/resource-engine
+        run: npm test
