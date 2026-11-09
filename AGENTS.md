@@ -3,13 +3,14 @@
 ## First steps
 
 1. Read this file.
-2. Read `docs/ARCHITECTURE.md` and the current roadmap before changing structure.
+2. Read `docs/PRODUCT-PRINCIPLES.md`, `docs/ARCHITECTURE.md`, and the current roadmap before changing structure.
 3. Inspect the existing files and conventions. Do not assume the repository is empty.
 4. Check the relevant catalog entry and harness adapter before adding or changing a tool integration.
 
 ## Working rules
 
 - Keep all systems in this single repository.
+- Keep Resource Intelligence and Agent Orchestration as equal priorities.
 - Keep the bootstrap payload small. New projects should receive pointers and necessary native configuration, not a copy of the whole Devkit.
 - Do not claim universal agent compatibility. Support must be tested for each harness and version.
 - Prefer maintained, reputable open-source projects. Check license, release activity, security posture, installation method, and platform support.
@@ -21,13 +22,25 @@
 - Never commit secrets, tokens, private keys, or personal data.
 - Avoid unnecessary branches, files, dependencies, and commits.
 
+## Use the native Knowledge Library
+
+1. Check `knowledge/registry.json` when a task involves algorithm selection, data structures, mathematical reasoning, statistics, optimisation, protocols, security methods, or another topic covered by the library.
+2. Retrieve only items whose activation signals match the actual task. Do not load the full library by default.
+3. Use approved items for engineering decisions. Draft or review items are editorial material; do not rely on them as validated guidance.
+4. Read the item's assumptions, prerequisites, limitations, and related concepts before applying it.
+5. Verify formulas, algorithm guarantees, edge cases, and implementation details independently when correctness matters.
+6. Do not execute code merely because a knowledge item describes it.
+7. If no approved item fits, continue with independently verified knowledge and report the library gap when useful.
+
+The local Knowledge Engine is an initial deterministic matcher. It is not yet wired into the orchestrator. Do not claim automatic retrieval by the orchestrator until that integration is implemented and tested.
+
 ## Change process
 
 1. Inspect the affected area.
 2. Make the smallest complete change.
 3. Add or update tests when behavior changes.
-4. Validate links, paths, YAML, JSON, and scripts where applicable.
-5. Update documentation and the changelog when needed.
+4. Validate links, paths, YAML, JSON, schemas, and scripts where applicable.
+5. Update documentation and the roadmap when needed.
 6. Report exactly what changed and what was not tested.
 
 ## Safety gates

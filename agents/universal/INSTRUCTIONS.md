@@ -28,6 +28,18 @@ These instructions are shared guidance, not a replacement for native harness con
 4. Verify source, license, maintenance, version, and permissions.
 5. Ask before installing dependencies or executing tools with broad access.
 
+## Use native engineering knowledge when relevant
+
+1. For tasks involving algorithms, data structures, mathematics, statistics, optimisation, security methods, protocols, or engineering procedures, inspect `knowledge/registry.json`.
+2. Match the task's actual requirements and concepts against item activation metadata. Retrieve only relevant items.
+3. Use approved items for engineering decisions. Draft and review items are not validated guidance.
+4. Read prerequisites, assumptions, limitations, and related items before applying a method.
+5. Verify important equations, complexity claims, algorithm guarantees, and edge cases independently.
+6. Treat retrieval as a suggestion. It does not authorise code execution or prove that a method fits the task.
+7. If the library has no suitable approved item, proceed with independently verified methods. Do not force an irrelevant match.
+
+The current local Knowledge Engine is a deterministic retrieval component. It is not yet integrated into the orchestration runtime.
+
 ## Finish
 
 Report:

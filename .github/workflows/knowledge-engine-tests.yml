@@ -6,11 +6,13 @@ on:
     paths:
       - "core/knowledge-engine/**"
       - "knowledge/**"
+      - "schemas/knowledge-item.schema.json"
       - ".github/workflows/knowledge-engine-tests.yml"
   pull_request:
     paths:
       - "core/knowledge-engine/**"
       - "knowledge/**"
+      - "schemas/knowledge-item.schema.json"
       - ".github/workflows/knowledge-engine-tests.yml"
   workflow_dispatch:
 
