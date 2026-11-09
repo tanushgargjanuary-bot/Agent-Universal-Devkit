@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "benchmark": "node ./bench/run.js",
+    "validate": "node ./scripts/validate-registry.js"
   }
 }
