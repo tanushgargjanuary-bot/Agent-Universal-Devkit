@@ -38,6 +38,8 @@ export function validatePullRequestApproval(pullRequest, reviews, repository) {
   if (repository && pullRequest?.head?.repo?.full_name !== repository) errors.push("Current pull request head repository does not match");
   const author = pullRequest?.user?.login?.toLowerCase();
   const headSha = pullRequest?.head?.sha?.toLowerCase();
+  if (!author) errors.push("Current pull request author is missing");
+  if (!headSha || !SHA.test(headSha)) errors.push("Current pull request head SHA is invalid");
   const blockingReviews = (reviews ?? []).filter((review) =>
     review?.state === "CHANGES_REQUESTED" &&
     review?.commit_id?.toLowerCase() === headSha &&
@@ -49,6 +51,7 @@ export function validatePullRequestApproval(pullRequest, reviews, repository) {
     review?.state === "APPROVED" &&
     review?.commit_id?.toLowerCase() === headSha &&
     review?.user?.login &&
+    review.user.type !== "Bot" &&
     review.user.login.toLowerCase() !== author &&
     ["OWNER", "MEMBER", "COLLABORATOR"].includes(review.author_association) &&
     Number.isFinite(Date.parse(review.submitted_at ?? "")) &&
