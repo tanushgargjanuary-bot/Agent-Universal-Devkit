@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+
 const STATUSES = new Set(["draft", "review", "approved", "deprecated"]);
 const ACTIVATION_ARRAYS = [
   "any_tags", "all_tags", "any_phrases", "required_capabilities", "exclude_phrases"
@@ -78,7 +80,7 @@ export function validateKnowledgeRegistry(registry) {
     if (item.status === "approved") {
       const review = item.review;
       if (!review || !review.approved_by || !review.approved_at ||
-          review.reviewed_version !== item.version || !Array.isArray(review.sources) ||
+          review.reviewed_version !== item.version || !/^[a-f0-9]{64}$/.test(review.content_sha256 ?? "") || !Array.isArray(review.sources) ||
           review.sources.length === 0 ||
           review.sources.some((source) => !source.title || !source.url || !source.purpose)) {
         throw new Error("Approved item " + item.id +
@@ -237,4 +239,19 @@ export function selectKnowledge(registry, task, options = {}) {
     retrieval_mode: "deterministic_metadata",
     notice: "Rank scores order candidates. They are not probabilities, correctness scores, or proof of suitability. Verify assumptions and prerequisites before use."
   };
+}
+
+
+export function validateKnowledgeContent(registry, readContent) {
+  validateKnowledgeRegistry(registry);
+  if (typeof readContent !== "function") throw new Error("readContent must be a function");
+  const verified = [];
+  for (const item of registry.items.filter((entry) => entry.status === "approved")) {
+    const content = readContent(item.path);
+    if (typeof content !== "string") throw new Error("Content reader must return text for " + item.id);
+    const digest = createHash("sha256").update(content, "utf8").digest("hex");
+    if (digest !== item.review.content_sha256) throw new Error("Approved content digest mismatch for " + item.id);
+    verified.push({ id: item.id, sha256: digest });
+  }
+  return { valid: true, verified_count: verified.length, verified };
 }
