@@ -23,7 +23,7 @@ function validateResource(resource) {
       throw new Error(`Resource ${resource.id} needs ${dimension} scored from 0 to 5`);
     }
   }
-  if (!resource.evidence.every((item) => item.url && item.claim)) {
+  if (!resource.evidence.every((item) => item.url && item.claim && item.checked_at)) {
     throw new Error(`Resource ${resource.id} has incomplete evidence`);
   }
 }
@@ -85,12 +85,24 @@ export function compareResources(resources, options = {}) {
       ) <= (options.maximumIntegrationCost ?? 2.5);
 
       if (declaredComplement && addsCapability && compatible && affordableIntegration) {
+        const required = options.requiredCapabilities ?? [];
+        const bestCoverage = required.filter((capability) =>
+          best.capabilities.includes(capability)
+        );
+        const hybridCoverage = required.filter((capability) =>
+          best.capabilities.includes(capability) || other.capabilities.includes(capability)
+        );
         hybrid = {
           resources: [best.id, other.id],
           reason: "The resources declare complementary roles, add distinct capabilities, and meet compatibility and integration-cost limits.",
           added_capabilities: other.capabilities.filter(
             (capability) => !best.capabilities.includes(capability)
-          )
+          ),
+          required_capabilities_covered: hybridCoverage,
+          required_capabilities_missing: required.filter(
+            (capability) => !hybridCoverage.includes(capability)
+          ),
+          improves_required_coverage: hybridCoverage.length > bestCoverage.length
         };
         break;
       }
@@ -102,7 +114,7 @@ export function compareResources(resources, options = {}) {
     alternatives: ranked.slice(1),
     hybrid,
     decision_note: hybrid
-      ? "A single resource ranks highest. A hybrid is also viable; compare its added coverage against integration and maintenance costs."
+      ? "A single resource ranks highest. A hybrid is a candidate, not an automatic choice. Use it only when the extra capability is required and its integration cost is justified."
       : "Use the highest-ranked resource unless project-specific constraints justify an alternative.",
     scoring: {
       scale: "0-5 per dimension; weighted total converted to 0-100",

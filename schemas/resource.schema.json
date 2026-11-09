@@ -1,6 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.invalid/agent-universal-devkit/resource.schema.json",
   "title": "Devkit Resource",
   "type": "object",
   "required": ["id", "name", "url", "kind", "categories", "license", "status", "evidence"],

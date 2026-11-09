@@ -2,7 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { compareResources } from "../src/index.js";
 
-const evidence = [{ url: "https://example.com/docs", claim: "Official documentation" }];
+const evidence = [{
+  url: "https://example.com/docs",
+  claim: "Official documentation",
+  checked_at: "2026-11-10T00:00:00Z"
+}];
 const make = (id, overrides = {}) => ({
   id, name: id, url: `https://github.com/example/${id}`,
   capabilities: ["scan"],
@@ -28,9 +32,11 @@ test("ranks the stronger fit first", () => {
 test("suggests a hybrid only for declared complementary capabilities", () => {
   const a = make("a", { complements: ["b"], capabilities: ["static-analysis"] });
   const b = make("b", { capabilities: ["dynamic-analysis"] });
-  const result = compareResources([a, b]);
+  const result = compareResources([a, b], {
+    requiredCapabilities: ["static-analysis", "dynamic-analysis"]
+  });
   assert.deepEqual(result.hybrid.resources, ["a", "b"]);
-  assert.deepEqual(result.hybrid.added_capabilities, ["dynamic-analysis"]);
+  assert.equal(result.hybrid.improves_required_coverage, true);
 });
 
 test("does not suggest a hybrid for duplicate capabilities", () => {

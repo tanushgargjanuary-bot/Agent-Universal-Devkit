@@ -26,8 +26,8 @@ The Devkit has **two equal priorities**:
 | `agents/` | Instructions and harness adapters |
 | `bootstrap/template/` | Small files installed in new repositories |
 | `integrations/` | GitHub distribution and future protocol integrations |
-| `knowledge/` | Engineering guides and reference material |
-| `evaluations/` | Quality and compatibility evaluations |
+| `schemas/` | Machine-readable resource contracts |
+| `scripts/` | Discovery and maintenance automation |
 | `docs/` | Architecture, resource intelligence, and roadmap |
 
 ## Important rules
