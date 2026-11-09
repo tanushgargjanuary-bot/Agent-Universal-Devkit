@@ -13,6 +13,8 @@ export function validateSchema(value, schema, path = "$") {
     if (!allowed.some((type) => TYPES[type]?.(value))) { add("type must be " + allowed.join(" or ")); return errors; }
   }
   if (schema.const !== undefined && value !== schema.const) add("value must equal const");
+  if (typeof value === "number" && schema.minimum !== undefined && value < schema.minimum) add("number is below minimum");
+  if (typeof value === "number" && schema.maximum !== undefined && value > schema.maximum) add("number is above maximum");
   if (schema.enum && !schema.enum.some((candidate) => candidate === value)) add("value is not in enum");
   if (typeof value === "string") {
     if (schema.minLength !== undefined && [...value].length < schema.minLength) add("string is shorter than minLength");
