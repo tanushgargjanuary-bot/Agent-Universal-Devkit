@@ -60,7 +60,7 @@ function evaluateHardConstraints(resource, constraints, requiredCapabilities, al
   }
   if (constraints.maxEvidenceAgeDays !== undefined) {
     const asOf = Date.parse(constraints.asOf ?? new Date().toISOString());
-    const oldest = Math.max(...resource.evidence.map((item) => Date.parse(item.checked_at)));
+    const oldest = Math.min(...resource.evidence.map((item) => Date.parse(item.checked_at)));
     if (!Number.isFinite(asOf) || !Number.isFinite(oldest)) unknowns.push("Evidence date or asOf date is invalid");
     else if ((asOf - oldest) / 86400000 > constraints.maxEvidenceAgeDays) violations.push("Evidence is older than the allowed maximum age");
   }
