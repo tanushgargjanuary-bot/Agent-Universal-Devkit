@@ -8,13 +8,13 @@ import registry from "../../../knowledge/registry.json" with { type: "json" };
 const schema = JSON.parse(readFileSync(new URL("../../../schemas/knowledge-item.schema.json", import.meta.url), "utf8"));
 
 test("registry validates against the repository JSON Schema contract", () => {
-  assert.deepEqual(validateSchema(registry.items, schema), []);
+  assert.deepEqual(registry.items.flatMap((item, index) => validateSchema(item, schema, `items[${index}]`)), []);
   assert.deepEqual(validateKnowledgeRegistry(registry), { valid: true, item_count: registry.items.length });
 });
 test("schema validation rejects malformed records", () => {
   const invalid = structuredClone(registry.items);
   invalid[0].status = "trusted";
-  assert.ok(validateSchema(invalid, schema).some((error) => error.includes("enum")));
+  assert.ok(validateSchema(invalid[0], schema).some((error) => error.includes("enum")));
 });
 test("registry IDs are unique and every item points to a native file", () => {
   for (const item of registry.items) {
