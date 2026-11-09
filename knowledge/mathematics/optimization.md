@@ -12,27 +12,26 @@ Optimisation chooses decision variables to minimise or maximise an objective whi
 
 A general minimisation problem is:
 
-[
-min_x f(x)quad	ext{subject to}quad g_i(x)le0,; h_j(x)=0
-]
+\[
+\min_x f(x)\quad\text{subject to}\quad g_i(x)\le0,\; h_j(x)=0
+\]
 
 Define the variables, objective, constraints, units, and feasible region before selecting a solver.
 
 ## 2. Derivatives and gradients
 
-For a differentiable scalar function (f(x)), the derivative describes local rate of change.
+For a differentiable scalar function \(f(x)\), the derivative describes local rate of change.
 
 For a multivariable function, the gradient is:
 
-[
-
-abla f(x)=
-egin{bmatrix}
-partial f/partial x_1\
-dots\
-partial f/partial x_n
-end{bmatrix}
-]
+\[
+\nabla f(x)=
+\begin{bmatrix}
+\partial f/\partial x_1\\
+\vdots\\
+\partial f/\partial x_n
+\end{bmatrix}
+\]
 
 The gradient points in the direction of steepest local increase under the Euclidean norm. The negative gradient is a local descent direction when the gradient is non-zero.
 
@@ -40,12 +39,11 @@ The gradient points in the direction of steepest local increase under the Euclid
 
 The basic update is:
 
-[
-x_{t+1}=x_t-eta
-abla f(x_t)
-]
+\[
+x_{t+1}=x_t-\eta\nabla f(x_t)
+\]
 
-Here (eta>0) is the learning rate or step size.
+Here \(\eta>0\) is the learning rate or step size.
 
 A step that is too large can diverge or oscillate. A step that is too small can make progress very slow.
 
@@ -63,17 +61,15 @@ For non-convex objectives, local minima, saddle points, and flat regions may occ
 
 The Hessian is the matrix of second partial derivatives:
 
-[
-H(x)=
-abla^2 f(x)
-]
+\[
+H(x)=\nabla^2 f(x)
+\]
 
 Near a point, curvature information can improve optimisation steps. Newton's method uses:
 
-[
-x_{t+1}=x_t-H(x_t)^{-1}
-abla f(x_t)
-]
+\[
+x_{t+1}=x_t-H(x_t)^{-1}\nabla f(x_t)
+\]
 
 In implementations, solve the associated linear system rather than explicitly forming the inverse. Newton steps can fail when the Hessian is singular or not positive definite, and they can be expensive in high dimensions.
 
@@ -90,18 +86,17 @@ The appropriate method depends on convexity, smoothness, constraint type, scale,
 
 ## 7. Lagrange multipliers
 
-For equality constraints (h(x)=0), define:
+For equality constraints \(h(x)=0\), define:
 
-[
-mathcal{L}(x,lambda)=f(x)+lambda h(x)
-]
+\[
+\mathcal{L}(x,\lambda)=f(x)+\lambda h(x)
+\]
 
 At a regular constrained optimum, stationarity conditions include:
 
-[
-
-abla_xmathcal{L}(x,lambda)=0,qquad h(x)=0
-]
+\[
+\nabla_x\mathcal{L}(x,\lambda)=0,\qquad h(x)=0
+\]
 
 These are necessary conditions under suitable assumptions. They are not automatically sufficient for a global optimum.
 

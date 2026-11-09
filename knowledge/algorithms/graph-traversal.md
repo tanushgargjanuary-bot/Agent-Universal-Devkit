@@ -8,13 +8,13 @@
 
 ## 1. Graph model
 
-A graph is (G=(V,E)), where (V) is a set of vertices and (E) is a set of edges.
+A graph is \(G=(V,E)\), where \(V\) is a set of vertices and \(E\) is a set of edges.
 
 Graphs may be directed or undirected, weighted or unweighted. A traversal visits vertices while following edges.
 
 Common representations:
-- Adjacency list: stores neighbours for each vertex. Space is (O(V+E)).
-- Adjacency matrix: stores edge presence or weight for each vertex pair. Space is (O(V^2)).
+- Adjacency list: stores neighbours for each vertex. Space is \(O(V+E)\).
+- Adjacency matrix: stores edge presence or weight for each vertex pair. Space is \(O(V^2)\).
 
 Use an adjacency list for sparse graphs. A matrix can be useful for dense graphs or constant-time edge checks.
 
@@ -55,7 +55,7 @@ BFS(graph, start):
     return discovered, distance, parent
 ```
 
-With an adjacency list, time is (O(V+E)). Auxiliary memory is (O(V)), excluding the graph.
+With an adjacency list, time is \(O(V+E)\). Auxiliary memory is \(O(V)\), excluding the graph.
 
 Mark vertices when enqueuing, not when dequeuing. This prevents duplicate queue entries.
 
@@ -88,7 +88,7 @@ DFS(graph, start):
     return visited, parent
 ```
 
-With an adjacency list, time is (O(V+E)). The stack can use (O(V)) space. Use an explicit stack when recursion depth may exceed the language runtime limit.
+With an adjacency list, time is \(O(V+E)\). The stack can use \(O(V)\) space. Use an explicit stack when recursion depth may exceed the language runtime limit.
 
 ## 4. BFS versus DFS
 

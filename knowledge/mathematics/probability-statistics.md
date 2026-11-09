@@ -14,57 +14,57 @@ These methods support reliability, experimentation, machine learning, anomaly de
 
 ## 2. Basic probability
 
-For an event (A), probability satisfies:
+For an event \(A\), probability satisfies:
 
-[
-0le P(A)le1
-]
+\[
+0\le P(A)\le1
+\]
 
 For a complement:
 
-[
+\[
 P(A^c)=1-P(A)
-]
+\]
 
-For events (A) and (B):
+For events \(A\) and \(B\):
 
-[
-P(Acup B)=P(A)+P(B)-P(Acap B)
-]
+\[
+P(A\cup B)=P(A)+P(B)-P(A\cap B)
+\]
 
-If (A) and (B) are independent, then:
+If \(A\) and \(B\) are independent, then:
 
-[
-P(Acap B)=P(A)P(B)
-]
+\[
+P(A\cap B)=P(A)P(B)
+\]
 
 Independence is an assumption. It must not be confused with events being mutually exclusive.
 
 ## 3. Conditional probability and Bayes' rule
 
-When (P(B)>0):
+When \(P(B)>0\):
 
-[
-P(Amid B)=rac{P(Acap B)}{P(B)}
-]
+\[
+P(A\mid B)=\frac{P(A\cap B)}{P(B)}
+\]
 
 Bayes' rule reverses the conditioning:
 
-[
-P(Amid B)=rac{P(Bmid A)P(A)}{P(B)}
-]
+\[
+P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)}
+\]
 
 Here:
-- (P(A)) is the prior.
-- (P(Bmid A)) is the likelihood.
-- (P(B)) is the evidence probability.
-- (P(Amid B)) is the posterior.
+- \(P(A)\) is the prior.
+- \(P(B\mid A)\) is the likelihood.
+- \(P(B)\) is the evidence probability.
+- \(P(A\mid B)\) is the posterior.
 
-For a partition (A_1,ldots,A_k):
+For a partition \(A_1,\ldots,A_k\):
 
-[
-P(B)=sum_i P(Bmid A_i)P(A_i)
-]
+\[
+P(B)=\sum_i P(B\mid A_i)P(A_i)
+\]
 
 ## 4. Why base rates matter
 
@@ -79,9 +79,9 @@ For 10,000 people, about 100 have the condition. About 99 test positive. Of the 
 
 So the positive predictive value is approximately:
 
-[
-rac{99}{99+495}approx 16.7%
-]
+\[
+\frac{99}{99+495}\approx 16.7\%
+\]
 
 This is why a positive result is not the same as a 99% chance of having the condition.
 
@@ -89,17 +89,17 @@ This is why a positive result is not the same as a 99% chance of having the cond
 
 A random variable maps outcomes to numerical values.
 
-For a discrete random variable (X):
+For a discrete random variable \(X\):
 
-[
-E[X]=sum_x xP(X=x)
-]
+\[
+E[X]=\sum_x xP(X=x)
+\]
 
 Variance measures spread:
 
-[
-operatorname{Var}(X)=E[(X-E[X])^2]
-]
+\[
+\operatorname{Var}(X)=E[(X-E[X])^2]
+\]
 
 Standard deviation is the square root of variance.
 
@@ -123,9 +123,9 @@ A confidence interval describes a procedure's long-run coverage under its assump
 
 ## 8. Hypothesis testing
 
-A test begins with a null hypothesis (H_0) and an alternative (H_1).
+A test begins with a null hypothesis \(H_0\) and an alternative \(H_1\).
 
-- Significance level (alpha): tolerated long-run false-positive rate under the null for the chosen procedure.
+- Significance level \(\alpha\): tolerated long-run false-positive rate under the null for the chosen procedure.
 - p-value: probability, assuming the null and model assumptions, of a result at least as extreme as the observed result.
 - Type I error: rejecting a true null.
 - Type II error: failing to reject a false null.

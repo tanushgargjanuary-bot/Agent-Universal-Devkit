@@ -1,5 +1,5 @@
 const normalise = (value) => String(value ?? "").toLowerCase()
-  .replace(/[^a-z0-9+.#\\s-]/g, " ").replace(/\\s+/g, " ").trim();
+  .replace(/[^a-z0-9+.#\s-]/g, " ").replace(/\s+/g, " ").trim();
 
 function asSet(values = []) {
   return new Set(values.map(normalise).filter(Boolean));
@@ -20,11 +20,11 @@ function validateRegistry(registry) {
     if (!item.id || !item.title || !item.path || !item.activation) {
       throw new Error("Each knowledge item needs id, title, path, and activation");
     }
-    if (ids.has(item.id)) throw new Error(`Duplicate knowledge item id: ${item.id}`);
+    if (ids.has(item.id)) throw new Error("Duplicate knowledge item id: " + item.id);
     ids.add(item.id);
     for (const key of ["any_tags", "all_tags", "any_phrases", "required_capabilities", "exclude_phrases"]) {
       if (item.activation[key] !== undefined && !Array.isArray(item.activation[key])) {
-        throw new Error(`Invalid activation field ${key} for ${item.id}`);
+        throw new Error("Invalid activation field " + key + " for " + item.id);
       }
     }
   }
@@ -79,11 +79,11 @@ export function selectKnowledge(registry, task, options = {}) {
     if (score < minimumScore) continue;
 
     const reasons = [];
-    if (tagMatches.length) reasons.push(`Matched task tags: ${tagMatches.join(", ")}`);
+    if (tagMatches.length) reasons.push("Matched task tags: " + tagMatches.join(", "));
     if (allTagsSatisfied) reasons.push("All required activation tags were present");
-    if (phraseMatches.length) reasons.push(`Matched task phrases: ${phraseMatches.join(", ")}`);
-    if (capabilityMatches.length) reasons.push(`Matched capabilities: ${capabilityMatches.join(", ")}`);
-    if (domainMatch) reasons.push(`Matched domain: ${domain}`);
+    if (phraseMatches.length) reasons.push("Matched task phrases: " + phraseMatches.join(", "));
+    if (capabilityMatches.length) reasons.push("Matched capabilities: " + capabilityMatches.join(", "));
+    if (domainMatch) reasons.push("Matched domain: " + domain);
 
     matches.push({
       id: item.id,
