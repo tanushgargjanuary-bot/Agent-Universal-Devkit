@@ -7,6 +7,8 @@ on:
       - "schemas/knowledge-item.schema.json"
       - "core/knowledge-engine/**"
       - ".github/workflows/knowledge-quality.yml"
+  pull_request_review:
+    types: [submitted, edited, dismissed]
   pull_request:
     paths:
       - "knowledge/**"
