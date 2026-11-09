@@ -21,6 +21,7 @@ export function validateApprovalAttestation(item, { pullRequest, review, changed
   if (review?.user?.login?.toLowerCase() !== reviewer) errors.push("GitHub reviewer identity does not match approved_by");
   if (review?.commit_id?.toLowerCase() !== record.approval_commit.toLowerCase()) errors.push("GitHub review is not anchored to the approved commit");
   if (!["OWNER", "MEMBER", "COLLABORATOR"].includes(review?.author_association)) errors.push("Reviewer is not a repository owner, member, or collaborator");
+  if (Date.parse(record.approved_at) !== Date.parse(review?.submitted_at ?? "")) errors.push("approved_at must match the GitHub review submission timestamp");
   if (!review?.submitted_at || !pullRequest?.merged_at || Date.parse(review.submitted_at) > Date.parse(pullRequest.merged_at)) {
     errors.push("Approval must be submitted before the pull request is merged");
   }
