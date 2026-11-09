@@ -12,6 +12,14 @@ test("registry validates against the repository JSON Schema contract", () => {
   assert.deepEqual(registry.items.flatMap((item, index) => validateSchema(item, schema, `items[${index}]`)), []);
   assert.deepEqual(validateKnowledgeRegistry(registry), { valid: true, item_count: registry.items.length });
 });
+test("schema validation enforces positive approval IDs", () => {
+  const invalid = {
+    id:"approved.example",title:"Approved example",kind:"algorithm",path:"knowledge/example.md",version:"1.0.0",status:"approved",
+    domains:["algorithms"],tags:["example"],prerequisites:[],related:[],limitations:[],activation:{any_tags:["example"],any_phrases:[]},
+    review:{approved_by:"reviewer",approved_at:"2026-11-10T00:00:00Z",reviewed_version:"1.0.0",content_sha256:"a".repeat(64),approval_pr:0,approval_review_id:2,approval_commit:"b".repeat(40),sources:[{title:"Ref",url:"https://example.com",purpose:"test"}]}
+  };
+  assert.ok(validateSchema(invalid, schema).some((error) => error.includes("below minimum")));
+});
 test("schema validation rejects malformed records", () => {
   const invalid = structuredClone(registry.items);
   invalid[0].status = "trusted";
@@ -52,7 +60,7 @@ test("approval digest is bound to exact UTF-8 content bytes", () => {
 
 test("approval attestation requires a merged PR, trusted reviewer, exact commit, and both changed files", () => {
   const item = { path: "knowledge/example.md", review: {
-    approved_by: "trusted-reviewer", approval_pr: 42, approval_review_id: 9001, approval_commit: "a".repeat(40)
+    approved_by: "trusted-reviewer", approved_at: "2026-11-10T00:04:00Z", approval_pr: 42, approval_review_id: 9001, approval_commit: "a".repeat(40)
   }};
   const pullRequest = {
     number: 42, state: "closed", merged: true, merged_at: "2026-11-10T00:05:00Z",
