@@ -99,8 +99,8 @@ test("enforces all_tags activation requirements", () => {
     prerequisites: [], related: [], limitations: [],
     activation: { any_tags: [], all_tags: ["graph", "weighted"], any_phrases: [] }
   }] };
-  assert.equal(selectKnowledge(custom, { tags: ["graph"] }).matches.length, 0);
-  assert.equal(selectKnowledge(custom, { tags: ["graph", "weighted"] }).matches.length, 1);
+  assert.equal(selectKnowledge(custom, { tags: ["graph"] }, { statuses: ["draft"] }).matches.length, 0);
+  assert.equal(selectKnowledge(custom, { tags: ["graph", "weighted"] }, { statuses: ["draft"] }).matches.length, 1);
 });
 
 test("required capabilities are enforced as prerequisites", () => {
@@ -113,10 +113,10 @@ test("required capabilities are enforced as prerequisites", () => {
       required_capabilities: ["pathfinding", "weighted-graphs"]
     }
   }] };
-  assert.equal(selectKnowledge(custom, { tags: ["graph"], required_capabilities: ["pathfinding"] }).matches.length, 0);
+  assert.equal(selectKnowledge(custom, { tags: ["graph"], required_capabilities: ["pathfinding"] }, { statuses: ["draft"] }).matches.length, 0);
   assert.equal(selectKnowledge(custom, {
     tags: ["graph"], required_capabilities: ["pathfinding", "weighted-graphs"]
-  }).matches.length, 1);
+  }, { statuses: ["draft"] }).matches.length, 1);
 });
 
 test("rejects duplicate IDs and unsafe paths", () => {
