@@ -6,8 +6,9 @@ Start with `registry.json` to discover available items. Read `docs/KNOWLEDGE-LIB
 
 ## Current collections
 
-- `algorithms/`: complexity analysis, graph traversal, and shortest-path methods.
+- `algorithms/`: complexity analysis, graph traversal, and shortest-path selection.
 - `mathematics/`: linear algebra, probability, and optimisation.
+- `mathematics/formulas/`: focused formula cards with variable definitions, assumptions, and worked examples.
 
 ## Authoring rules
 

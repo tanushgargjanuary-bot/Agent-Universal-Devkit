@@ -26,11 +26,13 @@ Resource Intelligence and Agent Orchestration have equal priority. The native Kn
 ## Phase 3 — Native Knowledge and Methods
 - [x] Establish repository-native authoring and attribution rules.
 - [x] Add initial algorithm and mathematics study material.
+- [x] Add focused formula cards with task activation metadata.
 - [x] Add deterministic, explainable knowledge retrieval.
-- [ ] Add schema validation and registry-to-file consistency checks.
+- [x] Add registry-to-file and relationship consistency tests.
+- [ ] Add full JSON Schema validation in CI.
 - [ ] Add technical review and approval workflow for knowledge entries.
 - [ ] Expand algorithms, data structures, mathematics, statistics, and domain methods.
-- [ ] Add worked examples, reference implementations, and executable tests where appropriate.
+- [ ] Add more worked examples, reference implementations, and executable tests.
 - [ ] Build a benchmark set for retrieval precision and recall.
 - [ ] Add semantic retrieval only when it improves measured results and remains locally usable.
 

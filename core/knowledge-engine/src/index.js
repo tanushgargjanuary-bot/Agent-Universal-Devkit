@@ -63,15 +63,19 @@ export function selectKnowledge(registry, task, options = {}) {
 
     const anyTags = (activation.any_tags ?? []).map(normalise);
     const allTags = (activation.all_tags ?? []).map(normalise);
+    const requiredCapabilities = (activation.required_capabilities ?? []).map(normalise);
     const phraseMatches = (activation.any_phrases ?? [])
       .filter((phrase) => includesPhrase(description, phrase));
     const tagMatches = anyTags.filter((tag) => taskTags.has(tag));
     const allTagsSatisfied = allTags.length > 0 && allTags.every((tag) => taskTags.has(tag));
-    const capabilityMatches = (activation.required_capabilities ?? [])
-      .map(normalise).filter((capability) => taskCapabilities.has(capability));
+    const capabilityMatches = requiredCapabilities.filter((capability) => taskCapabilities.has(capability));
+    const capabilitiesSatisfied = requiredCapabilities.length === 0 ||
+      requiredCapabilities.every((capability) => taskCapabilities.has(capability));
     const domainMatch = domain && (item.domains ?? []).map(normalise).includes(domain);
 
     if (allTags.length && !allTagsSatisfied) continue;
+    if (!capabilitiesSatisfied) continue;
+
     const score = tagMatches.length * 4 + phraseMatches.length * 2 +
       capabilityMatches.length * 3 + (domainMatch ? 1 : 0) +
       (allTagsSatisfied ? allTags.length * 4 : 0);

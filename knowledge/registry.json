@@ -79,7 +79,7 @@
         "exclude_phrases": ["matrix organisation", "matrix film"]
       },
       "prerequisites": [],
-      "related": ["math.optimisation", "math.probability-statistics"],
+      "related": ["math.optimisation", "math.probability-statistics", "math.formula.least-squares"],
       "limitations": ["Numerical conditioning and floating-point errors matter in practical computation."]
     },
     {
@@ -99,7 +99,7 @@
         "exclude_phrases": ["statistical significance in marketing copy"]
       },
       "prerequisites": [],
-      "related": ["math.linear-algebra", "math.optimisation"],
+      "related": ["math.linear-algebra", "math.optimisation", "math.formula.bayes-theorem"],
       "limitations": ["Statistical conclusions depend on sampling and model assumptions.", "Correlation does not establish causation."]
     },
     {
@@ -119,8 +119,68 @@
         "exclude_phrases": ["optimise image file size"]
       },
       "prerequisites": ["math.linear-algebra"],
-      "related": ["math.linear-algebra", "math.probability-statistics"],
+      "related": ["math.linear-algebra", "math.probability-statistics", "math.formula.gradient-descent"],
       "limitations": ["Gradient methods do not guarantee global optima for arbitrary non-convex objectives.", "Solver assumptions and stopping conditions must be checked."]
+    },
+    {
+      "id": "math.formula.bayes-theorem",
+      "title": "Bayes' Theorem",
+      "kind": "formula",
+      "path": "knowledge/mathematics/formulas/bayes-theorem.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["mathematics", "statistics", "machine-learning", "reliability"],
+      "tags": ["bayes", "bayes-theorem", "posterior", "likelihood", "prior", "base-rate"],
+      "activation": {
+        "any_tags": ["bayes", "bayesian-inference", "posterior", "base-rate"],
+        "all_tags": [],
+        "any_phrases": ["bayes theorem", "posterior probability", "update probability from evidence", "positive predictive value"],
+        "required_capabilities": [],
+        "exclude_phrases": []
+      },
+      "prerequisites": ["math.probability-statistics"],
+      "related": ["math.probability-statistics"],
+      "limitations": ["Requires a well-defined hypothesis and evidence model.", "Conditional probabilities must match the relevant population."]
+    },
+    {
+      "id": "math.formula.gradient-descent",
+      "title": "Gradient Descent Update",
+      "kind": "formula",
+      "path": "knowledge/mathematics/formulas/gradient-descent.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["mathematics", "optimisation", "machine-learning"],
+      "tags": ["gradient-descent", "learning-rate", "gradient", "loss-function", "parameter-update"],
+      "activation": {
+        "any_tags": ["gradient-descent", "learning-rate", "parameter-update"],
+        "all_tags": [],
+        "any_phrases": ["gradient descent update", "learning rate formula", "update parameters using gradient", "gradient step"],
+        "required_capabilities": [],
+        "exclude_phrases": []
+      },
+      "prerequisites": ["math.optimisation"],
+      "related": ["math.optimisation"],
+      "limitations": ["A suitable learning rate and differentiable objective are required for the stated update.", "No general global-optimum guarantee."]
+    },
+    {
+      "id": "math.formula.least-squares",
+      "title": "Least-Squares Objective and Normal Equations",
+      "kind": "formula",
+      "path": "knowledge/mathematics/formulas/least-squares.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["mathematics", "linear-algebra", "statistics", "machine-learning"],
+      "tags": ["least-squares", "normal-equations", "linear-regression", "residuals", "qr-decomposition"],
+      "activation": {
+        "any_tags": ["least-squares", "normal-equations", "linear-regression"],
+        "all_tags": [],
+        "any_phrases": ["least squares formula", "normal equations", "minimise squared residuals", "least squares solution"],
+        "required_capabilities": [],
+        "exclude_phrases": []
+      },
+      "prerequisites": ["math.linear-algebra"],
+      "related": ["math.linear-algebra"],
+      "limitations": ["Normal equations can be numerically unstable for ill-conditioned designs.", "Statistical interpretation requires additional assumptions."]
     }
   ]
 }

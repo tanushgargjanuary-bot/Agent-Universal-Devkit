@@ -22,6 +22,16 @@ test("selects mathematics when the task asks for Bayes theorem", () => {
     domain: "statistics"
   }, draftPreview);
   assert.equal(result.matches[0].id, "math.probability-statistics");
+  assert.ok(result.matches.some((item) => item.id === "math.formula.bayes-theorem"));
+});
+
+test("selects a focused formula for a gradient update task", () => {
+  const result = selectKnowledge(registry, {
+    description: "Apply the gradient descent update using a learning rate",
+    tags: ["gradient-descent", "learning-rate"],
+    domain: "machine-learning"
+  }, draftPreview);
+  assert.equal(result.matches[0].id, "math.formula.gradient-descent");
 });
 
 test("does not return unrelated material for a vague task", () => {
@@ -69,6 +79,21 @@ test("enforces all_tags activation requirements", () => {
   }] };
   assert.equal(selectKnowledge(custom, { tags: ["graph"] }).matches.length, 0);
   assert.equal(selectKnowledge(custom, { tags: ["graph", "weighted"] }).matches.length, 1);
+});
+
+test("enforces required_capabilities activation requirements", () => {
+  const custom = { items: [{
+    id: "required.capabilities", title: "Required capabilities", path: "knowledge/example.md",
+    status: "approved", domains: [],
+    activation: {
+      any_tags: ["graph"], all_tags: [], any_phrases: [],
+      required_capabilities: ["pathfinding", "weighted-graphs"]
+    }
+  }] };
+  assert.equal(selectKnowledge(custom, { tags: ["graph"], required_capabilities: ["pathfinding"] }).matches.length, 0);
+  assert.equal(selectKnowledge(custom, {
+    tags: ["graph"], required_capabilities: ["pathfinding", "weighted-graphs"]
+  }).matches.length, 1);
 });
 
 test("rejects duplicate IDs", () => {
