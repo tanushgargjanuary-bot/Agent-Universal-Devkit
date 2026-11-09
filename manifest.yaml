@@ -1,0 +1,27 @@
+schema_version: 1
+devkit:
+  name: Agent-Universal-Devkit
+  repository: tanushgargjanuary-bot/Agent-Universal-Devkit
+  default_branch: main
+  support_policy: tested-per-harness
+
+distribution:
+  mode: pointer-and-selective-adapters
+  copy_entire_devkit: false
+  default_channel: stable
+
+discovery:
+  project_analysis: planned
+  tool_recommendations: planned
+  remote_instructions: opt_in_per_harness
+
+security:
+  execute_catalog_tools_automatically: false
+  require_license_review: true
+  require_version_pinning_for_critical_tools: true
+  require_human_approval_for_dependency_changes: true
+
+registries:
+  tools: catalog/tools.yaml
+  skills: catalog/skills.yaml
+  harnesses: catalog/harnesses.yaml
