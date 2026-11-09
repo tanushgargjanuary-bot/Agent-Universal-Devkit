@@ -11,12 +11,15 @@ Resource Intelligence and Agent Orchestration have equal priority. The native Kn
 - [x] Require auditable review metadata before knowledge can be marked approved.
 - [x] Add scoped JSON Schema contract validation in CI.
 - [x] Add labelled retrieval regression cases for precision, recall, false positives, and abstention.
-- [x] Require approval metadata bound to the exact item version and SHA-256 content digest.\n- [ ] Add authenticated reviewer identity and protected review/approval workflow.
-- [x] Add initial reference implementations with independent algorithm cross-checks and formula tests.\n- [ ] Expand independent tests across the remaining algorithm and formula library.
+- [x] Require approval metadata bound to the exact item version and SHA-256 content digest.
+- [ ] Add authenticated reviewer identity and protected review/approval workflow.
+- [x] Add initial reference implementations with independent algorithm cross-checks and formula tests.
+- [ ] Expand independent tests across the remaining algorithm and formula library.
 
 ## Gate B — Evidence-driven Resource Intelligence
 - [x] Add hard-constraint filtering before weighted evaluation for license, security, compatibility, platform, integration cost, capabilities, and evidence age.
-- [x] Represent missing mandatory evidence and stale evidence as explicit rejection reasons.\n- [ ] Add explicit conflicting-evidence reconciliation and provenance quality scoring.
+- [x] Represent missing mandatory evidence and stale evidence as explicit rejection reasons.
+- [ ] Add explicit conflicting-evidence reconciliation and provenance quality scoring.
 - [ ] Add evidence provenance, quality, and confidence reporting.
 - [ ] Add category-specific evaluation profiles.
 - [ ] Add duplicate and alternative detection.
