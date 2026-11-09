@@ -3,41 +3,39 @@
 A central, modular engineering toolkit for AI coding agents and the repositories they work in.
 
 The Devkit provides:
-- Clear, shared engineering instructions.
-- Native configuration for supported AI coding harnesses.
+- Shared engineering instructions and native harness entry points.
 - A curated registry of tools, skills, and workflows.
-- A small bootstrap template that points projects back to this repository.
-- Automation to keep integrations tested and current.
+- A small bootstrap payload for new repositories.
+- A GitHub App that can distribute the bootstrap payload on repository creation.
+- An orchestration core for planning, routing, approval checks, and verification.
 
 ## Design rule
 
 **Centralise discovery and knowledge. Distribute only small pointers and project-specific configuration.**
 
-Do not copy the whole Devkit into every project. Do not install every tool by default. Detect the project, recommend relevant tools, and let the repository owner decide what to install.
+Do not copy the whole Devkit into every project. Do not install every tool by default. Recommend tools based on project needs.
 
-## Repository map
+## Main systems
 
 | Directory | Purpose |
 |---|---|
-| `agents/` | Instructions and adapters for individual AI harnesses |
-| `bootstrap/template/` | Small files copied into new repositories |
-| `catalog/` | Machine-readable registries for tools, skills, and integrations |
-| `core/` | Future discovery, project analysis, and recommendation logic |
-| `docs/` | Architecture and operating guides |
-| `integrations/` | GitHub and external service integrations |
+| `agents/` | Instructions and adapters for AI harnesses |
+| `bootstrap/template/` | Small files installed in new repositories |
+| `catalog/` | Machine-readable tool, skill, and harness registries |
+| `core/orchestrator/` | Task planning, dependency ordering, and safety gates |
+| `integrations/github-app/` | GitHub App bootstrap webhook handler |
 | `policies/` | Security and engineering policies |
-| `workflows/` | Reusable automation |
-| `tests/` | Validation for registries, templates, and adapters |
+| `docs/` | Architecture and roadmap |
 
 ## Current status
 
-This is the first foundation release. The registry format and bootstrap contract are being established before adding a large number of tools.
+The first bootstrap webhook handler and orchestration core are in place. The GitHub App is not yet registered or deployed. Harness execution adapters are not yet implemented.
 
-See [the architecture](docs/ARCHITECTURE.md), [the roadmap](docs/ROADMAP.md), and [the contribution guide](CONTRIBUTING.md).
+Read [Architecture](docs/ARCHITECTURE.md), [Roadmap](docs/ROADMAP.md), and [Contributing](CONTRIBUTING.md).
 
 ## Safety
 
-- Never run an unreviewed tool or script just because it appears in the catalog.
+- Never run an unreviewed tool just because it appears in the catalog.
 - Pin versions for reproducible builds.
 - Review licenses before adopting third-party software.
 - Do not expose secrets in logs, prompts, issues, or pull requests.
