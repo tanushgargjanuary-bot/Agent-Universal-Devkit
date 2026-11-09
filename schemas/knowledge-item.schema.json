@@ -3,67 +3,232 @@
   "$id": "https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/schemas/knowledge-item.schema.json",
   "title": "Devkit Knowledge Item",
   "type": "object",
-  "required": ["id", "title", "kind", "path", "version", "status", "domains", "tags", "activation", "prerequisites", "limitations"],
+  "required": [
+    "id",
+    "title",
+    "kind",
+    "path",
+    "version",
+    "status",
+    "domains",
+    "tags",
+    "activation",
+    "prerequisites",
+    "limitations"
+  ],
   "properties": {
-    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$" },
-    "title": { "type": "string", "minLength": 1 },
-    "kind": { "enum": ["algorithm", "data_structure", "mathematical_method", "formula", "pattern", "protocol", "procedure"] },
-    "path": { "type": "string", "pattern": "^knowledge/.+\\.md$" },
-    "version": { "type": "string", "minLength": 1 },
-    "status": { "enum": ["draft", "review", "approved", "deprecated"] },
-    "domains": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
-    "tags": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "enum": [
+        "algorithm",
+        "data_structure",
+        "mathematical_method",
+        "formula",
+        "pattern",
+        "protocol",
+        "procedure"
+      ]
+    },
+    "path": {
+      "type": "string",
+      "pattern": "^knowledge/.+\\.md$"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "review",
+        "approved",
+        "deprecated"
+      ]
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
     "activation": {
       "type": "object",
-      "required": ["any_tags", "any_phrases"],
+      "required": [
+        "any_tags",
+        "any_phrases"
+      ],
       "properties": {
-        "any_tags": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "all_tags": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "any_phrases": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "required_capabilities": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
-        "exclude_phrases": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+        "any_tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "all_tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "any_phrases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "required_capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "exclude_phrases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
       },
       "additionalProperties": false
     },
-    "prerequisites": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-    "related": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-    "limitations": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "related": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
     "review": {
       "type": "object",
       "properties": {
-        "last_reviewed": { "type": "string", "format": "date-time" },
-        "approved_by": { "type": "string", "minLength": 1 },
-        "approved_at": { "type": "string", "format": "date-time" },
-        "reviewed_version": { "type": "string", "minLength": 1 },
-        "review_notes": { "type": "string" },
+        "last_reviewed": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approved_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "approved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reviewed_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_notes": {
+          "type": "string"
+        },
         "sources": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["title", "url", "purpose"],
+            "required": [
+              "title",
+              "url",
+              "purpose"
+            ],
             "properties": {
-              "title": { "type": "string" },
-              "url": { "type": "string", "format": "uri" },
-              "purpose": { "type": "string" }
+              "title": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "purpose": {
+                "type": "string"
+              }
             },
             "additionalProperties": false
           }
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
         }
       },
       "additionalProperties": false
     }
   },
-  "allOf": [{
-    "if": { "properties": { "status": { "const": "approved" } }, "required": ["status"] },
-    "then": {
-      "required": ["review"],
-      "properties": {
-        "review": {
-          "required": ["approved_by", "approved_at", "reviewed_version", "sources"],
-          "properties": { "sources": { "minItems": 1 } }
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "approved"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "review"
+        ],
+        "properties": {
+          "review": {
+            "required": [
+              "approved_by",
+              "approved_at",
+              "reviewed_version",
+              "sources",
+              "content_sha256"
+            ],
+            "properties": {
+              "sources": {
+                "minItems": 1
+              }
+            }
+          }
         }
       }
     }
-  }],
+  ],
   "additionalProperties": false
 }
