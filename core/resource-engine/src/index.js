@@ -93,6 +93,14 @@ function validateConstraints(constraints) {
   }
 }
 
+function validateHybridOptions(options) {
+  for (const key of ["minimumCompatibility", "maximumIntegrationCost"]) {
+    if (options[key] !== undefined && (!Number.isFinite(options[key]) || options[key] < 0 || options[key] > 5)) {
+      throw new Error("Invalid hybrid option: " + key);
+    }
+  }
+}
+
 function scoreResource(resource, weights) {
   const totalWeight = DIMENSIONS.reduce((sum, key) => sum + weights[key], 0);
   const weighted = DIMENSIONS.reduce(
@@ -117,6 +125,12 @@ export function compareResources(resources, options = {}) {
 
   const constraints = options.constraints ?? {};
   validateConstraints(constraints);
+  validateHybridOptions(options);
+  const weights = { ...DEFAULT_WEIGHTS, ...(options.weights ?? {}) };
+  for (const [key, value] of Object.entries(weights)) {
+    if (!DIMENSIONS.includes(key) || !Number.isFinite(value) || value < 0) throw new Error(`Invalid weight: ${key}`);
+  }
+  if (DIMENSIONS.reduce((sum, key) => sum + weights[key], 0) === 0) throw new Error("At least one scoring weight must be greater than zero");
   const required = constraints.requiredCapabilities ?? options.requiredCapabilities ?? [];
   if (!Array.isArray(required) || required.some((value) => typeof value !== "string" || !value.trim())) {
     throw new Error("requiredCapabilities must be an array of non-empty strings");
@@ -138,16 +152,6 @@ export function compareResources(resources, options = {}) {
         : "No candidate meets all mandatory constraints. Do not rank rejected candidates as recommendations.",
       scoring: { scale: "0-5 per dimension; weighted total converted to 0-100", weights: { ...DEFAULT_WEIGHTS, ...(options.weights ?? {}) } }
     };
-  }
-
-  const weights = { ...DEFAULT_WEIGHTS, ...(options.weights ?? {}) };
-  for (const [key, value] of Object.entries(weights)) {
-    if (!DIMENSIONS.includes(key) || !Number.isFinite(value) || value < 0) {
-      throw new Error(`Invalid weight: ${key}`);
-    }
-  }
-  if (DIMENSIONS.reduce((sum, key) => sum + weights[key], 0) === 0) {
-    throw new Error("At least one scoring weight must be greater than zero");
   }
 
   const ranked = eligible.map((resource) => ({
@@ -187,7 +191,7 @@ export function compareResources(resources, options = {}) {
     recommended: singleMeetsRequirements ? best : null,
     alternatives: ranked.slice(singleMeetsRequirements ? 1 : 0),
     hybrid, rejected,
-    decision: singleMeetsRequirements ? "select_single" : hybrid ? "hybrid_candidate" : "insufficient_evidence",
+    decision: singleMeetsRequirements ? "select_single" : hybrid ? "hybrid_candidate" : "none_meet_constraints",
     decision_note: singleMeetsRequirements
       ? "The highest-ranked eligible resource meets all mandatory capability requirements."
       : hybrid
