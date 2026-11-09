@@ -146,3 +146,21 @@ test("selects a lower-ranked single resource when the top candidate misses a man
   assert.equal(result.recommended.id, "complete");
   assert.equal(result.decision, "select_single");
 });
+
+test("rejects invalid evidence timestamps", () => {
+  assert.throws(() => compareResources([make("bad-date", {
+    evidence: [{ url: "https://example.com/docs", claim: "Bad date", checked_at: "not-a-date" }]
+  })]), /incomplete or invalid evidence/);
+});
+
+test("future evidence timestamps are reported as unknown", () => {
+  const future = make("future", {
+    evidence: [{ url: "https://example.com/docs", claim: "Future claim", checked_at: "2026-11-12T00:00:00Z" }]
+  });
+  const result = compareResources([future], {
+    constraints: { maxEvidenceAgeDays: 30, asOf: "2026-11-10T00:00:00Z" }
+  });
+  assert.equal(result.recommended, null);
+  assert.equal(result.decision, "insufficient_evidence");
+  assert.match(result.rejected[0].unknowns[0], /future/);
+});
