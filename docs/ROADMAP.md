@@ -9,10 +9,10 @@ Resource Intelligence and Agent Orchestration have equal priority. The native Kn
 - [x] Add native knowledge records and deterministic retrieval.
 - [x] Add token-boundary matching, registry integrity checks, and prerequisite visibility.
 - [x] Require auditable review metadata before knowledge can be marked approved.
-- [ ] Add full JSON Schema validation in CI.
-- [ ] Add benchmark cases for retrieval precision, recall, and abstention.
-- [ ] Add a review workflow that binds approval to an exact content version.
-- [ ] Add reference implementations and independent tests for important algorithms and formulas.
+- [x] Add scoped JSON Schema contract validation in CI.
+- [x] Add labelled retrieval regression cases for precision, recall, false positives, and abstention.
+- [x] Require approval metadata bound to the exact item version and SHA-256 content digest.\n- [ ] Add authenticated reviewer identity and protected review/approval workflow.
+- [x] Add initial reference implementations with independent algorithm cross-checks and formula tests.\n- [ ] Expand independent tests across the remaining algorithm and formula library.
 
 ## Gate B — Evidence-driven Resource Intelligence
 - [ ] Add hard-constraint filtering before weighted evaluation.
