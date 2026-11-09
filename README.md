@@ -50,7 +50,7 @@ Read [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](doc
 
 ## Current status
 
-The resource comparison engine now applies mandatory hard constraints before weighted ranking. The knowledge engine has schema checks, content-bound approval metadata, a labelled retrieval regression benchmark, and initial reference implementations with independent tests. These are early quality gates, not proof of complete correctness. Knowledge entries remain drafts and require technical review before production reliance. The orchestrator does not yet run multi-agent workflows. The GitHub App is source code only and is not registered or deployed.
+The resource comparison engine now applies mandatory hard constraints before weighted ranking. The knowledge engine has schema checks, content-bound approval metadata, GitHub-backed reviewer and commit verification, a two-pull-request approval procedure, a technical review checklist, and a labelled retrieval regression benchmark. These are early quality gates, not proof of complete correctness. Knowledge entries remain drafts and require technical review before production reliance. Required branch protection is documented but is not confirmed as enabled. The orchestrator does not yet run multi-agent workflows. The GitHub App is source code only and is not registered or deployed.
 
 ## License
 
