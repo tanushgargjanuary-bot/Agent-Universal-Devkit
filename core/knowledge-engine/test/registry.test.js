@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { validateKnowledgeRegistry, validateKnowledgeContent } from "../src/index.js";
-import { validateApprovalAttestation } from "../src/approval.js";
+import { validateApprovalAttestation, validatePullRequestApproval } from "../src/approval.js";
 import { validateSchema } from "../src/json-schema.js";
 import registry from "../../../knowledge/registry.json" with { type: "json" };
 const schema = JSON.parse(readFileSync(new URL("../../../schemas/knowledge-item.schema.json", import.meta.url), "utf8"));
@@ -93,4 +93,20 @@ test("approval attestation requires a merged PR, trusted reviewer, exact commit,
   assert.ok(validateApprovalAttestation({ ...item, review: { ...item.review, approved_at: "2026-11-10T00:03:00Z" } }, {
     pullRequest, review, changedFiles: ["knowledge/registry.json", item.path], repository: "owner/repo"
   }).errors.some((error) => error.includes("approved_at must match")));
+});
+
+test("approval metadata PR itself needs an independent review on its final head", () => {
+  const pullRequest = {
+    number: 43, state: "open", merged: false, base: { ref: "main" },
+    head: { sha: "c".repeat(40), repo: { full_name: "owner/repo" } },
+    user: { login: "contributor" }
+  };
+  const review = {
+    id: 9002, state: "APPROVED", commit_id: "c".repeat(40),
+    submitted_at: "2026-11-10T00:04:00Z", author_association: "OWNER",
+    user: { login: "maintainer" }
+  };
+  assert.equal(validatePullRequestApproval(pullRequest, [review], "owner/repo").valid, true);
+  assert.equal(validatePullRequestApproval(pullRequest, [{ ...review, commit_id: "d".repeat(40) }], "owner/repo").valid, false);
+  assert.equal(validatePullRequestApproval(pullRequest, [{ ...review, user: { login: "contributor" } }], "owner/repo").valid, false);
 });
