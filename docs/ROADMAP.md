@@ -37,7 +37,8 @@ Resource Intelligence and Agent Orchestration have equal priority. The native Kn
 
 ## Gate D — Knowledge-aware orchestration
 - [ ] Add requirements extraction and acceptance criteria.
-- [x] Retrieve approved knowledge during planning with reasons, limitations, and prerequisite status.\n- [ ] Retrieve and compare approved resources during planning.
+- [x] Retrieve approved knowledge during planning with reasons, limitations, and prerequisite status.
+- [ ] Retrieve and compare approved resources during planning.
 - [ ] Add capability-based agent and harness routing.
 - [ ] Add scoped approvals and re-check policy at execution time.
 - [ ] Add tested executor adapters and run history.
