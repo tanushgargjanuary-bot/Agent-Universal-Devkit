@@ -81,7 +81,9 @@ if (currentPrNumber) {
 }
 const knowledgeScopedPr = currentPrFiles.some((file) => file.startsWith("knowledge/") ||
   file.startsWith("core/knowledge-engine/") || file === "schemas/knowledge-item.schema.json");
-if (knowledgeScopedPr && !currentPrNumber) {
+if (eventName === "push" && !currentPrNumber) {
+  failures.push("Could not identify a merged knowledge pull request for this main-branch push");
+} else if (knowledgeScopedPr && !currentPrNumber) {
   failures.push("Could not identify the pull request that introduced the current approved registry state");
 } else if (knowledgeScopedPr) {
   try {
