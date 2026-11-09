@@ -1,0 +1,35 @@
+name: Knowledge quality
+
+on:
+  push:
+    paths:
+      - "knowledge/**"
+      - "schemas/knowledge-item.schema.json"
+      - "core/knowledge-engine/**"
+      - ".github/workflows/knowledge-quality.yml"
+  pull_request:
+    paths:
+      - "knowledge/**"
+      - "schemas/knowledge-item.schema.json"
+      - "core/knowledge-engine/**"
+      - ".github/workflows/knowledge-quality.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate schema, registry, and approval digests
+        run: node core/knowledge-engine/scripts/validate-registry.js
+      - name: Run knowledge engine tests
+        working-directory: core/knowledge-engine
+        run: npm test
+      - name: Run retrieval benchmark
+        working-directory: core/knowledge-engine
+        run: npm run benchmark
