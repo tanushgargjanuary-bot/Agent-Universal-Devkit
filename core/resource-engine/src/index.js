@@ -23,8 +23,8 @@ function validateResource(resource) {
       throw new Error(`Resource ${resource.id} needs ${dimension} scored from 0 to 5`);
     }
   }
-  if (!resource.evidence.every((item) => item.url && item.claim && item.checked_at)) {
-    throw new Error(`Resource ${resource.id} has incomplete evidence`);
+  if (!resource.evidence.every((item) => item?.url && item?.claim && item?.checked_at && Number.isFinite(Date.parse(item.checked_at)))) {
+    throw new Error(`Resource ${resource.id} has incomplete or invalid evidence`);
   }
 }
 
@@ -61,7 +61,9 @@ function evaluateHardConstraints(resource, constraints, requiredCapabilities, al
   if (constraints.maxEvidenceAgeDays !== undefined) {
     const asOf = Date.parse(constraints.asOf ?? new Date().toISOString());
     const oldest = Math.min(...resource.evidence.map((item) => Date.parse(item.checked_at)));
-    if (!Number.isFinite(asOf) || !Number.isFinite(oldest)) unknowns.push("Evidence date or asOf date is invalid");
+    const newest = Math.max(...resource.evidence.map((item) => Date.parse(item.checked_at)));
+    if (!Number.isFinite(asOf) || !Number.isFinite(oldest) || !Number.isFinite(newest)) unknowns.push("Evidence date or asOf date is invalid");
+    else if (newest > asOf) unknowns.push("Evidence timestamp is in the future relative to asOf");
     else if ((asOf - oldest) / 86400000 > constraints.maxEvidenceAgeDays) violations.push("Evidence is older than the allowed maximum age");
   }
   const capabilities = resource.capabilities ?? [];
