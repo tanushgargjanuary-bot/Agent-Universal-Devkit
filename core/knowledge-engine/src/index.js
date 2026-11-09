@@ -1,4 +1,3 @@
-import { validateApprovalAttestation } from "./approval.js";
 import { createHash } from "node:crypto";
 
 const STATUSES = new Set(["draft", "review", "approved", "deprecated"]);
@@ -80,7 +79,7 @@ export function validateKnowledgeRegistry(registry) {
 
     if (item.status === "approved") {
       const review = item.review;
-      if (!review || !review.approved_by || !review.approved_at ||
+      if (!review || typeof review.approved_by !== "string" || !review.approved_by.trim() || !review.approved_at ||
           review.reviewed_version !== item.version || !/^[a-f0-9]{64}$/.test(review.content_sha256 ?? "") || !Number.isSafeInteger(review.approval_pr) || review.approval_pr < 1 || !Number.isSafeInteger(review.approval_review_id) || review.approval_review_id < 1 || !/^[a-f0-9]{40}$/i.test(review.approval_commit ?? "") || !Array.isArray(review.sources) ||
           review.sources.length === 0 ||
           review.sources.some((source) => !source.title || !source.url || !source.purpose)) {
