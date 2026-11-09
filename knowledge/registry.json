@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "notice": "Native original study material. Draft entries require technical review before production reliance.",
+  "items": [
+    {
+      "id": "algo.complexity-analysis",
+      "title": "Complexity Analysis",
+      "kind": "algorithm",
+      "path": "knowledge/algorithms/complexity-analysis.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["algorithms", "software-engineering", "performance"],
+      "tags": ["complexity", "big-o", "time-complexity", "space-complexity", "asymptotic-analysis", "recurrence"],
+      "activation": {
+        "any_tags": ["complexity", "performance-analysis", "algorithm-analysis", "big-o"],
+        "all_tags": [],
+        "any_phrases": ["time complexity", "space complexity", "big o", "runtime growth", "algorithm efficiency", "recurrence relation"],
+        "required_capabilities": [],
+        "exclude_phrases": ["business complexity", "complexity of the organisation"]
+      },
+      "prerequisites": [],
+      "related": ["algo.graph-traversal", "algo.shortest-path-selection"],
+      "limitations": ["Asymptotic analysis does not predict exact runtime.", "State input dimensions and analysis case explicitly."]
+    },
+    {
+      "id": "algo.graph-traversal",
+      "title": "Graph Traversal: BFS and DFS",
+      "kind": "algorithm",
+      "path": "knowledge/algorithms/graph-traversal.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["algorithms", "graphs", "search"],
+      "tags": ["graph", "bfs", "dfs", "breadth-first-search", "depth-first-search", "traversal", "reachability", "connected-components"],
+      "activation": {
+        "any_tags": ["graph", "bfs", "dfs", "reachability", "connected-components"],
+        "all_tags": [],
+        "any_phrases": ["breadth first search", "depth first search", "traverse a graph", "graph traversal", "connected components", "check reachability"],
+        "required_capabilities": [],
+        "exclude_phrases": ["social graph marketing"]
+      },
+      "prerequisites": [],
+      "related": ["algo.shortest-path-selection", "algo.complexity-analysis"],
+      "limitations": ["BFS gives minimum edge-count paths only for unweighted graphs.", "DFS does not generally find shortest paths."]
+    },
+    {
+      "id": "algo.shortest-path-selection",
+      "title": "Shortest-Path Algorithm Selection",
+      "kind": "algorithm",
+      "path": "knowledge/algorithms/shortest-paths.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["algorithms", "graphs", "optimisation"],
+      "tags": ["shortest-path", "dijkstra", "bellman-ford", "floyd-warshall", "a-star", "weighted-graph", "pathfinding"],
+      "activation": {
+        "any_tags": ["shortest-path", "dijkstra", "weighted-graph", "pathfinding", "route-optimisation"],
+        "all_tags": [],
+        "any_phrases": ["shortest path", "minimum path cost", "dijkstra algorithm", "negative edge weights", "bellman ford", "a star search", "all pairs shortest paths"],
+        "required_capabilities": [],
+        "exclude_phrases": ["shortest path in a document"]
+      },
+      "prerequisites": ["algo.graph-traversal"],
+      "related": ["algo.graph-traversal", "algo.complexity-analysis"],
+      "limitations": ["Algorithm guarantees depend on edge weights and graph assumptions.", "A* optimality depends on heuristic and implementation conditions."]
+    },
+    {
+      "id": "math.linear-algebra",
+      "title": "Linear Algebra for Engineering and Machine Learning",
+      "kind": "mathematical_method",
+      "path": "knowledge/mathematics/linear-algebra.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["mathematics", "machine-learning", "simulation", "engineering"],
+      "tags": ["linear-algebra", "vectors", "matrices", "matrix-multiplication", "eigenvalues", "svd", "least-squares", "linear-systems"],
+      "activation": {
+        "any_tags": ["linear-algebra", "matrix", "vectors", "eigenvalues", "svd", "least-squares"],
+        "all_tags": [],
+        "any_phrases": ["matrix multiplication", "solve linear system", "eigenvalues and eigenvectors", "singular value decomposition", "least squares", "vector representation"],
+        "required_capabilities": [],
+        "exclude_phrases": ["matrix organisation", "matrix film"]
+      },
+      "prerequisites": [],
+      "related": ["math.optimisation", "math.probability-statistics"],
+      "limitations": ["Numerical conditioning and floating-point errors matter in practical computation."]
+    },
+    {
+      "id": "math.probability-statistics",
+      "title": "Probability and Statistics for Engineering",
+      "kind": "mathematical_method",
+      "path": "knowledge/mathematics/probability-statistics.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["mathematics", "statistics", "machine-learning", "experimentation"],
+      "tags": ["probability", "statistics", "bayes", "conditional-probability", "distributions", "hypothesis-testing", "regression", "uncertainty"],
+      "activation": {
+        "any_tags": ["probability", "statistics", "bayesian-inference", "hypothesis-testing", "uncertainty", "regression"],
+        "all_tags": [],
+        "any_phrases": ["bayes theorem", "conditional probability", "false positive rate", "hypothesis test", "p value", "confidence interval", "probability distribution"],
+        "required_capabilities": [],
+        "exclude_phrases": ["statistical significance in marketing copy"]
+      },
+      "prerequisites": [],
+      "related": ["math.linear-algebra", "math.optimisation"],
+      "limitations": ["Statistical conclusions depend on sampling and model assumptions.", "Correlation does not establish causation."]
+    },
+    {
+      "id": "math.optimisation",
+      "title": "Optimisation and Gradient-Based Methods",
+      "kind": "mathematical_method",
+      "path": "knowledge/mathematics/optimization.md",
+      "version": "0.1.0",
+      "status": "draft",
+      "domains": ["mathematics", "optimisation", "machine-learning", "operations-research"],
+      "tags": ["optimisation", "optimization", "gradient-descent", "derivative", "gradient", "hessian", "convexity", "lagrange-multipliers"],
+      "activation": {
+        "any_tags": ["optimisation", "optimization", "gradient-descent", "convexity", "hessian", "constrained-optimisation"],
+        "all_tags": [],
+        "any_phrases": ["gradient descent", "minimise objective function", "maximize objective function", "constrained optimisation", "lagrange multiplier", "learning rate", "convex function"],
+        "required_capabilities": [],
+        "exclude_phrases": ["optimise image file size"]
+      },
+      "prerequisites": ["math.linear-algebra"],
+      "related": ["math.linear-algebra", "math.probability-statistics"],
+      "limitations": ["Gradient methods do not guarantee global optima for arbitrary non-convex objectives.", "Solver assumptions and stopping conditions must be checked."]
+    }
+  ]
+}
