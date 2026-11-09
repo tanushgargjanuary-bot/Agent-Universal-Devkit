@@ -15,13 +15,16 @@ Resource discovery and orchestration are equal, independent priorities in the De
 
 ## Discovery is not endorsement
 
-The scheduled discovery workflow searches recent repositories by engineering topic.
-It produces a review queue. It does not automatically install, approve, or recommend
-a repository. Stars and recent activity are discovery signals only.
+The weekly discovery workflow searches recently active repositories by engineering topic.
+It uses low star thresholds and sorts by recent activity so smaller projects can appear.
+It also stores weekly star snapshots and estimates star growth between observations.
 
-The initial discovery uses GitHub Search API and therefore has API rate limits and
-search-index limitations. It is not a complete view of GitHub or a true real-time
-trending feed.
+This is a useful trending signal, not a complete or real-time trending feed. The first
+observation creates a baseline; growth estimates become available after later runs.
+GitHub Search API has rate limits and search-index limitations.
+
+Discovery creates a review queue. It does not approve, install, or recommend a repository.
+Popularity, recency, and star growth are signals, not quality guarantees.
 
 ## Comparing alternatives
 

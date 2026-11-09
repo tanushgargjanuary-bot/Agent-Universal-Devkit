@@ -26,18 +26,18 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Discover candidates
+      - name: Discover candidates and measure star growth
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCOVERY_DAYS: ${{ inputs.days || '30' }}
-          DISCOVERY_MIN_STARS: "15"
-          DISCOVERY_PER_CATEGORY: "10"
+          DISCOVERY_MIN_STARS: "5"
+          DISCOVERY_PER_CATEGORY: "20"
         run: python scripts/discover_repositories.py
       - name: Open review pull request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet -- catalog/inbox/discovery-candidates.json; then
+          if git diff --quiet -- catalog/inbox/discovery-candidates.json catalog/inbox/repository-history.json; then
             echo "No discovery changes."
             exit 0
           fi
@@ -45,10 +45,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B "$branch"
-          git add catalog/inbox/discovery-candidates.json
+          git add catalog/inbox/discovery-candidates.json catalog/inbox/repository-history.json
           git commit -m "chore: refresh open-source discovery candidates"
           git push --force-with-lease origin "$branch"
           gh pr create --base main --head "$branch" \
             --title "chore: refresh open-source discovery candidates" \
-            --body "Automated GitHub discovery results. These are candidates only, not approved recommendations. Review project fit, maintenance, security, compatibility, and license before adding entries to the approved catalog." \
+            --body "Automated discovery results with observed star-growth signals. These are candidates only, not approved recommendations. Review project fit, maintenance, security, compatibility, and license before adding entries to the approved catalog." \
             || gh pr view "$branch" --json url
