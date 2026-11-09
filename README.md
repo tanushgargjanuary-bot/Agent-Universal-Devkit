@@ -13,6 +13,7 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 
 - An evidence-backed resource catalog and automated discovery.
 - Comparison of alternatives, including justified hybrid and custom approaches.
+- Hard filters for mandatory license, security, compatibility, platform, integration-cost, capability, and evidence-freshness requirements.
 - Native engineering study material stored in the repository, not only external links.
 - Context-triggered retrieval of algorithms and mathematical methods.
 - Shared engineering knowledge, agent instructions, and harness adapters.
@@ -49,7 +50,7 @@ Read [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](doc
 
 ## Current status
 
-The resource comparison engine, scheduled GitHub discovery, initial orchestration planning core, and first local knowledge retrieval engine are initial implementations. Knowledge entries are drafts and require technical review before production reliance. The orchestrator does not yet run multi-agent workflows. The GitHub App is source code only and is not registered or deployed.
+The resource comparison engine now applies mandatory hard constraints before weighted ranking. The knowledge engine has schema checks, content-bound approval metadata, a labelled retrieval regression benchmark, and initial reference implementations with independent tests. These are early quality gates, not proof of complete correctness. Knowledge entries remain drafts and require technical review before production reliance. The orchestrator does not yet run multi-agent workflows. The GitHub App is source code only and is not registered or deployed.
 
 ## License
 
