@@ -38,7 +38,7 @@ These instructions are shared guidance, not a replacement for native harness con
 6. Treat retrieval as a suggestion. It does not authorise code execution or prove that a method fits the task.
 7. If the library has no suitable approved item, proceed with independently verified methods. Do not force an irrelevant match.
 
-The current local Knowledge Engine is a deterministic retrieval component. It is not yet integrated into the orchestration runtime.
+The orchestrator attaches approved-only Knowledge Engine results to each planned task. Agents must still open the returned native files and inspect their assumptions, prerequisites, and limitations. A retrieval match does not prove that the method applies.
 
 ## Finish
 
