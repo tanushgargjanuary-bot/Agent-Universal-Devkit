@@ -38,6 +38,13 @@ export function validatePullRequestApproval(pullRequest, reviews, repository) {
   if (repository && pullRequest?.head?.repo?.full_name !== repository) errors.push("Current pull request head repository does not match");
   const author = pullRequest?.user?.login?.toLowerCase();
   const headSha = pullRequest?.head?.sha?.toLowerCase();
+  const blockingReviews = (reviews ?? []).filter((review) =>
+    review?.state === "CHANGES_REQUESTED" &&
+    review?.commit_id?.toLowerCase() === headSha &&
+    review?.user?.login?.toLowerCase() !== author &&
+    ["OWNER", "MEMBER", "COLLABORATOR"].includes(review?.author_association)
+  );
+  if (blockingReviews.length) errors.push("A trusted reviewer requested changes on the current head commit");
   const validReviews = (reviews ?? []).filter((review) =>
     review?.state === "APPROVED" &&
     review?.commit_id?.toLowerCase() === headSha &&
