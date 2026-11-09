@@ -82,4 +82,7 @@ test("approval attestation requires a merged PR, trusted reviewer, exact commit,
   assert.ok(validateApprovalAttestation(item, {
     pullRequest, review, changedFiles: [item.path], repository: "owner/repo"
   }).errors.some((error) => error.includes("did not change the knowledge registry")));
+  assert.ok(validateApprovalAttestation({ ...item, review: { ...item.review, approved_at: "2026-11-10T00:03:00Z" } }, {
+    pullRequest, review, changedFiles: ["knowledge/registry.json", item.path], repository: "owner/repo"
+  }).errors.some((error) => error.includes("approved_at must match")));
 });
