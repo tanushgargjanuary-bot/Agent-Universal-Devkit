@@ -44,3 +44,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Awaiting GitHub Actions.
 - **Open risks / blockers:** The new checks must pass in CI before they are considered active.
 - **Next action:** Verify tests, then finish the DEVKIT audit.
+
+### 2026-11-10 — Prevent continuity policy bypass
+- **Commit:** pending
+- **Goal:** Prevent L2–L4 repositories from disabling continuity checks or lowering governance level to bypass them.
+- **Changes:** L2–L4 enforce continuity checks even if configuration attempts to disable them. The diff checker compares base and head governance levels and rejects downgrades. L1 opt-out remains available.
+- **Verification:** Awaiting GitHub Actions.
+- **Open risks / blockers:** The owner must protect governance configuration and review any L1 classification.
+- **Next action:** Verify adversarial tests and finish the DEVKIT audit.

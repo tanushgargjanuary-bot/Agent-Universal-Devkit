@@ -99,3 +99,30 @@ test("rejects a touched work log without a new dated entry", t => {
   assert.equal(result.status, 1);
   assert.match(result.stdout, /WORKLOG_ENTRY_NOT_ADDED/);
 });
+
+
+test("does not allow L2 to disable continuity update enforcement", t => {
+  const { root, base } = repo(t);
+  fs.writeFileSync(path.join(root, ".devkit", "governance.json"), JSON.stringify({
+    schemaVersion: 1, level: "L2", checks: { requireContinuityUpdates: false }
+  }));
+  execFileSync("git", ["-C", root, "add", "."]);
+  execFileSync("git", ["-C", root, "commit", "-qm", "disable continuity"]);
+  const head = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  const result = run(root, base, head);
+  assert.equal(result.status, 1);
+  assert.match(result.stdout, /CONTINUITY_UPDATES_CANNOT_BE_DISABLED/);
+});
+
+test("does not allow a PR to downgrade governance from L2 to L1", t => {
+  const { root, base } = repo(t);
+  fs.writeFileSync(path.join(root, ".devkit", "governance.json"), JSON.stringify({
+    schemaVersion: 1, level: "L1", checks: { requireContinuityUpdates: false }
+  }));
+  execFileSync("git", ["-C", root, "add", "."]);
+  execFileSync("git", ["-C", root, "commit", "-qm", "downgrade governance"]);
+  const head = execFileSync("git", ["-C", root, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  const result = run(root, base, head);
+  assert.equal(result.status, 1);
+  assert.match(result.stdout, /GOVERNANCE_LEVEL_DOWNGRADE/);
+});

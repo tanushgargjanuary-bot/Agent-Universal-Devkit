@@ -29,17 +29,29 @@ function eventRange() {
   return null;
 }
 
-function readPolicy(root) {
-  try {
-    const config = JSON.parse(readFileSync(path.join(root, ".devkit", "governance.json"), "utf8"));
-    return {
-      level: ["L1", "L2", "L3", "L4"].includes(config.level) ? config.level : "L2",
-      enabled: config.checks?.requireContinuityUpdates !== false
-    };
-  } catch {
-    return { level: "L2", enabled: true };
-  }
+function parsePolicy(raw) {
+  const config = JSON.parse(raw);
+  return {
+    level: ["L1", "L2", "L3", "L4"].includes(config.level) ? config.level : "L2",
+    disableRequested: config.checks?.requireContinuityUpdates === false
+  };
 }
+
+function readPolicy(root) {
+  try { return parsePolicy(readFileSync(path.join(root, ".devkit", "governance.json"), "utf8")); }
+  catch { return { level: "L2", disableRequested: false }; }
+}
+
+function readPolicyAtCommit(root, sha) {
+  try {
+    const raw = execFileSync("git", ["show", sha + ":.devkit/governance.json"], {
+      cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"]
+    });
+    return parsePolicy(raw);
+  } catch { return { level: "L2", disableRequested: false }; }
+}
+
+const LEVEL_RANK = { L1: 1, L2: 2, L3: 3, L4: 4 };
 
 function git(root, args) {
   return execFileSync("git", args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }).trim();
@@ -89,13 +101,26 @@ function main() {
     throw new Error("Base and head must be full Git commit SHAs");
   }
 
-  const policy = readPolicy(args.root);
-  if (!policy.enabled) {
-    process.stdout.write("Continuity diff check disabled by repository governance config.\n");
-    return;
-  }
   git(args.root, ["cat-file", "-e", range.base + "^{commit}"]);
   git(args.root, ["cat-file", "-e", range.head + "^{commit}"]);
+  const basePolicy = readPolicyAtCommit(args.root, range.base);
+  const headPolicy = readPolicy(args.root);
+  const level = LEVEL_RANK[basePolicy.level] > LEVEL_RANK[headPolicy.level] ? basePolicy.level : headPolicy.level;
+  const severity = level === "L1" ? "warning" : "error";
+  if (LEVEL_RANK[headPolicy.level] < LEVEL_RANK[basePolicy.level]) {
+    process.stdout.write("[ERROR] GOVERNANCE_LEVEL_DOWNGRADE — A change cannot lower the repository governance level in the same change set.\n");
+    process.exitCode = 1;
+    return;
+  }
+  if (headPolicy.disableRequested && level !== "L1") {
+    process.stdout.write("[ERROR] CONTINUITY_UPDATES_CANNOT_BE_DISABLED — L2–L4 repositories cannot disable continuity update checks.\n");
+    process.exitCode = 1;
+    return;
+  }
+  if (level === "L1" && headPolicy.disableRequested) {
+    process.stdout.write("Continuity diff check disabled for an L1 prototype.\n");
+    return;
+  }
   const changed = git(args.root, ["diff", "--name-only", "--diff-filter=ACMR", range.base + range.separator + range.head])
     .split(/\r?\n/).filter(Boolean);
   const implementationChanges = changed.filter(isImplementationPath);
@@ -103,7 +128,6 @@ function main() {
   const hasWorklog = changed.includes("docs/WORKLOG.md");
   const hasProjectState = changed.includes("docs/PROJECT-STATE.md");
   const findings = [];
-  const severity = policy.level === "L1" ? "warning" : "error";
 
   if (implementationChanges.length) {
     if (!hasWorklog) findings.push({ rule: "WORKLOG_NOT_UPDATED", message: "Implementation or configuration changed without updating docs/WORKLOG.md." });

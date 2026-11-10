@@ -130,7 +130,7 @@ test("detects incomplete handoff structure and stale state", t => {
   assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_STALE"), true);
 });
 
-test("allows continuity checks to be disabled by explicit config", t => {
+test("rejects disabling continuity checks for L2 repositories", t => {
   const root = fixture(t);
   fs.unlinkSync(path.join(root, "docs", "PROJECT-STATE.md"));
   fs.unlinkSync(path.join(root, "docs", "WORKLOG.md"));
@@ -140,8 +140,9 @@ test("allows continuity checks to be disabled by explicit config", t => {
   }));
   const result = run(root);
   const report = JSON.parse(result.stdout);
-  assert.equal(result.status, 0);
-  assert.equal(report.findings.some(x => x.rule === "CONTINUITY_DOCUMENT_MISSING"), false);
+  assert.equal(result.status, 1);
+  assert.equal(report.findings.some(x => x.rule === "CONTINUITY_CHECKS_CANNOT_BE_DISABLED"), true);
+  assert.equal(report.findings.some(x => x.rule === "CONTINUITY_DOCUMENT_MISSING"), true);
 });
 
 
@@ -180,4 +181,19 @@ test("detects unfilled project-state template placeholders", t => {
   assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_EMPTY_FIELD"), true);
   assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_DATE_PLACEHOLDER"), true);
   assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_ACTION_PLACEHOLDER"), true);
+});
+
+
+test("allows continuity opt-out for L1 prototypes only", t => {
+  const root = fixture(t);
+  fs.unlinkSync(path.join(root, "docs", "PROJECT-STATE.md"));
+  fs.unlinkSync(path.join(root, "docs", "WORKLOG.md"));
+  fs.mkdirSync(path.join(root, ".devkit"));
+  fs.writeFileSync(path.join(root, ".devkit", "governance.json"), JSON.stringify({
+    schemaVersion: 1, level: "L1", checks: { continuityDocs: false }
+  }));
+  const result = run(root);
+  const report = JSON.parse(result.stdout);
+  assert.equal(result.status, 0);
+  assert.equal(report.findings.some(x => x.rule === "CONTINUITY_DOCUMENT_MISSING"), false);
 });

@@ -45,14 +45,17 @@ function loadConfig(root, configPath) {
   if (parsed.excludePaths !== undefined && (!Array.isArray(parsed.excludePaths) || parsed.excludePaths.some(x => typeof x !== "string"))) {
     throw new Error("excludePaths must be an array of repository-relative paths");
   }
+  const continuityOverrideRejected = parsed.level !== "L1" &&
+    (parsed.checks?.continuityDocs === false || parsed.checks?.requireContinuityUpdates === false);
   return {
     level: parsed.level,
     excludePaths: parsed.excludePaths ?? [],
+    continuityOverrideRejected,
     checks: {
       secretPatterns: parsed.checks?.secretPatterns !== false,
       generatedFiles: parsed.checks?.generatedFiles !== false,
       naming: parsed.checks?.naming !== false,
-      continuityDocs: parsed.checks?.continuityDocs !== false,
+      continuityDocs: parsed.level === "L1" ? parsed.checks?.continuityDocs !== false : true,
       maxStateAgeDays: Number.isInteger(parsed.checks?.maxStateAgeDays) && parsed.checks.maxStateAgeDays >= 1 && parsed.checks.maxStateAgeDays <= 3650
         ? parsed.checks.maxStateAgeDays
         : 90
@@ -92,6 +95,10 @@ function walk(root, config, findings) {
 
 function scan(root, config) {
   const findings = [];
+  if (config.continuityOverrideRejected) {
+    add(findings, "error", "CONTINUITY_CHECKS_CANNOT_BE_DISABLED", ".devkit/governance.json",
+      "L2–L4 repositories cannot disable continuity checks. Use L1 only when the project genuinely qualifies as a prototype.");
+  }
   const files = walk(root, config, findings);
   const byPath = new Set(files.map(x => x.rel));
   if (!byPath.has("README.md") && !byPath.has("README")) {
