@@ -393,3 +393,12 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Orchestrator Core Tests passed 43/43. Orchestration quality passed. Repository hygiene and continuity diff passed. Secret-history scan passed. CodeQL remained in progress at the time of this entry.
 - **Correction:** The initial Approval Store run failed during SQLite schema creation because the DDL statements lacked separators. The schema bootstrap was corrected; the full approval lifecycle suite now passes.
 - **Security boundary:** The store signs records and enforces expiry/revocation, but the host still needs a real authentication provider and protected private-key management. Executor-side enforcement is not implemented.
+
+
+### 2026-11-11 — Execution Gate and adapter contract
+
+- **Changes:** Added a standard adapter invocation gate that revalidates plan digests, evaluates policy for each exact action/target, loads and verifies current approval records, checks adapter action/harness/capability compatibility, requires a durable audit callback, and executes sequentially.
+- **Contract:** Adapters declare stable ID/version, supported actions, capabilities, optional harness ID, and an execute function. The gate rejects ambiguous matches and refuses direct plan execution when audit is not configured. There are no built-in adapters yet.
+- **Tests:** Adapter contract validation, duplicate IDs, digest tampering, capability/harness mismatch, ambiguity, missing audit sink, pre-execution audit failure, missing approvals, signed approval success, revocation, critical-risk test approval, dry-run, unknown actions, and partial results after adapter failure.
+- **Security boundary:** This is the required host integration path, not an OS sandbox. Hosts must not expose raw adapters for direct invocation. Production identity, key management, durable audit storage, and adapter isolation remain open.
+- **Verification:** Awaiting CI.

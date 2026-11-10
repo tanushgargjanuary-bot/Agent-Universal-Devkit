@@ -78,7 +78,7 @@
 2. **Build project context assembly.** Produce a bounded, evidence-linked context pack with project purpose, architecture signals, entry-point candidates, package/workspace layout, test/build commands, conventions, and known limitations. Never invent commands or infer unverified runtime behaviour.
 3. **Expand deterministic checks.** Add dependency, test, CI, configuration, and documentation checks only where source evidence is available. Keep read-only defaults and bounded file access.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
-5. **Complete the trusted approval lifecycle.** The plan digest now binds repository and task routing fields, technology decisions, and policy version; runtime action rules now load from one canonical JSON catalogue referenced by `policy.yaml`. SQLite approval storage, Ed25519 signatures, expiry, authenticated-decision callbacks, rejection, revocation, and state-transition controls are now implemented. Next integrate a real identity provider and key management, then enforce approvals in executor adapters. Keep execution disabled until those integrations are tested.
+5. **Complete the trusted approval lifecycle.** The plan digest now binds repository and task routing fields, technology decisions, and policy version; runtime action rules now load from one canonical JSON catalogue referenced by `policy.yaml`. SQLite approval storage, Ed25519 signatures, expiry, authenticated-decision callbacks, rejection, revocation, and state-transition controls are now implemented. The Approval Store is now connected to a new Execution Gate. The gate revalidates plan digests, checks policy and live approval status per action, routes only to adapters that meet harness/capability contracts, requires an audit callback, and executes sequentially. Next integrate a real identity provider, protected key management, durable audit storage, and least-privilege adapters. Keep execution disabled until those integrations are tested.
 6. **Improve Resource Registry evidence quality.** Add labelled deduplication benchmarks and review-consistency tests. The dedicated registry workflow now passes 12/12 tests; this does not validate semantic accuracy or production-scale performance.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
 8. **Review automated trending candidates.** Inspect each daily/weekly discovery PR, verify source/dependencies/security/license/project fit, and approve only reviewed resources.
@@ -165,6 +165,8 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-11 | `450f020` | Policy CI | First orchestrator run: 33/34 tests passed. One existing integration fixture used pending status; corrected to approved. Critical-risk mutation coverage expanded. Awaiting rerun. |
 
 | 2026-11-11 | `89891a5` | Approval Store | First CI run exposed a DDL separator error. Fixed. Latest Orchestrator Core Tests passed 43/43; Orchestration quality, repository hygiene, and secret-history scan passed. CodeQL pending. |
+
+| 2026-11-11 | `execution-gate` | Execution Gate | Per-action policy enforcement, digest validation, approval verification, adapter routing, audit requirement, and sequential execution implemented; CI pending. |
 
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
