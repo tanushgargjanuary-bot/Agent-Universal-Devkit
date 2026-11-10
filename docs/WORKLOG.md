@@ -75,3 +75,13 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** Recorded the final commit identifiers for the continuity checker fixes, governance bypass protection, and governance documentation.
 - **Verification:** Repository hygiene and secret-history workflows passed on the latest documentation commit.
 - **Next action:** Start Resource Registry remediation from the audit report.
+
+### 2026-11-10 — Capture exploratory broader product vision
+- **Commit:** `6f67735ed6d2936636287813f7471a9da29bb62e`
+- **Goal:** Preserve an expanded direction for repo-scan and adjacent developer capabilities without silently expanding the approved project scope.
+- **Changes:** Added `notes/DEVKIT-BROADER-VISION-NOTES.md`. It frames repo-scan as the entry point to a Project Intelligence lifecycle: discover, understand, assess, explain, prioritise, plan, act, verify, remember, and monitor. It records candidate capability families, a shared project model, user workflows, safety requirements, possible sequencing, success measures, and a devil's-advocate review.
+- **Status and boundary:** The note explicitly states that it is informal, non-professional, non-authoritative, for convenience only, and not an official project document or approved scope. Canonical vision, principles, architecture, and roadmap remain authoritative.
+- **Verification:** Confirmed the note was created on `main`. No code or runtime behaviour changed; no test suite was run.
+- **Decision:** Treat Project Intelligence as an exploratory umbrella direction and repo-scan as a possible first entry point. Do not promote candidate features into the roadmap without explicit review and a validated use case.
+- **Next action:** When implementation is requested, inspect current code and define a narrow, evidence-backed repo-scan MVP before changing architecture or adding scanner breadth.
+
