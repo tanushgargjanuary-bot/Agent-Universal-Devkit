@@ -137,3 +137,15 @@ It:
 - Attaches the assessment to an orchestration plan when the caller supplies `technologyAssessment`.
 
 It does not yet discover candidate architectures automatically, validate claims in supplied evidence, benchmark implementations, generate an ADR, or execute an approved migration. Candidate discovery and evidence verification remain required future work. The engine is a proposal aid, not an autonomous architect.
+
+
+### Scoring transparency
+
+The current implementation uses a simple, explicit comparison formula:
+
+`capability coverage × 100 × capability weight
+ - integration complexity × integration weight
+ - operational complexity × operations weight
+ - migration cost × migration weight`
+
+Each cost estimate must be in the range 0–5. The default weights are 1, 2, 1, and 2 respectively. Callers can change the weights for a specific workload. The score is not a universal language-quality score. It is meaningful only when candidates use comparable evidence and estimation methods. Hard platform and security requirements are filters, not score bonuses.
