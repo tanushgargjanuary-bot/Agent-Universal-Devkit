@@ -13,7 +13,7 @@ This Probot app listens for newly created repositories and copies the small boot
 
 ## Required GitHub App setup
 
-Create a GitHub App and install it on the account that owns the Devkit and the repositories to bootstrap.
+Create a GitHub App and install it on the account that owns the repositories to bootstrap.
 
 Subscribe to the **Repository** event and enable the `created` action.
 
