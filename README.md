@@ -20,6 +20,7 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 - Evidence-based language and technology architecture selection for every new repository.
 - Project-type-specific quality rubrics, selected per repository rather than applied as one generic checklist.
 - Risk-based repository governance for file organisation, task tracking, decision records, Git workflow, security, release, and recovery.
+- A read-only repository hygiene checker with JSON reports, secret-pattern detection, and CI tests.
 - Hard filters for mandatory license, security, compatibility, platform, integration-cost, capability, and evidence-freshness requirements.
 - Native engineering study material stored in the repository, not only external links.
 - Context-triggered retrieval of algorithms and mathematical methods.
@@ -55,6 +56,8 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 - Do not copy third-party course notes or textbooks.
 - Do not install or execute catalog entries automatically.
 - Verify engineering outputs independently.
+
+Run `node scripts/repository-hygiene/check.mjs` for a read-only hygiene scan. See [Repository Hygiene Checker](docs/REPOSITORY-HYGIENE-CHECKER.md) for rules, configuration, and limits.
 
 Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md), [Project-Type Engineering Rubrics](rubrics/PROJECT-RUBRICS.md), [Vision and Scope](docs/VISION-AND-SCOPE.md), [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md), [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](docs/TARGET-ARCHITECTURE.md), [Decision Engine](docs/DECISION-ENGINE.md), [Knowledge Library](docs/KNOWLEDGE-LIBRARY.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), [Pack Model](docs/PACK-MODEL.md), and [Roadmap](docs/ROADMAP.md).
 
