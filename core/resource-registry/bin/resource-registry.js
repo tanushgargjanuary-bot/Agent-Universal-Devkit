@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { ResourceRegistry } from "./src/index.js";
+import { ResourceRegistry } from "../src/index.js";
 
 function help() {
   console.log(`Resource Registry
@@ -15,7 +15,10 @@ Commands:
   stats
 
 Options:
-  --db PATH       SQLite database path (default: data/resource-registry.sqlite)\n\nReview decisions:\n  duplicate_keep_left | duplicate_keep_right | alternative | complement | distinct | reject_both
+  --db PATH       SQLite database path (default: data/resource-registry.sqlite)
+
+Review decisions:
+  duplicate_keep_left | duplicate_keep_right | alternative | complement | distinct | reject_both
 
 Notes:
   The tool never deletes records automatically. Deduplication writes review proposals.
