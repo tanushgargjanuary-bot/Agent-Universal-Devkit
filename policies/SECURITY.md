@@ -22,3 +22,14 @@ Get approval before:
 ## Reporting
 
 Report suspected vulnerabilities through GitHub's Security tab using **Report a vulnerability** when private vulnerability reporting is enabled. If that option is unavailable, contact the repository owner privately through their GitHub profile. Do not publish exploit details in public issues before maintainers can assess them.
+
+## Public commit metadata
+
+- Use GitHub's private `noreply` email for Git commits.
+- Enable **Keep my email addresses private** in GitHub account email settings.
+- Check the author email before pushing commits.
+- Changing the account setting does not change existing commits. Removing an address from existing history requires a planned history rewrite. A rewrite changes commit IDs and can disrupt branches, pull requests, forks, and clones. Do not rewrite shared history without a coordinated recovery plan.
+
+## Automated code analysis
+
+The CodeQL workflow scans JavaScript and Python on pushes to `main`, pull requests, and a weekly schedule. A clean scan does not prove that the repository is secure. Review alerts and keep dependency updates current.
