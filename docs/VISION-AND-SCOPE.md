@@ -17,9 +17,26 @@ The Devkit should use existing agents, models, tools, services, skills, datasets
 and workflows. It should not require one model provider, agent harness,
 programming language, runtime, or deployment style.
 
+The intended user experience is a **unified problem-solving workbench**. A user
+should be able to bring a broad range of supported problems through one entry
+point. DEVKIT should understand the goal and context, select reusable
+capabilities and existing tools, plan controlled work, verify the outcome, and
+preserve useful project knowledge. This is a shared workflow over modular
+capabilities, not one monolithic tool that reimplements every specialist system.
+See [Unified Problem-Solving Model](UNIFIED-PROBLEM-SOLVING-MODEL.md).
+
 ## The central idea
 
-**One small core. Many optional capabilities.**
+**One entry point. One shared problem lifecycle. One small core. Many optional capabilities.**
+
+Users should describe the problem and desired outcome. They should not need to
+select internal engines or understand DEVKIT's architecture. Specialist
+workflows remain available, but they reuse the same context, evidence, planning,
+policy, execution, verification, and continuity contracts.
+
+"One place" means one coherent workbench and interoperable capability system.
+It does not mean a giant application that duplicates every existing developer
+tool.
 
 The core manages goals, requirements, constraints, acceptance criteria,
 knowledge and resource discovery, evidence, evaluation, planning, routing,
