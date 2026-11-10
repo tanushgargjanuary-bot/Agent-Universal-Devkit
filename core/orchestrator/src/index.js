@@ -71,7 +71,7 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low", kno
     goal,
     repository,
     risk,
-    approval_required: approvalRequired || Boolean(technologyDecision?.approval.required),
+    approval_required: approvalRequired || Boolean(technologyDecision && (technologyDecision.approval.required || technologyDecision.status === "provisional")),
     ...(technologyDecision ? { technology_decision: technologyDecision } : {}),
     tasks: ordered.map((task) => ({
       ...task,
