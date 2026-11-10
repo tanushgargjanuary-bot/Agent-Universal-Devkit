@@ -204,3 +204,23 @@ test("attaches a technology proposal to orchestration plans and raises approval"
   assert.equal(plan.technology_decision.decision, "polyglot_hybrid");
   assert.equal(plan.approval_required, true);
 });
+
+
+test("blocks a plan when technology evidence is insufficient", () => {
+  const plan = createPlan({
+    task_id: "architecture-uncertain",
+    goal: "Choose a service architecture",
+    repository: { full_name: "owner/new-service", default_branch: "main" },
+    tasks: [{ id: "assess", description: "Assess architecture" }],
+    technologyAssessment: {
+      files: [],
+      workload: { required_capabilities: ["stream-processing"] },
+      candidates: [
+        { id: "option-a", languages: ["Go"], capabilities: [], evidence: ["Initial notes"] },
+        { id: "option-b", languages: ["Python"], capabilities: [], evidence: ["Initial notes"] }
+      ]
+    }
+  });
+  assert.equal(plan.technology_decision.decision, "insufficient_evidence");
+  assert.equal(plan.approval_required, true);
+});
