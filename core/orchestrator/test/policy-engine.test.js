@@ -196,5 +196,5 @@ test("plan creation attaches per-task policy decisions and stable digest", () =>
 test("catalogue exposes only explicit policy actions", () => {
   const catalog = getPolicyActionCatalog();
   assert.ok(catalog.some((item) => item.action === "delete_repository_data" && item.minimum_risk === "critical"));
-  assert.ok(catalog.every((item) => ["allow", "approval"].includes(item.effect)));
+  assert.ok(catalog.every((item) => ["allow", "approval", "risk_gated"].includes(item.effect)));
 });
