@@ -149,3 +149,37 @@ The current implementation uses a simple, explicit comparison formula:
  - migration cost × migration weight`
 
 Each cost estimate must be in the range 0–5. The default weights are 1, 2, 1, and 2 respectively. Callers can change the weights for a specific workload. The score is not a universal language-quality score. It is meaningful only when candidates use comparable evidence and estimation methods. Hard platform and security requirements are filters, not score bonuses.
+
+
+### Local repository usage
+
+A local orchestrator can create a bounded static snapshot, then attach it to a plan:
+
+```js
+import { createPlan } from "./src/index.js";
+import { inspectLocalRepository } from "./src/technology-decision.js";
+
+const snapshot = await inspectLocalRepository("/workspace/project");
+
+const plan = createPlan({
+  task_id: "architecture-review-001",
+  goal: "Evaluate the project technology architecture",
+  repository: {
+    full_name: "owner/project",
+    default_branch: "main"
+  },
+  tasks: [
+    { id: "architecture-review", description: "Review architecture options" }
+  ],
+  technologyAssessment: {
+    files: snapshot.files,
+    workload: {
+      required_capabilities: ["http-api", "background-jobs"],
+      required_platforms: ["linux"]
+    },
+    candidates: evidenceBackedCandidates
+  }
+});
+```
+
+The local scanner skips common generated and dependency directories, does not follow symlinks, reads only known manifest files for framework hints, and enforces a file-count limit. The caller must still supply workload requirements and candidate evidence.
