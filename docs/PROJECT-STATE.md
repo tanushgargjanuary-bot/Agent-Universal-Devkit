@@ -160,7 +160,7 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-11 | `012837e` | Resource Registry Tests | Passed: syntax check and 12/12 tests. |
 | 2026-11-11 | `9272cc0` | Repository hygiene and continuity diff | Passed: hygiene tests, trending-discovery tests, continuity diff, and repository scan. Secret-history scan passed; CodeQL still running at this handoff update. |
 
-| 2026-11-11 | `1d2b92e` | Policy Engine hardening | Canonical action rules moved to policy.rules.json; policy.yaml references it. Plan digest now includes routing fields and technology decision. Approval records require approved status; CI pending. |
+| 2026-11-11 | `1d2b92e` | Policy Engine hardening | Canonical action rules moved to policy.rules.json; policy.yaml references it. Plan digest includes routing fields and technology decision. Latest orchestrator core CI passed 35/35 tests; orchestration quality, hygiene, continuity, and secret-history checks passed. CodeQL pending. |
 
 | 2026-11-11 | `450f020` | Policy CI | First orchestrator run: 33/34 tests passed. One existing integration fixture used pending status; corrected to approved. Critical-risk mutation coverage expanded. Awaiting rerun. |
 

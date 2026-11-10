@@ -22,7 +22,7 @@ A code-level hardening pass was committed after the historical audit:
 - Approval records must have an explicit approved status and pass a trusted verifier.
 - Malformed approval collections fail closed.
 
-This is a source-level change, not a complete security boundary. It does not add authenticated approval storage, expiry, replay protection, executor-side enforcement, or OS/container isolation. The orchestrator test workflow must pass before this hardening is treated as verified. This section does not replace a fresh security audit.
+This is a source-level change, not a complete security boundary. It does not add authenticated approval storage, expiry, replay protection, executor-side enforcement, or OS/container isolation. The orchestrator core workflow passed 35/35 tests on commit `b14bb0b`; orchestration quality, repository hygiene, continuity checks, and secret-history scan also passed. CodeQL was still running at the time of the record. This section does not replace a fresh security audit.
 
 ## Findings recorded in the audit
 
