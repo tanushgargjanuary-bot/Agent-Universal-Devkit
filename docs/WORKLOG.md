@@ -61,3 +61,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Repository hygiene passed on `a812763` (124 files, 0 errors, 0 warnings, 0 notes); continuity diff enforcement passed; GitHub bootstrap tests passed; secret-history scan passed. CodeQL was still running. All core package suites were not run in this audit.
 - **Owner actions:** Add GitHub About description and verify branch protection/rulesets. 
 - **Next action:** Fix Resource Registry correctness and CI, then close orchestrator approval-contract gaps before building executor adapters.
+
+### 2026-11-10 — Document continuity enforcement boundaries
+- **Commit:** pending
+- **Goal:** Make the governance-level restrictions explicit to repository owners and agents.
+- **Changes:** Documented that L2–L4 cannot disable continuity checks or downgrade governance in the same change set. L1 opt-out remains available for genuine prototypes.
+- **Verification:** Documentation-only update; continuity diff CI will verify a new work-log entry.
+- **Next action:** Begin the first remediation phase from the audit report.
