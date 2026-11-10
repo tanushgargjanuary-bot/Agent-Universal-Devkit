@@ -25,6 +25,7 @@ function verifiedApproval(overrides = {}) {
   });
   return {
     ...request,
+    status: "approved",
     approval_id: "approval-1",
     approved_by: "human-reviewer",
     approved_at: "2026-11-10T10:00:00.000Z",
@@ -209,4 +210,59 @@ test("medium-risk plans do not block read-only task actions", () => {
   });
   assert.equal(result.approval_required, false);
   assert.equal(result.tasks[0].policy.allowed, true);
+});
+
+
+test("plan digest binds repository and task routing fields", () => {
+ const base={
+  taskId:"route-plan",goal:"Ship a service",
+  repository:{full_name:"owner/repo",default_branch:"main",languages:["TypeScript"],frameworks:["Node"]},
+  risk:"medium",
+  tasks:[{id:"build",description:"Build service",required_capabilities:["build"],preferred_harness:"harness-a",tools:["git","terminal"],depends_on:[],actions:[{type:"run_tests",target:"unit"}]}]
+ };
+ const original=createPlanDigest(base);
+ const changes=[
+  {...base,tasks:[{...base.tasks[0],preferred_harness:"harness-b"}]},
+  {...base,tasks:[{...base.tasks[0],tools:["git","docker"]}]},
+  {...base,tasks:[{...base.tasks[0],required_capabilities:["deploy"]}]},
+  {...base,repository:{...base.repository,languages:["Rust"]}},
+  {...base,repository:{...base.repository,frameworks:["Deno"]}},
+  {...base,technologyDecision:{decision:"polyglot_hybrid",recommendation:{candidate_id:"rust-node"}}}
+ ];
+ for(const changed of changes)assert.notEqual(createPlanDigest(changed),original);
+});
+
+test("plan digest is stable across object key and set-like array ordering", () => {
+ const first=createPlanDigest({
+  taskId:"stable",goal:"Build",
+  repository:{full_name:"owner/repo",default_branch:"main",languages:["Rust","TypeScript"],frameworks:["Node","React"]},
+  tasks:[{id:"one",description:"Build",tags:["backend","api"],required_capabilities:["compile","test"],tools:["git","terminal"],depends_on:["b","a"],actions:[{type:"run_tests",target:"unit"}]}]
+ });
+ const second=createPlanDigest({
+  taskId:"stable",goal:"Build",
+  repository:{frameworks:["React","Node"],languages:["TypeScript","Rust"],default_branch:"main",full_name:"owner/repo"},
+  tasks:[{actions:[{target:"unit",type:"run_tests"}],depends_on:["a","b"],tools:["terminal","git"],required_capabilities:["test","compile"],tags:["api","backend"],description:"Build",id:"one"}]
+ });
+ assert.equal(first,second);
+});
+
+test("plan digest rejects malformed routing lists and duplicate task IDs", () => {
+ const base={taskId:"invalid",goal:"Test",repository:{full_name:"owner/repo",default_branch:"main"},tasks:[{id:"one"}]};
+ assert.throws(()=>createPlanDigest({...base,tasks:[{id:"one",tools:"terminal"}]}),/task.tools must be an array/);
+ assert.throws(()=>createPlanDigest({...base,tasks:[{id:"one"},{id:"one"}]}),/must be unique/);
+});
+
+test("approval records must have approved status and malformed approval collections fail closed", () => {
+ const pending=verifiedApproval({status:"pending"});
+ const pendingResult=evaluatePolicy({
+  risk:"medium",actions:[{type:plan.action,target:plan.target}],planId:plan.taskId,planDigest:plan.planDigest,
+  approvals:[pending],verifyApproval:()=>true
+ });
+ assert.equal(pendingResult.allowed,false);
+ const malformed=evaluatePolicy({
+  risk:"medium",actions:[{type:plan.action,target:plan.target}],planId:plan.taskId,planDigest:plan.planDigest,
+  approvals:{},verifyApproval:()=>true
+ });
+ assert.equal(malformed.allowed,false);
+ assert.match(malformed.reasons[0],/Approvals must be an array/);
 });

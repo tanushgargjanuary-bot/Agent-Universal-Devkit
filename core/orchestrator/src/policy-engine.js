@@ -191,6 +191,14 @@ export function createPlanDigest({ taskId, goal, repository, risk = "low", tasks
       !Array.isArray(tasks) || !Object.hasOwn(RISK_ORDER, risk)) {
     throw new Error("A complete plan identity is required to create its digest");
   }
+  const stringList = (value, field) => {
+    if (value === undefined || value === null) return [];
+    if (!Array.isArray(value) || value.some((item) => typeof item !== "string" || !item.trim())) {
+      throw new Error(field + " must be an array of non-empty strings");
+    }
+    return [...new Set(value.map((item) => item.trim()))].sort();
+  };
+  const taskIds = new Set();
   const canonical = {
     policy_version: POLICY_VERSION,
     task_id: taskId,
@@ -198,14 +206,20 @@ export function createPlanDigest({ taskId, goal, repository, risk = "low", tasks
     repository: {
       full_name: repository.full_name,
       default_branch: repository.default_branch,
-      languages: [...(repository.languages ?? [])].sort(),
-      frameworks: [...(repository.frameworks ?? [])].sort()
+      languages: stringList(repository.languages, "repository.languages"),
+      frameworks: stringList(repository.frameworks, "repository.frameworks")
     },
     risk,
     technology_decision: technologyDecision,
     tasks: tasks.map((task) => {
       if (!task || typeof task !== "object" || Array.isArray(task) || typeof task.id !== "string" || !task.id.trim()) {
         throw new Error("Every plan task must have a non-empty string id");
+      }
+      if (taskIds.has(task.id)) throw new Error("Plan task ids must be unique: " + task.id);
+      taskIds.add(task.id);
+      if (task.actions !== undefined && !Array.isArray(task.actions)) throw new Error("task.actions must be an array");
+      for (const field of ["description", "goal", "problem", "context"]) {
+        if (task[field] !== undefined && typeof task[field] !== "string") throw new Error("task." + field + " must be a string");
       }
       return {
         id: task.id,
@@ -214,11 +228,11 @@ export function createPlanDigest({ taskId, goal, repository, risk = "low", tasks
         problem: task.problem ?? "",
         context: task.context ?? "",
         domain: task.domain ?? null,
-        tags: [...(task.tags ?? [])].sort(),
-        required_capabilities: [...(task.required_capabilities ?? [])].sort(),
+        tags: stringList(task.tags, "task.tags"),
+        required_capabilities: stringList(task.required_capabilities, "task.required_capabilities"),
         preferred_harness: task.preferred_harness ?? null,
-        tools: [...(task.tools ?? [])].sort(),
-        depends_on: [...(task.depends_on ?? [])].sort(),
+        tools: stringList(task.tools, "task.tools"),
+        depends_on: stringList(task.depends_on, "task.depends_on"),
         actions: (task.actions ?? []).map((action) => normaliseAction(action))
       };
     })
