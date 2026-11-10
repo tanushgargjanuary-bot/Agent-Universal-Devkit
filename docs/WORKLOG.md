@@ -189,3 +189,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Shared Contract Tests passed: schema engine 6/6, problem engine 7/7, project intelligence 10/10, capability engine 9/9, knowledge engine 30/30. Repository hygiene passed: 152 files, zero errors, warnings, or notes; continuity diff passed. Secret history scan passed. CodeQL was still running at this update.
 - **Decision:** README demo detection remains a low-confidence signal, not a quality or functionality verdict. The README standard allows a project-appropriate alternative when a GIF or screenshot is not suitable.
 - **Next action:** Add a user-facing read-only CLI that emits structured JSON or readable Markdown. Then expand repository understanding with architecture and entry-point evidence.
+
+### 2026-11-10 — Add a read-only repo-scan CLI and Markdown report
+- **Commit:** `be4768b3c5cbb43009d9c8f15ab524a6f1ab8f0d`
+- **Goal:** Make the initial repo-scan usable without writing a custom JavaScript integration.
+- **Changes:** Added the `repo-scan` package executable with a repository path and `--format json|markdown`. Added a Markdown report renderer that escapes untrusted text, includes project profile, finding severity/status/confidence, evidence, coverage, and limitations. The CLI writes to stdout, does not create files, and does not execute project scripts, install dependencies, or access the network. Updated package and root README usage.
+- **Verification:** Shared Contract Tests passed: schema 6/6, problem 7/7, project intelligence 17/17, capability 9/9, knowledge 30/30. Secret history scan passed. Repository hygiene unit tests passed, but the continuity diff failed because this implementation commit did not update PROJECT-STATE and WORKLOG; the repository scan step was skipped. CodeQL was still running at this update.
+- **Correction:** This follow-up updates the continuity records. The continuity failure is recorded, not concealed.
+- **Next action:** Improve deterministic project architecture and entry-point discovery with labelled fixtures and explicit coverage limits.

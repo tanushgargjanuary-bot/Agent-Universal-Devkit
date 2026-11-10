@@ -16,7 +16,8 @@
 | Capability | Status | Evidence | Limitations |
 |---|---|---|---|
 | Read-only project discovery and repo-scan | Initial MVP implemented | `core/project-intelligence/` | Bounded metadata scan only; no code execution, semantic source analysis, vulnerability feeds, or persistent scan history |
-| README demonstration guidance | Standard and bootstrap instructions implemented; scanner signal check in progress | `docs/README-DEMO-STANDARD.md`, `bootstrap/template/AGENTS.md` | Does not judge visual quality or prove media/demo functionality |
+| README demonstration guidance | Standard and bootstrap instructions implemented; scanner heuristic implemented | `docs/README-DEMO-STANDARD.md`, `bootstrap/template/AGENTS.md`, `core/project-intelligence/` | Does not judge visual quality or prove media/demo functionality |
+| Repo-scan CLI and report rendering | Initial read-only CLI with JSON and Markdown output | `core/project-intelligence/bin/`, `src/report.js` | Local package CLI only; stdout output; no persistent history or full audit |
 | Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
@@ -54,6 +55,7 @@
 ## 4. Setup and operation
 - **Runtime:** Node.js 22+ is required by several subsystems; resource registry documents Node.js 22.13+.
 - **Hygiene check:** `node scripts/repository-hygiene/check.mjs`
+- **Repo scan:** `node core/project-intelligence/bin/repo-scan.js . --format markdown` (JSON is the default)
 - **Subsystem tests:** Run `npm test` from each subsystem package directory where defined. Shared contract tests run in `.github/workflows/problem-engine-tests.yml`.
 - **Build/deploy:** No single full-product build or deployment path is established.
 - **External state:** GitHub App registration/deployment and repository protection settings require owner-side verification.
@@ -69,7 +71,8 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Add a usable repo-scan interface.** Expose JSON and Markdown reports through a read-only CLI; keep output on stdout by default and never execute project code.
+1. **Improve project understanding.** Add deterministic entry-point and architecture signals with evidence, bounded parsing, and labelled fixtures. Do not execute repository code.
+2. **Improve repo-scan output.** Add structured coverage details and stable report export only after validating current CLI usability and safety.
 2. **Expand repo-scan carefully.** Add labelled fixtures and deterministic checks only when evidence quality and false-positive rates are measured. Keep scans read-only and bounded.
 3. **Build project context assembly.** Add useful architecture and entry-point context without running untrusted code.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
@@ -107,6 +110,10 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `51b0cfc` | Repository hygiene and continuity diff | Passed: 152 files, zero errors, warnings, or notes; continuity diff passed |
 | 2026-11-10 | `51b0cfc` | Secret history scan | Passed |
 | 2026-11-10 | `51b0cfc` | CodeQL | In progress at verification update |
+| 2026-11-10 | `be4768b` | Shared Contract Tests | Passed: schema 6/6, problem 7/7, project intelligence 17/17, capability 9/9, knowledge 30/30 |
+| 2026-11-10 | `be4768b` | Repository hygiene | Failed continuity diff because implementation changes lacked updated project state and work log; hygiene unit tests passed, repository scan was skipped |
+| 2026-11-10 | `be4768b` | Secret history scan | Passed |
+| 2026-11-10 | `be4768b` | CodeQL | In progress at verification update |
 
 Do not report checks as passed unless they ran and passed.
 
@@ -126,7 +133,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `51b0cfc23a992525194d0aa3b151047d348199cb` (verification update follows).
+- **Commit:** `be4768b3c5cbb43009d9c8f15ab524a6f1ab8f0d` (continuity update follows).
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
