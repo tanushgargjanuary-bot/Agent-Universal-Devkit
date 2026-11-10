@@ -61,9 +61,12 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Complete repository-wide DEVKIT audit.** Inventory and read all relevant documentation, agent instructions, subsystem specs, source, tests, CI, branches, PRs, and issues. Compare claims with implementation.
-2. **Close the remaining continuity gap.** Design a safe, review-based update workflow for existing repositories. The GitHub App currently bootstraps only newly created repositories and is not deployed.
-3. **Improve agent planning support.** Evaluate whether planning protocol templates, task schemas, and orchestrator outputs should encode acceptance criteria, adversarial review, risk, recovery, and future-scope classification.
+1. **Fix Resource Registry correctness and CI.** Correct the CLI import, preserve status on metadata updates, apply filters before pagination, and add package-level CI and lockfile coverage.
+2. **Close orchestrator approval-contract gaps before executor work.** Bind the complete execution-relevant plan to the digest, unify policy definitions, align task schemas, and review test/branch action risk.
+3. **Build safe updates for existing repositories.** Use managed-file hashes and reviewable update PRs. Deploy the GitHub App only after permissions and webhook tests pass.
+4. **Validate the Knowledge Library.** Independently review and approve an initial set of entries, then test approved-only retrieval against real tasks.
+5. **Improve hybrid resource selection** with all-pair search, combined integration cost, and benchmarks.
+6. **Clean up branches and Dependabot PRs** after reviewing unique work. Complete owner-only About and branch-protection settings. Evaluate whether planning protocol templates, task schemas, and orchestrator outputs should encode acceptance criteria, adversarial review, risk, recovery, and future-scope classification.
 4. **Continue policy-aware execution work.** Approval lifecycle, trusted identity, replay protection, executor-side enforcement, audit records, simulated executor, and adversarial end-to-end tests.
 5. **Continue resource and knowledge roadmap items** based on the next audited priority.
 
@@ -81,15 +84,15 @@ Do not report checks as passed unless they ran and passed.
 - **Verified:** The orchestrator does not launch or coordinate real agent processes.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.
-- **Verified:** Continuity presence, structure, placeholder completion, review-date freshness, and changed-file update requirements are checked by CI. The diff check requires a new dated work-log entry; semantic accuracy remains an agent/human responsibility.
+- **Verified:** Continuity presence, structure, placeholder completion, review-date freshness, and changed-file update requirements are checked by CI. The diff check requires a new dated work-log entry; L2–L4 cannot disable the checks or lower governance in the same change set. Semantic accuracy remains an agent/human responsibility.
 - **Verified audit findings:** Resource Registry CLI has an incorrect relative import; registry filtering applies LIMIT before status/category filtering; registry updates can reset status to candidate; plan digest omits execution-relevant routing fields; policy YAML and JavaScript rules are not a single runtime source of truth.
 - **Unknown:** Whether every branch and open PR contains unique work or can be consolidated safely; inspect before merging/deleting.
 - **Owner action:** Verify branch protection, required status checks, GitHub App registration, and deployment configuration.
-- **Audit gap:** The complete documentation set, all implementation modules, all tests, and all workflow files have not yet been reviewed in this audit cycle.
+- **Audit gap:** Documentation and agent instructions were reviewed. Core source, tests, manifests, workflows, GitHub App, and branch/PR state received a targeted static audit. Full package test execution, live webhook validation, dependency audit, and owner-only settings remain unverified.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `75ba2e9c2bf2d13395d2d39aef8ef6d98ac95af7`
+- **Commit:** `a81276314e720ea86fc84a91b9befa6ba055fd5d`
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

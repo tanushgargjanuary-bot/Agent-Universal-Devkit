@@ -52,3 +52,12 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Awaiting GitHub Actions.
 - **Open risks / blockers:** The owner must protect governance configuration and review any L1 classification.
 - **Next action:** Verify adversarial tests and finish the DEVKIT audit.
+
+### 2026-11-10 — Complete targeted DEVKIT audit
+- **Audited commit:** `a81276314e720ea86fc84a91b9befa6ba055fd5d`
+- **Report:** `docs/DEVKIT-AUDIT-2026-11-10.md`
+- **Scope:** All `docs/` Markdown files, root/bootstrap agent instructions, harness and subsystem READMEs, core engine source and tests, package manifests, schemas, CI workflows, GitHub App, registries, branches, PRs, issues, and repository metadata.
+- **Findings:** Approval digest omits execution-relevant plan fields; policy YAML and JavaScript rules are separate sources; task schema and planner output disagree; Resource Registry CLI import path is wrong; registry upserts can reset status; list filters run after pagination; registry has no CI; hybrid search is incomplete; all nine knowledge entries are drafts; GitHub App is not deployed and cannot update existing repositories.
+- **Verification:** Repository hygiene passed on `a812763` (124 files, 0 errors, 0 warnings, 0 notes); continuity diff enforcement passed; GitHub bootstrap tests passed; secret-history scan passed. CodeQL was still running. All core package suites were not run in this audit.
+- **Owner actions:** Add GitHub About description and verify branch protection/rulesets. 
+- **Next action:** Fix Resource Registry correctness and CI, then close orchestrator approval-contract gaps before building executor adapters.
