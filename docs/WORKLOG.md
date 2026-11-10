@@ -22,9 +22,17 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Next action:** Verify CI, finish the DEVKIT audit, and prioritise the existing-repository update mechanism.
 
 ### 2026-11-10 — Require substantive continuity records
-- **Commit:** pending
+- **Commit:** `113bceadd5a15bf08fdbe93d8e3f63c65b7a1143`
 - **Goal:** Prevent empty template fields or empty work-log edits from satisfying the continuity gate.
 - **Changes:** Added project-state placeholder detection and required a new dated work-log entry for each meaningful code or documentation change.
-- **Verification:** Awaiting GitHub Actions.
+- **Verification:** Awaiting GitHub Actions after correcting regex escaping in the checker implementation.
 - **Open risks / blockers:** The checker still cannot prove that a work-log entry is accurate or that project-state content fully describes the implementation.
 - **Next action:** Verify CI and complete the remaining DEVKIT audit.
+
+### 2026-11-10 — Tighten work-log entry validation
+- **Commit:** pending
+- **Goal:** Ensure a documentation update contains a new dated work-log entry, not only a file touch.
+- **Changes:** Added placeholder checks for unfilled project-state templates. The diff checker now compares work-log entries against the base commit and requires a new dated entry.
+- **Verification:** Awaiting GitHub Actions.
+- **Open risks / blockers:** The checker verifies structure and changed entries, not factual accuracy.
+- **Next action:** Verify the new tests and finish the DEVKIT audit.

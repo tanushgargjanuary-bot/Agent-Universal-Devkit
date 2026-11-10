@@ -89,7 +89,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `43afa67fe713c5748b25ee9459051473a284971c`
+- **Commit:** `113bceadd5a15bf08fdbe93d8e3f63c65b7a1143`
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

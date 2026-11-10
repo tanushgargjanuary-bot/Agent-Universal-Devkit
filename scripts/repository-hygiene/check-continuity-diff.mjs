@@ -52,7 +52,7 @@ function isImplementationPath(file) {
 }
 
 function worklogEntries(content) {
-  return [...content.matchAll(/^###\\s+(\\d{4}-\\d{2}-\\d{2})\\s+[—–-]\\s+(.+)$/gm)]
+  return [...content.matchAll(/^###\s+(\d{4}-\d{2}-\d{2})\s+[—–-]\s+(.+)$/gm)]
     .map(match => match[1] + " " + match[2].trim());
 }
 

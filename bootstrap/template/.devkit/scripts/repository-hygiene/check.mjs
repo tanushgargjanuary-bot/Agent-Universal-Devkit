@@ -66,7 +66,7 @@ function add(findings, severity, rule, file, message, line = null) {
 
 function walk(root, config, findings) {
   const files = [];
-  const ignored = new Set([...DEFAULT_IGNORES, ...config.excludePaths.map(x => x.replaceAll("\\", "/").replace(/^\/+|\/+$/g, ""))]);
+  const ignored = new Set([...DEFAULT_IGNORES, ...config.excludePaths.map(x => x.replaceAll("\", "/").replace(/^\/+|\/+$/g, ""))]);
   function visit(dir, relative = "") {
     let entries;
     try { entries = fs.readdirSync(dir, { withFileTypes: true }); }
@@ -136,10 +136,10 @@ function scan(root, config) {
         }
       }
       const placeholders = [
-        ["PROJECT_STATE_EMPTY_FIELD", /^\\s*-\\s*\\*\\*[^*]+:\\*\\*\\s*$/m],
-        ["PROJECT_STATE_DATE_PLACEHOLDER", /\\bYYYY-MM-DD\\b/],
-        ["PROJECT_STATE_ACTION_PLACEHOLDER", /\\[Action(?:,|\\])/i],
-        ["PROJECT_STATE_EMPTY_TABLE_ROW", /^\\s*\\|\\s*\\|\\s*\\|/m]
+        ["PROJECT_STATE_EMPTY_FIELD", /^\s*-\s*\*\*[^*]+:\*\*\s*$/m],
+        ["PROJECT_STATE_DATE_PLACEHOLDER", /\bYYYY-MM-DD\b/],
+        ["PROJECT_STATE_ACTION_PLACEHOLDER", /\[Action(?:,|\])/i],
+        ["PROJECT_STATE_EMPTY_TABLE_ROW", /^\s*\|\s*\|\s*\|/m]
       ];
       for (const [rule, pattern] of placeholders) {
         if (pattern.test(state)) {

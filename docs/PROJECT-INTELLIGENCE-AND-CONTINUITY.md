@@ -47,7 +47,7 @@ Maintain `docs/WORKLOG.md` as a concise chronological record of meaningful work.
 - Remaining work, blockers, and known risks.
 - The next recommended action.
 
-Do not log every trivial edit. Do not rewrite history to hide a failure. Correct mistakes with a later entry. Use ADRs for decisions that materially affect architecture, security, data, compatibility, cost, or are expensive to reverse. A work log records what happened; an ADR records why a decision was made.
+Do not log every trivial edit. Do not rewrite history to hide a failure. Correct mistakes with a later entry. Each meaningful change must add a new dated entry; changing an old entry is not a substitute. Use ADRs for decisions that materially affect architecture, security, data, compatibility, cost, or are expensive to reverse. A work log records what happened; an ADR records why a decision was made.
 
 ## 4. Planning protocol for meaningful work
 
