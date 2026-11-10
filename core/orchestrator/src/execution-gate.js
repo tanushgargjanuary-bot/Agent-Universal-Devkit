@@ -63,7 +63,7 @@ export class ExecutionGate {
       id: normalizedId, version: version.trim(), harnessId: harnessId?.trim() ?? null,
       supportedActions: Object.freeze(supportedActions),
       capabilities: Object.freeze(capabilities),
-      execute
+      execute: execute.bind(adapter)
     });
     this.adapters.set(registered.id, registered);
     return Object.freeze({
@@ -115,7 +115,6 @@ export class ExecutionGate {
           throw new ExecutionGateError("EXECUTION_ABORTED", "Execution was aborted", { results });
         }
         const action = normalisePlannedAction(rawAction, task.id);
-        const adapter = this.#resolveAdapter(task, action);
         let decision = evaluatePolicy({
           risk: plan.risk, actions: [action], planId: plan.task_id, planDigest: plan.plan_digest
         });
@@ -129,10 +128,17 @@ export class ExecutionGate {
           });
         }
         if (!decision.allowed) {
-          throw new ExecutionGateError("POLICY_DENIED", "Policy denied action " + action.type, {
-            task_id: task.id, action, reasons: decision.reasons, approval_requests: decision.approval_requests
-          });
+          const denialDetails = { task_id: task.id, action, reasons: decision.reasons, approval_requests: decision.approval_requests };
+          if (this.audit) {
+            try {
+              await this.audit({ event: "action_denied", plan_id: plan.task_id, plan_digest: plan.plan_digest, ...denialDetails });
+            } catch (error) {
+              throw new ExecutionGateError("AUDIT_FAILED", "Audit sink rejected the policy-denial event", { ...denialDetails, cause: error.message });
+            }
+          }
+          throw new ExecutionGateError("POLICY_DENIED", "Policy denied action " + action.type, denialDetails);
         }
+        const adapter = this.#resolveAdapter(task, action);
         if (dryRun) {
           results.push({ task_id: task.id, action, adapter_id: adapter.id, status: "dry_run" });
           continue;
@@ -194,6 +200,18 @@ export class ExecutionGate {
       throw new ExecutionGateError("PLAN_DIGEST_MISMATCH", "Plan content changed after approval scope was created", {
         expected: plan.plan_digest, actual
       });
+    }
+    if (plan.tasks.length === 0) throw new ExecutionGateError("INVALID_PLAN", "Plan must contain at least one task");
+    const taskIds = new Set(plan.tasks.map(task => task.id));
+    const completed = new Set();
+    for (const task of plan.tasks) {
+      const dependencies = task.depends_on ?? [];
+      if (!Array.isArray(dependencies)) throw new ExecutionGateError("INVALID_PLAN", "Task dependencies must be an array", { task_id: task.id });
+      for (const dependency of dependencies) {
+        if (!taskIds.has(dependency)) throw new ExecutionGateError("INVALID_PLAN", "Task references a missing dependency", { task_id: task.id, dependency });
+        if (!completed.has(dependency)) throw new ExecutionGateError("TASK_ORDER_INVALID", "A task appears before one of its dependencies", { task_id: task.id, dependency });
+      }
+      completed.add(task.id);
     }
   }
 

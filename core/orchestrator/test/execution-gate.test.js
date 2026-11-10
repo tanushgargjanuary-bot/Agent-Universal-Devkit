@@ -4,7 +4,7 @@ import { generateKeyPairSync } from "node:crypto";
 import { ApprovalStore } from "../src/approval-store.js";
 import { ExecutionGate, ExecutionGateError } from "../src/execution-gate.js";
 import { createPlan } from "../src/index.js";
-import { createApprovalRequest } from "../src/policy-engine.js";
+import { createApprovalRequest, createPlanDigest } from "../src/policy-engine.js";
 
 function plan({ risk = "low", action = { type: "run_tests", target: "suite:unit" }, task = {} } = {}) {
   return createPlan({
@@ -133,7 +133,7 @@ test("unknown actions and missing action targets are rejected before adapter exe
   gate.registerAdapter(adapter());
   await assert.rejects(
     () => gate.executePlan(plan({ action: { type: "unknown_action", target: "x" } })),
-    error => error.code === "NO_COMPATIBLE_ADAPTER"
+    error => error.code === "POLICY_DENIED"
   );
   await assert.rejects(
     () => gate.executePlan(plan({ action: { type: "run_tests" } })),
@@ -181,4 +181,53 @@ test("approval request helper does not mutate the plan", () => {
   const requests = gate.getApprovalRequests(value);
   assert.equal(requests.length, 1);
   assert.equal(value.plan_digest, before);
+});
+
+
+test("rejects dependency order even when a caller recomputes the digest", async () => {
+ const gate=new ExecutionGate({audit:async()=>{}});
+ gate.registerAdapter(adapter());
+ const value=createPlan({
+  task_id:"dependency-order",goal:"Respect dependency order",
+  repository:{full_name:"owner/repo",default_branch:"main"},
+  tasks:[
+   {id:"first",actions:[{type:"run_tests",target:"first"}]},
+   {id:"second",depends_on:["first"],actions:[{type:"run_tests",target:"second"}]}
+  ]
+ });
+ value.tasks.reverse();
+ value.plan_digest=createPlanDigest({
+  taskId:value.task_id,goal:value.goal,repository:value.repository,risk:value.risk,
+  tasks:value.tasks,technologyDecision:value.technology_decision??null
+ });
+ await assert.rejects(()=>gate.executePlan(value),error=>error.code==="TASK_ORDER_INVALID");
+});
+
+test("adapter methods retain their original object binding", async () => {
+ const instance={calls:0,execute:async function(){this.calls++;return {calls:this.calls};}};
+ const gate=new ExecutionGate({audit:async()=>{}});
+ gate.registerAdapter({...adapter(),execute:instance.execute.bind(instance)});
+ const result=await gate.executePlan(plan());
+ assert.equal(instance.calls,1);
+ assert.equal(result.results[0].output.calls,1);
+});
+
+test("policy denials are audited before any adapter can run", async () => {
+ const events=[],gate=new ExecutionGate({audit:async event=>events.push(event)});
+ let calls=0;
+ gate.registerAdapter(adapter({execute:async()=>{calls++;}}));
+ await assert.rejects(()=>gate.executePlan(plan({action:{type:"unknown_action",target:"x"}})),error=>error.code==="POLICY_DENIED");
+ assert.equal(calls,0);
+ assert.equal(events[0].event,"action_denied");
+});
+
+test("audit completion failure reports that the action already executed", async () => {
+ let calls=0;
+ const gate=new ExecutionGate({audit:async event=>{if(event.event==="action_completed")throw new Error("sink failed");}});
+ gate.registerAdapter(adapter({execute:async()=>{calls++;return {ok:true};}}));
+ await assert.rejects(
+  ()=>gate.executePlan(plan()),
+  error=>error.code==="AUDIT_FAILED_AFTER_EXECUTION"&&error.details.action_executed===true
+ );
+ assert.equal(calls,1);
 });
