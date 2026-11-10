@@ -402,3 +402,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Tests:** Adapter contract validation, duplicate IDs, digest tampering, capability/harness mismatch, ambiguity, missing audit sink, pre-execution audit failure, missing approvals, signed approval success, revocation, critical-risk test approval, dry-run, unknown actions, and partial results after adapter failure.
 - **Security boundary:** This is the required host integration path, not an OS sandbox. Hosts must not expose raw adapters for direct invocation. Production identity, key management, durable audit storage, and adapter isolation remain open.
 - **Verification:** Awaiting CI.
+
+
+### 2026-11-11 — Execution Gate contract edge-case hardening
+
+- **Finding:** Review of the first green Execution Gate run found that adapter IDs with surrounding whitespace could bypass the duplicate check before being normalised. Failure audit events also included raw adapter error messages, which could leak sensitive details.
+- **Fix:** Check duplicate IDs after normalisation. Audit failure events now record only error type/code, not raw exception text.
+- **Verification:** The first gate run passed 57/57 tests. The new regression case and redacted audit event behavior require a rerun.

@@ -57,9 +57,10 @@ export class ExecutionGate {
     if (supportedActions.length === 0) {
       throw new ExecutionGateError("INVALID_ADAPTER_CONTRACT", "Adapter must declare at least one supported action");
     }
-    if (this.adapters.has(id)) throw new ExecutionGateError("DUPLICATE_ADAPTER", "Adapter id is already registered: " + id);
+    const normalizedId = id.trim();
+    if (this.adapters.has(normalizedId)) throw new ExecutionGateError("DUPLICATE_ADAPTER", "Adapter id is already registered: " + normalizedId);
     const registered = Object.freeze({
-      id: id.trim(), version: version.trim(), harnessId: harnessId?.trim() ?? null,
+      id: normalizedId, version: version.trim(), harnessId: harnessId?.trim() ?? null,
       supportedActions: Object.freeze(supportedActions),
       capabilities: Object.freeze(capabilities),
       execute
@@ -154,7 +155,7 @@ export class ExecutionGate {
             signal, policy_version: POLICY_VERSION
           });
         } catch (error) {
-          try { await this.audit({ event: "action_failed", ...auditBase, error: String(error?.message ?? error) }); } catch {}
+          try { await this.audit({ event: "action_failed", ...auditBase, error_type: error?.name ?? "Error", error_code: error?.code ?? null }); } catch {}
           throw new ExecutionGateError("ADAPTER_EXECUTION_FAILED", "Adapter failed while executing " + action.type, {
             ...auditBase, results, cause: error?.message ?? String(error)
           });

@@ -30,7 +30,7 @@ test("validates adapter contracts and rejects duplicate IDs", () => {
   const gate = new ExecutionGate();
   assert.throws(() => gate.registerAdapter({ id: "bad" }), /requires id, version, and execute/);
   gate.registerAdapter(adapter());
-  assert.throws(() => gate.registerAdapter(adapter()), /already registered/);
+  assert.throws(() => gate.registerAdapter(adapter({ id: " node-harness " })), /already registered/);
 });
 
 test("executes allowed actions through a matching adapter and audit sink", async () => {
