@@ -54,7 +54,7 @@ The resource comparison engine now applies mandatory hard constraints before wei
 
 ## Security
 
-See [SECURITY.md](SECURITY.md) for vulnerability reporting and [the security policy](policies/SECURITY.md) for safe tool use, least privilege, and approval requirements. Do not commit credentials, private keys, local environment files, or personal data.
+See [SECURITY.md](SECURITY.md) for vulnerability reporting, [the security policy](policies/SECURITY.md) for safe tool use, least privilege, and approval requirements, and the [public repository security audit](docs/SECURITY-AUDIT.md) for verified findings and remaining owner actions. Do not commit credentials, private keys, local environment files, or personal data.
 
 ## License
 
