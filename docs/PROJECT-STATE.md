@@ -23,6 +23,7 @@
 | Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
+| Daily and weekly trending resource intake | Implemented in PR #16; Python compilation, 5 unit tests, repository hygiene, continuity, secret-history scan, and CodeQL passed | `.github/workflows/resource-discovery.yml`, `scripts/discover_trending_repositories.py`, `docs/TRENDING-RESOURCE-DISCOVERY.md` | Metadata-only filters include public visibility and repository identity checks; candidates remain unapproved; GitHub Trending HTML can change |
 | Resource registry | Implemented foundation | `core/resource-registry/` | Metadata sync is not source or dependency auditing |
 | Native knowledge library | Implemented foundation | `knowledge/`, `core/knowledge-engine/` | Retrieval is deterministic metadata matching, not semantic understanding |
 | Task planning | Implemented foundation | `core/orchestrator/` | Does not launch agent processes |
@@ -80,7 +81,8 @@
 5. **Prove a find-to-fix-to-verify workflow.** Keep execution disabled until the plan digest, policy source, task schema, trusted approval lifecycle, and executor-side enforcement gaps are closed.
 6. **Remediate audited Resource Registry defects and add package CI.** Correct the CLI import, preserve status on metadata updates, filter before pagination, and add lockfile/CI coverage.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
-8. **Complete distribution and repository maintenance.** Build safe updates for existing repositories, validate GitHub App runtime, review stale branches and Dependabot PRs, and verify owner-only protection settings.
+8. **Review automated trending candidates.** Inspect each daily/weekly discovery PR, verify source/dependencies/security/license/project fit, and approve only reviewed resources.
+9. **Complete distribution and repository maintenance.** Build safe updates for existing repositories, validate GitHub App runtime, review stale branches and Dependabot PRs, and verify owner-only protection settings.
 
 The previous targeted audit remains relevant. Its P1 correctness and policy findings are blockers before real executor adapters. The README Demonstration Standard is included in bootstrap instructions and templates; new repositories must include a real demo artifact or a justified, runnable alternative.
 
@@ -141,6 +143,7 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-10 | `013e056` | Project Intelligence tests | Failed: 22 passed, 1 failed; the runnable README command detector did not recognise the fenced CLI example. The labelled ecosystem corpus passed. |
 | 2026-11-10 | pending | Corrected README command detector | Awaiting CI rerun |
+| 2026-11-10 | `a55d779` | Trending discovery implementation | Added daily/weekly feeds, metadata filters, candidate catalog append, and unit tests |\n| 2026-11-10 | PR #16 | Trending discovery validation | Python compile, 5 unit tests, repository hygiene scan, continuity diff, secret history scan, and CodeQL passed |
 
 | 2026-11-10 | `02b7a2f` | Project Intelligence tests | Failed: 22 passed, 1 failed; the new test fixture used literal `\\n` text instead of newline characters, so the README heading parser received one line. |
 | 2026-11-10 | pending | Corrected README test fixture | Awaiting CI rerun |
@@ -164,7 +167,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `9ffeea27c30882f84ceaa0e27f6bcf947f6b75cb` (before architecture-signal work; verify new HEAD after commit).
+- **Commit:** Verify the current branch head before handoff.
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

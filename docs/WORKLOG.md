@@ -263,3 +263,34 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Change:** Require recognised demo/example headings to be H2 or deeper. This matches common README structure and avoids treating the project title as a demonstration section.
 - **Verification:** Corrected Project Intelligence and full CI are pending.
 - **Next action:** Confirm the positive and negative README tests, ecosystem fixture corpus, and full CI.
+
+### 2026-11-10 — Add daily and weekly trending resource intake
+- **Goal:** Discover GitHub repositories trending over daily and weekly windows, apply deterministic intake filters, and add qualifying projects to the resource catalog without treating popularity as approval.
+- **Changes:** Added a standard-library-only GitHub Trending page parser and GitHub API metadata enrichment. Added filters for archived, disabled, forked, undescribed, low-star, unlicensed, missing-default-branch, and stale repositories. New records are appended to `catalog/resources.yaml` as `status: candidate`; license review remains `unreviewed`; maintenance/security remain `not_assessed`; evaluation remains `not_evaluated`. Added a JSON report with both feeds, accepted/rejected results, reasons, and limitations. The resource-discovery workflow now runs daily, tests the filters, and opens or updates a review PR. Its automation branch push handles both first creation and later lease-protected updates.
+- **Safety:** Discovery does not clone, install, build, or execute external repositories. It does not approve, install, or recommend resources. Both feeds must parse before catalog changes are written. API failures stop the run; 404 repositories are recorded as unavailable. GitHub Trending is HTML, not a stable API, so markup changes can require maintenance.
+- **README demo policy:** Root, universal-agent, and bootstrap instructions already require agents to attempt the highest-quality suitable animated GIF for short visual workflows. They require screenshots, video, interactive demos, or verified runnable alternatives when these fit better. They prohibit fabricated media.
+- **Verification:** Added unit tests for feed parsing, metadata filters, candidate status/provenance, and idempotent catalog updates. CI has not run on this branch yet. The first scheduled run has not been observed.
+- **Next action:** Run CI, then trigger the workflow manually and inspect the resulting candidate PR before merging.
+
+### 2026-11-10 — Verify trending discovery pull-request checks
+- **Verification:** Repository hygiene workflow passed. Python compilation passed. Trending discovery unit tests passed (5/5). Continuity diff and repository hygiene scan passed. Secret history scan passed. CodeQL was still running at the time of this update.
+- **Correction:** The generated YAML candidate block is indented under the existing `resources:` list. A regression test checks this indentation and idempotent append behaviour. The workflow also handles a missing automation branch on its first run and uses a lease-protected update when the branch already exists.
+- **Next action:** Wait for CodeQL, then review the PR's required checks. Run the discovery workflow after merge and inspect the first generated candidate PR.
+
+### 2026-11-10 — Harden trending repository intake
+- **Changes:** Reject non-public repositories and validate owner/repository path segments before constructing GitHub API URLs. Confirm the API returns the requested canonical repository identity. Added regression coverage for malformed paths and private repository metadata.
+- **Verification:** The previous repository-hygiene run passed the parser, filter, YAML indentation, and idempotency tests. The new security checks and first-run-safe workflow push are awaiting the next CI run.
+- **Next action:** Confirm the latest repository-hygiene, secret-history, and CodeQL checks. Keep the PR open until required checks complete.
+
+### 2026-11-10 — Confirm post-hardening trending discovery checks
+- **Verification:** On the squashed PR head, Python compilation passed; all 5 trending-discovery unit tests passed; repository hygiene, continuity diff, and secret history scan passed. CodeQL analysis was still running at the time of this entry.
+- **Scope:** This validates parser/filter logic and generated YAML indentation. It does not validate the live GitHub Trending page markup or complete a live discovery run.
+- **Next action:** Wait for CodeQL. After merge, run the scheduled/manual discovery and inspect the generated candidate entries before approving them.
+
+
+### 2026-11-10 — Complete PR #16 review and CI verification
+- **Review:** Inspected the complete PR patch, including the daily/weekly feed parser, GitHub API enrichment, candidate filters, catalog writer, workflow, tests, and documentation.
+- **Documentation correction:** Updated the project-state verification record after CodeQL completed. Corrected a malformed literal newline in the verification table.
+- **Verification:** Repository hygiene passed, Python compilation passed, all 5 trending-discovery unit tests passed, continuity diff passed, secret history scan passed, and CodeQL passed on the PR head.
+- **Limitations:** No live GitHub Trending run has been completed yet. The parser still depends on GitHub's HTML structure. Candidate records remain unapproved and require human review.
+- **Next action:** Merge after required checks are green, trigger the discovery workflow, inspect the generated report and catalog output, then remove the merged feature branch.
