@@ -10,6 +10,19 @@ These instructions are shared guidance, not a replacement for native harness con
 4. Understand existing patterns before making changes.
 5. State the intended change briefly for large tasks.
 
+## Select the right technology architecture
+
+For a new repository or a component whose current stack is inadequate:
+
+1. Inspect the repository, instructions, current languages, frameworks, package managers, tests, CI, deployment target, and constraints.
+2. Do not assume Python or any other language is the default.
+3. Compare suitable languages and runtimes against correctness, performance, security, platform fit, ecosystem, interoperability, developer skills, and total lifecycle cost.
+4. Prefer one coherent stack. Use multiple languages only when each has a clear component role, a stable boundary, and a justified benefit.
+5. Preserve an established stack unless evidence shows a material problem. Do not rewrite working code for language preference.
+6. Record important decisions, rejected options, assumptions, and validation steps.
+
+Follow `docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md` for the full decision process. If the remote Devkit documentation is unavailable, apply these rules and state the limitation.
+
 ## Build safely
 
 - Prefer small, focused changes.
