@@ -3,13 +3,14 @@
 **Audit date:** 2026-11-10  
 **Repository:** `tanushgargjanuary-bot/Agent-Universal-Devkit`  
 **Visibility:** Public  
-**Audited branch:** `main`
+**Audited branch:** `main`  
+**Audited commit:** `f97f6ae672c1f3eea21aabd52f11009d6445d131`
 
 ## Confirmed findings
 
 ### Branch protection is disabled
 
-GitHub's branch metadata reported `protected: false`. The repository rulesets endpoint returned an empty list. No branch protection or ruleset is active on `main`.
+GitHub's branch metadata reports `protected: false`. The repository rulesets endpoint returns an empty list. No branch protection or ruleset is active on `main`.
 
 This is a high-priority control gap. Configure rules for `main`:
 - Require pull requests before merging.
@@ -60,23 +61,24 @@ This is a narrow search. It is not proof that the repository contains no secrets
 ## Verification status
 
 - Repository visibility and default branch: confirmed through GitHub API.
+- Audited `main` commit: `f97f6ae672c1f3eea21aabd52f11009d6445d131`.
 - Branch protection: confirmed disabled.
 - Repository rulesets: none returned.
 - Common secret-pattern code search: no matches in indexed current-branch code.
-- CodeQL: workflow added; its first runs remain in progress. Do not claim a clean CodeQL result until a completed run is reviewed.
-- Gitleaks: full-history workflow completed successfully on commit `a6be373`. Checkout, verified installation, and history scan all passed. No Gitleaks finding was reported. The scan should run again on future changes.
-- Secret-scanning alerts: the connected GitHub integration could not read the alert endpoint. The repository owner must inspect **Settings → Security → Code security and analysis** and the **Security** tab.
+- **Gitleaks full-history scan:** passed on the audited commit. Run ID: `42762646945`. All job steps completed successfully. No Gitleaks finding was reported.
+- **CodeQL:** the JavaScript and Python analysis workflow completed successfully. Run ID: `42762577119`. Initialization and analysis steps completed. This workflow result alone does not establish that the alert inbox is empty. The connected integration could not retrieve the code-scanning alert endpoint for independent alert review.
+- **Secret-scanning alerts:** the connected GitHub integration could not read the alert endpoint. The repository owner must inspect **Settings → Security → Code security and analysis** and the **Security** tab.
+- **Dependabot:** the current open-PR query returned no open pull requests. This does not prove that Dependabot is enabled or that all dependencies are current.
 - Full historical secret scan: Gitleaks scanned the available Git history and refs successfully. This is strong evidence, not a guarantee that every secret type or unreachable Git object was detected.
-- Dependabot: configuration added; open update pull requests still require review and CI.
 
 ## Owner actions
 
 1. Enable secret scanning and push protection where available. Review existing alerts.
 2. Configure branch protection or a ruleset on `main`.
-3. Confirm the CodeQL workflow completes successfully and review any findings.
+3. Review the CodeQL alert inbox in GitHub, even though the workflow completed successfully.
 4. Set the GitHub `noreply` email for future commits.
-5. Review the Gitleaks full-history scan result. Investigate any finding and rotate exposed credentials before considering history cleanup.
-6. Review Dependabot pull requests individually. Do not merge major updates solely because they are available.
+5. Review future Gitleaks results. Investigate any finding and rotate exposed credentials before considering history cleanup.
+6. Keep Dependabot enabled and review update pull requests individually. Do not merge major updates solely because they are available.
 
 ## Scope limitation
 
