@@ -143,3 +143,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Decision:** The selector must reject a candidate before ranking if required inputs, outputs, permissions, execution modes, domain, problem type, status, or verification declarations do not fit.
 - **Limitations:** Selection is still deterministic metadata filtering/ranking. It does not prove runtime compatibility, persist capabilities, compose workflows, or execute them.
 - **Next action:** Build read-only project discovery and a first repo-scan workflow. Keep write execution disabled until policy and executor gaps are fixed.
+
+### 2026-11-10 — Build the first read-only repo-scan workflow
+- **Commit:** Pending Git history.
+- **Goal:** Prove the shared problem/evidence/finding/capability foundation with a useful repository assessment workflow.
+- **Changes:** Added `core/project-intelligence/` with bounded repository discovery and deterministic checks for README, license, CI, test signals, dependency lockfiles, and malformed package manifests. The scanner emits shared Evidence and Finding records. It skips dependency/generated directories, does not follow symlinks, enforces file/depth/manifest-size limits, and suppresses absence findings when discovery is incomplete. Added tests, package documentation, CI coverage, and architecture/roadmap updates.
+- **Safety:** The scanner is read-only. It does not execute repository scripts, install dependencies, access the network, or run tests. It does not claim full security, source-quality, or runtime analysis.
+- **Verification:** CI results are pending. Do not claim this workflow is complete until the new package tests, repository hygiene, continuity, secret scan, and CodeQL checks are reviewed.
+- **Next action:** Review false-positive behaviour on more fixture repositories, then add additional scanners only when they can produce reproducible evidence.

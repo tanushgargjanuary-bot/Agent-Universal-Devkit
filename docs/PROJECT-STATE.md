@@ -15,7 +15,9 @@
 
 | Capability | Status | Evidence | Limitations |
 |---|---|---|---|
-| Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
+| Read-only project discovery and repo-scan | Initial MVP implemented | `core/project-intelligence/` | Bounded metadata scan only; no code execution, semantic source analysis, vulnerability feeds, or persistent scan history |
+| Capability filtering and ranking | Initial deterministic selector implemented | `core/project-intelligence/` | Bounded repository discovery and evidence-backed scan findings | `core/project-intelligence/README.md` |
+| `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
 | Resource registry | Implemented foundation | `core/resource-registry/` | Metadata sync is not source or dependency auditing |
@@ -69,7 +71,7 @@
 1. **Extend the shared problem model.** Add context, action, execution, approval, and memory contracts only after defining their trust boundaries and required provenance. Add compatibility tests.
 2. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
 3. **Build project intelligence and safe context assembly.** Start with read-only repository discovery and reusable evidence collection.
-4. **Build repo-scan as the first complete workflow.** Produce evidence-backed findings, prioritised plans, and agent-ready context. Do not claim universal ecosystem coverage.
+4. **Expand repo-scan carefully.** Add labelled fixtures and more deterministic checks only when evidence quality and false-positive rates are measured. Keep current scan read-only and bounded.
 5. **Prove a find-to-fix-to-verify workflow.** Keep execution disabled until the plan digest, policy source, task schema, trusted approval lifecycle, and executor-side enforcement gaps are closed.
 6. **Remediate audited Resource Registry defects and add package CI.** Correct the CLI import, preserve status on metadata updates, filter before pagination, and add lockfile/CI coverage.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.

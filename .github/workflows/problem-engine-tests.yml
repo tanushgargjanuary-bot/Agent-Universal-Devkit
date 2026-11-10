@@ -6,6 +6,7 @@ on:
       - "core/schema-engine/**"
       - "core/problem-engine/**"
       - "core/capability-engine/**"
+      - "core/project-intelligence/**"
       - "core/knowledge-engine/src/json-schema.js"
       - "core/knowledge-engine/test/**"
       - ".github/workflows/problem-engine-tests.yml"
@@ -37,6 +38,9 @@ jobs:
       - name: Test shared problem contracts
         run: npm test
         working-directory: core/problem-engine
+      - name: Test project intelligence and repo-scan
+        run: npm test
+        working-directory: core/project-intelligence
       - name: Test capability selector
         run: npm test
         working-directory: core/capability-engine

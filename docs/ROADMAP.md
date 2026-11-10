@@ -16,7 +16,8 @@ This is a product direction, not a claim that broad support already exists.
 - [x] Add a dependency-free schema engine for the documented contract-schema subset, with tests and CI.
 - [x] Add deterministic capability filtering and ranking with deny-by-default permission and execution-mode checks; no persistence or execution yet.
 - [ ] Establish project intelligence and safe context assembly as reusable services.
-- [ ] Build repo-scan as the first end-to-end workflow over the shared contracts.
+- [x] Build an initial read-only repo-scan workflow over shared problem, evidence, and finding contracts.
+- [ ] Expand repo-scan with project-type-aware checks, labelled fixtures, and false-positive benchmarks.
 - [ ] Convert findings into prioritised plans with measurable acceptance criteria.
 - [ ] Demonstrate one complete find → plan → approved change → verify → remember workflow.
 - [ ] Add reusable debugging, dependency, test, security, environment, documentation, and PR workflows.

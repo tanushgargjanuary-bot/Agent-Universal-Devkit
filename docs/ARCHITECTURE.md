@@ -13,6 +13,7 @@ The native Engineering Knowledge & Methods Library supports both systems.
 
 | Capability | Current state | Boundary |
 |---|---|---|
+| Project Intelligence | Initial read-only repository workflow | Discovers supported repository metadata and produces evidence-backed findings. Does not execute repository code or perform full source/security analysis. |
 | Capability Engine | Initial deterministic selector | Filters and ranks validated capability declarations by problem type, domain, permissions, execution mode, and verification support. No persistence or execution. |
 | Shared Schema Engine | Initial implementation | Validates the documented JSON Schema subset; not a complete JSON Schema implementation. |
 | Shared Problem Engine | Initial contracts implemented | Versioned problem, evidence, finding, capability, plan, and verification records. No persistence, capability discovery, execution, or approval lifecycle yet. |
@@ -34,6 +35,12 @@ The initial `core/problem-engine/` package defines versioned JSON contracts for 
 The reusable `core/schema-engine/` package validates the JSON Schema subset used by DEVKIT contracts. It is dependency-free and documents its supported keywords. It is not a full JSON Schema implementation.
 
 These packages establish data contracts only. They do not provide a persistent record store, cross-record reference resolution, capability registry, capability selection, problem intake, execution, approval authentication, or runtime policy enforcement.
+
+## Project intelligence and repo-scan
+
+The initial `core/project-intelligence/` package provides bounded, read-only repository discovery and a small set of deterministic checks. It detects project manifests, languages, selected frameworks, documentation, tests, CI signals, license files, lockfiles, and malformed package manifests. It creates shared Evidence and Finding records for supported checks.
+
+The scanner skips common generated/dependency directories, does not follow symlinks, applies file/depth/manifest-size limits, and suppresses absence-based findings when the inventory is incomplete. It does not run scripts, install dependencies, access the network, inspect source-code semantics, execute tests, check live vulnerability advisories, or prove security/compliance. Findings are limited to the checks listed in the package README.
 
 ## Capability selection
 
