@@ -20,6 +20,13 @@ https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/rubric
 
 Identify the primary and secondary project types. Apply the universal rubric plus only relevant domain rubrics. Create or maintain `docs/QUALITY-RUBRICS.md` with selected profiles, project-specific criteria, evidence, exceptions, and status. Do not claim a criterion passed without evidence. Do not apply every niche rubric to every project.
 
+## Repository organisation and safety
+
+Read `REPOSITORY-ORGANISATION.md`, then follow the canonical guide:
+https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/docs/REPOSITORY-GOVERNANCE.md
+
+Select a governance level based on actual risk. Keep files, tasks, decisions, tests, and documentation organised. Preserve existing conventions and user work. Review the full diff and working tree before finishing. Do not perform broad cleanup or destructive changes without approval.
+
 ## Tool and dependency safety
 
 Before installing or running a suggested tool, check its source, license, version, permissions, and relevance to this project. Ask before changing dependencies or executing commands with broad access.
