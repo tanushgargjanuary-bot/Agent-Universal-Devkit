@@ -1,7 +1,9 @@
-# Gemini CLI adapter
+# Gemini CLI Adapter
 
-Status: planned; not yet compatibility-tested.
+**Status:** Planned. Compatibility has not been tested.
 
-This folder will contain Gemini CLI-native context files and configuration. Do not assume a generic instruction file is loaded in every invocation mode.
+This directory is reserved for Gemini CLI-native context files and configuration.
 
-Gemini CLI reference: https://google-gemini.github.io/gemini-cli/
+Before marking this adapter supported, record the CLI version, verify which context files and settings it loads, test the workflow, and document tool permission boundaries. Do not assume a generic instruction file is loaded in every invocation mode.
+
+Reference: https://google-gemini.github.io/gemini-cli/
