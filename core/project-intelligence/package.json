@@ -1,1 +1,16 @@
-{"name":"@agent-universal-devkit/project-intelligence","version":"0.1.0","private":true,"type":"module","exports":"./src/index.js","scripts":{"test":"node --test"},"engines":{"node":">=22"}}
+{
+  "name": "@agent-universal-devkit/project-intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "repo-scan": "./bin/repo-scan.js"
+  }
+}

@@ -28,7 +28,18 @@ It emits shared Evidence and Finding records from the Problem Engine.
 - Skips common dependency and generated directories.
 - Suppresses absence-based findings when the inventory is incomplete.
 
-## Usage
+## CLI usage
+
+Run the scanner from the Devkit repository:
+
+```bash
+node core/project-intelligence/bin/repo-scan.js . --format markdown
+node core/project-intelligence/bin/repo-scan.js /path/to/project --format json
+```
+
+The CLI writes to stdout. It does not create report files or modify the scanned repository. JSON is the default format.
+
+## Library usage
 
 ```js
 import { createRecord } from "../problem-engine/src/index.js";
