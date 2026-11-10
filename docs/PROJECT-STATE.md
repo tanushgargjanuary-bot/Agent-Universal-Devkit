@@ -69,7 +69,7 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Finish README demo guidance and repo-scan detection.** Fix the first CI-discovered syntax error in README inspection, verify media heuristics against fixtures, and confirm every bootstrap instruction path is covered.
+1. **Add a usable repo-scan interface.** Expose JSON and Markdown reports through a read-only CLI; keep output on stdout by default and never execute project code.
 2. **Expand repo-scan carefully.** Add labelled fixtures and deterministic checks only when evidence quality and false-positive rates are measured. Keep scans read-only and bounded.
 3. **Build project context assembly.** Add useful architecture and entry-point context without running untrusted code.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
@@ -103,7 +103,10 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `af9bee8` | GitHub bootstrap app tests | Passed |
 | 2026-11-10 | `af9bee8` | Secret history scan | Passed |
 | 2026-11-10 | `af9bee8` | Shared Contract Tests | Failed: schema and problem suites passed; Project Intelligence failed to parse due to an async README read block placed inside a synchronous framework detector |
-| 2026-11-10 | pending | Corrected Project Intelligence and PR path filter | Awaiting CI |
+| 2026-11-10 | `51b0cfc` | Shared Contract Tests | Passed: schema 6/6, problem 7/7, project intelligence 10/10, capability 9/9, knowledge 30/30 |
+| 2026-11-10 | `51b0cfc` | Repository hygiene and continuity diff | Passed: 152 files, zero errors, warnings, or notes; continuity diff passed |
+| 2026-11-10 | `51b0cfc` | Secret history scan | Passed |
+| 2026-11-10 | `51b0cfc` | CodeQL | In progress at verification update |
 
 Do not report checks as passed unless they ran and passed.
 
@@ -123,7 +126,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `cf2e593b1a8f70cfeee7932bb7000b870e208549` (before this change; verify new HEAD after commit).
+- **Commit:** `51b0cfc23a992525194d0aa3b151047d348199cb` (verification update follows).
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

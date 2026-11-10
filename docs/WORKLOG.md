@@ -181,3 +181,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** Moved README reading and demo detection into the asynchronous repository-discovery function. Kept framework detection synchronous. Added a real symlinked-README fixture so the scanner proves it does not follow README symlinks. Added the missing Project Intelligence pull-request path filter.
 - **Verification:** Corrected tests and workflow are pending. The failed run remains recorded. Repository hygiene, GitHub bootstrap app tests, and secret history scan passed on the original feature commit.
 - **Next action:** Confirm all Project Intelligence, shared contract, repository hygiene, bootstrap, secret scan, and CodeQL checks.
+
+### 2026-11-10 — Verify README demonstration policy and repo-scan heuristics
+- **Commit:** `51b0cfc23a992525194d0aa3b151047d348199cb`
+- **Goal:** Correct the first README scanner CI failure and verify the new policy, bootstrap, and detection behaviour.
+- **Changes:** Moved asynchronous README inspection into repository discovery, added a symlinked README fixture, and added the missing Project Intelligence pull-request path filter.
+- **Verification:** Shared Contract Tests passed: schema engine 6/6, problem engine 7/7, project intelligence 10/10, capability engine 9/9, knowledge engine 30/30. Repository hygiene passed: 152 files, zero errors, warnings, or notes; continuity diff passed. Secret history scan passed. CodeQL was still running at this update.
+- **Decision:** README demo detection remains a low-confidence signal, not a quality or functionality verdict. The README standard allows a project-appropriate alternative when a GIF or screenshot is not suitable.
+- **Next action:** Add a user-facing read-only CLI that emits structured JSON or readable Markdown. Then expand repository understanding with architecture and entry-point evidence.
