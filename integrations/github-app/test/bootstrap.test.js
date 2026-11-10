@@ -118,6 +118,6 @@ test("new repositories receive the strict README demonstration standard", async 
     assert.match(content, /real, running project/i);
   }
   assert.match(localStandard, /actual working project/i);
-  assert.equal(localStandard.includes("example.com"), false);
+  assert.equal(localStandard.includes("](https://example.com/"), false);
   assert.match(templateInstructions, /Do not leave placeholder assets or links/i);
 });

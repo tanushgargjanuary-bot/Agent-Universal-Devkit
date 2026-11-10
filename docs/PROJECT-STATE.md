@@ -131,6 +131,9 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-10 | `3246000` | Secret history scan | Passed |
 | 2026-11-10 | `3246000` | CodeQL | Passed |
 
+| 2026-11-10 | `56d2d5a` | GitHub bootstrap app tests | Failed: 6 passed, 1 failed; the new test over-matched the standard's warning text rather than an actual placeholder link |
+| 2026-11-10 | pending | Corrected bootstrap test and full CI | Awaiting rerun |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
