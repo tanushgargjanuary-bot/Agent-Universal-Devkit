@@ -39,6 +39,9 @@ Resource Intelligence and Agent Orchestration have equal priority. The native Kn
 
 ## Gate D — Knowledge-aware orchestration
 - [ ] Add requirements extraction and acceptance criteria.
+- [x] Add an opt-in technology architecture assessment with repository inspection, evidence-backed candidate comparison, and human approval gates.
+- [ ] Add automatic candidate discovery from the resource catalog and benchmark-backed language/runtime evidence.
+- [ ] Add architecture decision record generation and validation.
 - [x] Retrieve approved knowledge during planning with reasons, limitations, and prerequisite status.
 - [ ] Retrieve and compare approved resources during planning.
 - [ ] Add capability-based agent and harness routing.
