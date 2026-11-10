@@ -21,4 +21,4 @@ Get approval before:
 
 ## Reporting
 
-Report suspected vulnerabilities through the repository's private security reporting process. Do not publish exploit details in public issues before maintainers can assess them.
+Report suspected vulnerabilities through GitHub's Security tab using **Report a vulnerability** when private vulnerability reporting is enabled. If that option is unavailable, contact the repository owner privately through their GitHub profile. Do not publish exploit details in public issues before maintainers can assess them.
