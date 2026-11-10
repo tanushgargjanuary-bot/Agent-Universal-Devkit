@@ -321,3 +321,12 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** SQL-level status/category filtering before pagination; bounded search and CLI numeric options; category/capability blocking for duplicate candidates; explicit record/comparison limits that fail rather than silently truncate; corrected CLI module import; preserve existing resource status when sync omits \`status\`; added regression tests for pagination, limits, metadata status, and CLI startup; added dedicated Resource Registry workflow and updated subsystem documentation.
 - **Verification:** GitHub source and commit diffs inspected. Automated test workflow has not yet returned a completed result. Do not treat tests as passed until CI is green.
 - **Remaining:** Confirm the workflow run, inspect failures, add labelled deduplication benchmarks, and continue orchestration/policy audit.
+
+
+## 2026-11-11 — Resource Registry hardening
+
+- **Commits:** `ba1fb25`, `598f198`, `2425ff9`, `56726a6`, `a28d9ae`, `eab55e3`, `407679a`.
+- **Goal:** Fix registry query and deduplication correctness; add package CI; preserve lifecycle decisions during metadata refresh.
+- **Changes:** SQL-level status/category filtering before pagination; bounded search and CLI numeric options; category/capability blocking for duplicate candidates; explicit record/comparison limits; correct CLI import; preserve existing resource status during metadata refresh; normalise `.git` repository URLs with subpaths; reject URL credentials and non-standard ports; retain untagged duplicate-review pairs; add regression tests and dedicated CI.
+- **Verification:** Initial CI exposed three defects in URL normalisation and untagged-pair handling. These are fixed in `407679a`; the next workflow run is pending. Repository hygiene previously rejected a malformed work-log append; this entry uses proper Markdown lines.
+- **Remaining:** Confirm the next workflow run, inspect failures, add labelled deduplication benchmarks, and continue orchestration/policy audit.
