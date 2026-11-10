@@ -12,7 +12,7 @@ Devkit: https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit
 
 ## README demonstrations
 
-For new repositories and major user-facing features, follow `docs/README-DEMO-STANDARD.md`. Include a real animated GIF, screenshots, video, working interactive demo, terminal capture, notebook, or runnable example as appropriate. Never fabricate a demo or expose secrets. Record a reason and an alternative when no visual/interactive format fits.
+For every new repository and major user-facing feature, follow `docs/README-DEMO-STANDARD.md`. For short, visually demonstrable workflows, actively attempt the highest-quality suitable animated GIF from the real, running project. Use screenshots for static states, video for longer workflows, and a working interactive demo when useful. For CLI/API/library/data/infrastructure projects, add a real terminal recording, reproducible command/output, runnable example, request/response, notebook, plot, or architecture view. The README must contain a tangible, verified demo artifact or runnable alternative. Never fabricate behaviour or expose secrets. Record a reason and an alternative when a GIF or visual/interactive format is unsafe, infeasible, or a poor fit.
 
 ## Technology architecture
 

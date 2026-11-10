@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { BOOTSTRAP_FILES, installBootstrap } from "../src/index.js";
 
 const DEVKIT_OWNER = process.env.DEVKIT_OWNER || "tanushgargjanuary-bot";
@@ -52,6 +53,10 @@ function makeContext({ existing = {}, source = Object.fromEntries(BOOTSTRAP_FILE
 
 test("bootstrap allow-list includes all continuity and local checker files", () => {
   assert.equal(new Set(BOOTSTRAP_FILES).size, BOOTSTRAP_FILES.length);
+  assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/AGENTS.md"));
+  assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/CLAUDE.md"));
+  assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/GEMINI.md"));
+  assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/.github/copilot-instructions.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/docs/README-DEMO-STANDARD.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/docs/PROJECT-STATE.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/docs/WORKLOG.md"));
@@ -93,4 +98,26 @@ test("fails closed when a required upstream template is missing", async () => {
   const { context, writes } = makeContext({ source });
   await assert.rejects(() => installBootstrap(context), /template file not found/);
   assert.equal(writes.length, BOOTSTRAP_FILES.indexOf("bootstrap/template/docs/PROJECT-STATE.md"));
+});
+
+
+test("new repositories receive the strict README demonstration standard", async () => {
+  const root = new URL("../../../", import.meta.url);
+  const [rootInstructions, templateInstructions, copilotInstructions, localStandard] = await Promise.all([
+    readFile(new URL("AGENTS.md", root), "utf8"),
+    readFile(new URL("bootstrap/template/AGENTS.md", root), "utf8"),
+    readFile(new URL("bootstrap/template/.github/copilot-instructions.md", root), "utf8"),
+    readFile(new URL("bootstrap/template/docs/README-DEMO-STANDARD.md", root), "utf8")
+  ]);
+
+  for (const content of [rootInstructions, templateInstructions, copilotInstructions, localStandard]) {
+    assert.match(content, /highest-quality suitable animated GIF/i);
+    assert.match(content, /runnable alternative/i);
+  }
+  for (const content of [rootInstructions, templateInstructions, copilotInstructions]) {
+    assert.match(content, /real, running project/i);
+  }
+  assert.match(localStandard, /actual working project/i);
+  assert.equal(localStandard.includes("example.com"), false);
+  assert.match(templateInstructions, /Do not leave placeholder assets or links/i);
 });

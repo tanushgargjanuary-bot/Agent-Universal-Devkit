@@ -33,6 +33,26 @@ The native **Engineering Knowledge & Methods Library** supports both priorities.
 
 These are implemented foundations. They do not yet form a complete autonomous execution platform.
 
+## Demo
+
+The first end-to-end workflow is a read-only repository scan. Run it from the repository root:
+
+```bash
+node core/project-intelligence/bin/repo-scan.js . --format markdown
+```
+
+The command prints a Markdown report with detected project signals, evidence-backed findings, and scan limitations. It does not run project scripts, install dependencies, access the network, or write to the scanned repository.
+
+```mermaid
+flowchart TD
+    A[Repository] --> B[Bounded read-only inventory]
+    B --> C[Manifest and architecture signals]
+    C --> D[Evidence and findings]
+    D --> E[JSON or Markdown report]
+```
+
+This CLI-first example is the current reproducible demonstration. A terminal GIF will be added only after it can be captured from a verified live run. The README will not use a simulated terminal image.
+
 ## Current architecture
 
 | Path | Responsibility |

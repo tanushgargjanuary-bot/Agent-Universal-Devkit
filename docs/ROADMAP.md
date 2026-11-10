@@ -17,7 +17,7 @@ This is a product direction, not a claim that broad support already exists.
 - [x] Add deterministic capability filtering and ranking with deny-by-default permission and execution-mode checks; no persistence or execution yet.
 - [ ] Establish project intelligence and safe context assembly as reusable services.
 - [x] Build an initial read-only repo-scan workflow over shared problem, evidence, and finding contracts.
-- [ ] Add README demo-signal detection and enforce the README Demonstration Standard in bootstrap instructions.
+- [x] Add README demo-signal detection and include the README Demonstration Standard in bootstrap agent instructions and templates.
 - [ ] Expand repo-scan with project-type-aware checks, labelled fixtures, and false-positive benchmarks.
 - [ ] Validate deterministic entry-point and workspace signals across labelled multi-ecosystem fixtures.
 - [ ] Convert findings into prioritised plans with measurable acceptance criteria.

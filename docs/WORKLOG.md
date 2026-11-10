@@ -219,3 +219,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** Updated the assertion to check the actual `lib/index.js` manifest target.
 - **Verification:** Corrected Shared Contract Tests and repository hygiene are pending. The previous failure remains recorded.
 - **Next action:** Confirm all shared subsystem tests and repository hygiene pass before expanding repo-scan.
+
+### 2026-11-10 — Make README demonstrations a mandatory bootstrap requirement
+- **Commit:** Pending Git history.
+- **Goal:** Ensure every AI agent that starts work in a newly bootstrapped repository is instructed to produce a real, high-quality project demonstration.
+- **Changes:** Strengthened the canonical README Demonstration Standard and its bootstrap copy. Short visual workflows now default to an actively attempted, highest-quality suitable animated GIF captured from the real running project. Static workflows use screenshots; longer workflows use video; interactive products use working demos; CLI, API, library, data, and infrastructure projects use a real terminal capture or the strongest runnable, verifiable alternative. Added a reproducible CLI demo command and accurate workflow diagram to the DEVKIT README; explicitly deferred a terminal GIF until it can be captured from a verified live run.
+- **Safety:** No fabricated screenshots, terminal output, live links, or unimplemented behaviour. No secrets or private data in demos.
+- **Verification:** The parent commit `3246000` passed shared tests (schema 6/6, problem 7/7, project intelligence 19/19, capability 9/9, knowledge 30/30), repository hygiene (155 files, zero errors/warnings/notes), continuity diff, secret history scan, and CodeQL. The new bootstrap tests and instructions are pending CI.
+- **Next action:** Verify the bootstrap instruction propagation and then build a labelled multi-ecosystem fixture corpus for repo-scan.

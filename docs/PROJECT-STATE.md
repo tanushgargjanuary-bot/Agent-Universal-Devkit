@@ -72,18 +72,16 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Fix and verify architecture-signal CI.** Correct the Markdown renderer syntax and align the fixture with the scanner's intentional exclusion of generated directories. Then rerun all relevant checks.
-2. **Add deeper deterministic checks.** Improve dependency, test, CI, configuration, and documentation analysis without executing untrusted project code.
-3. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition.
-2. **Expand repo-scan carefully.** Add labelled fixtures and deterministic checks only when evidence quality and false-positive rates are measured. Keep scans read-only and bounded.
-3. **Build project context assembly.** Add useful architecture and entry-point context without running untrusted code.
+1. **Validate repo-scan against labelled ecosystems.** Build a fixture corpus for Node, Python, Rust, Go, Java, .NET, and mixed workspaces. Measure discovery precision, recall, and false-positive rates before adding heuristics.
+2. **Build project context assembly.** Produce a bounded, evidence-linked context pack with project purpose, architecture signals, entry-point candidates, package/workspace layout, test/build commands, conventions, and known limitations. Never invent commands or infer unverified runtime behaviour.
+3. **Expand deterministic checks.** Add dependency, test, CI, configuration, and documentation checks only where source evidence is available. Keep read-only defaults and bounded file access.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
 5. **Prove a find-to-fix-to-verify workflow.** Keep execution disabled until the plan digest, policy source, task schema, trusted approval lifecycle, and executor-side enforcement gaps are closed.
 6. **Remediate audited Resource Registry defects and add package CI.** Correct the CLI import, preserve status on metadata updates, filter before pagination, and add lockfile/CI coverage.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
 8. **Complete distribution and repository maintenance.** Build safe updates for existing repositories, validate GitHub App runtime, review stale branches and Dependabot PRs, and verify owner-only protection settings.
 
-The previous targeted audit remains relevant. Its P1 correctness and policy findings are blockers before real executor adapters.
+The previous targeted audit remains relevant. Its P1 correctness and policy findings are blockers before real executor adapters. The README Demonstration Standard is included in bootstrap instructions and templates; new repositories must include a real demo artifact or a justified, runnable alternative.
 
 ## 7. Verification record
 | Date | Commit | Check | Result |
@@ -127,6 +125,11 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `0a3faa4` | Repository hygiene | Pending result |
 
 Do not report checks as passed unless they ran and passed.
+
+| 2026-11-10 | `3246000` | Shared Contract Tests | Passed: schema 6/6, problem 7/7, project intelligence 19/19, capability 9/9, knowledge 30/30 |
+| 2026-11-10 | `3246000` | Repository hygiene and continuity diff | Passed: 155 files, zero errors, warnings, or notes; continuity diff passed |
+| 2026-11-10 | `3246000` | Secret history scan | Passed |
+| 2026-11-10 | `3246000` | CodeQL | Passed |
 
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
