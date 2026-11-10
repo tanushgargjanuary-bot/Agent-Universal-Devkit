@@ -52,7 +52,7 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low", kno
   }
 
   const ordered = orderTasks(tasks);
-  const approvalRequired = risk !== "low";
+  const approvalRequired = false;
   const planDigest = createPlanDigest({ taskId: task_id, goal, repository, risk, tasks: ordered });
   const taskPolicies = new Map(ordered.map((task) => [task.id, evaluatePolicy({
     risk,
@@ -70,7 +70,7 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low", kno
     goal,
     repository,
     risk,
-    approval_required: approvalRequired || policyApprovalRequired || Boolean(technologyDecision && (technologyDecision.approval.required || technologyDecision.status === "provisional")),
+    approval_required: policyApprovalRequired || Boolean(technologyDecision && (technologyDecision.approval.required || technologyDecision.status === "provisional")),
     policy_version: POLICY_VERSION,
     plan_digest: planDigest,
     ...(technologyDecision ? { technology_decision: technologyDecision } : {}),
