@@ -123,6 +123,8 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `c0ebcbc` | Repository hygiene | Passed; continuity diff passed |
 | 2026-11-10 | `c0ebcbc` | Secret history scan | Passed |
 | 2026-11-10 | `c0ebcbc` | CodeQL | In progress at verification update |
+| 2026-11-10 | `0a3faa4` | Shared Contract Tests | Failed: schema 6/6, problem 7/7, CLI tests 7/7 passed; one Project Intelligence fixture assertion still referenced the old `dist/index.js` path after it was moved to `lib/index.js` |
+| 2026-11-10 | `0a3faa4` | Repository hygiene | Pending result |
 
 Do not report checks as passed unless they ran and passed.
 

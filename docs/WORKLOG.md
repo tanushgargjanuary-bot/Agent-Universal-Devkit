@@ -212,3 +212,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** Corrected the Markdown renderer's architecture section and changed the fixture to use a non-generated `lib/` path. The scanner continues to mark declared manifest targets absent from its bounded inventory when they are in excluded/generated directories.
 - **Verification:** Corrected shared tests are pending. Repository hygiene and secret history scan passed on the original architecture-signal commit. The failure remains recorded.
 - **Next action:** Confirm the corrected Project Intelligence tests, then run the scanner against representative multi-ecosystem fixtures before expanding heuristics.
+
+### 2026-11-10 — Correct stale entry-point fixture assertion
+- **Commit:** Pending Git history.
+- **Trigger:** The corrected report renderer and CLI tests passed. One entry-point test still asserted the old `dist/index.js` path after the fixture was moved to `lib/index.js` because generated directories are intentionally excluded.
+- **Changes:** Updated the assertion to check the actual `lib/index.js` manifest target.
+- **Verification:** Corrected Shared Contract Tests and repository hygiene are pending. The previous failure remains recorded.
+- **Next action:** Confirm all shared subsystem tests and repository hygiene pass before expanding repo-scan.

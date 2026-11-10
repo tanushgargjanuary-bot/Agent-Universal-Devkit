@@ -82,7 +82,7 @@ test("discovers likely entry points and workspace layout without executing sourc
   await put(root, "packages/core/package.json", "{}");
   const profile = await discoverRepository(root);
   const paths = profile.entry_point_candidates.map((entry) => entry.path);
-  assert.ok(paths.includes("dist/index.js"));
+  assert.ok(paths.includes("lib/index.js"));
   assert.ok(paths.includes("bin/cli.js"));
   assert.ok(paths.includes("src/main.ts"));
   assert.ok(paths.includes("cmd/api/main.go"));
