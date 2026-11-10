@@ -24,10 +24,11 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 
 | Directory | Purpose |
 |---|---|
-| `catalog/` | Approved resources, tools, skills, and discovery candidates |
+| `catalog/` | Curated resources, tools, skills, and discovery candidates |
 | `knowledge/` | Original algorithms, mathematics, and engineering methods |
 | `core/knowledge-engine/` | Local, explainable knowledge retrieval |
 | `core/resource-engine/` | Evidence-based resource comparison |
+| `core/resource-registry/` | SQLite-backed resource storage, canonical identity, and deduplication review |
 | `core/orchestrator/` | Task planning, dependency ordering, and safety gates |
 | `agents/` | Instructions and harness adapters |
 | `bootstrap/template/` | Small files installed in new repositories |
