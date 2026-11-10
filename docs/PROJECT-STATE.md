@@ -127,6 +127,9 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `0a3faa4` | Shared Contract Tests | Failed: schema 6/6, problem 7/7, CLI tests 7/7 passed; one Project Intelligence fixture assertion still referenced the old `dist/index.js` path after it was moved to `lib/index.js` |
 | 2026-11-10 | `0a3faa4` | Repository hygiene | Pending result |
 
+| 2026-11-10 | `5d58845` | Daily/weekly trending discovery | Merged after Python tests, repository hygiene, continuity, secret-history scan, and CodeQL passed. Live discovery remains pending. |
+| 2026-11-10 | pending | Consolidated dependency maintenance | Updates Actions checkout/setup-node/setup-python pins and Probot 14.3.7 from Dependabot PRs #4, #13, #14, and #15. Fresh CI pending. |
+
 Do not report checks as passed unless they ran and passed.
 
 | 2026-11-10 | `3246000` | Shared Contract Tests | Passed: schema 6/6, problem 7/7, project intelligence 19/19, capability 9/9, knowledge 30/30 |
