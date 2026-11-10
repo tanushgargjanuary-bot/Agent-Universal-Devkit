@@ -4,6 +4,15 @@ on:
   push:
     paths:
       - "scripts/repository-hygiene/**"
+      - "core/**"
+      - "integrations/**"
+      - "agents/**"
+      - "schemas/**"
+      - "catalog/**"
+      - "knowledge/**"
+      - "rubrics/**"
+      - "manifest.yaml"
+      - ".github/**"
       - "bootstrap/template/**"
       - ".devkit/**"
       - "README.md"
@@ -34,10 +43,17 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
       - name: Test repository hygiene checker
         run: node --test scripts/repository-hygiene/check.test.mjs
+      - name: Enforce continuity updates for changed files
+        env:
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/repository-hygiene/check-continuity-diff.mjs
       - name: Scan repository
         run: node scripts/repository-hygiene/check.mjs

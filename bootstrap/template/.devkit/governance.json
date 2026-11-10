@@ -7,6 +7,7 @@
     "generatedFiles": true,
     "naming": true,
     "continuityDocs": true,
-    "maxStateAgeDays": 90
+    "maxStateAgeDays": 90,
+    "requireContinuityUpdates": true
   }
 }
