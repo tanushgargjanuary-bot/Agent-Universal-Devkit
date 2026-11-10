@@ -14,6 +14,7 @@ This is a product direction, not a claim that broad support already exists.
 - [ ] Define and validate the complete shared problem, context, evidence, finding, capability, plan, action, execution, approval, verification, and memory model.
 - [x] Implement initial versioned contracts for problem, evidence, finding, capability, plan, and verification records.
 - [x] Add a dependency-free schema engine for the documented contract-schema subset, with tests and CI.
+- [x] Add deterministic capability filtering and ranking with deny-by-default permission and execution-mode checks; no persistence or execution yet.
 - [ ] Establish project intelligence and safe context assembly as reusable services.
 - [ ] Build repo-scan as the first end-to-end workflow over the shared contracts.
 - [ ] Convert findings into prioritised plans with measurable acceptance criteria.

@@ -5,6 +5,7 @@ on:
     paths:
       - "core/schema-engine/**"
       - "core/problem-engine/**"
+      - "core/capability-engine/**"
       - "core/knowledge-engine/src/json-schema.js"
       - "core/knowledge-engine/test/**"
       - ".github/workflows/problem-engine-tests.yml"
@@ -35,6 +36,9 @@ jobs:
       - name: Test shared problem contracts
         run: npm test
         working-directory: core/problem-engine
+      - name: Test capability selector
+        run: npm test
+        working-directory: core/capability-engine
       - name: Test knowledge engine compatibility
         run: npm test
         working-directory: core/knowledge-engine

@@ -22,6 +22,7 @@ The native **Engineering Knowledge & Methods Library** supports both priorities.
 - Knowledge schema, relationship, approval-attestation, and content-digest checks.
 - Technology Decision Engine for opt-in, evidence-backed architecture comparisons.
 - Initial shared problem contracts for problems, evidence, findings, capabilities, plans, and verification, with strict versioned schemas.
+- Deterministic capability filtering and ranking with deny-by-default permission and execution-mode checks.
 - Task planner with dependency ordering and policy evaluation.
 - Versioned Policy Engine with a deny-by-default action catalogue and plan-bound approval records.
 - Repository governance, project-type rubrics, bootstrap guidance, and a read-only hygiene checker.
@@ -37,6 +38,7 @@ These are implemented foundations. They do not yet form a complete autonomous ex
 | `catalog/` | External resource candidates and discovery metadata |
 | `knowledge/` | Original engineering knowledge |
 | `core/schema-engine/` | Shared validation for DEVKIT's documented JSON Schema subset |
+| `core/capability-engine/` | Filters and ranks declared capabilities against problem context and granted permissions |
 | `core/problem-engine/` | Versioned shared problem, evidence, finding, capability, plan, and verification contracts |
 | `core/knowledge-engine/` | Deterministic knowledge retrieval and validation |
 | `core/resource-engine/` | Requirement-based resource evaluation |

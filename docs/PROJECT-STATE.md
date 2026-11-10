@@ -15,6 +15,7 @@
 
 | Capability | Status | Evidence | Limitations |
 |---|---|---|---|
+| Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory only; no persistence, compatibility proof, composition, or execution |
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
 | Resource registry | Implemented foundation | `core/resource-registry/` | Metadata sync is not source or dependency auditing |
@@ -33,6 +34,7 @@
 | `catalog/` | External resource candidates and discovery metadata | `docs/RESOURCE-INTELLIGENCE.md` |
 | `knowledge/` | Original engineering knowledge and registry | `docs/KNOWLEDGE-LIBRARY.md` |
 | `core/schema-engine/` | Shared validation for the supported JSON Schema subset | `core/schema-engine/README.md` |
+| `core/capability-engine/` | Filters/ranks capability records using problem context and explicit permissions | `core/capability-engine/README.md` |
 | `core/problem-engine/` | Problem, evidence, finding, capability, plan, and verification contracts | `core/problem-engine/README.md` |
 | `core/knowledge-engine/` | Deterministic knowledge retrieval and validation | `core/knowledge-engine/README.md` |
 | `core/resource-engine/` | Requirement-based resource evaluation | Package and tests |
@@ -82,12 +84,16 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `2625ded` | Automated test suite / CI | Not run in that remote editing session |
 | 2026-11-10 | `62c4907` | Shared Schema Engine tests | Failed: 5 passed, 1 failed; the test exposed that Date objects passed the object type check |
 | 2026-11-10 | `62c4907` | Shared Problem Engine tests | Skipped because the schema-engine step failed first |
-| 2026-11-10 | pending | Corrected shared-contract test workflow | Awaiting GitHub Actions result |
+| 2026-11-10 | `de0ea26` | Shared contract workflow | Passed: schema engine 6/6, problem engine 7/7, knowledge engine 30/30 |
+| 2026-11-10 | `de0ea26` | Repository hygiene and continuity diff | Passed: 142 files, 0 errors, 0 warnings, 0 notes; continuity diff passed |
+| 2026-11-10 | `de0ea26` | Secret history scan | Passed |
+| 2026-11-10 | pending | Capability selector tests and updated shared-contract workflow | Awaiting GitHub Actions result |
 
 Do not report checks as passed unless they ran and passed.
 
 ## 8. Risks, known issues, and unknowns
-- **Verified:** The initial shared contract layer defines six record types. It does not provide storage, cross-record integrity, capability discovery, execution, or approvals.
+- **Verified:** The initial shared contract layer defines six record types.
+- **Verified:** The capability selector filters and ranks metadata declarations only. It does not prove runtime compatibility or execute capabilities. It does not provide storage, cross-record integrity, capability discovery, execution, or approvals.
 - **Verified:** The orchestrator does not launch or coordinate real agent processes.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.

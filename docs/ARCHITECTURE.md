@@ -13,6 +13,7 @@ The native Engineering Knowledge & Methods Library supports both systems.
 
 | Capability | Current state | Boundary |
 |---|---|---|
+| Capability Engine | Initial deterministic selector | Filters and ranks validated capability declarations by problem type, domain, permissions, execution mode, and verification support. No persistence or execution. |
 | Shared Schema Engine | Initial implementation | Validates the documented JSON Schema subset; not a complete JSON Schema implementation. |
 | Shared Problem Engine | Initial contracts implemented | Versioned problem, evidence, finding, capability, plan, and verification records. No persistence, capability discovery, execution, or approval lifecycle yet. |
 | Resource catalog | Implemented | Entries are candidates unless separately approved. |
@@ -33,6 +34,12 @@ The initial `core/problem-engine/` package defines versioned JSON contracts for 
 The reusable `core/schema-engine/` package validates the JSON Schema subset used by DEVKIT contracts. It is dependency-free and documents its supported keywords. It is not a full JSON Schema implementation.
 
 These packages establish data contracts only. They do not provide a persistent record store, cross-record reference resolution, capability registry, capability selection, problem intake, execution, approval authentication, or runtime policy enforcement.
+
+## Capability selection
+
+The initial `core/capability-engine/` package filters and ranks validated capability declarations. It denies candidates with missing permissions, incompatible execution modes, unsupported problem types or domains, inactive status, duplicate IDs, or no declared verification method. Experimental capabilities require explicit opt-in. The selector returns a recommendation and alternatives; it does not invoke or install them.
+
+The selector is deterministic and metadata-based. It does not prove capability quality, compatibility with a real runtime, or the correctness of a claimed verification method. Persistence, provenance review, compatibility testing, composition, and execution remain future work.
 
 ## Problem-solving lifecycle
 

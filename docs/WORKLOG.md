@@ -110,3 +110,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** Changed the schema engine's object type check to accept only plain JSON objects. Rewrote the problem-contract tests with explicit invalid-record fixtures and readable test cases. Added a check that completed verification steps must include evidence. Unrun checks remain exempt from that evidence requirement.
 - **Verification:** The corrected workflow run is pending. The initial failure remains recorded; it is not hidden or overwritten.
 - **Next action:** Confirm all three workflow test steps pass. Then proceed to capability registry and selection design.
+
+### 2026-11-10 — Verify and harden the shared contract foundation
+- **Commit:** `de0ea2625f188469b628053cfcb40ad1f8c05a7a`
+- **Goal:** Correct the first CI failure and ensure shared records reject non-JSON object instances and unsupported verification claims.
+- **Changes:** Restricted JSON Schema object values to plain objects. Rewrote problem-engine tests to cover invalid records, duplicate steps, missing/self dependencies, cycles, evidence requirements, and inconsistent verification summaries.
+- **Verification:** Shared Contract Tests passed: schema engine 6/6, problem engine 7/7, knowledge engine 30/30. Repository hygiene passed: 142 files, zero errors, warnings, or notes. Continuity diff passed. Secret history scan passed. CodeQL was still running when this entry was prepared.
+- **Decision:** Keep the schema validator's supported subset explicit. Do not claim full JSON Schema support.
+- **Next action:** Build a deterministic capability selector that checks problem fit, explicit permissions, execution modes, active status, and verification support before a capability can be recommended.
