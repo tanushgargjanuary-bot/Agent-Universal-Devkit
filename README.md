@@ -1,6 +1,10 @@
 # Agent-Universal-Devkit
 
-A central engineering ecosystem for AI agents and the repositories they work on.
+A modular, vendor-neutral ecosystem for AI agents and the people who direct them. It connects engineering knowledge, resources, planning, controlled execution, and independent verification.
+
+The long-term vision is broader than coding agents. A small universal core supports optional domain packs (software, AI/ML, cybersecurity, research, robotics, game development, and more) and integration packs (models, agent harnesses, MCP, tools, CI, and deployment). The default workflow stays simple. Advanced capabilities remain optional.
+
+Read [Vision and Scope](docs/VISION-AND-SCOPE.md) and [Pack Model](docs/PACK-MODEL.md) before expanding the architecture.
 
 The Devkit has **two equal priorities**:
 
@@ -28,14 +32,14 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 | `knowledge/` | Original algorithms, mathematics, and engineering methods |
 | `core/knowledge-engine/` | Local, explainable knowledge retrieval |
 | `core/resource-engine/` | Evidence-based resource comparison |
-| `core/resource-registry/` | SQLite-backed resource storage, canonical identity, and deduplication review |
+| `core/resource-registry/` | SQLite-backed resource storage, canonical identity, GitHub health sync, and deduplication review |
 | `core/orchestrator/` | Task planning, dependency ordering, and safety gates |
 | `agents/` | Instructions and harness adapters |
 | `bootstrap/template/` | Small files installed in new repositories |
 | `integrations/` | GitHub distribution and future protocol integrations |
 | `schemas/` | Machine-readable contracts |
 | `scripts/` | Discovery and maintenance automation |
-| `docs/` | Product principles, architecture, decisions, and roadmap |
+| `docs/` | Product principles, vision, architecture, decisions, and roadmap |
 
 ## Important rules
 
@@ -48,7 +52,7 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 - Do not install or execute catalog entries automatically.
 - Verify engineering outputs independently.
 
-Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md), [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](docs/TARGET-ARCHITECTURE.md), [Decision Engine](docs/DECISION-ENGINE.md), [Knowledge Library](docs/KNOWLEDGE-LIBRARY.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), and [Roadmap](docs/ROADMAP.md).
+Read [Vision and Scope](docs/VISION-AND-SCOPE.md), [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md), [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](docs/TARGET-ARCHITECTURE.md), [Decision Engine](docs/DECISION-ENGINE.md), [Knowledge Library](docs/KNOWLEDGE-LIBRARY.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), [Pack Model](docs/PACK-MODEL.md), and [Roadmap](docs/ROADMAP.md).
 
 ## Current status
 

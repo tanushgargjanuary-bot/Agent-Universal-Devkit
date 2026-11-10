@@ -1,67 +1,78 @@
 # Roadmap
 
-Resource Intelligence and Agent Orchestration have equal priority. The native Knowledge Library supports both.
+The Devkit aims for broad problem-solving capability through a small universal core and optional domain, integration, and interface packs. Resource Intelligence and Agent Orchestration have equal priority. The native Knowledge Library supports both.
 
 ## Gate A — Trustworthy foundations
-- [x] Establish repository structure, core rules, and product principles.
-- [x] Add initial resource discovery and comparison.
+- [x] Establish repository structure, core rules, product principles, and target architecture.
+- [x] Add initial resource discovery, comparison, and evidence-aware evaluation.
 - [x] Add initial orchestration planning and risk gates.
 - [x] Add native knowledge records and deterministic retrieval.
 - [x] Add token-boundary matching, registry integrity checks, and prerequisite visibility.
-- [x] Require auditable review metadata before knowledge can be marked approved.
-- [x] Add scoped JSON Schema contract validation in CI.
-- [x] Add labelled retrieval regression cases for precision, recall, false positives, and abstention.
-- [x] Require approval metadata bound to the exact item version and SHA-256 content digest.
-- [x] Verify reviewer identity against GitHub review records and bind approval to the reviewed commit and exact content digest.
-- [x] Require a separate reviewed PR for approval metadata and verify its final-head approval.
+- [x] Require auditable review metadata before knowledge can be approved.
+- [x] Add scoped JSON Schema validation and retrieval regression cases in CI.
+- [x] Bind knowledge approval to the exact reviewed version and content digest.
+- [x] Add independent reference implementations and formula tests.
+- [x] Add evidence-based technology architecture selection with explicit human approval.
 - [ ] Configure required branch protection and status checks on main (repository owner action).
-- [x] Add initial reference implementations with independent algorithm cross-checks and formula tests.
 - [ ] Expand independent tests across the remaining algorithm and formula library.
 
-## Gate B — Evidence-driven Resource Intelligence
-- [x] Add hard-constraint filtering before weighted evaluation for license, security, compatibility, platform, integration cost, capabilities, and evidence age.
-- [x] Represent missing mandatory evidence and stale evidence as explicit rejection reasons.
-- [ ] Add explicit conflicting-evidence reconciliation and provenance quality scoring.
-- [ ] Add evidence provenance, quality, and confidence reporting.
-- [ ] Add category-specific evaluation profiles.
-- [ ] Add duplicate and alternative detection.
-- [ ] Add resource health history and deprecation workflow.
+## Gate B — Resource Intelligence
+- [x] Add hard-constraint filtering before weighted evaluation.
+- [x] Add canonical repository identity and a SQLite resource registry.
+- [x] Add exact identity and conservative overlap proposals.
+- [x] Require human review before duplicate deprecation.
+- [x] Add GitHub metadata synchronisation with rate-limit handling and resumable records.
+- [ ] Track release, archive, security-advisory, license, and activity health over time.
+- [ ] Add evidence provenance, conflicting-evidence reconciliation, and freshness scoring.
+- [ ] Add category-specific evaluation profiles and relationship classification.
 - [ ] Add an agent-facing resource search API and CLI.
+- [ ] Add semantic similarity only after labelled benchmarks show clear gains.
+- [ ] Generate periodic catalog health and consolidation reports.
 
-## Gate C — Knowledge and method depth
-- [ ] Expand algorithms, data structures, discrete mathematics, calculus, linear algebra, probability, statistics, optimisation, numerical methods, and information theory.
-- [ ] Add worked problems, derivations, visual explanations, and reference implementations.
-- [ ] Add property-based and numerical tests where appropriate.
+## Gate C — Universal capability and pack model
+- [x] Define the universal core and optional domain, integration, and interface packs.
+- [x] Define an initial versioned pack manifest schema and governance contract.
+- [ ] Add pack dependency resolution, compatibility checks, enable/disable, and safe removal.
+- [ ] Build the first complete software-engineering pack.
+- [ ] Prototype AI/ML, cybersecurity, data, research, and other domain packs from real tasks.
+- [x] Retain game development as a supported specialist domain candidate.
+- [ ] Add integration packs for selected agent harnesses and MCP tools.
+- [ ] Avoid a marketplace until discovery, trust, compatibility, and update flows are proven.
+
+## Gate D — Knowledge depth
+- [ ] Expand algorithms, data structures, mathematics, statistics, optimisation, numerical methods, and information theory.
+- [ ] Add worked problems, derivations, examples, and independent tests.
 - [ ] Add prerequisites and related-concept navigation.
-- [ ] Add domain-specific knowledge packs for software, AI/ML, cybersecurity, systems, and other engineering fields.
-- [ ] Approve only reviewed, version-bound entries.
-- [ ] Add local semantic retrieval only if benchmarks show a measurable improvement.
+- [ ] Add domain-specific knowledge packs.
+- [ ] Use semantic retrieval only if benchmarks prove measurable improvement.
 
-## Gate D — Knowledge-aware orchestration
-- [ ] Add requirements extraction and acceptance criteria.
-- [x] Add an opt-in technology architecture assessment with repository inspection, evidence-backed candidate comparison, and human approval gates.
-- [ ] Add automatic candidate discovery from the resource catalog and benchmark-backed language/runtime evidence.
-- [ ] Add architecture decision record generation and validation.
+## Gate E — Policy-aware orchestration
+- [ ] Add requirements extraction and measurable acceptance criteria.
 - [x] Retrieve approved knowledge during planning with reasons, limitations, and prerequisite status.
 - [ ] Retrieve and compare approved resources during planning.
+- [ ] Select relevant engineering rubrics from project type and task scope.
 - [ ] Add capability-based agent and harness routing.
-- [ ] Add scoped approvals and re-check policy at execution time.
+- [ ] Implement a central policy engine for read, write, dependency, permission, network, and destructive actions.
+- [ ] Add scoped approvals bound to the action, target, and plan version.
+- [ ] Re-check policy immediately before execution; reject stale approvals.
 - [ ] Add tested executor adapters and run history.
-- [ ] Add independent verification contracts and recovery paths.
+- [ ] Add independent verification contracts, retries, and recovery paths.
+- [ ] Add cost and budget controls.
 
-## Gate E — Complete solution intelligence
+## Gate F — Complete solution intelligence
 - [ ] Compare complete architectures, not only individual tools.
 - [ ] Support single, hybrid, custom, none, and insufficient-evidence decisions.
 - [ ] Include lifecycle cost, security, licensing, integration, and maintenance.
 - [ ] Record rejected options and conditions that would change decisions.
 - [ ] Benchmark recommendation quality against independently labelled cases.
+- [ ] Generate and validate architecture decision records.
 
-## Gate F — Distribution and controlled evolution
-- [ ] Register, install, and deploy the GitHub App.
-- [ ] Add tested adapters for supported harnesses.
-- [ ] Add API, CLI, and file-based interfaces.
-- [ ] Add supply-chain and dependency review automation.
-- [ ] Add controlled update pull requests and health monitoring.
+## Gate G — Interfaces and controlled evolution
+- [ ] Improve CLI and library ergonomics before adding more interfaces.
+- [ ] Add API and headless CI interfaces using the same contracts.
+- [ ] Add desktop/web control surfaces only when validated workflows need them.
+- [ ] Register and deploy the GitHub App.
+- [ ] Add supply-chain review, controlled update PRs, and health monitoring.
 - [ ] Record compatibility, benchmark results, and known limitations.
 
-A capability is not complete until its contract, tests, evidence, security model, and documentation exist. Knowledge approval is tied to an exact reviewed version.
+A capability is not complete until its contract, tests, evidence, security model, and documentation exist. A pack is not supported until compatibility and removal behavior are tested. Knowledge approval is tied to an exact reviewed version. Broad scope does not justify a bloated core.

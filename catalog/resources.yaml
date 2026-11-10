@@ -856,3 +856,33 @@ resources:
         url: https://github.com/Nutlope/hallmark
         checked_at: "2026-11-10T00:00:00Z"
     last_reviewed: "2026-11-10T00:00:00Z"
+  - id: claude-code-game-studios
+    name: "Claude Code Game Studios"
+    url: https://github.com/Donchitos/Claude-Code-Game-Studios
+    kind: template
+    categories: [domain-packs, game-development, agent-workflows]
+    description: "Game-development-focused agent workflow and studio template. Retained as a specialist domain resource, not a universal core dependency."
+    license:
+      spdx_id: NOASSERTION
+      source_url: https://github.com/Donchitos/Claude-Code-Game-Studios
+      review_status: unknown
+    status: candidate
+    capabilities: [game-development-workflows, multi-agent-game-production, game-project-templates]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "Specialist candidate for the game-development domain pack. Inspect current workflow definitions, supported harnesses, license, security boundaries, and maintenance before adoption."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Retained at user request as a specialist candidate; requires independent review."
+    evidence:
+      - claim: "Upstream repository identity inspected; license and implementation details require further review."
+        url: https://github.com/Donchitos/Claude-Code-Game-Studios
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"

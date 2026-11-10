@@ -32,6 +32,7 @@ temp/
 
 # Local databases and editor state
 *.sqlite
+reports/resource-health-*.json
 *.sqlite3
 *.db
 .vscode/
