@@ -103,3 +103,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** The shared-contract workflow is added and will run after this commit. Results are pending. No tests are claimed as passed until the workflow completes.
 - **Limitations:** No persistent store, cross-record reference resolution, capability registry, capability selection, problem intake, execution adapter, approval lifecycle, or end-to-end workflow is implemented yet.
 - **Next action:** Verify shared-contract CI. Then design the capability registry and selection contract, followed by read-only project discovery and the first repo-scan workflow.
+
+### 2026-11-10 — Correct shared schema validation and contract test cases
+- **Commit:** Pending Git history.
+- **Trigger:** The first Shared Contract Tests workflow failed. Five schema-engine tests passed. One test showed that a JavaScript Date object passed the JSON Schema `object` type check. The Problem Engine and Knowledge Engine test steps were skipped because the workflow stopped after the first failure.
+- **Changes:** Changed the schema engine's object type check to accept only plain JSON objects. Rewrote the problem-contract tests with explicit invalid-record fixtures and readable test cases. Added a check that completed verification steps must include evidence. Unrun checks remain exempt from that evidence requirement.
+- **Verification:** The corrected workflow run is pending. The initial failure remains recorded; it is not hidden or overwritten.
+- **Next action:** Confirm all three workflow test steps pass. Then proceed to capability registry and selection design.

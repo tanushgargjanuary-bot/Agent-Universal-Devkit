@@ -80,7 +80,9 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 |---|---|---|---|
 | 2026-11-10 | `2625ded` | GitHub tree inventory and selected documentation/source inspection | Completed; full repository audit still pending |
 | 2026-11-10 | `2625ded` | Automated test suite / CI | Not run in that remote editing session |
-| 2026-11-10 | pending | Shared schema/problem contract tests | Added; awaiting GitHub Actions result |
+| 2026-11-10 | `62c4907` | Shared Schema Engine tests | Failed: 5 passed, 1 failed; the test exposed that Date objects passed the object type check |
+| 2026-11-10 | `62c4907` | Shared Problem Engine tests | Skipped because the schema-engine step failed first |
+| 2026-11-10 | pending | Corrected shared-contract test workflow | Awaiting GitHub Actions result |
 
 Do not report checks as passed unless they ran and passed.
 
