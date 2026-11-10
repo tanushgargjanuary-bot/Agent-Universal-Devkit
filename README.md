@@ -23,6 +23,7 @@ The native **Engineering Knowledge & Methods Library** supports both priorities.
 - Versioned Policy Engine with a deny-by-default action catalogue and plan-bound approval records.
 - Repository governance, project-type rubrics, bootstrap guidance, and a read-only hygiene checker.
 - GitHub workflows for tests, quality checks, CodeQL, and secret-history scanning.
+- Project intelligence and continuity protocol with durable project-state and work-log templates for agent handoffs.
 
 These are implemented foundations. They do not yet form a complete autonomous execution platform.
 
@@ -38,10 +39,10 @@ These are implemented foundations. They do not yet form a complete autonomous ex
 | `core/orchestrator/` | Planning, technology assessment, policy evaluation, and safety gates |
 | `agents/` | Shared guidance and harness adapter entry points |
 | `integrations/` | External system integrations |
-| `bootstrap/template/` | Small entry-point files for connected repositories |
+| `bootstrap/template/` | Small entry-point files and continuity templates for connected repositories |
 | `schemas/` | Machine-readable contracts |
 | `scripts/` | Discovery and repository maintenance |
-| `docs/` | Product, architecture, security, quality, and roadmap records |
+| `docs/` | Product, architecture, security, quality, continuity, and roadmap records |
 | `rubrics/` | Universal and specialist project quality criteria |
 
 ## Policy and execution boundary
@@ -55,9 +56,10 @@ The Policy Engine evaluates known actions and denies unknown actions. It can req
 1. Read [Vision and Scope](docs/VISION-AND-SCOPE.md).
 2. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
 3. Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md).
-4. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
-5. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
-6. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
+4. Read [Project Intelligence and Continuity](docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md).
+5. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
+6. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
+7. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
 
 Run the read-only hygiene check:
 
@@ -78,6 +80,7 @@ Run subsystem tests from their package directories with the scripts defined in e
 - Use least privilege and risk-based human approval.
 - Do not claim support for an agent harness until its adapter is tested.
 - Do not claim security, compliance, or production readiness without evidence.
+- Keep project state and work history in the repository so a replacement agent can continue without prior chat access.
 
 ## Current limitations
 
@@ -88,6 +91,7 @@ Run subsystem tests from their package directories with the scripts defined in e
 - Knowledge retrieval is deterministic metadata matching. It does not understand arbitrary paraphrases or prove applicability.
 - Resource sync gathers GitHub metadata. It is not a full source, dependency, security, or legal audit.
 - Repository branch protection and security settings require owner-side verification. Documentation does not prove that settings are enabled.
+- The continuity protocol depends on agents updating the records. Automated freshness enforcement is not yet implemented.
 
 ## Security and licensing
 

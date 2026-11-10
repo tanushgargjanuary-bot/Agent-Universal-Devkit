@@ -5,13 +5,27 @@ This repository uses Agent-Universal-Devkit.
 ## Start here
 1. Read `.agent-universal-devkit/config.yaml`.
 2. Read this project's README and existing project-specific instructions.
-3. Read `PROJECT-RUBRICS.md` before major planning, architecture, implementation, or review work.
-4. Follow local project rules when they define project-specific behaviour.
-5. Use the Devkit's shared rules and relevant tool guidance when they apply.
+3. Read `docs/PROJECT-STATE.md` and the latest relevant entries in `docs/WORKLOG.md`. If either file is missing, create it from the templates in the Devkit repository after inspecting the project.
+4. Read `PROJECT-RUBRICS.md` before major planning, architecture, implementation, or review work.
+5. Follow local project rules when they define project-specific behaviour.
+6. Use the Devkit's shared rules and relevant tool guidance when they apply.
 
 Devkit: https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit
 
 Do not assume every AI harness reads this file. Use the native instruction file for the harness in use.
+
+## Project intelligence and continuity
+
+For substantial work, read and follow the canonical protocol:
+https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md
+
+Maintain:
+- `docs/PROJECT-STATE.md`: concise, verified current state and next actions.
+- `docs/WORKLOG.md`: chronological record of meaningful completed or interrupted work.
+
+Update both after meaningful work and before handoff. Keep README, architecture, security, setup, API, test, and operations documentation aligned with actual changes. A replacement agent must be able to continue from repository contents without prior chat access. Verify recorded claims against source, tests, and Git state. Label assumptions and unknowns. Never store secrets.
+
+For substantial plans, record outcome, requirements, scope, options, design, tasks, acceptance criteria, validation, risks, and recovery. Perform a devil's advocate review before implementation. Classify future ideas as Now, Next, Later, Explore, or Reject. Do not silently expand scope.
 
 ## Project-specific quality rubrics
 

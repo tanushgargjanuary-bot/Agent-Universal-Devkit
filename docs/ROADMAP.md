@@ -38,7 +38,6 @@ Status marks refer to repository implementation, not external configuration. A c
 - [ ] Add pack dependency resolution, compatibility checks, enable/disable, and safe removal.
 - [ ] Build the first complete software-engineering pack.
 - [ ] Prototype AI/ML, cybersecurity, data, research, and other domain packs from real tasks.
-- [x] Retain game development as a supported specialist domain candidate.
 - [ ] Add tested integration packs for selected agent harnesses and MCP tools.
 - [ ] Avoid a marketplace until discovery, trust, compatibility, and update flows are proven.
 
@@ -48,6 +47,8 @@ Status marks refer to repository implementation, not external configuration. A c
 - [x] Add a read-only repository hygiene checker, JSON output, tests, and CI scan.
 - [x] Add a universal project quality rubric and specialist profiles.
 - [x] Add bootstrap entry points for local repository governance and quality records.
+- [x] Add a project intelligence and continuity protocol, with project-state and work-log templates for context-independent handoff.
+- [ ] Add automated continuity-document presence, structure, and freshness checks.
 - [ ] Add governance-level policy enforcement and a versioned bootstrap installer.
 - [ ] Add rubric-aware planning and evidence-based quality reporting to the orchestrator.
 

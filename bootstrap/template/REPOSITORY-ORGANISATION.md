@@ -15,8 +15,9 @@ At project intake:
 1. Inspect the repository, branch, working tree, instructions, files, tests, dependencies, and CI.
 2. Preserve existing conventions and uncommitted user work.
 3. Select the governance level and relevant project rubrics.
-4. Record important gaps. Do not perform broad cleanup without evidence.
-5. If the repository has adopted the Devkit checker, run it and review the report. Do not treat warnings as automatic instructions to rename or delete files.
+4. Create or verify `docs/PROJECT-STATE.md` and `docs/WORKLOG.md`. These are required handoff records. Use the Devkit templates when absent, but never overwrite existing project content.
+5. Record important gaps. Do not perform broad cleanup without evidence.
+6. If the repository has adopted the Devkit checker, run it and review the report. Do not treat warnings as automatic instructions to rename or delete files.
 
 During work:
 - Keep files in predictable locations.
@@ -27,12 +28,14 @@ During work:
 - Keep secrets and generated output out of source control.
 - Use least privilege and isolate untrusted code.
 - Ask before destructive, privileged, production, or irreversible actions.
+- Update project state, work log, and affected canonical docs after meaningful changes.
+- Before implementation of substantial work, challenge the plan and record material risks and future-scope proposals.
 
 Before finishing:
 - Review the full diff and working tree.
 - Check for unrelated edits, accidental deletions, secrets, and temporary files.
 - Run relevant checks. Report checks not run.
-- Update affected documentation.
+- Update affected documentation and handoff records.
 - Report changed files, evidence, risks, and follow-up work.
 
 Do not reorganise files only to satisfy a preferred folder layout. Follow project conventions. Do not claim security certification or compliance without independent evidence.
