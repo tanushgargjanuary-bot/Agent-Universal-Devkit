@@ -302,3 +302,13 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Review:** The original branches were behind and diverged from main. PRs #13 and #15 failed continuity enforcement because their workflow changes did not update the required continuity documents. The setup-python and Probot PRs were also substantially behind main. Their intended dependency changes are carried forward from a fresh main-based branch.
 - **Verification:** The old Probot PR's GitHub App tests and CodeQL passed. The old setup-node PR's non-hygiene test suites and CodeQL passed. The old setup-python PR's CodeQL and secret scan passed. The two old workflow PRs failed the continuity gate. These results do not validate the consolidated commit. Fresh CI is required.
 - **Next action:** Review the consolidated diff and wait for all required checks before merging. Close superseded Dependabot PRs only after the replacement PR is open.
+
+
+### 2026-11-10 — Merge all actionable DEVKIT pull requests
+- **PR #16:** Merged daily and weekly GitHub Trending resource discovery to main as squash commit `5d58845`. Required checks passed: repository hygiene, Python compilation, 5 trending-discovery tests, continuity diff, secret-history scan, and CodeQL.
+- **Dependabot PRs #4, #13, #14, and #15:** Closed as superseded, not discarded. Their intended dependency changes were consolidated into PR #17 from current main.
+- **PR #17:** Merged as squash commit `7223d57`. Updates: actions/checkout v7.0.1, actions/setup-node v7.1.0, actions/setup-python v7.1.0, and Probot ^14.3.7. Fresh checks passed: repository hygiene, resource quality, resource engine, orchestrator core, shared contracts, knowledge quality, knowledge engine, orchestration quality, GitHub bootstrap app tests, CodeQL, and secret-history scan. CodeFactor passed. CodeRabbit skipped its review. Kilo review required action because the account had insufficient credits; it was not treated as a passing review.
+- **PR inventory:** No open pull requests remain at the time of this update.
+- **Branch audit:** Six old feature branches are fully behind main with zero unique commits. Three squash-merged feature branches (PRs #5, #16, #17) retain their original branch commits, but their content is represented by the merged PRs. All nine non-main branches are candidates for deletion after this audit. No branch deletion action is available in the connected GitHub interface, so deletion remains an owner-side cleanup action.
+- **Protected branch:** Keep `main`. Do not delete it.
+- **Next action:** Delete the nine audited non-main branches in GitHub. Keep the technology-decision implementation; its branch is safe to delete because PR #5 is merged and its changes are present in main.
