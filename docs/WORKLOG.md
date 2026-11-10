@@ -314,7 +314,7 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Next action:** Delete the nine audited non-main branches in GitHub. Keep the technology-decision implementation; its branch is safe to delete because PR #5 is merged and its changes are present in main.
 
 
-## 2026-11-11 — Resource Registry hardening
+### 2026-11-11 — Resource Registry hardening
 
 - **Commits:** \`ba1fb25\`, \`598f198\`, \`2425ff9\`, \`56726a6\`, \`a28d9ae\`.
 - **Goal:** Fix registry query and deduplication correctness; add package CI; preserve lifecycle decisions during metadata refresh.
@@ -332,7 +332,7 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Remaining:** Confirm the next workflow run, inspect failures, add labelled deduplication benchmarks, and continue orchestration/policy audit.
 
 
-## 2026-11-11 — Resource Registry test fixture correction
+### 2026-11-11 — Resource Registry test fixture correction
 
 - **Commit:** pending at handoff update.
 - **Finding:** The remaining CI failure came from a legacy review test that created two resources with no shared category or capability tags. Under the new candidate-blocking contract, that pair is not proposed for review.
