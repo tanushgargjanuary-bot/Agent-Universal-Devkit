@@ -224,6 +224,7 @@ export function evaluateTechnologyArchitecture({
       missing_capabilities: missingCapabilities,
       hard_constraint_failures: hardConstraintFailures,
       introduced_languages: introducedLanguages,
+      migration_required: candidate.migration_required === true,
       score,
       costs: {
         integration_complexity: integrationCost,
@@ -251,7 +252,7 @@ export function evaluateTechnologyArchitecture({
     : best.languages.length > 1 ? "polyglot_hybrid" : "single_stack";
 
   const addsLanguages = Boolean(best && best.introduced_languages.length > 0);
-  const requiresApproval = Boolean(best && (addsLanguages || best.languages.length > 1 || existingLanguages.length > 0 && !existingLanguages.every((language) => best.languages.includes(language))));
+  const requiresApproval = Boolean(best && (best.migration_required === true || addsLanguages || best.languages.length > 1 || existingLanguages.length > 0 && !existingLanguages.every((language) => best.languages.includes(language))));
 
   return {
     schema_version: 1,
