@@ -256,3 +256,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Change:** Rebuilt the test README from an array of lines joined with actual newline characters. Kept the negative installation-section case.
 - **Verification:** Corrected Project Intelligence and full CI are pending. The ecosystem fixture corpus passed in both runs.
 - **Next action:** Confirm both runnable-example tests and all ecosystem fixture cases pass.
+
+### 2026-11-10 — Prevent README title headings from becoming demo sections
+- **Commit:** Pending Git history.
+- **Trigger:** The corrected positive README example test passed. The negative test exposed that a generic H1 document title, `# Example`, was treated as a demo section and caused an installation command in a later H2 section to be counted.
+- **Change:** Require recognised demo/example headings to be H2 or deeper. This matches common README structure and avoids treating the project title as a demonstration section.
+- **Verification:** Corrected Project Intelligence and full CI are pending.
+- **Next action:** Confirm the positive and negative README tests, ecosystem fixture corpus, and full CI.

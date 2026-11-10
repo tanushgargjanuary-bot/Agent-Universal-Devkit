@@ -42,9 +42,8 @@ function inspectReadmeRunnableExamples(content) {
   for (let index = 0; index < headings.length; index += 1) {
     const current = headings[index];
     const title = current[2].trim();
-    if (!DEMO_SECTION_HINT.test(title)) continue;
-
     const level = current[1].length;
+    if (level < 2 || !DEMO_SECTION_HINT.test(title)) continue;
     let sectionEnd = content.length;
     for (let next = index + 1; next < headings.length; next += 1) {
       if (headings[next][1].length <= level) {

@@ -145,6 +145,9 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-10 | `02b7a2f` | Project Intelligence tests | Failed: 22 passed, 1 failed; the new test fixture used literal `\\n` text instead of newline characters, so the README heading parser received one line. |
 | 2026-11-10 | pending | Corrected README test fixture | Awaiting CI rerun |
 
+| 2026-11-10 | `0587f93` | Project Intelligence tests | Failed: 22 passed, 1 failed; the generic H1 title `# Example` was misclassified as a demo section, so the installation command under H2 was counted. |
+| 2026-11-10 | pending | Restrict README demo sections to H2 or deeper | Awaiting CI rerun |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
