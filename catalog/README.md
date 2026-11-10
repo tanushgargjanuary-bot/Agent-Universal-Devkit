@@ -57,11 +57,11 @@ any resource.
 | Resource | Main value | Qualification |
 |---|---|---|
 | [Hallmark](https://github.com/Nutlope/hallmark) | Frontend design skill, accessibility floor, visual checks | Optional for frontend tasks only. Compare skill-level overlap before adopting. |
+| [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) | Game-development agent workflows and studio template | Specialist candidate for a future game-development domain pack; inspect license, workflow quality, and harness compatibility before adoption. |
 
 ## Explicit exclusions
 
 - [Ziwei Doushu](https://github.com/Renhuai123/ziwei-doushu): astrology-specific charting system. Not a general Devkit engineering capability.
-- [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios): game-development agent template. Too domain-specific for the core catalog; revisit only for game-development specialisation.
 - Google Engineering Practices: repository archived. Its documents may still be useful as a historical reference.
 
 ## Rules
