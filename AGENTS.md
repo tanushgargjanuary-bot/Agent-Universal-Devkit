@@ -28,6 +28,10 @@ For every new repository, inspect its purpose, constraints, existing files, runt
 
 Follow `docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md`. Compare credible language and runtime candidates against the actual workload. Prefer one coherent stack unless a hybrid has a documented, testable benefit. Preserve an established stack unless evidence justifies change. Record consequential decisions and their trade-offs. Do not perform broad migrations without approval.
 
+## Technology architecture assessment
+
+For consequential new-project or stack-change decisions, use the orchestrator's `evaluateTechnologyArchitecture` module when a repository snapshot, explicit workload requirements, and at least two evidence-backed candidates are available. Attach the result to a plan through `technologyAssessment`. Treat the result as a proposal only. The engine does not discover candidates or verify supplied evidence. Do not implement stack additions, hybrid architectures, or migrations without human approval. If the result is provisional, stop and gather evidence.
+
 ## Use the native Knowledge Library
 
 1. Check `knowledge/registry.json` when a task involves algorithm selection, data structures, mathematical reasoning, statistics, optimisation, protocols, security methods, or another topic covered by the library.
