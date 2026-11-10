@@ -12,14 +12,15 @@ function hash(value){return createHash("sha256").update(value).digest("hex");}
 
 export function normalizeRepositoryUrl(input){
  if(typeof input!=="string"||!input.trim())throw new Error("A repository URL is required");
- const raw=input.trim().replace(/\.git$/i,"");
- const url=new URL(raw.startsWith("github.com/")?`https://${raw}`:raw);
- if(url.protocol!=="https:"||!["github.com","www.github.com"].includes(url.hostname.toLowerCase()))throw new Error("Only public HTTPS GitHub repository URLs are supported");
+ const raw=input.trim();
+ let url;
+ try{url=new URL(raw.startsWith("github.com/")?"https://"+raw:raw);}catch{throw new Error("A valid GitHub repository URL is required");}
+ if(url.protocol!=="https:"||!["github.com","www.github.com"].includes(url.hostname.toLowerCase())||url.username||url.password||url.port)throw new Error("Only public HTTPS GitHub repository URLs are supported");
  const parts=url.pathname.split("/").filter(Boolean);
  if(parts.length<2)throw new Error("URL must identify owner and repository");
- const [owner,repository]=parts;
- if(!/^[A-Za-z0-9_.-]+$/.test(owner)||!/^[A-Za-z0-9_.-]+$/.test(repository))throw new Error("Invalid GitHub owner or repository path");
- return {url:`https://github.com/${owner}/${repository}`,fullName:`${owner.toLowerCase()}/${repository.toLowerCase()}`};
+ const owner=parts[0],repository=parts[1].replace(/\.git$/i,"");
+ if(!/^[A-Za-z0-9_.-]+$/.test(owner)||!/^[A-Za-z0-9_.-]+$/.test(repository)||owner==="."||owner===".."||repository==="."||repository==="..")throw new Error("Invalid GitHub owner or repository path");
+ return {url:"https://github.com/"+owner+"/"+repository,fullName:owner.toLowerCase()+"/"+repository.toLowerCase()};
 }
 function tokens(value){return new Set(String(value??"").toLowerCase().replace(/[^a-z0-9+#.\s-]/g," ").split(/\s+/).filter(x=>x.length>2));}
 function jaccard(a,b){const A=tokens(a),B=tokens(b);if(!A.size||!B.size)return 0;let n=0;for(const x of A)if(B.has(x))n++;return n/(A.size+B.size-n);}
@@ -83,6 +84,7 @@ export class ResourceRegistry{
  const buckets=new Map();
  for(let i=0;i<records.length;i++){
   const keys=[...records[i].categories.map(x=>"category:"+x.toLowerCase()),...records[i].capabilities.map(x=>"capability:"+x.toLowerCase())];
+  if(keys.length===0)keys.push("__untagged__");
   for(const key of new Set(keys)){if(!buckets.has(key))buckets.set(key,[]);buckets.get(key).push(i);}
  }
  const pairs=new Set();
