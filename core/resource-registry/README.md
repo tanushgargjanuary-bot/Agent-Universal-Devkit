@@ -1,71 +1,60 @@
 # Resource Registry
 
-The Resource Registry stores external repositories and tools as normalized records
-in SQLite. It supports hundreds or thousands of entries without turning the
-catalog into a single manually edited markdown file.
+SQLite-backed storage for the Devkit's growing repository and tool catalog.
 
 ## Quick start
 
-Requires Node.js 22+ (the built-in `node:sqlite` API).
+Requires Node.js 22+ for the built-in `node:sqlite` API.
 
 ```bash
 node core/resource-registry/bin/resource-registry.js init
-node core/resource-registry/bin/resource-registry.js add \
-  --url https://github.com/github/spec-kit \
-  --name "Spec Kit" \
-  --description "Structured workflows for spec-driven AI-assisted development" \
-  --category agent-workflows \
-  --capability specification
+node core/resource-registry/bin/resource-registry.js add --url https://github.com/github/spec-kit --name "Spec Kit" --description "Structured workflows for AI-assisted development" --category agent-workflows --capability specification
 node core/resource-registry/bin/resource-registry.js list
 node core/resource-registry/bin/resource-registry.js dedupe
 node core/resource-registry/bin/resource-registry.js reviews
 ```
 
-Use `--db PATH` to select another database. The default database is
-`data/resource-registry.sqlite`. Keep the database out of Git. Store curated,
-reviewable exports in the catalog files.
+Use `--db PATH` to select a database. The default is
+`data/resource-registry.sqlite`. Keep this file out of Git. Commit reviewable
+exports and schema changes instead.
 
-## Record model
+## Stored data
 
-- Canonical GitHub identity (owner/repository), plus repository URL.
+- Canonical GitHub owner/repository identity and URL.
 - Name, description, kind, categories, capabilities, and lifecycle status.
-- License and arbitrary source metadata.
-- A stable content hash and an event history.
-- Duplicate-pair review state and human decision.
+- License and source metadata.
+- Stable content hash and change event history.
+- Duplicate-pair review proposals and human decisions.
 
-The registry has a unique constraint on canonical repository identity. A URL
-with a branch or file suffix resolves to the repository root. A second URL for
-the same repository updates the same row.
+The unique constraint on canonical repository identity prevents multiple
+records for the same repository. URL suffixes such as branches and README paths
+are normalized to the repository root.
 
-## Deduplication model
+## Deduplication
 
-The first version combines:
-1. **Exact identity:** same canonical owner/repository.
-2. **Capability overlap:** shared declared capabilities.
-3. **Category overlap:** shared function categories.
-4. **Text similarity:** token Jaccard similarity of name, description, and tags.
+The first version uses:
+1. Exact canonical identity.
+2. Declared capability overlap.
+3. Category overlap.
+4. Lexical similarity across names and descriptions.
 
-The scan proposes:
-- `exact_duplicate` — one repository identity accidentally represented twice.
-- `high_overlap` — likely functional overlap; human review required.
-- `partial_overlap` — possibly an alternative or complement.
-
-It does not use stars as a quality metric. It does not auto-delete or auto-deprecate
-records. A human must explicitly choose a duplicate winner. Alternatives and
-complements remain separate.
+The engine classifies exact duplicates, high overlap, and partial overlap.
+It never deletes records automatically. A human must classify a pair as
+duplicate, alternative, complement, or distinct. Only an explicit duplicate
+decision can mark one record deprecated. History remains stored.
 
 ## Commands
 
 `init`, `add`, `list`, `search`, `dedupe`, `reviews`, and `stats`.
 
-The initial CLI provides import and inspection primitives. Review decisions are
-available through the JavaScript API (`reviewPair`) and will be exposed in a
-later CLI/API iteration.
+The API currently supports human decisions via `reviewPair()`. The CLI review
+decision command is not implemented yet.
 
 ## Limits
 
 - Similarity is heuristic, not semantic proof.
-- Capability tags must be normalized and evidence-backed to improve quality.
-- It does not yet crawl GitHub at scale or call an embedding model.
-- It does not auto-approve, install, or execute repositories.
-- Run periodic backups of the SQLite database.
+- Capability tags require evidence and consistent vocabulary.
+- GitHub ingestion, embedding-based similarity, scheduled refresh, and export
+  commands are not implemented yet.
+- The registry does not approve, install, or execute external repositories.
+- Back up the SQLite file regularly.
