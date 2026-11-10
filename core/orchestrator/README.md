@@ -21,6 +21,8 @@ The orchestration layer coordinates work. It does not replace the AI coding harn
 - **Router:** chooses a compatible agent or harness for each task.
 - **Tool selector:** recommends tools from the Devkit catalog.
 - **Knowledge selector:** retrieves relevant algorithms, mathematics, and methods.
+- **Technology decision engine:** inspects repository signals and compares evidence-backed language and architecture candidates against explicit workload requirements.
+- **Architecture approval gate:** blocks stack additions, hybrid adoption, and migrations until a human approves the proposal.
 - **Policy gate:** blocks actions that need approval.
 - **Executor adapters:** connect to supported coding harnesses.
 - **Verifier:** checks tests, diffs, and task completion.
@@ -28,9 +30,9 @@ The orchestration layer coordinates work. It does not replace the AI coding harn
 
 ## Current implementation boundary
 
-The current orchestrator implements task planning, dependency ordering, metadata validation, and safety gates. It does not yet launch or control OpenCode, Codex, Claude Code, or Antigravity.
+The current orchestrator implements task planning, dependency ordering, metadata validation, safety gates, approved-knowledge retrieval, and an opt-in technology architecture assessment. The technology engine performs static repository inspection and compares caller-supplied candidates. It does not discover candidates automatically, execute code, or apply migrations. It does not yet launch or control OpenCode, Codex, Claude Code, or Antigravity.
 
-The Knowledge Engine exists as a separate local component. It is not yet called by the orchestrator. Knowledge-aware planning is a roadmap item, not a completed integration.
+The Knowledge Engine is called during plan creation. The technology decision engine is called when the planner receives an explicit workload and at least two candidate architectures. Both are decision aids; agents must inspect evidence, assumptions, and limitations.
 
 Each harness needs a tested executor adapter before the orchestrator can run it.
 
