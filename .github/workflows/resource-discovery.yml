@@ -21,7 +21,7 @@ jobs:
       - name: Check out main
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
-          persist-credentials: true # Required for the discovery branch push.
+          persist-credentials: false
           ref: main
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
@@ -48,7 +48,8 @@ jobs:
           git checkout -B "$branch"
           git add catalog/inbox/discovery-candidates.json catalog/inbox/repository-history.json
           git commit -m "chore: refresh open-source discovery candidates"
-          git push --force-with-lease origin "$branch"
+          auth_header="$(printf "x-access-token:%s" "$GH_TOKEN" | base64 -w0)"
+          git -c http.extraheader="AUTHORIZATION: basic $auth_header" push --force-with-lease origin "$branch"
           gh pr create --base main --head "$branch" \
             --title "chore: refresh open-source discovery candidates" \
             --body "Automated discovery results with observed star-growth signals. These are candidates only, not approved recommendations. Review project fit, maintenance, security, compatibility, and license before adding entries to the approved catalog." \
