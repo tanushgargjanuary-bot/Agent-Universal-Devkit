@@ -72,7 +72,7 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Validate project-intelligence breadth.** Add labelled fixtures for Node, Python, Rust, Go, JVM, .NET, and monorepo layouts. Measure false positives and missing signals before expanding rules.
+1. **Fix and verify architecture-signal CI.** Correct the Markdown renderer syntax and align the fixture with the scanner's intentional exclusion of generated directories. Then rerun all relevant checks.
 2. **Add deeper deterministic checks.** Improve dependency, test, CI, configuration, and documentation analysis without executing untrusted project code.
 3. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition.
 2. **Expand repo-scan carefully.** Add labelled fixtures and deterministic checks only when evidence quality and false-positive rates are measured. Keep scans read-only and bounded.
@@ -119,6 +119,10 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `9ffeea2` | Repository hygiene and continuity diff | Passed: 155 files, zero errors, warnings, or notes; continuity diff passed |
 | 2026-11-10 | `9ffeea2` | Secret history scan | Passed |
 | 2026-11-10 | `9ffeea2` | CodeQL | In progress at verification update |
+| 2026-11-10 | `c0ebcbc` | Shared Contract Tests | Failed: schema 6/6 and problem 7/7 passed; Project Intelligence exposed a Markdown renderer syntax error and a fixture expectation for a file under the intentionally skipped `dist/` directory |
+| 2026-11-10 | `c0ebcbc` | Repository hygiene | Passed; continuity diff passed |
+| 2026-11-10 | `c0ebcbc` | Secret history scan | Passed |
+| 2026-11-10 | `c0ebcbc` | CodeQL | In progress at verification update |
 
 Do not report checks as passed unless they ran and passed.
 

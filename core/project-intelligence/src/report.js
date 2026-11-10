@@ -37,13 +37,13 @@ export function renderMarkdownReport(report) {
     "- **Top-level components:** " + markdownText((profile.top_level_components ?? []).join(", ") || "Not detected"),
     "- **Workspace candidates:** " + markdownText((profile.workspace_candidates ?? []).join(", ") || "Not detected"),
     "- **Launch scripts:** " + markdownText((profile.launch_script_names ?? []).join(", ") || "Not detected"),
-    "- **Entry-point candidates:** " + String(profile.entry_point_candidates?.length ?? 0)
+    "- **Entry-point candidates:** " + String(profile.entry_point_candidates?.length ?? 0),
+    ""
   ];
   for (const candidate of profile.entry_point_candidates ?? []) {
     lines.push("  - " + inlineCode(candidate.path) + " — " + markdownText(candidate.kind) + "; " + (candidate.exists ? "present" : "not present in inventory"));
   }
-  lines.push("", "## Findings", "", "- **Total:** " + String(summary.finding_count ?? report.findings.length)
-  ];
+  lines.push("", "## Findings", "", "- **Total:** " + String(summary.finding_count ?? report.findings.length));
   for (const severity of ["critical", "high", "medium", "low", "info"]) {
     const count = summary.by_severity?.[severity] ?? report.findings.filter((item) => item.severity === severity).length;
     lines.push("- **" + severity[0].toUpperCase() + severity.slice(1) + ":** " + String(count));

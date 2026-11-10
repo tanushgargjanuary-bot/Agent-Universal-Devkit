@@ -69,12 +69,12 @@ test("discovers manifests, frameworks, languages, docs, tests, and CI without ru
 test("discovers likely entry points and workspace layout without executing source", async (t) => {
   const root = await fixture(t);
   await put(root, "package.json", JSON.stringify({
-    main: "dist/index.js",
+    main: "lib/index.js",
     bin: { "example-cli": "bin/cli.js" },
     scripts: { start: "node server.js", dev: "vite" },
     workspaces: ["apps/*", "packages/*"]
   }));
-  await put(root, "dist/index.js", "placeholder");
+  await put(root, "lib/index.js", "placeholder");
   await put(root, "bin/cli.js", "placeholder");
   await put(root, "src/main.ts", "placeholder");
   await put(root, "cmd/api/main.go", "package main");
@@ -86,7 +86,7 @@ test("discovers likely entry points and workspace layout without executing sourc
   assert.ok(paths.includes("bin/cli.js"));
   assert.ok(paths.includes("src/main.ts"));
   assert.ok(paths.includes("cmd/api/main.go"));
-  assert.ok(profile.entry_point_candidates.find((entry) => entry.path === "dist/index.js").exists);
+  assert.ok(profile.entry_point_candidates.find((entry) => entry.path === "lib/index.js").exists);
   assert.deepEqual(profile.launch_script_names, ["dev", "start"]);
   assert.ok(profile.top_level_components.includes("apps"));
   assert.ok(profile.top_level_components.includes("packages"));

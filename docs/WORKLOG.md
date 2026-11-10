@@ -205,3 +205,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Safety and limits:** No source files are parsed or executed for this feature. Entry points are candidates, not verified runtime entry points. Workspace folders are hints, not proof of a monorepo. No dependency graph or semantic architecture graph is claimed.
 - **Verification:** New multi-package and nested-manifest tests are added. Shared Contract Tests and repository hygiene results are pending.
 - **Next action:** Build a labelled fixture corpus across supported ecosystems and use it to measure discovery accuracy before adding more heuristics.
+
+### 2026-11-10 — Correct architecture-signal renderer and fixture failures
+- **Commit:** Pending Git history.
+- **Trigger:** The first architecture-signal CI run passed schema-engine and problem-engine tests but failed Project Intelligence. The Markdown report renderer had a malformed array closure. A separate fixture expected a declared entry point under `dist/` to be inventoried, but `dist/` is deliberately excluded from repository discovery.
+- **Changes:** Corrected the Markdown renderer's architecture section and changed the fixture to use a non-generated `lib/` path. The scanner continues to mark declared manifest targets absent from its bounded inventory when they are in excluded/generated directories.
+- **Verification:** Corrected shared tests are pending. Repository hygiene and secret history scan passed on the original architecture-signal commit. The failure remains recorded.
+- **Next action:** Confirm the corrected Project Intelligence tests, then run the scanner against representative multi-ecosystem fixtures before expanding heuristics.
