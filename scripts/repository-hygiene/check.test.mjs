@@ -143,3 +143,17 @@ test("allows continuity checks to be disabled by explicit config", t => {
   assert.equal(result.status, 0);
   assert.equal(report.findings.some(x => x.rule === "CONTINUITY_DOCUMENT_MISSING"), false);
 });
+
+
+test("accepts the documented bold Last reviewed field", t => {
+  const root = fixture(t);
+  const statePath = path.join(root, "docs", "PROJECT-STATE.md");
+  const state = fs.readFileSync(statePath, "utf8").replace(
+    "- Last reviewed:",
+    "- **Last reviewed:**"
+  );
+  fs.writeFileSync(statePath, state);
+  const result = run(root);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_REVIEW_DATE_MISSING"), false);
+});

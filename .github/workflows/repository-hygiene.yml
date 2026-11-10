@@ -21,7 +21,8 @@ on:
       - ".gitignore"
       - "AGENTS.md"
       - "docs/**"
-      - "CONTRIBUTING.md"      - ".github/workflows/repository-hygiene.yml"
+      - "CONTRIBUTING.md"
+      - ".github/workflows/repository-hygiene.yml"
 
 permissions:
   contents: read
