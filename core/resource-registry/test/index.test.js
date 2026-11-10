@@ -43,3 +43,38 @@ test("dedupe scans beyond the default page of 100 records",async()=>{
  assert.ok(db.findDuplicates().some(x=>x.left==="dup-a"&&x.right==="dup-b"));
  db.close();
 });
+
+
+test("list applies status and category filters before pagination", async () => {
+ const db=await new ResourceRegistry({dbPath:":memory:"}).open();
+ db.upsert({id:"a",name:"A",url:"https://github.com/example/a",status:"candidate",categories:["red"]});
+ db.upsert({id:"b",name:"B",url:"https://github.com/example/b",status:"approved",categories:["blue"]});
+ db.upsert({id:"c",name:"C",url:"https://github.com/example/c",status:"approved",categories:["red"]});
+ db.upsert({id:"d",name:"D",url:"https://github.com/example/d",status:"approved",categories:["red"]});
+ assert.deepEqual(db.list({status:"approved",category:"red",limit:1,offset:0}).map(x=>x.id),["c"]);
+ assert.deepEqual(db.list({status:"approved",category:"red",limit:1,offset:1}).map(x=>x.id),["d"]);
+ assert.throws(()=>db.list({status:"invalid"}),/Invalid resource status filter/);
+ db.close();
+});
+
+test("search and pagination reject invalid limits and empty queries", async () => {
+ const db=await new ResourceRegistry({dbPath:":memory:"}).open();
+ assert.throws(()=>db.search(" "),/non-empty string/);
+ assert.throws(()=>db.search("alpha",{limit:0}),/limit must be an integer/);
+ assert.throws(()=>db.list({limit:0}),/limit must be an integer/);
+ assert.throws(()=>db.list({offset:-1}),/offset must be a non-negative/);
+ db.close();
+});
+
+test("deduplication uses explicit record and comparison limits", async () => {
+ const db=await new ResourceRegistry({dbPath:":memory:"}).open();
+ for(let i=0;i<8;i++)db.upsert({id:"r"+i,name:"Resource "+i,url:"https://github.com/example/r"+i,categories:["shared"],capabilities:["shared"]});
+ assert.throws(()=>db.findDuplicates({maxRecords:5}),/Deduplication limit exceeded/);
+ assert.throws(()=>db.findDuplicates({maxComparisons:2}),/comparison limit exceeded/);
+ db.close();
+});
+
+test("repository URLs reject credentials and non-standard ports", () => {
+ assert.throws(()=>normalizeRepositoryUrl("https://user:pass@github.com/owner/repo"),/Only public HTTPS GitHub/);
+ assert.throws(()=>normalizeRepositoryUrl("https://github.com:8443/owner/repo"),/Only public HTTPS GitHub/);
+});

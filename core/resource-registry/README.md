@@ -15,13 +15,24 @@ node core/resource-registry/bin/resource-registry.js init
 
 ```bash
 node core/resource-registry/bin/resource-registry.js add --url https://github.com/github/spec-kit --name "Spec Kit" --description "Structured workflows for AI-assisted development" --category agent-workflows --capability specification
-node core/resource-registry/bin/resource-registry.js list
+node core/resource-registry/bin/resource-registry.js list --status candidate --limit 50
 node core/resource-registry/bin/resource-registry.js dedupe
 node core/resource-registry/bin/resource-registry.js reviews
 node core/resource-registry/bin/resource-registry.js stats
 ```
 
 Use `--db PATH` to select a database. The default is `data/resource-registry.sqlite`. Keep this database and generated reports out of Git. Commit reviewable exports and schema changes instead.
+
+## Commands
+
+`init`, `add`, `list`, `search`, `dedupe`, `reviews`, `review`, and `stats`. List filters run before pagination. Search and review queues use bounded limits. Deduplication uses category/capability blocking, with explicit record and comparison limits. It stops with an error when a limit is exceeded; it does not silently skip records. Only an explicit `duplicate_keep_left` or `duplicate_keep_right` decision deprecates a record.
+
+Run tests from the repository root:
+
+```bash
+npm test --prefix core/resource-registry
+npm run lint --prefix core/resource-registry
+```
 
 ## GitHub metadata synchronization
 

@@ -52,6 +52,8 @@ The resource engine applies mandatory constraints before weighted ranking. Unkno
 
 ## Current limitations
 
+The registry uses category/capability blocking to reduce unnecessary pair comparisons. It applies explicit record and comparison limits and fails rather than silently returning partial results. List filters apply before pagination.
+
 The registry uses deterministic lexical similarity and declared capabilities. It can miss synonyms or flag unrelated projects that share generic words. Human review prevents heuristic matches from deprecating useful tools.
 
 GitHub sync provides metadata, not source-code review, security certification, a complete license assessment, or proof of compatibility. Embeddings, scheduled refresh, richer evidence checks, and an agent-facing search API remain future work.
