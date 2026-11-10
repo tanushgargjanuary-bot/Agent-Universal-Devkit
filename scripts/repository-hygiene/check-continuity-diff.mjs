@@ -51,6 +51,21 @@ function isImplementationPath(file) {
     /^(manifest\.yaml|package\.json|package-lock\.json|pnpm-lock\.yaml|yarn\.lock|Cargo\.toml|Cargo\.lock|pyproject\.toml|requirements\.txt|Dockerfile|Makefile|LICENSE|SECURITY\.md)$/i.test(file);
 }
 
+function worklogEntries(content) {
+  return [...content.matchAll(/^###\\s+(\\d{4}-\\d{2}-\\d{2})\\s+[—–-]\\s+(.+)$/gm)]
+    .map(match => match[1] + " " + match[2].trim());
+}
+
+function readWorklogAtCommit(root, sha) {
+  try {
+    return execFileSync("git", ["show", sha + ":docs/WORKLOG.md"], {
+      cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"]
+    });
+  } catch {
+    return "";
+  }
+}
+
 function isDocumentationPath(file) {
   return file.startsWith("docs/") ||
     ["README", "README.md", "AGENTS.md", "CONTRIBUTING.md", "SECURITY.md"].includes(file) ||
@@ -95,6 +110,16 @@ function main() {
     if (!hasProjectState) findings.push({ rule: "PROJECT_STATE_NOT_UPDATED", message: "Implementation or configuration changed without reviewing and updating docs/PROJECT-STATE.md." });
   } else if (documentationChanges.length && !hasWorklog && changed.some(file => file !== "docs/WORKLOG.md")) {
     findings.push({ rule: "WORKLOG_NOT_UPDATED", message: "Documentation changed without recording the meaningful change in docs/WORKLOG.md." });
+  }
+
+  if (hasWorklog && (implementationChanges.length || documentationChanges.some(file => file !== "docs/WORKLOG.md"))) {
+    const currentWorklog = readFileSync(path.join(args.root, "docs/WORKLOG.md"), "utf8");
+    const previousEntries = new Set(worklogEntries(readWorklogAtCommit(args.root, range.base)));
+    const addedEntry = worklogEntries(currentWorklog).some(entry => !previousEntries.has(entry));
+    if (!addedEntry) findings.push({
+      rule: "WORKLOG_ENTRY_NOT_ADDED",
+      message: "Add a new dated work-log entry. Editing an old entry or touching the file is not a new handoff record."
+    });
   }
 
   if (findings.length) {

@@ -81,7 +81,8 @@ Do not report checks as passed unless they ran and passed.
 - **Verified:** The orchestrator does not launch or coordinate real agent processes.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.
-- **Verified:** Continuity presence, structure, review-date freshness, and changed-file update requirements are checked by CI; semantic accuracy remains an agent/human responsibility.
+- **Verified:** Continuity presence, structure, placeholder completion, review-date freshness, and changed-file update requirements are checked by CI. The diff check requires a new dated work-log entry; semantic accuracy remains an agent/human responsibility.
+- **Verified audit findings:** Resource Registry CLI has an incorrect relative import; registry filtering applies LIMIT before status/category filtering; registry updates can reset status to candidate; plan digest omits execution-relevant routing fields; policy YAML and JavaScript rules are not a single runtime source of truth.
 - **Unknown:** Whether every branch and open PR contains unique work or can be consolidated safely; inspect before merging/deleting.
 - **Owner action:** Verify branch protection, required status checks, GitHub App registration, and deployment configuration.
 - **Audit gap:** The complete documentation set, all implementation modules, all tests, and all workflow files have not yet been reviewed in this audit cycle.

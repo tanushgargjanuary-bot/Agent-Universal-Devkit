@@ -135,6 +135,17 @@ function scan(root, config) {
           add(findings, severity, rule, statePath, "Add the missing handoff section. Keep it concise and link to canonical project documentation.");
         }
       }
+      const placeholders = [
+        ["PROJECT_STATE_EMPTY_FIELD", /^\\s*-\\s*\\*\\*[^*]+:\\*\\*\\s*$/m],
+        ["PROJECT_STATE_DATE_PLACEHOLDER", /\\bYYYY-MM-DD\\b/],
+        ["PROJECT_STATE_ACTION_PLACEHOLDER", /\\[Action(?:,|\\])/i],
+        ["PROJECT_STATE_EMPTY_TABLE_ROW", /^\\s*\\|\\s*\\|\\s*\\|/m]
+      ];
+      for (const [rule, pattern] of placeholders) {
+        if (pattern.test(state)) {
+          add(findings, severity, rule, statePath, "Replace template placeholders with verified project information. Use explicit Unknown or Owner action labels when information is unavailable.");
+        }
+      }
       const reviewed = state.match(/last reviewed\s*[:：]\s*\*{0,2}\s*(\d{4}-\d{2}-\d{2})/i);
       if (!reviewed) {
         add(findings, "warning", "PROJECT_STATE_REVIEW_DATE_MISSING", statePath, "Record a valid Last reviewed date in YYYY-MM-DD format.");

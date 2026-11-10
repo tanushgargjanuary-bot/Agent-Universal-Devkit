@@ -87,3 +87,15 @@ test("uses warning severity for L1 prototypes", t => {
   assert.equal(result.status, 0, result.stderr + result.stdout);
   assert.match(result.stdout, /\[WARNING\]/);
 });
+
+
+test("rejects a touched work log without a new dated entry", t => {
+  const { root, base } = repo(t);
+  const head = commit(root, {
+    "docs/ARCHITECTURE.md": "# Architecture\n",
+    "docs/WORKLOG.md": "# Work Log\n\n## History\n"
+  });
+  const result = run(root, base, head);
+  assert.equal(result.status, 1);
+  assert.match(result.stdout, /WORKLOG_ENTRY_NOT_ADDED/);
+});

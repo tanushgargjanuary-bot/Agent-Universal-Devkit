@@ -157,3 +157,27 @@ test("accepts the documented bold Last reviewed field", t => {
   const report = JSON.parse(result.stdout);
   assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_REVIEW_DATE_MISSING"), false);
 });
+
+
+test("detects unfilled project-state template placeholders", t => {
+  const root = fixture(t);
+  fs.writeFileSync(path.join(root, "docs", "PROJECT-STATE.md"), [
+    "# Project State",
+    "## Project identity",
+    "- **Name:**",
+    "## Current implementation status",
+    "## Architecture map",
+    "## Active work",
+    "## Verification record",
+    "## Risks and known issues",
+    "## Next actions",
+    "- [Action, reason, dependency, and completion condition]",
+    "## Handoff metadata",
+    "- Last reviewed: YYYY-MM-DD"
+  ].join("\n"));
+  const result = run(root);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_EMPTY_FIELD"), true);
+  assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_DATE_PLACEHOLDER"), true);
+  assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_ACTION_PLACEHOLDER"), true);
+});

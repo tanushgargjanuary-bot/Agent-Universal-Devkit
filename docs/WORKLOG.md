@@ -20,3 +20,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Awaiting the GitHub Actions run for this commit. Do not treat the check as passed until the run completes.
 - **Open risks / blockers:** Static checks cannot verify the quality or truth of a handoff entry. The bootstrap app is not deployed and does not update existing repositories.
 - **Next action:** Verify CI, finish the DEVKIT audit, and prioritise the existing-repository update mechanism.
+
+### 2026-11-10 — Require substantive continuity records
+- **Commit:** pending
+- **Goal:** Prevent empty template fields or empty work-log edits from satisfying the continuity gate.
+- **Changes:** Added project-state placeholder detection and required a new dated work-log entry for each meaningful code or documentation change.
+- **Verification:** Awaiting GitHub Actions.
+- **Open risks / blockers:** The checker still cannot prove that a work-log entry is accurate or that project-state content fully describes the implementation.
+- **Next action:** Verify CI and complete the remaining DEVKIT audit.
