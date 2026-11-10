@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { parse } from "yaml";
+import { createRequire } from "node:module";
+const require = createRequire(new URL("../../core/resource-registry/package.json", import.meta.url));
+const { parse } = require("yaml");
 import { ResourceRegistry } from "../../core/resource-registry/src/index.js";
 
 const API = "https://api.github.com";
@@ -25,7 +27,7 @@ async function githubGet(url, token) {
     const reset = Number(response.headers.get("x-ratelimit-reset") ?? 0) * 1000;
     const retryAfter = Number(response.headers.get("retry-after") ?? 0) * 1000;
     if ((response.status === 403 || response.status === 429) &&
-        (remaining === "0" || retryAfter > 0 || response.headers.get("x-ratelimit-resource"))) {
+        (remaining === "0" || retryAfter > 0)) {
       const wait = retryAfter || Math.max(1000, reset - Date.now() + 1000);
       if (wait > 15 * 60 * 1000) throw new Error(`GitHub rate limit requires waiting ${Math.ceil(wait / 60000)} minutes. Re-run later; completed records are already saved.`);
       await sleep(wait);
@@ -49,6 +51,7 @@ async function main() {
   const dbPath = path.resolve(root, process.env.DEVKIT_RESOURCE_DB ?? "data/resource-registry.sqlite");
   const reportPath = path.resolve(root, process.env.DEVKIT_RESOURCE_REPORT ?? "reports/resource-health-latest.json");
   const token = process.env.GITHUB_TOKEN;
+  if (!token) throw new Error("Set GITHUB_TOKEN before syncing. The sync checks repository, release, and commit metadata and needs authenticated API limits.");
   const catalog = parse(await readFile(catalogPath, "utf8"));
   if (!Array.isArray(catalog?.resources)) throw new Error("Catalog must contain a resources array");
   const resources = catalog.resources.filter(item =>
