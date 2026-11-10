@@ -1,7 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import { createPlan, evaluateExecutionGate, orderTasks } from "../src/index.js";
-import { evaluateTechnologyArchitecture, evaluateTechnologyChangeGate, inspectRepository } from "../src/technology-decision.js";
+import { evaluateTechnologyArchitecture, evaluateTechnologyChangeGate, inspectLocalRepository, inspectRepository } from "../src/technology-decision.js";
 
 test("orders tasks after their dependencies", () => {
   const ordered = orderTasks([
@@ -256,4 +259,29 @@ test("retains a suitable existing language without adding a hybrid", () => {
   assert.equal(decision.recommendation.candidate_id, "existing-typescript");
   assert.equal(decision.approval.required, false);
   assert.equal(evaluateTechnologyChangeGate({ decision }).allowed, true);
+});
+
+
+test("inspects a local repository without traversing generated directories", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "devkit-technology-"));
+  try {
+    await mkdir(path.join(root, "src"));
+    await mkdir(path.join(root, "node_modules", "ignored-package"), { recursive: true });
+    await writeFile(path.join(root, "src", "app.ts"), "export const app = true;");
+    await writeFile(path.join(root, "package.json"), JSON.stringify({
+      dependencies: { react: "^19.0.0" }
+    }));
+    await writeFile(path.join(root, "pnpm-lock.yaml"), "lockfileVersion: '9.0'");
+    await writeFile(path.join(root, "node_modules", "ignored-package", "ignored.py"), "print('ignored')");
+
+    const result = await inspectLocalRepository(root);
+    assert.equal(result.snapshot_mode, "local_static");
+    assert.equal(result.files_inspected, 3);
+    assert.deepEqual(result.languages.map((item) => item.name), ["TypeScript"]);
+    assert.deepEqual(result.package_managers, ["pnpm"]);
+    assert.deepEqual(result.frameworks, ["React"]);
+    assert.equal(result.symlinks_followed, false);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
