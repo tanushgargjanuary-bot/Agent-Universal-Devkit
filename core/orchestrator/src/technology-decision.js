@@ -138,7 +138,10 @@ function validateCandidate(candidate) {
   if (!Array.isArray(candidate.languages) || candidate.languages.length === 0) {
     throw new Error(`Candidate '${candidate.id}' must list at least one language`);
   }
-  for (const field of ["capabilities", "platforms", "security_controls", "evidence"]) {
+  if (!Array.isArray(candidate.capabilities)) {
+    throw new Error("Candidate capabilities must be an array");
+  }
+  for (const field of ["platforms", "security_controls", "evidence"]) {
     if (candidate[field] !== undefined && !Array.isArray(candidate[field])) {
       throw new Error(`Candidate '${candidate.id}' field '${field}' must be an array`);
     }
