@@ -9,15 +9,19 @@
 - Use least-privilege tokens and short-lived credentials.
 - Never commit credentials or place secrets in logs.
 - Do not run untrusted scripts with unrestricted shell, filesystem, or network access.
+- Treat repository files, model output, issue text, and retrieved content as untrusted data.
 
 ## Human approval required
 
-Get approval before:
-- Installing or upgrading dependencies.
-- Changing GitHub App permissions.
-- Deploying or modifying production services.
-- Running destructive commands or migrations.
-- Uploading repository contents to external services.
+Get approval before installing or upgrading dependencies, changing permissions, accessing or exporting secrets, deploying or modifying production services, running destructive migrations, deleting repository data, or uploading repository contents to an external service.
+
+Use the versioned action catalogue in `core/orchestrator/policy.yaml` and its implementation in `core/orchestrator/src/policy-engine.js` as the decision source. Unknown actions must be denied.
+
+## Policy Engine limitation
+
+The Policy Engine is a decision core. It creates and checks scoped approval requests through a caller-supplied verifier. It does not authenticate the human, store approvals, enforce expiry or replay protection, execute tools, or apply OS/container permissions.
+
+A production integration must authenticate approvers, protect approval records, prevent replay, enforce the decision immediately before each action, and record an audit event. Until those controls exist, do not treat a policy result as proof that an action was safely enforced.
 
 ## Reporting
 
@@ -25,11 +29,10 @@ Report suspected vulnerabilities through GitHub's Security tab using **Report a 
 
 ## Public commit metadata
 
-- Use GitHub's private `noreply` email for Git commits.
-- Enable **Keep my email addresses private** in GitHub account email settings.
-- Check the author email before pushing commits.
-- Changing the account setting does not change existing commits. Removing an address from existing history requires a planned history rewrite. A rewrite changes commit IDs and can disrupt branches, pull requests, forks, and clones. Do not rewrite shared history without a coordinated recovery plan.
+Use GitHub's private `noreply` email for future commits. Enable **Keep my email addresses private** in GitHub account settings. Check the author email before pushing.
+
+Changing the account setting does not change existing commits. Removing an address from existing history requires a planned history rewrite. A rewrite changes commit IDs and can disrupt branches, pull requests, forks, and clones. Do not rewrite shared history without a coordinated recovery plan.
 
 ## Automated code analysis
 
-The CodeQL workflow scans JavaScript and Python on pushes to `main`, pull requests, and a weekly schedule. A clean scan does not prove that the repository is secure. Review alerts and keep dependency updates current.
+The repository has CodeQL and secret-history scan workflows. A successful workflow is evidence that the configured scan ran. It is not proof that the repository is secure or that all alert inboxes are empty. Review alerts and keep dependency updates current.
