@@ -85,3 +85,13 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Decision:** Treat Project Intelligence as an exploratory umbrella direction and repo-scan as a possible first entry point. Do not promote candidate features into the roadmap without explicit review and a validated use case.
 - **Next action:** When implementation is requested, inspect current code and define a narrow, evidence-backed repo-scan MVP before changing architecture or adding scanner breadth.
 
+### 2026-11-10 — Define unified problem-solving workbench direction
+- **Commits:** `03ba239`, `54bfb42`, `86a2da0`, `3084b20`, `56fda19`
+- **Goal:** Define how DEVKIT can support a broad range of developer and technical problems through one coherent product experience, without becoming a monolith or a disconnected collection of utilities.
+- **Changes:** Added `docs/UNIFIED-PROBLEM-SOLVING-MODEL.md` as a canonical strategy document. Updated Vision and Scope, Product Principles, Roadmap, and README to describe one user-facing problem-solving workbench, a shared lifecycle, reusable specialist capabilities, domain packs, integration adapters, and multiple interfaces over common contracts.
+- **Decisions:** "All features in one place" means one entry point and shared problem lifecycle, not one giant implementation. Users describe outcomes; DEVKIT selects capabilities and existing tools. Workflows must share context, evidence, findings, plans, actions, verification, and memory contracts. Integrate mature tools instead of rebuilding them. Support human-led, agent-led, hybrid, and unsupported outcomes. Repo-scan is the first candidate workflow, not the whole product.
+- **Scope boundary:** Broad domain support is a strategic direction, not a claim of current capability and not approval to build every listed feature immediately. The first proof must be a complete, narrow workflow from problem intake to independently verified outcome.
+- **Verification:** Documentation changes were committed to `main` and are being checked by fetching the resulting files. No code or runtime behaviour changed; no test suite was run.
+- **Open risks:** The shared contracts, capability discovery, project context layer, and end-to-end execution lifecycle are not yet implemented as a complete system. The current Policy Engine remains a decision core, not executor-side enforcement.
+- **Next action:** Before implementing repo-scan breadth, design and validate the shared problem/evidence/finding/capability/plan/verification contracts, then prove one end-to-end repo-scan-to-verified-fix workflow.
+
