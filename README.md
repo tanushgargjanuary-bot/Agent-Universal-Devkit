@@ -19,6 +19,7 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 - Comparison of alternatives, including justified hybrid and custom approaches.
 - Evidence-based language and technology architecture selection for every new repository.
 - Project-type-specific quality rubrics, selected per repository rather than applied as one generic checklist.
+- Risk-based repository governance for file organisation, task tracking, decision records, Git workflow, security, release, and recovery.
 - Hard filters for mandatory license, security, compatibility, platform, integration-cost, capability, and evidence-freshness requirements.
 - Native engineering study material stored in the repository, not only external links.
 - Context-triggered retrieval of algorithms and mathematical methods.
@@ -42,6 +43,7 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 | `scripts/` | Discovery and maintenance automation |
 | `docs/` | Product principles, vision, architecture, decisions, and roadmap |
 | `rubrics/` | Universal and domain-specific project quality rubrics for connected repositories |
+| `docs/REPOSITORY-GOVERNANCE.md` | Repository organisation, task discipline, change control, security, release, and recovery standards |
 
 ## Important rules
 
@@ -54,7 +56,7 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 - Do not install or execute catalog entries automatically.
 - Verify engineering outputs independently.
 
-Read [Project-Type Engineering Rubrics](rubrics/PROJECT-RUBRICS.md), [Vision and Scope](docs/VISION-AND-SCOPE.md), [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md), [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](docs/TARGET-ARCHITECTURE.md), [Decision Engine](docs/DECISION-ENGINE.md), [Knowledge Library](docs/KNOWLEDGE-LIBRARY.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), [Pack Model](docs/PACK-MODEL.md), and [Roadmap](docs/ROADMAP.md).
+Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md), [Project-Type Engineering Rubrics](rubrics/PROJECT-RUBRICS.md), [Vision and Scope](docs/VISION-AND-SCOPE.md), [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md), [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](docs/TARGET-ARCHITECTURE.md), [Decision Engine](docs/DECISION-ENGINE.md), [Knowledge Library](docs/KNOWLEDGE-LIBRARY.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), [Pack Model](docs/PACK-MODEL.md), and [Roadmap](docs/ROADMAP.md).
 
 ## Current status
 
