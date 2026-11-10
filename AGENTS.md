@@ -8,6 +8,8 @@
 4. Check the relevant catalog entry and harness adapter before adding or changing a tool integration.
 
 ## Working rules
+- Follow `docs/REPOSITORY-GOVERNANCE.md` for repository structure, task tracking, documentation, Git discipline, security, release, and recovery. Apply controls in proportion to project risk.
+- Keep the working repository organised. Inspect before cleanup; preserve user work; avoid broad unrelated reorganisation; review the full diff and working tree before finishing.
 
 - Keep all systems in this single repository.
 - Keep Resource Intelligence and Agent Orchestration as equal priorities.
@@ -27,10 +29,6 @@
 For every new repository, inspect its purpose, constraints, existing files, runtimes, deployment target, and team context before selecting a stack. Do not default to Python or any other language.
 
 Follow `docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md`. Compare credible language and runtime candidates against the actual workload. Prefer one coherent stack unless a hybrid has a documented, testable benefit. Preserve an established stack unless evidence justifies change. Record consequential decisions and their trade-offs. Do not perform broad migrations without approval.
-
-## Technology architecture assessment
-
-For consequential new-project or stack-change decisions, use the orchestrator's `evaluateTechnologyArchitecture` module when a repository snapshot, explicit workload requirements, and at least two evidence-backed candidates are available. Attach the result to a plan through `technologyAssessment`. Treat the result as a proposal only. The engine does not discover candidates or verify supplied evidence. Do not implement stack additions, hybrid architectures, or migrations without human approval. If the result is provisional, stop and gather evidence.
 
 ## Use the native Knowledge Library
 
