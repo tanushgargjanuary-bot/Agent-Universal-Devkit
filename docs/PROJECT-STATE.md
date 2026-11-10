@@ -174,6 +174,8 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `7217234` | CodeQL, repository hygiene, secret-history scan | Passed on reviewed main HEAD `72172341b537e320db22eb11fd94e57efcd36e12`. |
 
+| 2026-11-11 | `80bbaae` | Orchestrator Core Tests | Passed: 63/63. Orchestration quality, repository hygiene/continuity, and secret-history scan passed. CodeQL was still running at the last check. |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
@@ -183,14 +185,14 @@ Do not report checks as passed unless they ran and passed.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.
 - **Verified:** Continuity presence, structure, placeholder completion, review-date freshness, and changed-file update requirements are checked by CI. The diff check requires a new dated work-log entry; L2–L4 cannot disable the checks or lower governance in the same change set. Semantic accuracy remains an agent/human responsibility.
-- **Verified audit findings (partly remediated in latest main commits):** Resource Registry CLI import, filter-before-pagination, metadata status preservation, bounded search, and deduplication workload limits have code changes and regression tests; dedicated CI passed 12/12 tests on 2026-11-11. Orchestration plan-digest coverage and duplicated action-rule definitions have code changes and regression tests; the orchestrator workflow is awaiting verification. Approval storage, expiry, revocation, one-time consumption, and the policy-enforcing Execution Gate are implemented. Production identity-provider integration, protected key provisioning/rotation, durable audit storage, production adapters, and OS/container isolation remain unimplemented.
+- **Verified audit findings (partly remediated in latest main commits):** Resource Registry CLI import, filter-before-pagination, metadata status preservation, bounded search, and deduplication workload limits have code changes and regression tests; dedicated CI passed 12/12 tests on 2026-11-11. Orchestration plan-digest coverage and canonical action-rule loading have regression tests. Orchestrator Core Tests passed 63/63 on `c5565a1` and again on handoff commit `80bbaae`. Approval storage, expiry, revocation, one-time consumption, and the policy-enforcing Execution Gate are implemented. Production identity-provider integration, protected key provisioning/rotation, durable audit storage, production adapters, and OS/container isolation remain unimplemented.
 - **Verified branch audit:** Six non-main branches are fully behind `main` with zero unique commits. Three squash-merged branches retain unique commit ancestry, but their changed content was checked against `main`: PR #17 dependency/workflow files match, PR #16 discovery code/tests/docs match and its workflow pins are older, and PR #5 technology-decision code matches while its schema/tests/docs on `main` contain later changes. All nine non-main branches are safe to delete; no branch-deletion action is available in the connected GitHub interface, so owner-side deletion remains.
 - **Owner action:** Re-check the nine non-main branches against live `main` before deletion; verify branch protection, required status checks, GitHub App registration, deployment configuration, and repository visibility. Live GitHub metadata currently reports `public`, despite the earlier instruction that the repository had been made private.
 - **Audit gap:** Documentation and agent instructions were reviewed. Core source, tests, manifests, workflows, GitHub App, and branch/PR state received a targeted static audit. Full package test execution, live webhook validation, dependency audit, and owner-only settings remain unverified.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-11
-- **Reviewed source HEAD:** `72172341b537e320db22eb11fd94e57efcd36e12`; verify live `main` before acting.
+- **Reviewed source HEAD:** `80bbaae1ae382f8cb5118b616a17adb3bd56318a`; verify live `main` before acting.
 - **Updated by:** ChatGPT GitHub integration; handoff documentation reconciled on 2026-11-11
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

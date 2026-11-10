@@ -5,10 +5,10 @@
 1. Read root `HANDOFF.md` first. It is the startup map for agents taking over without chat history.
 2. Read this file.
 3. Read `README.md`, `docs/PROJECT-STATE.md`, `docs/PRODUCT-PRINCIPLES.md`, `docs/ARCHITECTURE.md`, `docs/ROADMAP.md`, and `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
-3. Inspect the branch, working tree, repository tree, relevant source, tests, manifests, and CI.
-4. Read the relevant subsystem README and governing policy before changing that subsystem.
-5. Read `docs/PROJECT-STATE.md` and recent `docs/WORKLOG.md` entries when present. Verify their claims against code and Git state.
-6. Check current implementation. Do not infer completion from a roadmap checkbox or design document alone.
+4. Inspect the branch, working tree, repository tree, relevant source, tests, manifests, and CI.
+5. Read the relevant subsystem README and governing policy before changing that subsystem.
+6. Read recent `docs/WORKLOG.md` entries. Verify their claims against code and Git state.
+7. Check current implementation. Do not infer completion from a roadmap checkbox or design document alone.
 
 ## Repository rules
 

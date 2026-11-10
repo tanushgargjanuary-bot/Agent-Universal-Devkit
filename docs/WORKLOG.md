@@ -455,3 +455,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification basis:** Reviewed source and tests on `main` at `72172341b537e320db22eb11fd94e57efcd36e12`. Orchestrator Core Tests passed 63/63 on `c5565a1`; CodeQL, repository hygiene, and secret-history scan passed on `7217234`. These are historical results; rerun relevant checks after this documentation commit.
 - **Open owner actions:** GitHub currently reports repository visibility as public despite the earlier instruction that it was made private; verify in GitHub Settings. Re-check nine non-main branches before deletion. Verify branch protection and GitHub App deployment externally.
 - **Next:** Build the production host trust integration (identity, protected key lifecycle, durable audit), then a read-only adapter behind the Execution Gate; continue Resource Intelligence in parallel.
+
+
+### 2026-11-11 — Handoff CI and intake corrections
+
+- **Review correction:** Fixed the numbered intake sequence in `AGENTS.md` and removed a stale project-state claim that orchestrator verification was pending.
+- **Verification:** On handoff commit `80bbaae`, Orchestrator Core Tests passed 63/63; orchestration quality, repository hygiene including continuity enforcement, and secret-history scan passed. CodeQL was still running at the time of this record.
+- **Next:** Confirm CodeQL completion. Re-check the public/private visibility mismatch and external GitHub settings with the owner.
