@@ -158,3 +158,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** Corrected the expected TypeScript file count to two. No scanner behaviour was changed.
 - **Verification:** The corrected shared-contract workflow is pending. The initial failure remains recorded.
 - **Next action:** Confirm the full shared-contract, hygiene, secret scan, and CodeQL results.
+
+### 2026-11-10 — Record repo-scan verification and reconcile continuity state
+- **Commit:** Pending Git history.
+- **Goal:** Record the corrected repo-scan test results and satisfy the repository's project-state continuity gate.
+- **Verification:** Shared Contract Tests passed: schema engine 6/6, problem engine 7/7, project intelligence 7/7, capability engine 9/9, knowledge engine 30/30. Repository hygiene unit tests passed 13/13. The first continuity diff run failed because the test-only correction changed an implementation path without updating PROJECT-STATE. This commit updates the state record. Secret history scan passed. CodeQL was still running.
+- **Changes:** Updated the verification table and handoff state to record the repo-scan result and the continuity-check failure accurately.
+- **Next action:** Confirm the continuity diff passes on this commit, then review CodeQL and continue scanner hardening.
