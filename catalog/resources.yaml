@@ -1,2 +1,618 @@
 schema_version: 1
-resources: []
+resources:
+  - id: awesome
+    name: "Awesome"
+    url: https://github.com/sindresorhus/awesome
+    kind: repository
+    categories: [discovery, reference-index]
+    description: "Curated index of topic-specific awesome lists."
+    license:
+      spdx_id: CC0-1.0
+      source_url: https://github.com/sindresorhus/awesome/blob/main/license
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/sindresorhus/awesome
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: algorithms-python
+    name: "TheAlgorithms/Python"
+    url: https://github.com/TheAlgorithms/Python
+    kind: repository
+    categories: [algorithms, reference-implementations]
+    description: "Reference implementations of algorithms and data structures in Python."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/TheAlgorithms/Python/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/TheAlgorithms/Python
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: build-your-own-x
+    name: "Build Your Own X"
+    url: https://github.com/codecrafters-io/build-your-own-x
+    kind: repository
+    categories: [systems, project-based-learning]
+    description: "Tutorials for building simplified versions of real-world software systems."
+    license:
+      spdx_id: CC0-1.0
+      source_url: https://github.com/codecrafters-io/build-your-own-x/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/codecrafters-io/build-your-own-x
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: free-for-dev
+    name: "Free for Dev"
+    url: https://github.com/ripienaar/free-for-dev
+    kind: repository
+    categories: [developer-tools, free-tiers]
+    description: "Index of services with useful free tiers for developers."
+    license:
+      spdx_id: CC0-1.0
+      source_url: https://github.com/ripienaar/free-for-dev/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/ripienaar/free-for-dev
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: free-programming-books
+    name: "Free Programming Books"
+    url: https://github.com/EbookFoundation/free-programming-books
+    kind: repository
+    categories: [books, learning]
+    description: "Multilingual list of free programming books and learning resources."
+    license:
+      spdx_id: CC-BY-4.0
+      source_url: https://github.com/EbookFoundation/free-programming-books/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/EbookFoundation/free-programming-books
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: developer-roadmap
+    name: "Developer Roadmap"
+    url: https://github.com/nilbuild/developer-roadmap
+    kind: repository
+    categories: [roadmaps, learning]
+    description: "Roadmaps and learning paths for technology roles and topics."
+    license:
+      spdx_id: NOASSERTION
+      source_url: https://github.com/nilbuild/developer-roadmap
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/nilbuild/developer-roadmap
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: ossu-computer-science
+    name: "OSSU Computer Science"
+    url: https://github.com/ossu/computer-science
+    kind: repository
+    categories: [curriculum, computer-science]
+    description: "Structured open curriculum for a broad computer-science education."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/ossu/computer-science/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/ossu/computer-science
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: engineering-blogs
+    name: "Engineering Blogs"
+    url: https://github.com/kilimchoi/engineering-blogs
+    kind: repository
+    categories: [engineering-practice, reading]
+    description: "Curated index of engineering blogs from companies and individuals."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/kilimchoi/engineering-blogs/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/kilimchoi/engineering-blogs
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: system-design-primer
+    name: "System Design Primer"
+    url: https://github.com/donnemartin/system-design-primer
+    kind: repository
+    categories: [system-design, interview-preparation]
+    description: "Study guide for scalable system design concepts and interview preparation."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/donnemartin/system-design-primer/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/donnemartin/system-design-primer
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: public-apis
+    name: "Public APIs"
+    url: https://github.com/public-apis/public-apis
+    kind: repository
+    categories: [apis, integration-discovery]
+    description: "Index of public APIs for prototyping and integration discovery."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/public-apis/public-apis/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/public-apis/public-apis
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: open-source-alternatives
+    name: "Open Source Alternatives"
+    url: https://github.com/btw-so/open-source-alternatives
+    kind: repository
+    categories: [alternatives, tool-discovery]
+    description: "Index of open-source alternatives to commercial software."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/btw-so/open-source-alternatives/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/btw-so/open-source-alternatives
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: papers-we-love
+    name: "Papers We Love"
+    url: https://github.com/papers-we-love/papers-we-love
+    kind: repository
+    categories: [research, papers]
+    description: "Community-driven collection of influential computer-science papers and reading groups."
+    license:
+      spdx_id: NOASSERTION
+      source_url: https://github.com/papers-we-love/papers-we-love
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/papers-we-love/papers-we-love
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: programmer-websites-list
+    name: "Best Websites a Programmer Should Visit"
+    url: https://github.com/sdmg15/Best-websites-a-programmer-should-visit
+    kind: repository
+    categories: [learning, web-resources]
+    description: "Collection of useful websites for programmers. Upstream repository is archived; treat links as unmaintained."
+    license:
+      spdx_id: NOASSERTION
+      source_url: https://github.com/sdmg15/Best-websites-a-programmer-should-visit
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/sdmg15/Best-websites-a-programmer-should-visit
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: llms-from-scratch
+    name: "LLMs From Scratch"
+    url: https://github.com/rasbt/LLMs-from-scratch
+    kind: repository
+    categories: [llm, machine-learning, education]
+    description: "Educational implementation of large language models from first principles."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/rasbt/LLMs-from-scratch/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/rasbt/LLMs-from-scratch
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: ml-from-scratch
+    name: "ML From Scratch"
+    url: https://github.com/eriklindernoren/ML-From-Scratch
+    kind: repository
+    categories: [machine-learning, reference-implementations]
+    description: "Educational implementations of machine-learning algorithms from scratch."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/eriklindernoren/ML-From-Scratch/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/eriklindernoren/ML-From-Scratch
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: made-with-ml
+    name: "Made With ML"
+    url: https://github.com/GokuMohandas/Made-With-ML
+    kind: repository
+    categories: [machine-learning, mlops, education]
+    description: "Practical material for designing, developing, deploying, and maintaining machine-learning systems."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/GokuMohandas/Made-With-ML/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/GokuMohandas/Made-With-ML
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: owasp-asvs
+    name: "OWASP ASVS"
+    url: https://github.com/OWASP/ASVS
+    kind: repository
+    categories: [security, application-security, standards]
+    description: "Verifiable security requirements for web applications and services."
+    license:
+      spdx_id: CC-BY-SA-4.0
+      source_url: https://github.com/OWASP/ASVS/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/OWASP/ASVS
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: owasp-cheatsheet-series
+    name: "OWASP Cheat Sheet Series"
+    url: https://github.com/OWASP/CheatSheetSeries
+    kind: repository
+    categories: [security, secure-development]
+    description: "Concise security guidance for common application-development risks."
+    license:
+      spdx_id: CC-BY-SA-4.0
+      source_url: https://github.com/OWASP/CheatSheetSeries/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/OWASP/CheatSheetSeries
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: project-based-learning
+    name: "Project Based Learning"
+    url: https://github.com/practical-tutorials/project-based-learning
+    kind: repository
+    categories: [project-based-learning, learning]
+    description: "Curated tutorials for building applications from scratch across languages."
+    license:
+      spdx_id: CC0-1.0
+      source_url: https://github.com/practical-tutorials/project-based-learning/blob/master/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/practical-tutorials/project-based-learning
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: coding-interview-university
+    name: "Coding Interview University"
+    url: https://github.com/jwasham/coding-interview-university
+    kind: repository
+    categories: [computer-science, interview-preparation]
+    description: "Self-study plan for computer-science topics commonly used in software-engineering interviews."
+    license:
+      spdx_id: CC-BY-SA-4.0
+      source_url: https://github.com/jwasham/coding-interview-university/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/jwasham/coding-interview-university
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: generative-ai-for-beginners
+    name: "Generative AI for Beginners"
+    url: https://github.com/microsoft/generative-ai-for-beginners
+    kind: repository
+    categories: [generative-ai, llm, education]
+    description: "A multi-lesson course on generative-AI concepts and application development."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/microsoft/generative-ai-for-beginners/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/microsoft/generative-ai-for-beginners
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: trail-of-bits-skills
+    name: "Trail of Bits Skills"
+    url: https://github.com/trailofbits/skills
+    kind: repository
+    categories: [ai-agents, security, skills]
+    description: "Skills and plugins for AI-assisted security analysis, testing, and development."
+    license:
+      spdx_id: NOASSERTION
+      source_url: https://github.com/trailofbits/skills
+      review_status: unreviewed
+    status: candidate
+    capabilities: []
+    alternatives: []
+    complements: []
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "New candidate; requires Devkit-specific evaluation."
+    evidence:
+      - claim: "Upstream identity verified; license remains unreviewed."
+        url: https://github.com/trailofbits/skills
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
