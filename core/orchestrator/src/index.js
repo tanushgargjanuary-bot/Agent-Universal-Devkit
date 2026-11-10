@@ -1,5 +1,6 @@
 import { selectKnowledge } from "../../knowledge-engine/src/index.js";
 import defaultKnowledgeRegistry from "../../../knowledge/registry.json" with { type: "json" };
+import { evaluateTechnologyArchitecture } from "./technology-decision.js";
 
 const APPROVAL_ACTIONS = new Set([
   "install_or_upgrade_dependencies",
@@ -50,7 +51,7 @@ export function orderTasks(tasks) {
   return ordered;
 }
 
-export function createPlan({ task_id, goal, repository, tasks, risk = "low", knowledgeRegistry = defaultKnowledgeRegistry }) {
+export function createPlan({ task_id, goal, repository, tasks, risk = "low", knowledgeRegistry = defaultKnowledgeRegistry, technologyAssessment = null }) {
   if (!task_id || !goal || !repository?.full_name || !repository?.default_branch) {
     throw new Error("task_id, goal, repository.full_name, and repository.default_branch are required");
   }
@@ -61,13 +62,17 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low", kno
 
   const ordered = orderTasks(tasks);
   const approvalRequired = risk !== "low";
+  const technologyDecision = technologyAssessment
+    ? evaluateTechnologyArchitecture({ repository, ...technologyAssessment })
+    : null;
 
   return {
     task_id,
     goal,
     repository,
     risk,
-    approval_required: approvalRequired,
+    approval_required: approvalRequired || Boolean(technologyDecision?.approval.required),
+    ...(technologyDecision ? { technology_decision: technologyDecision } : {}),
     tasks: ordered.map((task) => ({
       ...task,
       status: "planned",
