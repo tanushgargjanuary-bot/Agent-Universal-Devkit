@@ -90,3 +90,12 @@ These results are historical. Check the current Actions runs and GitHub Security
 ## Scope limitation
 
 This document is not a certification, penetration test, or proof of security. A passing automated scan covers only the configured rules and scanned content. Independent review remains necessary.
+
+
+## Approval Store verification — 2026-11-11
+
+- The new Approval Store test suite and existing orchestrator suite passed 43/43 tests on commit `89891a5`.
+- Orchestration quality, repository hygiene, continuity checks, and secret-history scan passed.
+- The store signs approvals with Ed25519, binds them to exact plan/action scope, enforces expiry, prevents repeat transitions, and checks current persisted status so revocation invalidates stale approval objects.
+- Production authentication and private-key provisioning/rotation remain host responsibilities. The store is not an executor sandbox and does not prevent adapters from bypassing policy unless they are wired through an enforcement gate.
+- CodeQL was still running when this record was written.

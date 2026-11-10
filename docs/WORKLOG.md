@@ -385,3 +385,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Finding:** The first Approval Store CI run failed all eight store tests during SQLite initialisation. The DDL statements were joined without semicolon separators.
 - **Fix:** Added explicit statement separators to the schema bootstrap. No approval logic or test expectations were weakened.
 - **Verification:** Awaiting rerun.
+
+
+### 2026-11-11 — Approval Store CI green
+
+- **Commit:** `89891a5`.
+- **Verification:** Orchestrator Core Tests passed 43/43. Orchestration quality passed. Repository hygiene and continuity diff passed. Secret-history scan passed. CodeQL remained in progress at the time of this entry.
+- **Correction:** The initial Approval Store run failed during SQLite schema creation because the DDL statements lacked separators. The schema bootstrap was corrected; the full approval lifecycle suite now passes.
+- **Security boundary:** The store signs records and enforces expiry/revocation, but the host still needs a real authentication provider and protected private-key management. Executor-side enforcement is not implemented.
