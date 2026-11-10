@@ -678,12 +678,12 @@ resources:
     last_reviewed: "2026-11-10T00:00:00Z"
   - id: claude-mem
     name: "Claude-Mem"
-    url: https://github.com/thedotmack/claude-mem
+    url: https://github.com/thedotmack/claude-mem/blob/main/LICENSE
     kind: tool
     categories: [agent-memory, context-management, cross-session-state]
     description: "Persistent agent memory with searchable observations, context retrieval, and integrations for several coding-agent harnesses."
     license:
-      spdx_id: NOASSERTION
+      spdx_id: Apache-2.0
       source_url: https://github.com/thedotmack/claude-mem
       review_status: unreviewed
     status: candidate
