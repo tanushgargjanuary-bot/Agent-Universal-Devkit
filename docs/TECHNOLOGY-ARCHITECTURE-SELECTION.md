@@ -120,3 +120,20 @@ Before changing the stack:
 - Never hide uncertainty. Ask for missing requirements or mark the decision provisional.
 - Never claim a language is objectively "best" without naming the workload and constraints.
 - Prefer coherent, boring, supportable architecture over novelty.
+
+
+## Orchestrator implementation
+
+The current orchestrator includes an opt-in deterministic assessment module at `core/orchestrator/src/technology-decision.js`.
+
+It:
+- Inspects supplied repository paths and optional manifest contents. It does not execute code.
+- Reports detected language, package-manager, and framework signals with limitations.
+- Compares at least two candidate architectures supplied by the caller.
+- Checks explicit workload capabilities, required platforms, and security controls.
+- Ranks feasible candidates using supplied cost estimates and configurable weights.
+- Abstains when evidence is missing or no candidate satisfies hard requirements.
+- Marks new-language additions, hybrid designs, and migrations as requiring human approval.
+- Attaches the assessment to an orchestration plan when the caller supplies `technologyAssessment`.
+
+It does not yet discover candidate architectures automatically, validate claims in supplied evidence, benchmark implementations, generate an ADR, or execute an approved migration. Candidate discovery and evidence verification remain required future work. The engine is a proposal aid, not an autonomous architect.
