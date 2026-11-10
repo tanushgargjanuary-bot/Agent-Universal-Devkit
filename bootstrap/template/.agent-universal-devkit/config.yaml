@@ -1,0 +1,23 @@
+schema_version: 1
+
+devkit:
+  name: Agent-Universal-Devkit
+  repository: https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit
+  branch: main
+  manifest: manifest.yaml
+  instructions:
+    universal: agents/universal/INSTRUCTIONS.md
+    security: policies/SECURITY.md
+  catalogs:
+    tools: catalog/tools.yaml
+    skills: catalog/skills.yaml
+    harnesses: catalog/harnesses.yaml
+
+project:
+  auto_detect: true
+  install_tools_automatically: false
+
+updates:
+  check: true
+  apply_instruction_updates: manual
+  dependency_updates: approval_required
