@@ -20,9 +20,8 @@ on:
       - "README.md"
       - ".gitignore"
       - "AGENTS.md"
-      - "docs/REPOSITORY-GOVERNANCE.md"
-      - "docs/REPOSITORY-HYGIENE-CHECKER.md"
-      - ".github/workflows/repository-hygiene.yml"
+      - "docs/**"
+      - "CONTRIBUTING.md"      - ".github/workflows/repository-hygiene.yml"
 
 permissions:
   contents: read

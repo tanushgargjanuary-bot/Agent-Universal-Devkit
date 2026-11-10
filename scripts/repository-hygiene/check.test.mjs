@@ -24,8 +24,8 @@ function fixture(t) {
     "## Next actions",
     "## Handoff metadata",
     "- Last reviewed: " + new Date().toISOString().slice(0, 10)
-  ].join("\\n"));
-  fs.writeFileSync(path.join(root, "docs", "WORKLOG.md"), "# Work Log\\n\\n## History\\n");
+  ].join("\n"));
+  fs.writeFileSync(path.join(root, "docs", "WORKLOG.md"), "# Work Log\n\n## History\n");
   return root;
 }
 function run(root, ...args) {
@@ -123,7 +123,7 @@ test("downgrades missing continuity documents for L1 prototypes", t => {
 
 test("detects incomplete handoff structure and stale state", t => {
   const root = fixture(t);
-  fs.writeFileSync(path.join(root, "docs", "PROJECT-STATE.md"), "# Project State\\n\\n## Project identity\\n- Last reviewed: 2000-01-01\\n");
+  fs.writeFileSync(path.join(root, "docs", "PROJECT-STATE.md"), "# Project State\n\n## Project identity\n- Last reviewed: 2000-01-01\n");
   const result = run(root);
   const report = JSON.parse(result.stdout);
   assert.equal(report.findings.some(x => x.rule === "ARCHITECTURE_SECTION_MISSING"), true);
