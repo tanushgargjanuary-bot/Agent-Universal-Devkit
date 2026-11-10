@@ -11,7 +11,7 @@ const DDL = [
  "CREATE INDEX IF NOT EXISTS idx_approval_requests_status_expiry ON approval_requests(status,expires_at)",
  "CREATE TABLE IF NOT EXISTS approval_events(id INTEGER PRIMARY KEY AUTOINCREMENT,request_id TEXT NOT NULL REFERENCES approval_requests(request_id),event_type TEXT NOT NULL,actor TEXT,detail_json TEXT NOT NULL,created_at TEXT NOT NULL)",
  "CREATE INDEX IF NOT EXISTS idx_approval_events_request ON approval_events(request_id,created_at)"
-].join("\n");
+].join(";\n") + ";";
 
 function stableValue(value) {
   if (Array.isArray(value)) return value.map(stableValue);

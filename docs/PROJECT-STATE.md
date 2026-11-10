@@ -164,7 +164,7 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `450f020` | Policy CI | First orchestrator run: 33/34 tests passed. One existing integration fixture used pending status; corrected to approved. Critical-risk mutation coverage expanded. Awaiting rerun. |
 
-| 2026-11-11 | `approval-store` | Approval Store | SQLite lifecycle, signed approvals, expiry, rejection/revocation, and signature verification implemented; CI pending. |
+| 2026-11-11 | `approval-store` | Approval Store | First CI run exposed a schema bootstrap syntax error (all eight store tests blocked at open). DDL separators fixed; rerun pending. |
 
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.

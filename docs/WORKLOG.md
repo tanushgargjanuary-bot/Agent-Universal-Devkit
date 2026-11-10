@@ -378,3 +378,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Tests:** Request idempotency, approval and policy integration, invalid credentials, repeated approval, signature/scope tampering, wrong public key, revocation, expiry/renewal, malformed scopes, and rejection.
 - **Security boundary:** The host must supply a real identity verifier and manage private signing keys outside Git. This does not yet enforce executor actions. Keep execution disabled.
 - **Verification:** Awaiting CI.
+
+
+### 2026-11-11 — Approval Store DDL correction
+
+- **Finding:** The first Approval Store CI run failed all eight store tests during SQLite initialisation. The DDL statements were joined without semicolon separators.
+- **Fix:** Added explicit statement separators to the schema bootstrap. No approval logic or test expectations were weakened.
+- **Verification:** Awaiting rerun.
