@@ -1,23 +1,30 @@
 # Repository Hygiene Checker
 
-The Devkit includes a small, read-only checker for common repository hygiene risks.
+The Devkit includes a small, read-only checker for common repository hygiene risks. The canonical implementation lives in the bootstrap payload so connected repositories can run the same code without a package install.
 
 ## Run
 
-From the repository root:
+In the Devkit repository:
 
 ```bash
 node scripts/repository-hygiene/check.mjs
 node scripts/repository-hygiene/check.mjs --format json
-node scripts/repository-hygiene/check.mjs --root ../another-project
-node scripts/repository-hygiene/check.mjs --root ../another-project --config .devkit/governance.json
 ```
+
+In a repository that received the Devkit bootstrap files:
+
+```bash
+node .devkit/scripts/repository-hygiene/check.mjs
+node .devkit/scripts/repository-hygiene/check.mjs --format json
+```
+
+To scan another directory, use `--root PATH`. The checker reads `.devkit/governance.json` from the scan root. Use `--config PATH` to select another config file.
 
 Requirements: Node.js 22 or later. The checker uses only Node.js built-in modules. It does not install dependencies, run project code, access the network, or modify files.
 
 ## Configuration
 
-Copy `.devkit/governance.example.json` to `.devkit/governance.json` in the target repository and set the correct governance level.
+The bootstrap includes `.devkit/governance.json`. Set its governance level to match the actual project risk.
 
 - `L1`: personal or prototype.
 - `L2`: maintained application.
