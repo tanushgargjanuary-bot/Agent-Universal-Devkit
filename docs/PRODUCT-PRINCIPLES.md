@@ -21,6 +21,10 @@ The product is the quality of the decision and result. Catalog size, agent count
 11. **Portable:** avoid mandatory dependence on one vendor, model, harness, language, or deployment mode.
 12. **Progressively simple:** keep the default path small.
 13. **Domain extensible:** add specialist capability through optional packs.
+14. **One problem front door:** users should be able to describe a supported problem in plain language; DEVKIT selects the workflow and capabilities.
+15. **Shared lifecycle:** workflows reuse common problem, context, evidence, plan, action, verification, and memory contracts.
+16. **Build the connective layer:** integrate mature specialist tools; build shared orchestration, evidence, policy, and verification where they add value.
+17. **Graceful limits:** support human-led, agent-led, hybrid, and unsupported outcomes. Never force a problem into an unsafe or unsuitable automation path.
 
 ## Decision rules
 
@@ -34,6 +38,18 @@ The product is the quality of the decision and result. Catalog size, agent count
 - Use approval according to risk, not as a blanket requirement.
 - Extend an existing capability before creating a competing subsystem.
 - Keep domain-specific logic out of the core unless multiple domains need the same stable primitive.
+
+## Unified problem-solving experience
+
+DEVKIT should present one coherent entry point for supported problems. Named
+features such as repo-scan, debugging, dependency analysis, security review,
+and release readiness are workflows over reusable capabilities, not separate
+products with disconnected state.
+
+"All features in one place" means a common interface and shared lifecycle. It
+does not mean one monolith or reimplementation of mature external tools. The
+core stays small; specialist logic belongs in reusable capabilities and domain
+packs. See [Unified Problem-Solving Model](UNIFIED-PROBLEM-SOLVING-MODEL.md).
 
 ## Product structure
 
