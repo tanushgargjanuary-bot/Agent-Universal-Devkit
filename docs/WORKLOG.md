@@ -12,3 +12,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Decisions:** Keep one concise project-state handoff record and one chronological work log. Link to canonical documentation rather than copying it. Require planning and devil's advocate review proportional to task risk. Classify future ideas separately from accepted scope.
 - **Open risks / blockers:** Automated continuity-document presence and freshness checks are not implemented. Full DEVKIT repository audit is pending. Bootstrap installer behaviour must be checked before claiming templates are automatically installed.
 - **Next action:** Complete the full DEVKIT audit, then implement and test continuity enforcement in the hygiene checker and bootstrap workflow.
+
+### 2026-11-10 — Enforce continuity updates across code and documentation changes
+- **Commits:** `26d1471`, `43afa67`
+- **Goal:** Prevent meaningful project changes from being merged without a durable handoff update.
+- **Changes:** Added a Git-diff continuity checker. Implementation/configuration changes require both project-state and work-log updates. Documentation-only changes require a work-log entry. L1 repositories receive warnings; L2–L4 receive errors. CI now runs the diff check for relevant project paths.
+- **Verification:** Awaiting the GitHub Actions run for this commit. Do not treat the check as passed until the run completes.
+- **Open risks / blockers:** Static checks cannot verify the quality or truth of a handoff entry. The bootstrap app is not deployed and does not update existing repositories.
+- **Next action:** Verify CI, finish the DEVKIT audit, and prioritise the existing-repository update mechanism.

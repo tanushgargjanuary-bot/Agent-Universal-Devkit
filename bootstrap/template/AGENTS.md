@@ -23,7 +23,7 @@ Maintain:
 - `docs/PROJECT-STATE.md`: concise, verified current state and next actions.
 - `docs/WORKLOG.md`: chronological record of meaningful completed or interrupted work.
 
-Update both after meaningful work and before handoff. Keep README, architecture, security, setup, API, test, and operations documentation aligned with actual changes. A replacement agent must be able to continue from repository contents without prior chat access. Verify recorded claims against source, tests, and Git state. Label assumptions and unknowns. Never store secrets.
+Update both after implementation/configuration changes and before handoff. For documentation-only changes, append a work-log entry. CI checks these updates. Keep README, architecture, security, setup, API, test, and operations documentation aligned with actual changes. A replacement agent must be able to continue from repository contents without prior chat access. Verify recorded claims against source, tests, and Git state. Label assumptions and unknowns. Never store secrets.
 
 For substantial plans, record outcome, requirements, scope, options, design, tasks, acceptance criteria, validation, risks, and recovery. Perform a devil's advocate review before implementation. Classify future ideas as Now, Next, Later, Explore, or Reject. Do not silently expand scope.
 

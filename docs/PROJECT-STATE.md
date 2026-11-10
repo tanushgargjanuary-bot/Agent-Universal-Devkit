@@ -21,7 +21,7 @@
 | Task planning | Implemented foundation | `core/orchestrator/` | Does not launch agent processes |
 | Policy Engine | Implemented decision core | `core/orchestrator/src/policy-engine.js`, policy docs | No approval store, identity provider, replay control, or executor enforcement |
 | Repository governance and quality rubrics | Implemented guidance and checker | `docs/REPOSITORY-GOVERNANCE.md`, `rubrics/`, `bootstrap/template/` | Governance-level policy enforcement remains incomplete |
-| Project intelligence and continuity protocol | Guidance and templates implemented | `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`, `bootstrap/template/docs/` | Automated presence/freshness enforcement is not implemented |
+| Project intelligence and continuity protocol | Guidance, templates, static checks, and diff-based CI enforcement implemented | `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`, `bootstrap/template/docs/`, repository-hygiene scripts | Checks cannot prove semantic accuracy or recover uncommitted work after a hard environment loss |
 | Pack runtime | Planned | `docs/PACK-MODEL.md`, roadmap | Dependency resolution, activation, and safe removal are not implemented |
 | Harness adapters and execution | Mostly planned | `agents/`, `integrations/`, architecture docs | No complete, validated multi-harness execution path |
 
@@ -62,7 +62,7 @@
 
 ## 6. Active work and next actions
 1. **Complete repository-wide DEVKIT audit.** Inventory and read all relevant documentation, agent instructions, subsystem specs, source, tests, CI, branches, PRs, and issues. Compare claims with implementation.
-2. **Implement continuity enforcement.** Extend the hygiene checker to detect missing or structurally incomplete project-state/work-log records and stale handoff metadata, with risk-aware severity and tests.
+2. **Close the remaining continuity gap.** Design a safe, review-based update workflow for existing repositories. The GitHub App currently bootstraps only newly created repositories and is not deployed.
 3. **Improve agent planning support.** Evaluate whether planning protocol templates, task schemas, and orchestrator outputs should encode acceptance criteria, adversarial review, risk, recovery, and future-scope classification.
 4. **Continue policy-aware execution work.** Approval lifecycle, trusted identity, replay protection, executor-side enforcement, audit records, simulated executor, and adversarial end-to-end tests.
 5. **Continue resource and knowledge roadmap items** based on the next audited priority.
@@ -81,14 +81,14 @@ Do not report checks as passed unless they ran and passed.
 - **Verified:** The orchestrator does not launch or coordinate real agent processes.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.
-- **Verified:** Continuity documents are not yet checked automatically for presence or freshness.
+- **Verified:** Continuity presence, structure, review-date freshness, and changed-file update requirements are checked by CI; semantic accuracy remains an agent/human responsibility.
 - **Unknown:** Whether every branch and open PR contains unique work or can be consolidated safely; inspect before merging/deleting.
 - **Owner action:** Verify branch protection, required status checks, GitHub App registration, and deployment configuration.
 - **Audit gap:** The complete documentation set, all implementation modules, all tests, and all workflow files have not yet been reviewed in this audit cycle.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `2625ded2f2d160660f4173244a999fc4d2da1311`
+- **Commit:** `43afa67fe713c5748b25ee9459051473a284971c`
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

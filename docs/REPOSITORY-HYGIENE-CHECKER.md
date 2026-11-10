@@ -76,3 +76,8 @@ JSON output uses schema version 1. It includes the selected governance level, fi
 - Do not treat the governance level as a substitute for threat modelling, domain standards, formal review, or certification.
 
 Use this checker as one low-cost signal. Keep the project-specific rubric and repository governance guide as the authoritative review process.
+
+
+## Continuity diff enforcement
+
+The companion `scripts/repository-hygiene/check-continuity-diff.mjs` checks changes between a pull-request base and head or between push commits. Implementation/configuration changes require updates to both `docs/PROJECT-STATE.md` and `docs/WORKLOG.md`; documentation-only changes require a work-log entry. L1 projects receive warnings instead of failures. Run locally with `--base SHA --head SHA`. This check confirms that files changed, not that their contents are correct.
