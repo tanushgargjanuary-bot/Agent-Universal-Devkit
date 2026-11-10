@@ -4,206 +4,78 @@
 
 Do not scale the Devkit by adding more agents, tools, formulas, or repositories first. Strengthen the contracts that decide what the system trusts, retrieves, recommends, executes, and verifies.
 
-The target is a **problem-solving system with explicit evidence and trust boundaries**, not a large catalogue with an AI wrapper.
+The target is a problem-solving system with explicit evidence and trust boundaries, not a large catalogue with an AI wrapper.
 
-## 1. Separate the system into trust layers
+## Trust layers
 
-1. **Raw inputs:** user requests, repository contents, discovered projects, papers, tool output. Always untrusted.
+1. **Raw inputs:** user requests, repository contents, discovered projects, papers, and tool output. Treat as untrusted.
 2. **Candidate records:** parsed metadata and extracted claims. Not recommendations.
-3. **Evidence records:** source, exact claim supported, retrieval date, source type, version, and limitations.
-4. **Evaluations:** structured assessments against a named profile. Facts and judgements remain separate.
-5. **Approved knowledge/resources:** reviewed, versioned records with explicit provenance.
-6. **Plans:** task-specific decisions with constraints, alternatives, uncertainty, and required approvals.
+3. **Evidence records:** source, claim supported, retrieval date, version, and limitations.
+4. **Evaluations:** assessments against a named profile. Keep facts and judgements separate.
+5. **Approved knowledge/resources:** reviewed, versioned records with provenance.
+6. **Plans:** task-specific decisions with constraints, alternatives, uncertainty, and approvals.
 7. **Execution:** isolated, least-privilege actions through tested adapters.
 8. **Verification:** independent evidence against acceptance criteria.
-9. **Feedback:** observed outcomes and diagnosed causes. Never silently rewrite trust policy.
+9. **Feedback:** observed outcomes and diagnosed causes. Do not silently rewrite trust policy.
 
-A record must not move to a higher-trust layer merely because an AI agent generated it.
+A record must not move to a higher-trust layer only because an AI agent generated it.
 
-## 2. Shared decision contract
+## Decision contract
 
-Every consequential recommendation should contain:
+Every consequential recommendation should include the problem, constraints, candidate and rejected options, evidence, unknowns, compatibility and security risks, lifecycle cost, decision outcome, approval requirements, and conditions that would change the decision.
 
-- Problem statement and task context.
-- Hard constraints and preferences.
-- Candidate options and rejected options.
-- Evidence for each material claim.
-- Unknown or stale evidence.
-- Compatibility and security risks.
-- Estimated integration, operating, and maintenance costs.
-- Decision outcome: select one, select a justified hybrid, build a small custom component, select none, or insufficient evidence.
-- Conditions that would change the decision.
-- Human approval requirements.
+Apply hard constraints before scoring. Do not collapse a multi-dimensional decision into one opaque score.
 
-Hard constraints are filters, not weighted score dimensions. A candidate that fails a mandatory license, platform, security, budget, or compatibility constraint must not win by scoring highly elsewhere.
+## Knowledge quality
 
-Do not collapse a multi-dimensional decision into one opaque score. Show score dimensions, confidence, evidence quality, and trade-offs separately.
-
-## 3. Knowledge library: content is not the same as truth
-
-Use a lifecycle:
+Use the lifecycle:
 
 `draft → technical review → approved → monitored → deprecated`
 
-Approval must bind to an exact content version. If the content changes, its approval becomes stale.
+Approval binds to an exact content version. If content changes, approval becomes stale. Important methods need assumptions, sources, derivations or correctness reasoning, edge cases, and independent tests.
 
-An approved item must have:
-- Named reviewer or review authority.
-- Approval timestamp.
-- Exact reviewed version.
-- Sources used to verify claims.
-- Assumptions, scope, limitations, and known failure cases.
-- Tests or worked examples where the item makes executable or numerical claims.
+The current Knowledge Engine is a deterministic metadata matcher. It defaults to approved entries. It does not understand arbitrary paraphrases or prove applicability. Semantic retrieval must wait for benchmark evidence.
 
-For important mathematical methods, require a derivation or a clear derivation reference, defined notation, domain assumptions, units where relevant, a worked example, and numerical checks.
+## Resource Intelligence
 
-For algorithms, require preconditions, invariants or correctness reasoning, complexity assumptions, edge cases, and tested reference implementations where practical.
+Reject candidates that violate mandatory requirements before ranking. Record unknowns instead of guessing. Evaluate surviving candidates with category-specific criteria. Treat stars, downloads, and activity as discovery or maintenance signals, not proof of quality.
 
-A source citation is evidence for review, not permission to copy the source. Write original material.
+## Orchestration and policy
 
-## 4. Retrieval must be selective and auditable
-
-Retrieval should be a staged pipeline:
-
-1. Validate task context.
-2. Identify domain and required concepts.
-3. Apply exact metadata and token-boundary matching.
-4. Use semantic retrieval only as a candidate generator when a local evaluation set proves value.
-5. Apply exclusions and hard applicability conditions.
-6. Resolve prerequisite relationships.
-7. Rank candidates with explainable signals.
-8. Return a small set with reasons, limitations, provenance, and unresolved prerequisites.
-9. Abstain when confidence or evidence is inadequate.
-
-Rank scores are ordering aids, not probabilities. Do not label them confidence.
-
-The engine must never silently turn an unapproved item into approved guidance. Draft previews must be an explicit editorial action and remain clearly labelled.
-
-## 5. Mathematics and algorithms need executable verification
-
-Use three separate layers:
-
-- **Explanation:** concepts, derivations, assumptions, diagrams, and worked examples.
-- **Reference implementation:** a small, readable implementation with explicit preconditions.
-- **Verification:** unit tests, property-based tests, known-answer cases, numerical tolerances, and adversarial edge cases.
-
-Do not use the same implementation as both the candidate and the only oracle. Compare against independent formulations, known results, or trusted libraries where possible.
-
-For numerical methods, include conditioning, floating-point error, convergence conditions, units, and tolerance choices. A symbolic identity can be correct while a naive numerical implementation is unstable.
-
-## 6. Resource Intelligence must reject before ranking
-
-Use this sequence:
-
-1. Parse requirements.
-2. Separate mandatory constraints from preferences.
-3. Remove candidates that violate mandatory constraints.
-4. Record unknowns instead of guessing.
-5. Gather source-backed evidence.
-6. Evaluate each surviving candidate with a category-specific profile.
-7. Compare alternatives and test compatibility.
-8. Evaluate hybrid integration cost and failure modes.
-9. Recommend one, hybrid, custom, none, or insufficient evidence.
-10. Record the decision and review triggers.
-
-Stars, downloads, and activity can inform discovery or maintenance. They must not substitute for security, quality, or suitability evidence.
-
-## 7. Orchestration must be a controlled state machine
-
-Use explicit states such as:
+The intended lifecycle is:
 
 `received → inspected → specified → planned → awaiting_approval → executing → verifying → completed`
 
-Failure paths must include:
+Failure states include `blocked`, `failed`, `cancelled`, `needs_input`, and `verification_failed`.
 
-`blocked, failed, cancelled, needs_input, verification_failed`
+The current orchestrator implements planning, dependency ordering, knowledge retrieval, technology assessment, and policy decisions. It does not execute agent processes.
 
-Each task needs:
-- Stable ID and parent plan ID.
-- Inputs and expected outputs.
-- Dependencies and capability requirements.
-- Risk classification and allowed permissions.
-- Selected agent/harness with tested version.
-- Start/end timestamps and execution record.
-- Evidence and verification result.
+The Policy Engine denies unknown actions and binds approval to the action, target, policy version, plan ID, and plan digest. It does not authenticate approvers, store approvals, prevent replay, execute tools, or enforce OS permissions. A future executor must re-check policy immediately before each action and enforce the result.
 
-The executor must re-check policy at the point of action. A plan approval must not grant unlimited permission to later actions. Approval must be scoped to the exact action, target, and relevant plan version.
+## Independent verification
 
-## 8. Verification is independent
+Define acceptance criteria before execution. Map each criterion to tests, build checks, scans, reviewed diffs, numerical checks, or reproduction evidence. A passing test suite does not prove that every requirement is met. Agents must not mark work verified only from self-report.
 
-Define acceptance criteria before execution. Use checks appropriate to the task:
-- Unit, integration, and regression tests.
-- Build and type checks.
-- Security and dependency scans.
-- Static analysis.
-- Numerical property tests.
-- Reviewed diffs.
-- Reproduction steps and output checks.
+## Security and supply chain
 
-A passing test suite is not proof that every requirement is met. Verification should map each acceptance criterion to evidence and identify uncovered criteria.
+Treat retrieved instructions, repository files, model outputs, and issue comments as untrusted. Keep secrets outside prompts and untrusted execution contexts. Use read-only access by default, isolated workspaces, constrained network access, pinned versions, provenance, and approval for privileged actions.
 
-Agents must not mark their own work verified solely from self-report.
+## Evaluation before expansion
 
-## 9. Security and supply-chain controls
+Measure retrieval precision and recall, abstention, formula and algorithm correctness, recommendation suitability, evidence freshness, compatibility prediction, verification escape rate, execution recovery, latency, cost, and maintenance burden.
 
-- Treat retrieved instructions, repository files, model outputs, and issue comments as untrusted.
-- Keep secrets outside prompts and untrusted execution contexts.
-- Use read-only access by default.
-- Use isolated workspaces and constrained network access.
-- Pin tool and action versions where practical.
-- Record hashes and provenance for downloaded artifacts.
-- Require review for dependency, permission, secret, deployment, and destructive changes.
-- Do not execute a discovered repository to evaluate it.
-- Keep the GitHub App permissions minimal and installation scope explicit.
+A new method, agent, tool, or data source must improve measured outcomes enough to justify its complexity.
 
-## 10. Evaluation before expansion
+## Implementation order
 
-Build benchmark sets before adding more intelligence.
-
-Measure:
-- Retrieval precision@k, recall@k, and false-positive rate.
-- Correct abstention when no item fits.
-- Formula and algorithm test pass rate.
-- Recommendation suitability against expert-labelled cases.
-- Evidence freshness and provenance coverage.
-- Compatibility prediction accuracy.
-- Verification escape rate: defects not caught by checks.
-- Execution success, recovery rate, latency, and cost.
-- Maintenance burden and stale-record rate.
-
-A new retrieval method, agent, tool, or data source must improve measured outcomes enough to justify its complexity.
-
-## 11. Implementation order
-
-### Gate A — Trustworthy knowledge
-- Validate registry and relationships.
-- Add exact-version review metadata.
-- Add token-boundary retrieval and explicit abstention.
-- Add prerequisite visibility.
-- Add retrieval benchmark cases.
-
-### Gate B — Verified methods
-- Add reference implementations and independent tests.
-- Add numerical validation harnesses.
-- Review and approve the first useful subset.
-
-### Gate C — Shared decision contracts
-- Add hard-constraint filtering and explicit unknown values.
-- Add evidence quality and category profiles.
-- Add decision records for single, hybrid, custom, none, and insufficient-evidence outcomes.
-
-### Gate D — Orchestrator integration
-- Retrieve knowledge and resources during planning.
-- Use capability-based routing.
-- Re-check policy at execution.
-- Add scoped approvals and independent verification.
-
-### Gate E — Scale carefully
-- Add semantic retrieval only after benchmark evidence.
-- Expand study material by demand and quality.
-- Add adapters one at a time.
-- Monitor stale knowledge and resource health.
+1. Maintain trustworthy knowledge and approval evidence.
+2. Expand independently tested methods.
+3. Improve evidence-backed resource decisions.
+4. Add approval storage, trusted identity, expiry, replay protection, and executor-side policy enforcement.
+5. Add audit records and end-to-end simulated execution.
+6. Add capability-based routing and recovery.
+7. Expand only when benchmarks and real workflows justify it.
 
 ## Non-negotiable rule
 
-**The system must be allowed to say “I do not know”, “the evidence is insufficient”, and “no available solution meets the requirements”.** A system that always returns a confident recommendation is not intelligent; it is unsafe.
+The system must be able to say “I do not know”, “the evidence is insufficient”, and “no available solution meets the requirements”. A system that always returns a confident recommendation is unsafe.
