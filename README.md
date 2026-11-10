@@ -26,6 +26,8 @@ The native **Engineering Knowledge & Methods Library** supports both priorities.
 - Read-only repository discovery and an initial evidence-backed repo-scan workflow, with JSON/Markdown CLI reports and deterministic entry-point/workspace signals.
 - Task planner with dependency ordering and policy evaluation.
 - Versioned Policy Engine with a deny-by-default action catalogue and plan-bound approval records.
+- SQLite Approval Store with Ed25519 signatures, expiry, revocation, and one-time approval consumption.
+- Policy-enforcing Execution Gate with plan/dependency validation, adapter capability routing, and mandatory audit callback.
 - Repository governance, project-type rubrics, bootstrap guidance, and a read-only hygiene checker.
 - GitHub workflows for tests, quality checks, CodeQL, and secret-history scanning.
 - Project intelligence and continuity protocol with durable project-state and work-log templates for agent handoffs.
@@ -77,20 +79,21 @@ This CLI-first example is the current reproducible demonstration. A terminal GIF
 
 ## Policy and execution boundary
 
-The Policy Engine evaluates known actions and denies unknown actions. It can require a scoped approval record tied to the exact action, target, policy version, plan ID, and plan digest. A trusted `verifyApproval` callback must validate the approval.
+The Policy Engine evaluates known actions and denies unknown actions. It can require a scoped approval record tied to the exact action, target, policy version, plan ID, and plan digest. The SQLite Approval Store signs approvals with Ed25519, enforces expiry and one-time consumption, and invalidates approvals after revocation. The Execution Gate revalidates the plan and policy, consumes approvals, routes to one compatible adapter, requires an audit callback, and executes sequentially.
 
-**Important:** the Policy Engine is a decision core. It does not authenticate people, store approval records, prevent replay by itself, execute tools, or enforce operating-system permissions. No executor adapter currently enforces policy at the point of action. Do not describe this repository as a secure agent execution platform.
+**Security boundary:** The host must provide real approver authentication, protected key provisioning/rotation, and a durable audit sink. There are no production adapters or OS/container sandbox in this repository. The gate cannot stop a host from bypassing it if raw adapters are exposed. Do not describe DEVKIT as a secure autonomous execution platform.
 
 ## Start here
 
-1. Read [Vision and Scope](docs/VISION-AND-SCOPE.md).
-2. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
-3. Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md).
-4. Read [Project Intelligence and Continuity](docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md).
-5. Read [README Demonstration Standard](docs/README-DEMO-STANDARD.md) before creating a repository or major user-facing feature.
-6. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
-7. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
-8. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
+1. Read [Agent Handoff](HANDOFF.md) when taking over this repository without prior chat context.
+2. Read [Vision and Scope](docs/VISION-AND-SCOPE.md).
+3. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
+4. Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md).
+5. Read [Project Intelligence and Continuity](docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md).
+6. Read [README Demonstration Standard](docs/README-DEMO-STANDARD.md) before creating a repository or major user-facing feature.
+7. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
+8. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
+9. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
 
 Run the read-only hygiene check:
 
@@ -115,8 +118,8 @@ Run subsystem tests from their package directories with the scripts defined in e
 
 ## Current limitations
 
-- The orchestrator plans and evaluates policy. It does not launch or coordinate real agent processes.
-- Executor-side policy enforcement and approval lifecycle management remain future work.
+- The orchestrator plans and provides a policy-enforcing Execution Gate, but it does not launch or coordinate real agent processes.
+- The Approval Store and one-time replay protection exist. Production identity, key management, durable audit storage, production adapters, and OS/container isolation remain host integration work.
 - Agent harness directories are mostly planned entry points, not validated adapters.
 - Pack manifests define a governance contract. Runtime installation, activation, dependency resolution, and safe removal are not implemented.
 - Knowledge retrieval is deterministic metadata matching. It does not understand arbitrary paraphrases or prove applicability.

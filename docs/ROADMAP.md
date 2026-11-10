@@ -96,11 +96,13 @@ Detailed design and constraints: [Unified Problem-Solving Model](UNIFIED-PROBLEM
 - [x] Add a versioned action policy catalogue with deny-by-default handling for unknown actions.
 - [x] Bind approval requests to the exact action, target, policy version, and plan digest.
 - [x] Require a trusted approval-verification callback; reject unverified or stale approvals.
-- [ ] Add approval request storage and lifecycle management.
-- [ ] Add trusted human identity integration, expiry, and replay protection.
-- [ ] Add executor adapters that enforce policy immediately before action.
-- [ ] Add tamper-evident execution audit records.
-- [ ] Add a simulated executor and end-to-end approval tests.
+- [x] Add SQLite approval request storage and lifecycle management with Ed25519-signed records, expiry, rejection, revocation, and event history.
+- [ ] Integrate a production trusted human identity provider and protected signing-key provisioning/rotation. The store exposes host callbacks; it does not supply identity infrastructure.
+- [x] Add one-time approval consumption and replay rejection.
+- [x] Add the policy-enforcing Execution Gate and adapter contract with plan/dependency validation, capability/harness routing, and mandatory audit callback.
+- [ ] Add production adapters and OS/container isolation. The gate is not a sandbox and must not be bypassable through exposed raw adapters.
+- [ ] Add a durable, tamper-evident audit backend. The current gate requires an audit callback but does not provide the backend.
+- [x] Add simulated adapter tests and end-to-end approval/replay tests.
 - [ ] Add requirements extraction and measurable acceptance criteria.
 - [ ] Retrieve and compare approved resources during planning.
 - [ ] Add capability-based agent and harness routing.

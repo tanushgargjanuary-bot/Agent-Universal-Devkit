@@ -80,7 +80,7 @@
 2. **Build project context assembly.** Produce a bounded, evidence-linked context pack with project purpose, architecture signals, entry-point candidates, package/workspace layout, test/build commands, conventions, and known limitations. Never invent commands or infer unverified runtime behaviour.
 3. **Expand deterministic checks.** Add dependency, test, CI, configuration, and documentation checks only where source evidence is available. Keep read-only defaults and bounded file access.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
-5. **Complete the trusted approval lifecycle.** The plan digest now binds repository and task routing fields, technology decisions, and policy version; runtime action rules now load from one canonical JSON catalogue referenced by `policy.yaml`. SQLite approval storage, Ed25519 signatures, expiry, authenticated-decision callbacks, rejection, revocation, and one-time consumption are now implemented. The Approval Store is now connected to a new Execution Gate. The gate revalidates plan digests, checks policy and live approval status per action, routes only to adapters that meet harness/capability contracts, requires an audit callback, and executes sequentially. Next integrate a real identity provider, protected key management, durable audit storage, and least-privilege adapters. Keep execution disabled until those integrations are tested.
+5. **Complete the trusted approval lifecycle.** The plan digest now binds repository and task routing fields, technology decisions, and policy version; runtime action rules now load from one canonical JSON catalogue referenced by `policy.yaml`. SQLite approval storage, Ed25519 signatures, expiry, authenticated-decision callbacks, rejection, revocation, and one-time consumption are now implemented. The Approval Store is now connected to a new Execution Gate. The gate revalidates plan digests, checks policy and live approval status per action, routes only to adapters that meet harness/capability contracts, requires an audit callback, and executes sequentially. Next integrate a production identity provider, protected key management, durable audit storage, production least-privilege adapters, and process isolation. The gate is not a sandbox; keep unrestricted execution disabled.
 6. **Improve Resource Registry evidence quality.** Add labelled deduplication benchmarks and review-consistency tests. The dedicated registry workflow now passes 12/12 tests; this does not validate semantic accuracy or production-scale performance.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
 8. **Review automated trending candidates.** Inspect each daily/weekly discovery PR, verify source/dependencies/security/license/project fit, and approve only reviewed resources.
@@ -172,29 +172,31 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `c5565a1` | One-time approval consumption | Orchestrator Core Tests passed 63/63. Orchestration quality, repository hygiene, continuity diff, and secret-history scan passed. CodeQL pending. |
 
+| 2026-11-11 | `7217234` | CodeQL, repository hygiene, secret-history scan | Passed on reviewed main HEAD `72172341b537e320db22eb11fd94e57efcd36e12`. |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
 - **Verified:** The README demo standard is guidance; the repo-scan demo heuristic does not validate media quality or functionality.
 - **Verified:** The capability selector filters and ranks metadata declarations only. It does not prove runtime compatibility or execute capabilities. It does not provide storage, cross-record integrity, capability discovery, execution, or approvals.
-- **Verified:** The orchestrator does not launch or coordinate real agent processes.
+- **Verified:** The orchestrator does not launch or coordinate real agent processes. The Execution Gate invokes registered adapters but supplies no production adapters.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.
 - **Verified:** Continuity presence, structure, placeholder completion, review-date freshness, and changed-file update requirements are checked by CI. The diff check requires a new dated work-log entry; L2–L4 cannot disable the checks or lower governance in the same change set. Semantic accuracy remains an agent/human responsibility.
-- **Verified audit findings (partly remediated in latest main commits):** Resource Registry CLI import, filter-before-pagination, metadata status preservation, bounded search, and deduplication workload limits have code changes and regression tests; dedicated CI passed 12/12 tests on 2026-11-11. Orchestration plan-digest coverage and duplicated action-rule definitions have code changes and regression tests; the orchestrator workflow is awaiting verification. Approval storage, authenticated identity, expiry/replay protection, and executor enforcement remain unimplemented.
+- **Verified audit findings (partly remediated in latest main commits):** Resource Registry CLI import, filter-before-pagination, metadata status preservation, bounded search, and deduplication workload limits have code changes and regression tests; dedicated CI passed 12/12 tests on 2026-11-11. Orchestration plan-digest coverage and duplicated action-rule definitions have code changes and regression tests; the orchestrator workflow is awaiting verification. Approval storage, expiry, revocation, one-time consumption, and the policy-enforcing Execution Gate are implemented. Production identity-provider integration, protected key provisioning/rotation, durable audit storage, production adapters, and OS/container isolation remain unimplemented.
 - **Verified branch audit:** Six non-main branches are fully behind `main` with zero unique commits. Three squash-merged branches retain unique commit ancestry, but their changed content was checked against `main`: PR #17 dependency/workflow files match, PR #16 discovery code/tests/docs match and its workflow pins are older, and PR #5 technology-decision code matches while its schema/tests/docs on `main` contain later changes. All nine non-main branches are safe to delete; no branch-deletion action is available in the connected GitHub interface, so owner-side deletion remains.
-- **Owner action:** Delete the nine audited non-main branches; verify branch protection, required status checks, GitHub App registration, deployment configuration, and repository visibility. Live GitHub metadata currently reports `public`, despite the earlier instruction that the repository had been made private.
+- **Owner action:** Re-check the nine non-main branches against live `main` before deletion; verify branch protection, required status checks, GitHub App registration, deployment configuration, and repository visibility. Live GitHub metadata currently reports `public`, despite the earlier instruction that the repository had been made private.
 - **Audit gap:** Documentation and agent instructions were reviewed. Core source, tests, manifests, workflows, GitHub App, and branch/PR state received a targeted static audit. Full package test execution, live webhook validation, dependency audit, and owner-only settings remain unverified.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-11
-- **Commit:** `main` (resolve the live HEAD before resuming).
-- **Updated by:** ChatGPT GitHub integration
+- **Reviewed source HEAD:** `72172341b537e320db22eb11fd94e57efcd36e12`; verify live `main` before acting.
+- **Updated by:** ChatGPT GitHub integration; handoff documentation reconciled on 2026-11-11
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
 
 ## Recovery checklist
-- [ ] Read root `AGENTS.md` and this file.
+- [ ] Read root `HANDOFF.md`, then `AGENTS.md` and this file.
 - [ ] Read `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
 - [ ] Read recent `docs/WORKLOG.md` entries.
 - [ ] Verify current branch, commit, and working tree.

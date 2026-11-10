@@ -445,3 +445,13 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Orchestrator Core Tests passed 63/63. Orchestration quality passed. Repository hygiene, continuity diff, and repository scan passed on the follow-up documentation commit. Secret-history scan passed on the implementation commit. CodeQL remained pending at the time of this entry.
 - **Security effect:** A signed approval is now consumed atomically immediately before an adapter runs. A second execution using the same approval is denied. Revocation and consumption both invalidate stale approval objects.
 - **Remaining:** Production identity provider, private-key provisioning/rotation, durable audit sink, and least-privilege adapters remain host integration work. The gate is not an OS sandbox.
+
+
+### 2026-11-11 — Agent handoff and documentation consistency hardening
+
+- **Goal:** Make a fresh AI agent able to resume DEVKIT without access to prior chat history.
+- **Findings:** Root README and orchestrator README still described approval storage, replay protection, and executor enforcement as unimplemented. The roadmap also marked completed Approval Store and Execution Gate work as pending. The existing project-state record contained a stale risk statement.
+- **Changes:** Added root `HANDOFF.md` as the startup map; made it the first required intake step in `AGENTS.md`; documented the product mission, architecture, owner workflow preferences, current implementation boundaries, verification snapshot, external owner actions, and next work. Reconciled README, orchestrator README, roadmap, and project-state with the implemented Approval Store and Execution Gate without overstating production readiness.
+- **Verification basis:** Reviewed source and tests on `main` at `72172341b537e320db22eb11fd94e57efcd36e12`. Orchestrator Core Tests passed 63/63 on `c5565a1`; CodeQL, repository hygiene, and secret-history scan passed on `7217234`. These are historical results; rerun relevant checks after this documentation commit.
+- **Open owner actions:** GitHub currently reports repository visibility as public despite the earlier instruction that it was made private; verify in GitHub Settings. Re-check nine non-main branches before deletion. Verify branch protection and GitHub App deployment externally.
+- **Next:** Build the production host trust integration (identity, protected key lifecycle, durable audit), then a read-only adapter behind the Execution Gate; continue Resource Intelligence in parallel.

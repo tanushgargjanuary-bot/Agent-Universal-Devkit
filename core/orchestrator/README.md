@@ -49,18 +49,18 @@ The store does not implement a user interface, identity provider, key provisioni
 
 Keep execution disabled until a real identity provider, protected key management, durable audit sink, and least-privilege adapters are integrated.
 
-## Critical limitation
+## Critical limitation and security boundary
 
-The Policy Engine is a deterministic decision core. It does **not**:
+The Policy Engine remains a deterministic decision core. The Approval Store and Execution Gate add approval lifecycle and a standard adapter invocation path:
 
-- Authenticate the human approver.
-- Store or manage approval records.
-- Enforce approval expiry or replay protection.
-- Execute tools or agent processes.
-- Enforce operating-system or container permissions.
-- Guarantee that an executor follows the policy result.
+- The Approval Store stores scoped requests, signs approvals with Ed25519, enforces expiry, supports rejection/revocation, records events, and consumes approvals exactly once.
+- The host must provide a real `authenticateApprover` implementation and secure private-key provisioning, storage, backup, and rotation.
+- The Execution Gate revalidates the plan digest and dependency order, evaluates each action, checks the current approval record, consumes the approval, resolves one compatible adapter, requires an audit callback, and executes sequentially.
+- No production adapter or agent-process launcher is included.
+- The audit callback contract does not itself provide durable or tamper-evident storage.
+- The gate is not an OS/container sandbox. A host can bypass it if it exposes raw adapter methods elsewhere.
 
-The integration must provide trusted identity and approval storage. An executor must re-evaluate policy immediately before each action and enforce the result with least-privilege controls. Until that exists, policy evaluation is not a complete execution security boundary.
+Keep raw adapters private and do not enable unrestricted execution. Add least-privilege process isolation before write-capable adapters. Do not claim a complete execution security boundary until the host integration has been independently tested.
 
 ## Technology assessment boundary
 
@@ -82,4 +82,4 @@ The intended lifecycle is:
 
 `understand → retrieve → plan → approve → execute → verify → report`
 
-The current implementation reaches planning and policy evaluation. Harness execution, approval lifecycle management, audit records, retries, and independent runtime verification remain future work.
+The current implementation includes planning, policy decisions, approval lifecycle storage, and a policy-enforcing adapter gate. Production harness adapters, agent-process orchestration, durable audit storage, retries/recovery, OS-level isolation, and independent runtime verification remain future work.
