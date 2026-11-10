@@ -1,24 +1,93 @@
 {
   "policy_version": "1.1.0",
-  "risk_order": { "low": 0, "medium": 1, "high": 2, "critical": 3 },
-  "mutating_actions": ["write_repository_file","install_dependency","upgrade_dependency","change_repository_permissions","export_secret","deploy_to_staging","deploy_to_production","destructive_database_migration","delete_repository_data","execute_untrusted_code"],
+  "risk_order": {
+    "low": 0,
+    "medium": 1,
+    "high": 2,
+    "critical": 3
+  },
+  "mutating_actions": [
+    "write_repository_file",
+    "install_dependency",
+    "upgrade_dependency",
+    "change_repository_permissions",
+    "export_secret",
+    "deploy_to_staging",
+    "deploy_to_production",
+    "destructive_database_migration",
+    "delete_repository_data",
+    "execute_untrusted_code",
+    "create_branch",
+    "run_tests"
+  ],
   "actions": {
-    "read_repository": { "effect": "allow", "minimumRisk": "low" },
-    "read_tests": { "effect": "allow", "minimumRisk": "low" },
-    "inspect_dependencies": { "effect": "allow", "minimumRisk": "low" },
-    "run_tests": { "effect": "allow", "minimumRisk": "low" },
-    "write_repository_file": { "effect": "risk_gated", "minimumRisk": "medium" },
-    "create_branch": { "effect": "allow", "minimumRisk": "low" },
-    "install_dependency": { "effect": "approval", "minimumRisk": "medium" },
-    "upgrade_dependency": { "effect": "approval", "minimumRisk": "medium" },
-    "network_access": { "effect": "approval", "minimumRisk": "medium" },
-    "change_repository_permissions": { "effect": "approval", "minimumRisk": "high" },
-    "access_secret": { "effect": "approval", "minimumRisk": "high" },
-    "export_secret": { "effect": "approval", "minimumRisk": "critical" },
-    "deploy_to_staging": { "effect": "approval", "minimumRisk": "high" },
-    "deploy_to_production": { "effect": "approval", "minimumRisk": "critical" },
-    "destructive_database_migration": { "effect": "approval", "minimumRisk": "critical" },
-    "delete_repository_data": { "effect": "approval", "minimumRisk": "critical" },
-    "execute_untrusted_code": { "effect": "approval", "minimumRisk": "critical" }
+    "read_repository": {
+      "effect": "allow",
+      "minimumRisk": "low"
+    },
+    "read_tests": {
+      "effect": "allow",
+      "minimumRisk": "low"
+    },
+    "inspect_dependencies": {
+      "effect": "allow",
+      "minimumRisk": "low"
+    },
+    "run_tests": {
+      "effect": "allow",
+      "minimumRisk": "low"
+    },
+    "write_repository_file": {
+      "effect": "risk_gated",
+      "minimumRisk": "medium"
+    },
+    "create_branch": {
+      "effect": "allow",
+      "minimumRisk": "low"
+    },
+    "install_dependency": {
+      "effect": "approval",
+      "minimumRisk": "medium"
+    },
+    "upgrade_dependency": {
+      "effect": "approval",
+      "minimumRisk": "medium"
+    },
+    "network_access": {
+      "effect": "approval",
+      "minimumRisk": "medium"
+    },
+    "change_repository_permissions": {
+      "effect": "approval",
+      "minimumRisk": "high"
+    },
+    "access_secret": {
+      "effect": "approval",
+      "minimumRisk": "high"
+    },
+    "export_secret": {
+      "effect": "approval",
+      "minimumRisk": "critical"
+    },
+    "deploy_to_staging": {
+      "effect": "approval",
+      "minimumRisk": "high"
+    },
+    "deploy_to_production": {
+      "effect": "approval",
+      "minimumRisk": "critical"
+    },
+    "destructive_database_migration": {
+      "effect": "approval",
+      "minimumRisk": "critical"
+    },
+    "delete_repository_data": {
+      "effect": "approval",
+      "minimumRisk": "critical"
+    },
+    "execute_untrusted_code": {
+      "effect": "approval",
+      "minimumRisk": "critical"
+    }
   }
 }

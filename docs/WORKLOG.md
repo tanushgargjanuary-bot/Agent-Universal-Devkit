@@ -355,3 +355,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Tests added:** Digest invalidation when routing fields change; stable digest under object-key and set-like-array reordering; invalid routing list and duplicate task ID rejection; approved-status and malformed approval collection checks; YAML-to-canonical-JSON linkage.
 - **Verification:** Awaiting orchestrator and shared-contract CI. Do not report these tests as passed until the workflow completes.
 - **Remaining:** Authenticated approval storage, approver identity, expiry/replay protection, and executor-side enforcement remain unimplemented.
+
+
+### 2026-11-11 — Policy approval fixture and critical-risk coverage
+
+- **Finding:** The first policy CI run found one orchestration integration test still created a pending approval record. The hardened policy correctly rejected it because the record did not have approved status.
+- **Fix:** Updated the integration fixture to use an explicitly approved record. Added critical-risk coverage for branch creation and test execution, which are now treated as mutating actions at critical risk.
+- **Verification:** The initial run had 33/34 tests passing. The corrected test suite and repository continuity checks are awaiting rerun.

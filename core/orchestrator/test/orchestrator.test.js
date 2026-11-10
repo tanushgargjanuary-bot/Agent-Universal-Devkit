@@ -61,6 +61,7 @@ test("blocks privileged actions until a scoped approval is verified", () => {
     planDigest: scope.planDigest,
     approvals: [{
       ...request,
+      status: "approved",
       approval_id: "human-approval-1",
       approved_by: "reviewer",
       approved_at: "2026-11-10T10:00:00.000Z"

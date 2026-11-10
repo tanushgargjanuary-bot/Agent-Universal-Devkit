@@ -281,3 +281,20 @@ test("policy YAML points to the canonical runtime action catalogue", async () =>
 test("approval requests reject malformed plan digests", () => {
  assert.throws(()=>createApprovalRequest({...plan,planDigest:"not-a-digest"}),/SHA-256 planDigest/);
 });
+
+
+test("critical risk requires approval for branch creation and test execution", () => {
+ const result=evaluatePolicy({
+  risk:"critical",
+  actions:[
+   {type:"create_branch",target:"branch:feature/test"},
+   {type:"run_tests",target:"suite:untrusted"}
+  ],
+  planId:plan.taskId,
+  planDigest:plan.planDigest
+ });
+ assert.equal(result.allowed,false);
+ assert.equal(result.approval_required,true);
+ assert.equal(result.decisions.length,2);
+ assert.ok(result.decisions.every(item=>item.approval_required));
+});

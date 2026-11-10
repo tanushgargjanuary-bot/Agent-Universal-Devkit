@@ -162,6 +162,8 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `1d2b92e` | Policy Engine hardening | Canonical action rules moved to policy.rules.json; policy.yaml references it. Plan digest now includes routing fields and technology decision. Approval records require approved status; CI pending. |
 
+| 2026-11-11 | `450f020` | Policy CI | First orchestrator run: 33/34 tests passed. One existing integration fixture used pending status; corrected to approved. Critical-risk mutation coverage expanded. Awaiting rerun. |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
