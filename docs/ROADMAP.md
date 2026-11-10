@@ -19,6 +19,7 @@ This is a product direction, not a claim that broad support already exists.
 - [x] Build an initial read-only repo-scan workflow over shared problem, evidence, and finding contracts.
 - [ ] Add README demo-signal detection and enforce the README Demonstration Standard in bootstrap instructions.
 - [ ] Expand repo-scan with project-type-aware checks, labelled fixtures, and false-positive benchmarks.
+- [ ] Validate deterministic entry-point and workspace signals across labelled multi-ecosystem fixtures.
 - [ ] Convert findings into prioritised plans with measurable acceptance criteria.
 - [ ] Demonstrate one complete find → plan → approved change → verify → remember workflow.
 - [ ] Add reusable debugging, dependency, test, security, environment, documentation, and PR workflows.

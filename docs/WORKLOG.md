@@ -197,3 +197,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Shared Contract Tests passed: schema 6/6, problem 7/7, project intelligence 17/17, capability 9/9, knowledge 30/30. Secret history scan passed. Repository hygiene unit tests passed, but the continuity diff failed because this implementation commit did not update PROJECT-STATE and WORKLOG; the repository scan step was skipped. CodeQL was still running at this update.
 - **Correction:** This follow-up updates the continuity records. The continuity failure is recorded, not concealed.
 - **Next action:** Improve deterministic project architecture and entry-point discovery with labelled fixtures and explicit coverage limits.
+
+### 2026-11-10 — Add deterministic architecture and entry-point signals
+- **Commit:** Pending Git history.
+- **Goal:** Help developers and agents locate likely application entry points and understand broad repository layout before deeper source analysis.
+- **Changes:** Added candidate detection from common source paths and root package manifest fields (`main`, `module`, `browser`, and `bin`). Added launch-script names, top-level components, workspace candidates, and coarse architecture signals to the repository profile. The Markdown report now displays these fields. Root package manifest selection is deterministic and does not allow a nested package manifest to overwrite the root manifest.
+- **Safety and limits:** No source files are parsed or executed for this feature. Entry points are candidates, not verified runtime entry points. Workspace folders are hints, not proof of a monorepo. No dependency graph or semantic architecture graph is claimed.
+- **Verification:** New multi-package and nested-manifest tests are added. Shared Contract Tests and repository hygiene results are pending.
+- **Next action:** Build a labelled fixture corpus across supported ecosystems and use it to measure discovery accuracy before adding more heuristics.

@@ -23,7 +23,7 @@ The native **Engineering Knowledge & Methods Library** supports both priorities.
 - Technology Decision Engine for opt-in, evidence-backed architecture comparisons.
 - Initial shared problem contracts for problems, evidence, findings, capabilities, plans, and verification, with strict versioned schemas.
 - Deterministic capability filtering and ranking with deny-by-default permission and execution-mode checks.
-- Read-only repository discovery and an initial evidence-backed repo-scan workflow, with JSON and Markdown CLI reports.
+- Read-only repository discovery and an initial evidence-backed repo-scan workflow, with JSON/Markdown CLI reports and deterministic entry-point/workspace signals.
 - Task planner with dependency ordering and policy evaluation.
 - Versioned Policy Engine with a deny-by-default action catalogue and plan-bound approval records.
 - Repository governance, project-type rubrics, bootstrap guidance, and a read-only hygiene checker.

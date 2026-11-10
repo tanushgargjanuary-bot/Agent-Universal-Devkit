@@ -15,9 +15,10 @@
 
 | Capability | Status | Evidence | Limitations |
 |---|---|---|---|
-| Read-only project discovery and repo-scan | Initial MVP implemented | `core/project-intelligence/` | Bounded metadata scan only; no code execution, semantic source analysis, vulnerability feeds, or persistent scan history |
+| Read-only project discovery and repo-scan | Initial MVP implemented | `core/project-intelligence/` | Bounded metadata scan with path/manifest entry-point candidates; no code execution, semantic source analysis, vulnerability feeds, or persistent scan history |
 | README demonstration guidance | Standard and bootstrap instructions implemented; scanner heuristic implemented | `docs/README-DEMO-STANDARD.md`, `bootstrap/template/AGENTS.md`, `core/project-intelligence/` | Does not judge visual quality or prove media/demo functionality |
 | Repo-scan CLI and report rendering | Initial read-only CLI with JSON and Markdown output | `core/project-intelligence/bin/`, `src/report.js` | Local package CLI only; stdout output; no persistent history or full audit |
+| Architecture and entry-point signals | Initial deterministic path/manifest heuristics | `core/project-intelligence/` | Candidate paths and workspace hints only; not a verified runtime architecture graph |
 | Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
@@ -71,8 +72,9 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Improve project understanding.** Add deterministic entry-point and architecture signals with evidence, bounded parsing, and labelled fixtures. Do not execute repository code.
-2. **Improve repo-scan output.** Add structured coverage details and stable report export only after validating current CLI usability and safety.
+1. **Validate project-intelligence breadth.** Add labelled fixtures for Node, Python, Rust, Go, JVM, .NET, and monorepo layouts. Measure false positives and missing signals before expanding rules.
+2. **Add deeper deterministic checks.** Improve dependency, test, CI, configuration, and documentation analysis without executing untrusted project code.
+3. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition.
 2. **Expand repo-scan carefully.** Add labelled fixtures and deterministic checks only when evidence quality and false-positive rates are measured. Keep scans read-only and bounded.
 3. **Build project context assembly.** Add useful architecture and entry-point context without running untrusted code.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
@@ -114,6 +116,9 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `be4768b` | Repository hygiene | Failed continuity diff because implementation changes lacked updated project state and work log; hygiene unit tests passed, repository scan was skipped |
 | 2026-11-10 | `be4768b` | Secret history scan | Passed |
 | 2026-11-10 | `be4768b` | CodeQL | In progress at verification update |
+| 2026-11-10 | `9ffeea2` | Repository hygiene and continuity diff | Passed: 155 files, zero errors, warnings, or notes; continuity diff passed |
+| 2026-11-10 | `9ffeea2` | Secret history scan | Passed |
+| 2026-11-10 | `9ffeea2` | CodeQL | In progress at verification update |
 
 Do not report checks as passed unless they ran and passed.
 
@@ -133,7 +138,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `be4768b3c5cbb43009d9c8f15ab524a6f1ab8f0d` (continuity update follows).
+- **Commit:** `9ffeea27c30882f84ceaa0e27f6bcf947f6b75cb` (before architecture-signal work; verify new HEAD after commit).
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

@@ -131,6 +131,46 @@ function detectFrameworks(packageManifest, manifestTexts) {
   return [...frameworks].sort();
 }
 
+function discoverEntryPoints(files, packageManifest) {
+  const candidates = [];
+  const seen = new Set();
+  const add = (target, kind, source) => {
+    if (typeof target !== "string" || !target.trim()) return;
+    const normalized = path.posix.normalize(target.trim().replace(/^\.\//, ""));
+    if (!normalized || normalized === "." || normalized.startsWith("../") || normalized.startsWith("/")) return;
+    const key = kind + ":" + normalized;
+    if (seen.has(key)) return;
+    seen.add(key);
+    candidates.push({ path: normalized, kind, source, exists: files.includes(normalized) });
+  };
+
+  const patterns = [
+    { pattern: /^(?:src\/)?(?:main|index|app|server)\.(?:js|jsx|mjs|cjs|ts|tsx|py|go|java|kt|cs|php|rb)$/i, kind: "conventional" },
+    { pattern: /^(?:main|app|manage|wsgi|asgi)\.py$/i, kind: "python_conventional" },
+    { pattern: /^cmd\/[^/]+\/main\.go$/i, kind: "go_command" },
+    { pattern: /^src\/(?:main|lib)\.rs$/i, kind: "rust_conventional" },
+    { pattern: /^Program\.cs$/i, kind: "dotnet_conventional" },
+    { pattern: /^index\.html$/i, kind: "web_document" }
+  ];
+  for (const file of files) {
+    for (const candidate of patterns) {
+      if (candidate.pattern.test(file)) add(file, candidate.kind, "repository_path_convention");
+    }
+  }
+
+  for (const key of ["main", "module", "browser"]) {
+    if (typeof packageManifest?.[key] === "string") add(packageManifest[key], "package_manifest", "package.json:" + key);
+  }
+  const bins = packageManifest?.bin;
+  if (typeof bins === "string") add(bins, "package_binary", "package.json:bin");
+  else if (bins && typeof bins === "object" && !Array.isArray(bins)) {
+    for (const [name, target] of Object.entries(bins)) {
+      if (typeof target === "string") add(target, "package_binary", "package.json:bin:" + name);
+    }
+  }
+  return candidates.sort((a, b) => a.path.localeCompare(b.path) || a.kind.localeCompare(b.kind));
+}
+
 /**
  * Discover repository metadata without running project code or following symlinks.
  * Only selected manifest files are read. All other files are inventoried by path.
@@ -226,10 +266,11 @@ export async function discoverRepository(root, options = {}) {
       manifestTexts.push({ path: entry, content });
       if (path.posix.basename(entry).toLowerCase() === "package.json") {
         try {
-          packageManifest = JSON.parse(content);
-          if (packageManifest === null || typeof packageManifest !== "object" || Array.isArray(packageManifest)) {
+          const parsedManifest = JSON.parse(content);
+          if (parsedManifest === null || typeof parsedManifest !== "object" || Array.isArray(parsedManifest)) {
             throw new TypeError("package.json root must be an object");
           }
+          if (entry === "package.json" || packageManifest === null) packageManifest = parsedManifest;
         } catch {
           manifestErrors.push({ path: entry, code: "INVALID_JSON" });
         }
@@ -271,6 +312,18 @@ export async function discoverRepository(root, options = {}) {
   const hasTests = testSignalPaths.length > 0 || packageScriptsTest;
   const hasCi = ciPaths.length > 0;
   const hasPackageDependencies = Object.keys(dependencies).length > 0;
+  const entryPointCandidates = discoverEntryPoints(files, packageManifest);
+  const topLevelComponents = directories.filter((entry) => !entry.includes("/") && !entry.startsWith(".")).sort();
+  const workspaceCandidates = topLevelComponents.filter((entry) => ["apps", "packages", "services", "modules", "cmd"].includes(entry));
+  if (packageManifest?.workspaces) workspaceCandidates.push("package.json:workspaces");
+  const launchScriptNames = Object.keys(packageManifest?.scripts ?? {})
+    .filter((name) => ["start", "dev", "serve", "preview"].includes(name))
+    .sort();
+  const architectureSignals = [];
+  if (workspaceCandidates.length > 0) architectureSignals.push("possible_workspace_or_multi_package_layout");
+  if (topLevelComponents.includes("src")) architectureSignals.push("source_directory");
+  if (topLevelComponents.includes("cmd")) architectureSignals.push("command_directory");
+  if (topLevelComponents.includes("apps")) architectureSignals.push("application_workspace_directory");
 
   return {
     root_name: path.basename(absoluteRoot),
@@ -293,6 +346,11 @@ export async function discoverRepository(root, options = {}) {
     lockfile_paths: lockfilePaths,
     ci_paths: ciPaths.slice(0, 100),
     test_signal_paths: testSignalPaths.slice(0, 100),
+    top_level_components: topLevelComponents.slice(0, 100),
+    workspace_candidates: workspaceCandidates.sort().slice(0, 50),
+    architecture_signals: architectureSignals,
+    entry_point_candidates: entryPointCandidates.slice(0, 100),
+    launch_script_names: launchScriptNames,
     has_readme: hasReadme,
     readme_path: readmePath,
     readme_scan_complete: readmeScanComplete,

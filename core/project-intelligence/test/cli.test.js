@@ -62,6 +62,7 @@ test("emits readable Markdown without trusting repository text as markup", async
   assert.equal(code, 0);
   assert.ok(io.stdout.value.startsWith("# Repository scan:"));
   assert.ok(io.stdout.value.includes("## Project profile"));
+  assert.ok(io.stdout.value.includes("## Architecture signals"));
   assert.ok(io.stdout.value.includes("## Findings"));
   assert.ok(io.stdout.value.includes("## Limitations"));
   assert.equal(io.stderr.value, "");

@@ -66,6 +66,45 @@ test("discovers manifests, frameworks, languages, docs, tests, and CI without ru
   assert.equal(report.evidence.length, 0);
 });
 
+test("discovers likely entry points and workspace layout without executing source", async (t) => {
+  const root = await fixture(t);
+  await put(root, "package.json", JSON.stringify({
+    main: "dist/index.js",
+    bin: { "example-cli": "bin/cli.js" },
+    scripts: { start: "node server.js", dev: "vite" },
+    workspaces: ["apps/*", "packages/*"]
+  }));
+  await put(root, "dist/index.js", "placeholder");
+  await put(root, "bin/cli.js", "placeholder");
+  await put(root, "src/main.ts", "placeholder");
+  await put(root, "cmd/api/main.go", "package main");
+  await put(root, "apps/web/package.json", "{}");
+  await put(root, "packages/core/package.json", "{}");
+  const profile = await discoverRepository(root);
+  const paths = profile.entry_point_candidates.map((entry) => entry.path);
+  assert.ok(paths.includes("dist/index.js"));
+  assert.ok(paths.includes("bin/cli.js"));
+  assert.ok(paths.includes("src/main.ts"));
+  assert.ok(paths.includes("cmd/api/main.go"));
+  assert.ok(profile.entry_point_candidates.find((entry) => entry.path === "dist/index.js").exists);
+  assert.deepEqual(profile.launch_script_names, ["dev", "start"]);
+  assert.ok(profile.top_level_components.includes("apps"));
+  assert.ok(profile.top_level_components.includes("packages"));
+  assert.ok(profile.workspace_candidates.includes("package.json:workspaces"));
+  assert.ok(profile.architecture_signals.includes("possible_workspace_or_multi_package_layout"));
+});
+
+test("uses the root package manifest instead of a nested package manifest", async (t) => {
+  const root = await fixture(t);
+  await put(root, "package.json", JSON.stringify({ main: "root-entry.js" }));
+  await put(root, "root-entry.js", "placeholder");
+  await put(root, "packages/example/package.json", JSON.stringify({ main: "nested-entry.js" }));
+  await put(root, "packages/example/nested-entry.js", "placeholder");
+  const profile = await discoverRepository(root);
+  const manifestEntry = profile.entry_point_candidates.find((entry) => entry.source === "package.json:main");
+  assert.equal(manifestEntry.path, "root-entry.js");
+});
+
 test("reports missing project signals with evidence and cautious status", async (t) => {
   const root = await fixture(t);
   const report = await scanRepository(root, makeProblem());
