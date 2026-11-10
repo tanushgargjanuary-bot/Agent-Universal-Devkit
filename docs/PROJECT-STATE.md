@@ -23,7 +23,7 @@
 | Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
-| Daily and weekly trending resource intake | Implemented; PR CI passed; first live run pending | `.github/workflows/resource-discovery.yml`, `scripts/discover_trending_repositories.py`, `docs/TRENDING-RESOURCE-DISCOVERY.md` | Metadata-only filters include public visibility and repository identity checks; candidates remain unapproved; GitHub Trending HTML can change |
+| Daily and weekly trending resource intake | PR #16 implementation; Python, repository hygiene, continuity, and secret-history checks passed; CodeQL pending | `.github/workflows/resource-discovery.yml`, `scripts/discover_trending_repositories.py`, `docs/TRENDING-RESOURCE-DISCOVERY.md` | Metadata-only filters include public visibility and repository identity checks; candidates remain unapproved; GitHub Trending HTML can change |
 | Resource registry | Implemented foundation | `core/resource-registry/` | Metadata sync is not source or dependency auditing |
 | Native knowledge library | Implemented foundation | `knowledge/`, `core/knowledge-engine/` | Retrieval is deterministic metadata matching, not semantic understanding |
 | Task planning | Implemented foundation | `core/orchestrator/` | Does not launch agent processes |
@@ -143,7 +143,7 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-10 | `013e056` | Project Intelligence tests | Failed: 22 passed, 1 failed; the runnable README command detector did not recognise the fenced CLI example. The labelled ecosystem corpus passed. |
 | 2026-11-10 | pending | Corrected README command detector | Awaiting CI rerun |
-| 2026-11-10 | `a55d779` | Trending discovery implementation | Added daily/weekly feeds, metadata filters, candidate catalog append, and unit tests |\n| 2026-11-10 | `146267a` | Trending discovery PR CI | Passed: Python compile, 5 unit tests, repository hygiene scan, and continuity diff; secret history scan passed; CodeQL was still running at verification time |
+| 2026-11-10 | `a55d779` | Trending discovery implementation | Added daily/weekly feeds, metadata filters, candidate catalog append, and unit tests |\n| 2026-11-10 | PR #16 | Trending discovery validation | Python compile, 5 unit tests, repository hygiene scan, continuity diff, and secret history scan passed; CodeQL pending |
 
 | 2026-11-10 | `02b7a2f` | Project Intelligence tests | Failed: 22 passed, 1 failed; the new test fixture used literal `\\n` text instead of newline characters, so the README heading parser received one line. |
 | 2026-11-10 | pending | Corrected README test fixture | Awaiting CI rerun |
