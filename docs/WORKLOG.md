@@ -431,3 +431,9 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Fix:** Added an atomic approval-consumption ledger. The gate consumes a signed approval immediately before adapter execution. Verification rejects consumed approvals, including stale copies. Execution IDs are included in audit events.
 - **Tests:** Direct double-consumption rejection and end-to-end prevention of replay through the Execution Gate.
 - **Verification:** Awaiting CI.
+
+
+### 2026-11-11 — Approval replay prevention and state update
+
+- **Changes:** Approval records now have an atomic one-time consumption ledger. Execution Gate consumes a verified approval immediately before execution. A consumed approval cannot authorise a second run; stale approval objects fail verification.
+- **Verification:** Orchestrator Core Tests passed on the initial gate implementation; one-time consumption changes are awaiting CI. Repository hygiene identified a missing component-status update; this commit adds Approval Store and Execution Gate rows to the state document.

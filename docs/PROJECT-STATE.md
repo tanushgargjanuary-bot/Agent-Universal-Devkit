@@ -27,7 +27,9 @@
 | Resource registry | Implemented foundation; pagination, bounded search, blocked deduplication, lifecycle-preserving metadata refresh, CLI entry point, and dedicated CI added in the latest hardening pass | `core/resource-registry/`, `.github/workflows/resource-registry-tests.yml` | Heuristic deduplication still needs labelled benchmarks; metadata sync is not source or dependency auditing |
 | Native knowledge library | Implemented foundation | `knowledge/`, `core/knowledge-engine/` | Retrieval is deterministic metadata matching, not semantic understanding |
 | Task planning | Implemented foundation | `core/orchestrator/` | Does not launch agent processes |
-| Policy Engine | Implemented decision core; canonical JSON action rules and routing-complete plan digest added | `core/orchestrator/src/policy-engine.js`, `core/orchestrator/policy.rules.json`, `core/orchestrator/policy.yaml` | No approval store, identity provider, replay control, expiry enforcement, or executor enforcement |
+| Policy Engine | Canonical JSON action rules, routing-complete plan digest, and strict approval verification | `core/orchestrator/src/policy-engine.js`, `core/orchestrator/policy.rules.json`, `core/orchestrator/policy.yaml` | No production identity provider or key rotation |
+| Approval Store | SQLite approval lifecycle, Ed25519 signatures, expiry, rejection/revocation, and one-time consumption | `core/orchestrator/src/approval-store.js` | Requires host identity verifier and protected key management |
+| Execution Gate | Per-action policy enforcement, digest/dependency validation, approval consumption, adapter routing, audit callback, sequential execution | `core/orchestrator/src/execution-gate.js` | No built-in adapters or OS sandbox; host must prevent direct adapter bypass |
 | Repository governance and quality rubrics | Implemented guidance and checker | `docs/REPOSITORY-GOVERNANCE.md`, `rubrics/`, `bootstrap/template/` | Governance-level policy enforcement remains incomplete |
 | Project intelligence and continuity protocol | Guidance, templates, static checks, and diff-based CI enforcement implemented | `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`, `bootstrap/template/docs/`, repository-hygiene scripts | Checks cannot prove semantic accuracy or recover uncommitted work after a hard environment loss |
 | Pack runtime | Planned | `docs/PACK-MODEL.md`, roadmap | Dependency resolution, activation, and safe removal are not implemented |
@@ -78,7 +80,7 @@
 2. **Build project context assembly.** Produce a bounded, evidence-linked context pack with project purpose, architecture signals, entry-point candidates, package/workspace layout, test/build commands, conventions, and known limitations. Never invent commands or infer unverified runtime behaviour.
 3. **Expand deterministic checks.** Add dependency, test, CI, configuration, and documentation checks only where source evidence is available. Keep read-only defaults and bounded file access.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
-5. **Complete the trusted approval lifecycle.** The plan digest now binds repository and task routing fields, technology decisions, and policy version; runtime action rules now load from one canonical JSON catalogue referenced by `policy.yaml`. SQLite approval storage, Ed25519 signatures, expiry, authenticated-decision callbacks, rejection, revocation, and state-transition controls are now implemented. The Approval Store is now connected to a new Execution Gate. The gate revalidates plan digests, checks policy and live approval status per action, routes only to adapters that meet harness/capability contracts, requires an audit callback, and executes sequentially. Next integrate a real identity provider, protected key management, durable audit storage, and least-privilege adapters. Keep execution disabled until those integrations are tested.
+5. **Complete the trusted approval lifecycle.** The plan digest now binds repository and task routing fields, technology decisions, and policy version; runtime action rules now load from one canonical JSON catalogue referenced by `policy.yaml`. SQLite approval storage, Ed25519 signatures, expiry, authenticated-decision callbacks, rejection, revocation, and one-time consumption are now implemented. The Approval Store is now connected to a new Execution Gate. The gate revalidates plan digests, checks policy and live approval status per action, routes only to adapters that meet harness/capability contracts, requires an audit callback, and executes sequentially. Next integrate a real identity provider, protected key management, durable audit storage, and least-privilege adapters. Keep execution disabled until those integrations are tested.
 6. **Improve Resource Registry evidence quality.** Add labelled deduplication benchmarks and review-consistency tests. The dedicated registry workflow now passes 12/12 tests; this does not validate semantic accuracy or production-scale performance.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
 8. **Review automated trending candidates.** Inspect each daily/weekly discovery PR, verify source/dependencies/security/license/project fit, and approve only reviewed resources.
@@ -168,6 +170,8 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `90a5e92` | Execution Gate | Passed 61/61 tests. Orchestration quality, repository hygiene, continuity checks, and secret-history scan passed. CodeQL pending. |
 
+| 2026-11-11 | `c5565a1` | One-time approval consumption | Approval Store consumption ledger and Execution Gate single-use approval integration implemented. CI pending. |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
@@ -184,7 +188,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-11
-- **Commit:** `9272cc021876686d59221549e97951b6afddba72` (verify current `main` HEAD before next task).
+- **Commit:** `main` (resolve the live HEAD before resuming).
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
