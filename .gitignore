@@ -8,6 +8,10 @@
 *.pfx
 *.jks
 *.keystore
+*.token
+*.secret
+.netrc
+.npmrc
 secrets/
 .secret/
 
