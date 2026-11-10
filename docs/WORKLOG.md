@@ -281,3 +281,8 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** Reject non-public repositories and validate owner/repository path segments before constructing GitHub API URLs. Confirm the API returns the requested canonical repository identity. Added regression coverage for malformed paths and private repository metadata.
 - **Verification:** The previous repository-hygiene run passed the parser, filter, YAML indentation, and idempotency tests. The new security checks and first-run-safe workflow push are awaiting the next CI run.
 - **Next action:** Confirm the latest repository-hygiene, secret-history, and CodeQL checks. Keep the PR open until required checks complete.
+
+### 2026-11-10 — Confirm post-hardening trending discovery checks
+- **Verification:** On the squashed PR head, Python compilation passed; all 5 trending-discovery unit tests passed; repository hygiene, continuity diff, and secret history scan passed. CodeQL analysis was still running at the time of this entry.
+- **Scope:** This validates parser/filter logic and generated YAML indentation. It does not validate the live GitHub Trending page markup or complete a live discovery run.
+- **Next action:** Wait for CodeQL. After merge, run the scheduled/manual discovery and inspect the generated candidate entries before approving them.
