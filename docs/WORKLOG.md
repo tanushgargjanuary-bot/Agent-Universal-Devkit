@@ -134,3 +134,12 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** Added optional `required_input_types` to the capability contract. The selector now checks available input types and required output types before permission and execution-mode checks. Added tests for missing inputs, unsupported outputs, and explicit write-mode rejection. Fixed the shared-contract workflow path filter so capability-engine changes also trigger tests on pull requests.
 - **Verification:** The previous selector suite passed 8/8 tests. The expanded suite and updated workflow are pending CI.
 - **Next action:** Confirm the expanded selector tests and pull-request path trigger. Then move to read-only project discovery and repo-scan.
+
+### 2026-11-10 — Verify capability input/output and execution-mode filters
+- **Commit:** `05d15fd87c64ade8fe025b4caa68638a38e73ee6`
+- **Goal:** Make capability matching reject missing required inputs, unsupported requested outputs, and disallowed execution modes before ranking.
+- **Changes:** Added optional `required_input_types` to capability records. Added `available_input_types` and `required_output_types` selector constraints. Added explicit tests for read-only defaults, write-mode rejection, missing inputs, and unsupported outputs. Fixed the shared-contract workflow's pull-request path filter for the capability engine.
+- **Verification:** Shared Contract Tests passed: schema engine 6/6, problem engine 7/7, capability engine 9/9, knowledge engine 30/30. Repository hygiene passed: 142 files, zero errors, warnings, or notes. Continuity diff passed. Secret history scan passed. CodeQL remained in progress.
+- **Decision:** The selector must reject a candidate before ranking if required inputs, outputs, permissions, execution modes, domain, problem type, status, or verification declarations do not fit.
+- **Limitations:** Selection is still deterministic metadata filtering/ranking. It does not prove runtime compatibility, persist capabilities, compose workflows, or execute them.
+- **Next action:** Build read-only project discovery and a first repo-scan workflow. Keep write execution disabled until policy and executor gaps are fixed.
