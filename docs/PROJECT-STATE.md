@@ -156,6 +156,8 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `a28d9ae` | Resource Registry hardening | Pagination, bounded search, category/capability candidate blocking, CLI import correction, and approval-status preservation implemented. Regression tests and dedicated CI added; workflow result pending. |
 
+| 2026-11-11 | `407679a` | Resource Registry tests | Failed: 11/12 passed. The remaining failure was a legacy test fixture with no shared tags; updated fixture now represents a valid overlap candidate. Awaiting rerun. |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.

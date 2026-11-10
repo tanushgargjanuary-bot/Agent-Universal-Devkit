@@ -27,8 +27,8 @@ test("high overlap creates a proposal and does not deprecate either record",asyn
 });
 test("manual duplicate decision deprecates only the selected record",async()=>{
  const db=await new ResourceRegistry({dbPath:":memory:"}).open();
- db.upsert({id:"a",name:"A",url:"https://github.com/example/a"});
- db.upsert({id:"b",name:"B",url:"https://github.com/example/b"});
+ db.upsert({id:"a",name:"A",url:"https://github.com/example/a",categories:["tools"],capabilities:["planning"]});
+ db.upsert({id:"b",name:"B",url:"https://github.com/example/b",categories:["tools"],capabilities:["planning"]});
  db.findDuplicates();
  assert.throws(()=>db.reviewPair("a","b",{decision:"delete"}),/Unsupported/);
  db.reviewPair("a","b",{decision:"duplicate_keep_left",reason:"Human verified duplicate."});

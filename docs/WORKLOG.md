@@ -330,3 +330,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Changes:** SQL-level status/category filtering before pagination; bounded search and CLI numeric options; category/capability blocking for duplicate candidates; explicit record/comparison limits; correct CLI import; preserve existing resource status during metadata refresh; normalise `.git` repository URLs with subpaths; reject URL credentials and non-standard ports; retain untagged duplicate-review pairs; add regression tests and dedicated CI.
 - **Verification:** Initial CI exposed three defects in URL normalisation and untagged-pair handling. These are fixed in `407679a`; the next workflow run is pending. Repository hygiene previously rejected a malformed work-log append; this entry uses proper Markdown lines.
 - **Remaining:** Confirm the next workflow run, inspect failures, add labelled deduplication benchmarks, and continue orchestration/policy audit.
+
+
+## 2026-11-11 — Resource Registry test fixture correction
+
+- **Commit:** pending at handoff update.
+- **Finding:** The remaining CI failure came from a legacy review test that created two resources with no shared category or capability tags. Under the new candidate-blocking contract, that pair is not proposed for review.
+- **Change:** Updated the test fixture to declare a shared category and capability. This preserves the production rule that untagged unrelated records are not treated as likely overlaps.
+- **Verification:** Awaiting the next Resource Registry workflow run.
