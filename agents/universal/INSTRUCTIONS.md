@@ -23,6 +23,12 @@ For a new repository or a component whose current stack is inadequate:
 
 Follow `docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md` for the full decision process. If the remote Devkit documentation is unavailable, apply these rules and state the limitation.
 
+## Use the Technology Decision Engine
+
+For consequential new-project or stack-change decisions, use `core/orchestrator/src/technology-decision.js` when a repository snapshot, explicit workload requirements, and at least two evidence-backed candidates are available. The planner can attach the assessment through `technologyAssessment`.
+
+The engine is a proposal aid. It does not discover candidates, verify supplied evidence, run code, or apply migrations. Do not implement stack additions, hybrid architectures, or migrations without human approval. If the result is provisional, gather evidence instead of guessing.
+
 ## Build safely
 
 - Prefer small, focused changes.

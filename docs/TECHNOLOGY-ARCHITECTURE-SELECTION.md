@@ -120,3 +120,66 @@ Before changing the stack:
 - Never hide uncertainty. Ask for missing requirements or mark the decision provisional.
 - Never claim a language is objectively "best" without naming the workload and constraints.
 - Prefer coherent, boring, supportable architecture over novelty.
+
+
+## Orchestrator implementation
+
+The current orchestrator includes an opt-in deterministic assessment module at `core/orchestrator/src/technology-decision.js`.
+
+It:
+- Inspects supplied repository paths and optional manifest contents. It does not execute code.
+- Reports detected language, package-manager, and framework signals with limitations.
+- Compares at least two candidate architectures supplied by the caller.
+- Checks explicit workload capabilities, required platforms, and security controls.
+- Ranks feasible candidates using supplied cost estimates and configurable weights.
+- Abstains when evidence is missing or no candidate satisfies hard requirements.
+- Marks new-language additions, hybrid designs, and migrations as requiring human approval.
+- Attaches the assessment to an orchestration plan when the caller supplies `technologyAssessment`.
+
+It does not yet discover candidate architectures automatically, validate claims in supplied evidence, benchmark implementations, generate an ADR, or execute an approved migration. Candidate discovery and evidence verification remain required future work. The engine is a proposal aid, not an autonomous architect.
+
+
+### Scoring transparency
+
+The current implementation uses a simple, explicit comparison formula:
+
+`capability coverage × 100 × capability weight
+ - integration complexity × integration weight
+ - operational complexity × operations weight
+ - migration cost × migration weight`
+
+Each cost estimate must be in the range 0–5. The default weights are 1, 2, 1, and 2 respectively. Callers can change the weights for a specific workload. The score is not a universal language-quality score. It is meaningful only when candidates use comparable evidence and estimation methods. Hard platform and security requirements are filters, not score bonuses.
+
+
+### Local repository usage
+
+A local orchestrator can create a bounded static snapshot, then attach it to a plan:
+
+```js
+import { createPlan } from "./src/index.js";
+import { inspectLocalRepository } from "./src/technology-decision.js";
+
+const snapshot = await inspectLocalRepository("/workspace/project");
+
+const plan = createPlan({
+  task_id: "architecture-review-001",
+  goal: "Evaluate the project technology architecture",
+  repository: {
+    full_name: "owner/project",
+    default_branch: "main"
+  },
+  tasks: [
+    { id: "architecture-review", description: "Review architecture options" }
+  ],
+  technologyAssessment: {
+    files: snapshot.files,
+    workload: {
+      required_capabilities: ["http-api", "background-jobs"],
+      required_platforms: ["linux"]
+    },
+    candidates: evidenceBackedCandidates
+  }
+});
+```
+
+The local scanner skips common generated and dependency directories, does not follow symlinks, reads only known manifest files for framework hints, and enforces a file-count limit. The caller must still supply workload requirements and candidate evidence.
