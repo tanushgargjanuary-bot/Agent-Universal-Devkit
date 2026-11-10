@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { createRecord, validateRecord } from "../../problem-engine/src/index.js";
 import { discoverRepository, scanRepository } from "../src/index.js";
+import { ECOSYSTEM_FIXTURES } from "./fixtures/ecosystem-fixtures.js";
 
 const timestamp = "2026-11-10T12:00:00Z";
 function makeProblem() {
@@ -203,4 +204,40 @@ test("validates roots and scan limits", async (t) => {
   await assert.rejects(() => discoverRepository(path.join(root, "missing")), /ENOENT/);
   await assert.rejects(() => discoverRepository(root, { max_files: 0 }), /max_files/);
   await assert.rejects(() => scanRepository(root, {}), /Invalid problem record/);
+});
+
+
+test("recognises a runnable CLI example inside a README Demo section", async (t) => {
+  const root = await fixture(t);
+  await put(root, "README.md", "# Example\\n\\n## Demo\\n\\n```bash\\nnode src/cli.js . --format markdown\\n```\\n");
+  const profile = await discoverRepository(root);
+  assert.equal(profile.has_readme_demo, true);
+  assert.ok(profile.readme_demo_signals.includes("runnable-example:Demo"));
+});
+
+test("does not treat installation commands outside a demo section as a demonstration", async (t) => {
+  const root = await fixture(t);
+  await put(root, "README.md", "# Example\\n\\n## Installation\\n\\n```bash\\nnpm install\\n```\\n");
+  const profile = await discoverRepository(root);
+  assert.equal(profile.has_readme_demo, false);
+});
+
+test("recognises the labelled ecosystem fixture corpus", async (t) => {
+  for (const fixtureCase of ECOSYSTEM_FIXTURES) {
+    const root = await fixture(t);
+    for (const [relativePath, content] of Object.entries(fixtureCase.files)) {
+      await put(root, relativePath, content);
+    }
+    const profile = await discoverRepository(root);
+    assert.deepEqual(profile.ecosystems, fixtureCase.expected.ecosystems, fixtureCase.name + " ecosystems");
+    for (const language of fixtureCase.expected.languages) {
+      assert.ok(profile.languages[language] > 0, fixtureCase.name + " should detect " + language);
+    }
+    for (const framework of fixtureCase.expected.frameworks) {
+      assert.ok(profile.frameworks.includes(framework), fixtureCase.name + " should detect " + framework);
+    }
+    for (const manifest of fixtureCase.expected.manifests) {
+      assert.ok(profile.manifest_paths.includes(manifest), fixtureCase.name + " should include " + manifest);
+    }
+  }
 });

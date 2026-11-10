@@ -10,7 +10,7 @@ This package provides bounded, read-only repository discovery and the first dete
 - Known package/build manifests.
 - Selected framework signals from package and Python manifests.
 - Root README, LICENSE, SECURITY.md, and docs directory presence.
-- README demonstration signals: descriptive screenshot/GIF paths, embedded video, and explicit demo/playground links. Badge-only images do not count.
+- README demonstration signals: descriptive screenshot/GIF paths, embedded video, explicit demo/playground links, and runnable commands inside a Demo/Examples section. Badge-only images and installation-only commands do not count.
 - Common CI configuration paths.
 - Common test path and package test-script signals.
 - Common dependency lockfiles.
@@ -60,11 +60,15 @@ const report = await scanRepository("./my-project", problem);
 console.log(report.findings);
 ```
 
+## Tested ecosystem fixtures
+
+The test suite uses a labelled, synthetic fixture corpus for Node, Python, Rust, Go, JVM (Maven and Gradle), .NET, PHP, Ruby, and a mixed Node/Python/Rust workspace. These fixtures validate metadata recognition only. They are not real customer repositories and do not establish detection accuracy across all project layouts.
+
 ## Limitations
 
 Entry-point candidates are signals, not proof that a file is the actual runtime entry point. Workspace directories suggest a multi-package layout but do not prove that the repository is a monorepo.
 
-This is an initial metadata scan, not a full code audit. It does not inspect source-code semantics, execute tests, measure performance, check live dependency advisories, verify licenses, or prove security. Missing test/CI/license/lockfile signals are suggestions, not verified defects. README demo detection is a heuristic: it does not render media, judge quality, verify links, or prove a demo works. Oversized or unreadable READMEs are not assessed for demo signals. The scanner reports its coverage and limitations in every report.
+This is an initial metadata scan, not a full code audit. It does not inspect source-code semantics, execute tests, measure performance, check live dependency advisories, verify licenses, or prove security. Missing test/CI/license/lockfile signals are suggestions, not verified defects. README demo detection is a heuristic: it does not render media, judge quality, verify links, or prove a demo works. Runnable-example detection requires a recognised command inside a Demo/Examples section; it can miss valid examples or accept commands that do not work. Oversized or unreadable READMEs are not assessed for demo signals. The scanner reports its coverage and limitations in every report.
 
 For the authoring standard, see `docs/README-DEMO-STANDARD.md` in the Devkit repository.
 

@@ -234,3 +234,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Change:** Narrowed the assertion to reject an actual Markdown link to `https://example.com/`, not a textual warning about placeholders.
 - **Verification:** The first bootstrap run had 6 passed and 1 failed. The corrected test and full CI rerun are pending. No implementation failure was observed.
 - **Next action:** Confirm bootstrap tests, repository hygiene/continuity, secret-history scan, and CodeQL.
+
+### 2026-11-10 — Add runnable README examples and a labelled ecosystem fixture corpus
+- **Commit:** Pending Git history.
+- **Goal:** Make README demo detection recognise runnable CLI demonstrations and establish repeatable evidence for supported ecosystem detection.
+- **Changes:** Added a conservative parser for fenced command blocks inside Demo/Examples/Screenshots sections. It recognises a bounded set of common CLI commands and ignores installation commands outside those sections. Added labelled synthetic fixtures for Node/Express, Python/FastAPI, Rust, Go, JVM (Maven and Gradle), .NET, PHP/Composer, Ruby/Bundler, and a mixed Node/Python/Rust workspace. Tests assert ecosystems, language signals, frameworks, and manifest paths. Documented the exact heuristic limits.
+- **Safety:** Fixture files are data only. The scanner does not execute fixture commands or project scripts. Runnable-example detection is a README signal, not proof that the command succeeds.
+- **Verification:** New Project Intelligence tests and CI results are pending. The preceding bootstrap test passed 7/7; repository hygiene passed with 155 files and zero errors/warnings/notes; continuity diff, secret history scan, and CodeQL passed on commit `11cba99`.
+- **Next action:** Run the complete test workflow. Then validate entry-point/workspace discovery and build the bounded agent context pack.

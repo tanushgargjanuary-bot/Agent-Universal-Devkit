@@ -16,6 +16,7 @@
 | Capability | Status | Evidence | Limitations |
 |---|---|---|---|
 | Read-only project discovery and repo-scan | Initial MVP implemented | `core/project-intelligence/` | Bounded metadata scan with path/manifest entry-point candidates; no code execution, semantic source analysis, vulnerability feeds, or persistent scan history |
+| README runnable-example signal | Initial heuristic implemented | `core/project-intelligence/src/index.js` | Recognises known CLI commands inside Demo/Examples sections; does not prove the command works |
 | README demonstration guidance | Standard and bootstrap instructions implemented; scanner heuristic implemented | `docs/README-DEMO-STANDARD.md`, `bootstrap/template/AGENTS.md`, `core/project-intelligence/` | Does not judge visual quality or prove media/demo functionality |
 | Repo-scan CLI and report rendering | Initial read-only CLI with JSON and Markdown output | `core/project-intelligence/bin/`, `src/report.js` | Local package CLI only; stdout output; no persistent history or full audit |
 | Architecture and entry-point signals | Initial deterministic path/manifest heuristics | `core/project-intelligence/` | Candidate paths and workspace hints only; not a verified runtime architecture graph |
@@ -72,7 +73,7 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Validate repo-scan against labelled ecosystems.** Build a fixture corpus for Node, Python, Rust, Go, Java, .NET, and mixed workspaces. Measure discovery precision, recall, and false-positive rates before adding heuristics.
+1. **Expand repo-scan fixture validation.** The labelled synthetic corpus now covers Node, Python, Rust, Go, JVM (Maven and Gradle), .NET, PHP, Ruby, and a mixed Node/Python/Rust workspace. Next validate entry-point and workspace signals, then measure precision, recall, and false-positive rates against independently labelled repositories.
 2. **Build project context assembly.** Produce a bounded, evidence-linked context pack with project purpose, architecture signals, entry-point candidates, package/workspace layout, test/build commands, conventions, and known limitations. Never invent commands or infer unverified runtime behaviour.
 3. **Expand deterministic checks.** Add dependency, test, CI, configuration, and documentation checks only where source evidence is available. Keep read-only defaults and bounded file access.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
@@ -132,7 +133,11 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-10 | `3246000` | CodeQL | Passed |
 
 | 2026-11-10 | `56d2d5a` | GitHub bootstrap app tests | Failed: 6 passed, 1 failed; the new test over-matched the standard's warning text rather than an actual placeholder link |
-| 2026-11-10 | pending | Corrected bootstrap test and full CI | Awaiting rerun |
+| 2026-11-10 | `11cba99` | GitHub bootstrap app tests | Passed: 7/7 |
+| 2026-11-10 | `11cba99` | Repository hygiene and continuity diff | Passed: 155 files, zero errors/warnings/notes; continuity diff passed |
+| 2026-11-10 | `11cba99` | Secret history scan | Passed |
+| 2026-11-10 | `11cba99` | CodeQL | Passed |
+| 2026-11-10 | pending | Repo-scan ecosystem fixture and README runnable-example tests | Awaiting CI |
 
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.

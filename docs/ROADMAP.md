@@ -18,7 +18,9 @@ This is a product direction, not a claim that broad support already exists.
 - [ ] Establish project intelligence and safe context assembly as reusable services.
 - [x] Build an initial read-only repo-scan workflow over shared problem, evidence, and finding contracts.
 - [x] Add README demo-signal detection and include the README Demonstration Standard in bootstrap agent instructions and templates.
-- [ ] Expand repo-scan with project-type-aware checks, labelled fixtures, and false-positive benchmarks.
+- [ ] Expand repo-scan with project-type-aware checks and false-positive benchmarks.
+- [x] Add labelled synthetic ecosystem fixtures for Node, Python, Rust, Go, JVM, .NET, PHP, Ruby, and a mixed workspace.
+- [x] Detect recognised runnable commands inside README Demo/Examples sections; do not count installation commands outside those sections.
 - [ ] Validate deterministic entry-point and workspace signals across labelled multi-ecosystem fixtures.
 - [ ] Convert findings into prioritised plans with measurable acceptance criteria.
 - [ ] Demonstrate one complete find → plan → approved change → verify → remember workflow.

@@ -32,6 +32,47 @@ const DEMO_HINT = /demo|walkthrough|screenshot|screen[-_ ]?shot|preview|dashboar
 const DEMO_LINK_HINT = /demo|live|playground|interactive|try it|storybook|preview/i;
 const BADGE_HINT = /shields\.io|badge\.fury\.io|codecov\.io|coveralls\.io|travis-ci\.com|\bbadge\b/i;
 
+const DEMO_SECTION_HINT = /^(?:demo|screenshots?|examples?|try it|quick demo)\b/i;
+const RUNNABLE_COMMAND = /^(?:\$\s*)?(?:node|npm|npx|pnpm|yarn|bun|python3?|uv|poetry|pytest|cargo|go|dotnet|java|php|ruby|make|docker|curl)\b/i;
+
+function inspectReadmeRunnableExamples(content) {
+  const signals = [];
+  let activeSection = null;
+  let activeSectionLevel = 0;
+  let fenceCharacter = null;
+  let fenceLines = [];
+
+  for (const line of content.split("\n")) {
+    const heading = line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
+    if (heading && !fenceCharacter) {
+      const level = heading[1].length;
+      if (activeSection && level <= activeSectionLevel) activeSection = null;
+      if (!activeSection && DEMO_SECTION_HINT.test(heading[2].trim())) {
+        activeSection = heading[2].trim();
+        activeSectionLevel = level;
+      }
+      continue;
+    }
+
+    const fence = line.match(/^\s*(\x60{3,}|~{3,})([A-Za-z0-9_-]*)/);
+    if (fence) {
+      if (!fenceCharacter) {
+        fenceCharacter = fence[1][0];
+        fenceLines = [];
+      } else if (fenceCharacter === fence[1][0]) {
+        if (activeSection && fenceLines.some((entry) => RUNNABLE_COMMAND.test(entry.trim()))) {
+          signals.push("runnable-example:" + activeSection);
+        }
+        fenceCharacter = null;
+        fenceLines = [];
+      }
+      continue;
+    }
+    if (fenceCharacter && activeSection) fenceLines.push(line);
+  }
+  return signals;
+}
+
 function inspectReadmeDemo(content, readmePath, files) {
   const signals = [];
   const knownFiles = new Set(files);
@@ -66,6 +107,7 @@ function inspectReadmeDemo(content, readmePath, files) {
   if (/<iframe\b[^>]*src=["'][^"']*(youtube|youtu\.be|vimeo|demo|playground|storybook|stackblitz|codesandbox)/i.test(content)) {
     signals.push("interactive-embed");
   }
+  signals.push(...inspectReadmeRunnableExamples(content));
   return [...new Set(signals)].slice(0, 20);
 }
 
