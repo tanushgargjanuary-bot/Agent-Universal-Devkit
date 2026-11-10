@@ -370,3 +370,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Orchestrator Core Tests passed 35/35. Orchestration quality passed. Repository hygiene, continuity diff, trending-discovery tests, and secret-history scan passed. CodeQL remained in progress at the time of this entry.
 - **Correction:** Updated the existing orchestrator integration fixture to mark the human approval as explicitly approved. Added critical-risk approval requirements for branch creation and test execution.
 - **Remaining:** Authenticated approval storage, approver identity, expiry/replay protection, and executor-side enforcement remain unimplemented. Do not enable executor actions yet.
+
+
+### 2026-11-11 — Signed approval store
+
+- **Changes:** Added SQLite-backed approval requests and event history; trusted approver-authentication callback; Ed25519-signed approval records; expiry enforcement; pending/approved/rejected/revoked/expired states; single-transition controls; signature and exact-scope verification; live database status checks so revocation invalidates stale approval objects; expired requests can be renewed without reusing an old signature.
+- **Tests:** Request idempotency, approval and policy integration, invalid credentials, repeated approval, signature/scope tampering, wrong public key, revocation, expiry/renewal, malformed scopes, and rejection.
+- **Security boundary:** The host must supply a real identity verifier and manage private signing keys outside Git. This does not yet enforce executor actions. Keep execution disabled.
+- **Verification:** Awaiting CI.

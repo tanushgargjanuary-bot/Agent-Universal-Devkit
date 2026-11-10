@@ -109,7 +109,7 @@ The Policy Engine loads its versioned runtime action catalogue from `core/orches
 
 The plan digest covers repository identity and default branch, detected languages and frameworks, the technology decision, task descriptions and context, dependencies, required capabilities, preferred harness, tools, and action targets. Object keys and set-like arrays are canonicalised before hashing. A change to routing or technology selection therefore changes the approval binding. The policy version is part of the digest.
 
-The core does not authenticate humans, store approval records, prevent replay, execute actions, or enforce OS-level permissions. Executor adapters must re-check policy immediately before action and apply least-privilege controls. Until those adapters exist, policy results are decisions for integration code, not an execution security boundary.
+The core does not itself authenticate humans or provide an identity provider. The new SQLite Approval Store accepts a trusted authentication callback, signs approved records with an Ed25519 key, checks expiry, prevents repeated state transitions, and checks current stored status to make revocation effective. It does not provision or rotate keys, provide distributed storage, execute actions, or enforce OS-level permissions. Executor adapters must re-check policy immediately before action and apply least-privilege controls. Until those adapters exist, policy results are decisions for integration code, not an execution security boundary.
 
 ## Interoperability
 

@@ -39,6 +39,12 @@ Use `core/orchestrator/src/policy-engine.js` to evaluate actions before executio
 - A boolean such as `humanApproved: true` is not an approval record.
 - A plan change changes its digest. An approval for the old plan must not be reused.
 
+## Approval Store
+
+`src/approval-store.js` provides a SQLite-backed approval lifecycle. It stores pending requests, authenticated decisions, signed approvals, expiry, rejection, revocation, and an append-only event history. The integration must provide an `authenticateApprover` callback that validates a real credential and returns a stable subject. The store signs approvals with an Ed25519 private key; keep that key outside the repository. Verification checks the signature, exact scope, expiry, key ID, and current stored status. Pass `store.verifyApproval.bind(store)` to the Policy Engine.
+
+The store does not implement a user interface, identity provider, key provisioning/rotation, distributed locking, or executor-side enforcement. Do not pass a caller-created identity object as proof of authentication. Keep execution disabled until the host integration and adapter enforce this store.
+
 ## Critical limitation
 
 The Policy Engine is a deterministic decision core. It does **not**:
