@@ -24,13 +24,13 @@ test("rejects dependency cycles", () => {
   );
 });
 
-test("creates a plan that requires approval for medium risk", () => {
+test("creates a plan with scoped approval for a medium-risk dependency action", () => {
   const plan = createPlan({
     task_id: "demo-1",
     goal: "Add a health endpoint",
     repository: { full_name: "owner/project", default_branch: "main" },
     risk: "medium",
-    tasks: [{ id: "implement", description: "Add endpoint" }]
+    tasks: [{ id: "implement", description: "Add endpoint", actions: [{ type: "install_dependency", target: "package:example@1.0.0" }] }]
   });
   assert.equal(plan.approval_required, true);
   assert.equal(plan.tasks[0].status, "planned");
