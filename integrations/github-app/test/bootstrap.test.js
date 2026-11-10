@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { BOOTSTRAP_FILES, installBootstrap } from "./index.js";
+import { BOOTSTRAP_FILES, installBootstrap } from "../src/index.js";
 
 const DEVKIT_OWNER = process.env.DEVKIT_OWNER || "tanushgargjanuary-bot";
 const DEVKIT_REPO = process.env.DEVKIT_REPO || "Agent-Universal-Devkit";
