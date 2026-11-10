@@ -139,6 +139,9 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-10 | `11cba99` | CodeQL | Passed |
 | 2026-11-10 | pending | Repo-scan ecosystem fixture and README runnable-example tests | Awaiting CI |
 
+| 2026-11-10 | `013e056` | Project Intelligence tests | Failed: 22 passed, 1 failed; the runnable README command detector did not recognise the fenced CLI example. The labelled ecosystem corpus passed. |
+| 2026-11-10 | pending | Corrected README command detector | Awaiting CI rerun |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.

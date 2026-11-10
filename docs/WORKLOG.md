@@ -242,3 +242,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Safety:** Fixture files are data only. The scanner does not execute fixture commands or project scripts. Runnable-example detection is a README signal, not proof that the command succeeds.
 - **Verification:** New Project Intelligence tests and CI results are pending. The preceding bootstrap test passed 7/7; repository hygiene passed with 155 files and zero errors/warnings/notes; continuity diff, secret history scan, and CodeQL passed on commit `11cba99`.
 - **Next action:** Run the complete test workflow. Then validate entry-point/workspace discovery and build the bounded agent context pack.
+
+### 2026-11-10 — Correct runnable README command detection
+- **Commit:** Pending Git history.
+- **Trigger:** The first fixture-corpus run passed the ecosystem recognition test and 22 of 23 Project Intelligence tests. The new runnable README example test showed that the first line-by-line fence parser did not recognise the CLI block.
+- **Change:** Replaced the stateful line parser with section-bounded heading parsing and fenced-code extraction. A signal is emitted only when a recognised command appears in a fenced block under a Demo/Examples/Screenshots section. Installation commands outside those sections remain excluded.
+- **Verification:** Corrected Project Intelligence and full CI are pending. The failed run remains recorded.
+- **Next action:** Confirm the parser test and the complete fixture corpus pass.

@@ -37,38 +37,27 @@ const RUNNABLE_COMMAND = /^(?:\$\s*)?(?:node|npm|npx|pnpm|yarn|bun|python3?|uv|p
 
 function inspectReadmeRunnableExamples(content) {
   const signals = [];
-  let activeSection = null;
-  let activeSectionLevel = 0;
-  let fenceCharacter = null;
-  let fenceLines = [];
+  const headings = [...content.matchAll(/^(#{1,6})\s+(.+?)\s*#*\s*$/gm)];
 
-  for (const line of content.split("\n")) {
-    const heading = line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
-    if (heading && !fenceCharacter) {
-      const level = heading[1].length;
-      if (activeSection && level <= activeSectionLevel) activeSection = null;
-      if (!activeSection && DEMO_SECTION_HINT.test(heading[2].trim())) {
-        activeSection = heading[2].trim();
-        activeSectionLevel = level;
+  for (let index = 0; index < headings.length; index += 1) {
+    const current = headings[index];
+    const title = current[2].trim();
+    if (!DEMO_SECTION_HINT.test(title)) continue;
+
+    const level = current[1].length;
+    let sectionEnd = content.length;
+    for (let next = index + 1; next < headings.length; next += 1) {
+      if (headings[next][1].length <= level) {
+        sectionEnd = headings[next].index;
+        break;
       }
-      continue;
     }
 
-    const fence = line.match(/^\s*(\x60{3,}|~{3,})([A-Za-z0-9_-]*)/);
-    if (fence) {
-      if (!fenceCharacter) {
-        fenceCharacter = fence[1][0];
-        fenceLines = [];
-      } else if (fenceCharacter === fence[1][0]) {
-        if (activeSection && fenceLines.some((entry) => RUNNABLE_COMMAND.test(entry.trim()))) {
-          signals.push("runnable-example:" + activeSection);
-        }
-        fenceCharacter = null;
-        fenceLines = [];
-      }
-      continue;
+    const section = content.slice(current.index, sectionEnd);
+    const codeBlocks = [...section.matchAll(/\x60{3,}[^\n]*\n([\s\S]*?)\n\x60{3,}/g)];
+    if (codeBlocks.some((block) => block[1].split("\n").some((line) => RUNNABLE_COMMAND.test(line.trim())))) {
+      signals.push("runnable-example:" + title);
     }
-    if (fenceCharacter && activeSection) fenceLines.push(line);
   }
   return signals;
 }
