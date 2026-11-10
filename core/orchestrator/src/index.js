@@ -1,16 +1,7 @@
 import { selectKnowledge } from "../../knowledge-engine/src/index.js";
 import defaultKnowledgeRegistry from "../../../knowledge/registry.json" with { type: "json" };
 import { evaluateTechnologyArchitecture } from "./technology-decision.js";
-
-const APPROVAL_ACTIONS = new Set([
-  "install_or_upgrade_dependencies",
-  "change_repository_permissions",
-  "access_or_export_secrets",
-  "deploy_to_production",
-  "destructive_database_migration",
-  "delete_repository_data",
-  "run_untrusted_code_with_broad_permissions"
-]);
+import { createPlanDigest, evaluatePolicy, POLICY_VERSION } from "./policy-engine.js";
 
 const RISK_LEVELS = new Set(["low", "medium", "high", "critical"]);
 
@@ -62,20 +53,31 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low", kno
 
   const ordered = orderTasks(tasks);
   const approvalRequired = risk !== "low";
+  const planDigest = createPlanDigest({ taskId: task_id, goal, repository, risk, tasks: ordered });
+  const taskPolicies = new Map(ordered.map((task) => [task.id, evaluatePolicy({
+    risk,
+    actions: task.actions ?? [],
+    planId: task_id,
+    planDigest
+  })]));
   const technologyDecision = technologyAssessment
     ? evaluateTechnologyArchitecture({ repository, ...technologyAssessment })
     : null;
+  const policyApprovalRequired = [...taskPolicies.values()].some((policy) => policy.approval_required);
 
   return {
     task_id,
     goal,
     repository,
     risk,
-    approval_required: approvalRequired || Boolean(technologyDecision && (technologyDecision.approval.required || technologyDecision.status === "provisional")),
+    approval_required: approvalRequired || policyApprovalRequired || Boolean(technologyDecision && (technologyDecision.approval.required || technologyDecision.status === "provisional")),
+    policy_version: POLICY_VERSION,
+    plan_digest: planDigest,
     ...(technologyDecision ? { technology_decision: technologyDecision } : {}),
     tasks: ordered.map((task) => ({
       ...task,
       status: "planned",
+      policy: taskPolicies.get(task.id),
       evidence: task.evidence ?? [],
       knowledge_retrieval: selectKnowledge(knowledgeRegistry, {
         description: task.description ?? "",
@@ -93,25 +95,10 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low", kno
 export function evaluateExecutionGate({
   risk = "low",
   actions = [],
-  humanApproved = false
-}) {
-  if (!RISK_LEVELS.has(risk)) {
-    return { allowed: false, approval_required: true, reasons: ["Unknown risk level"] };
-  }
-
-  const reasons = [];
-  if (risk !== "low") reasons.push(`Risk level '${risk}' requires human approval`);
-
-  for (const action of actions) {
-    if (APPROVAL_ACTIONS.has(action)) {
-      reasons.push(`Action '${action}' requires human approval`);
-    }
-  }
-
-  const approvalRequired = reasons.length > 0;
-  return {
-    allowed: !approvalRequired || humanApproved,
-    approval_required: approvalRequired,
-    reasons
-  };
+  planId = null,
+  planDigest = null,
+  approvals = [],
+  verifyApproval = null
+} = {}) {
+  return evaluatePolicy({ risk, actions, planId, planDigest, approvals, verifyApproval });
 }
