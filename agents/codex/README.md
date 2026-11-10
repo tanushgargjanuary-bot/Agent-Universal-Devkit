@@ -1,7 +1,9 @@
-# Codex adapter
+# Codex Adapter
 
-Status: planned; not yet compatibility-tested.
+**Status:** Planned. Compatibility has not been tested.
 
-This folder will contain Codex-native instructions and configuration. The shared AGENTS.md guidance is only one part of compatibility.
+This directory is reserved for Codex-native instructions and configuration. The shared `AGENTS.md` guidance is one input to compatibility. It is not proof that every Codex mode loads every file or supports every workflow.
 
-Codex reference: https://developers.openai.com/codex/
+Before marking this adapter supported, record the Codex version, verify instruction discovery, test the supported workflow, and document permission and environment limitations.
+
+Reference: https://developers.openai.com/codex/
