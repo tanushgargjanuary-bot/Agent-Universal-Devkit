@@ -1,7 +1,9 @@
-# Claude Code adapter
+# Claude Code Adapter
 
-Status: planned; not yet compatibility-tested.
+**Status:** Planned. Compatibility has not been tested.
 
-This folder will contain Claude Code-native instructions, skills, hooks, and configuration where appropriate. Do not assume OpenCode configuration works here.
+This directory is reserved for Claude Code-native instructions, skills, hooks, and configuration.
 
-Claude Code reference: https://docs.anthropic.com/en/docs/claude-code/overview
+Before marking this adapter supported, record the Claude Code version, verify the native configuration format, test instruction discovery and tool permissions, and document limitations. Do not assume OpenCode or another harness configuration works here.
+
+Reference: https://docs.anthropic.com/en/docs/claude-code/overview
