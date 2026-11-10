@@ -8,6 +8,8 @@
 4. Check the relevant catalog entry and harness adapter before adding or changing a tool integration.
 
 ## Working rules
+- Follow `docs/REPOSITORY-GOVERNANCE.md` for repository structure, task tracking, documentation, Git discipline, security, release, and recovery. Apply controls in proportion to project risk.
+- Keep the working repository organised. Inspect before cleanup; preserve user work; avoid broad unrelated reorganisation; review the full diff and working tree before finishing.
 
 - Keep all systems in this single repository.
 - Keep Resource Intelligence and Agent Orchestration as equal priorities.
