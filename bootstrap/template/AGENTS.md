@@ -2,15 +2,25 @@
 
 This repository uses Agent-Universal-Devkit.
 
-Start here:
+## Start here
 1. Read `.agent-universal-devkit/config.yaml`.
 2. Read this project's README and existing project-specific instructions.
-3. Follow the local project rules first when they define project-specific behavior.
-4. Use the Devkit's shared rules and relevant tool guidance when they apply.
+3. Read `PROJECT-RUBRICS.md` before major planning, architecture, implementation, or review work.
+4. Follow local project rules when they define project-specific behaviour.
+5. Use the Devkit's shared rules and relevant tool guidance when they apply.
 
 Devkit: https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit
 
 Do not assume every AI harness reads this file. Use the native instruction file for the harness in use.
+
+## Project-specific quality rubrics
+
+Read `PROJECT-RUBRICS.md`, then load the canonical rubric at:
+https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/rubrics/PROJECT-RUBRICS.md
+
+Identify the primary and secondary project types. Apply the universal rubric plus only relevant domain rubrics. Create or maintain `docs/QUALITY-RUBRICS.md` with selected profiles, project-specific criteria, evidence, exceptions, and status. Do not claim a criterion passed without evidence. Do not apply every niche rubric to every project.
+
+## Tool and dependency safety
 
 Before installing or running a suggested tool, check its source, license, version, permissions, and relevance to this project. Ask before changing dependencies or executing commands with broad access.
 
