@@ -127,3 +127,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Decisions:** The selector returns a recommendation and alternatives; it does not invoke capabilities. Missing permission is a hard rejection. Experimental capabilities require explicit opt-in. The ranking is deterministic metadata ranking, not a quality guarantee.
 - **Limitations:** No persistent capability registry, provenance review, compatibility proof against live tools, capability composition, or execution adapter exists yet.
 - **Next action:** Add capability provenance and compatibility checks. Then build read-only project discovery and the first repo-scan workflow over the shared problem/evidence/finding/capability contracts.
+
+### 2026-11-10 — Tighten capability compatibility filtering
+- **Commit:** Pending Git history.
+- **Goal:** Prevent the capability selector from recommending a capability that lacks required inputs or cannot produce the requested output.
+- **Changes:** Added optional `required_input_types` to the capability contract. The selector now checks available input types and required output types before permission and execution-mode checks. Added tests for missing inputs, unsupported outputs, and explicit write-mode rejection. Fixed the shared-contract workflow path filter so capability-engine changes also trigger tests on pull requests.
+- **Verification:** The previous selector suite passed 8/8 tests. The expanded suite and updated workflow are pending CI.
+- **Next action:** Confirm the expanded selector tests and pull-request path trigger. Then move to read-only project discovery and repo-scan.

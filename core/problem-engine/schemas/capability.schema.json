@@ -4,30 +4,162 @@
   "title": "DEVKIT Capability",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "record_type", "schema_version", "name", "version", "description", "domains", "problem_types", "input_types", "output_types", "permissions", "execution_modes", "verification_methods", "status"],
+  "required": [
+    "id",
+    "record_type",
+    "schema_version",
+    "name",
+    "version",
+    "description",
+    "domains",
+    "problem_types",
+    "input_types",
+    "output_types",
+    "permissions",
+    "execution_modes",
+    "verification_methods",
+    "status"
+  ],
   "properties": {
-    "id": { "type": "string", "minLength": 3, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$" },
-    "record_type": { "const": "capability" },
-    "schema_version": { "const": "1.0.0" },
-    "name": { "type": "string", "minLength": 1, "maxLength": 200 },
-    "version": { "type": "string", "minLength": 1, "maxLength": 100 },
-    "description": { "type": "string", "minLength": 1, "maxLength": 5000 },
-    "domains": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true, "maxItems": 100 },
-    "problem_types": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true, "maxItems": 100 },
-    "input_types": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 },
-    "output_types": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 },
-    "permissions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "maxItems": 100 },
-    "execution_modes": { "type": "array", "items": { "type": "string", "enum": ["read_only", "recommend", "controlled_write", "external_service"] }, "minItems": 1, "uniqueItems": true },
-    "verification_methods": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 },
-    "status": { "type": "string", "enum": ["experimental", "enabled", "deprecated", "disabled"] },
+    "id": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "record_type": {
+      "const": "capability"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "maxItems": 100
+    },
+    "problem_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "maxItems": 100
+    },
+    "input_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "maxItems": 100
+    },
+    "output_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "maxItems": 100
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "maxItems": 100
+    },
+    "execution_modes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "read_only",
+          "recommend",
+          "controlled_write",
+          "external_service"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "verification_methods": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "maxItems": 100
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "experimental",
+        "enabled",
+        "deprecated",
+        "disabled"
+      ]
+    },
     "cost_profile": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "level": { "type": "string", "enum": ["low", "medium", "high", "variable", "unknown"] },
-        "notes": { "type": "string", "maxLength": 1000 }
+        "level": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "variable",
+            "unknown"
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 1000
+        }
       }
     },
-    "limitations": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 }
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "maxItems": 100
+    },
+    "required_input_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "maxItems": 100
+    }
   }
 }

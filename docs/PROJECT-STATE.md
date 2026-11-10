@@ -15,7 +15,7 @@
 
 | Capability | Status | Evidence | Limitations |
 |---|---|---|---|
-| Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory only; no persistence, compatibility proof, composition, or execution |
+| Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
 | Resource registry | Implemented foundation | `core/resource-registry/` | Metadata sync is not source or dependency auditing |

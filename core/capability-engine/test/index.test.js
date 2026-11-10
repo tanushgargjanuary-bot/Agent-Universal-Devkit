@@ -51,9 +51,17 @@ test("denies missing permissions and non-read-only modes by default", () => {
     permissions: ["repository.write"],
     execution_modes: ["controlled_write"]
   });
-  const result = rankCapabilities(problem, [needsWrite]);
-  assert.equal(result.outcome, "no_eligible_capability");
-  assert.equal(result.rejected[0].reason, "permission_not_granted");
+  const permissionResult = rankCapabilities(problem, [needsWrite]);
+  assert.equal(permissionResult.outcome, "no_eligible_capability");
+  assert.equal(permissionResult.rejected[0].reason, "permission_not_granted");
+
+  const writeModeOnly = capability({
+    id: "capability.write-mode",
+    permissions: [],
+    execution_modes: ["controlled_write"]
+  });
+  const modeResult = rankCapabilities(problem, [writeModeOnly]);
+  assert.equal(modeResult.rejected[0].reason, "execution_mode_not_allowed");
 });
 
 test("requires an explicit opt-in for experimental capabilities", () => {
@@ -79,6 +87,30 @@ test("filters mismatched domains and problem types", () => {
     granted_permissions: ["repository.read"]
   });
   assert.equal(typed.rejected[0].reason, "problem_type_mismatch");
+});
+
+test("checks required inputs and requested outputs", () => {
+  const needsInput = capability({
+    id: "capability.requires-tree",
+    required_input_types: ["repository_tree"],
+    output_types: ["finding"]
+  });
+  const missingInput = rankCapabilities(problem, [needsInput], { granted_permissions: ["repository.read"] });
+  assert.equal(missingInput.rejected[0].reason, "required_input_unavailable");
+
+  const compatible = rankCapabilities(problem, [needsInput], {
+    granted_permissions: ["repository.read"],
+    available_input_types: ["repository_tree"],
+    required_output_types: ["finding"]
+  });
+  assert.equal(compatible.total_eligible, 1);
+
+  const missingOutput = rankCapabilities(problem, [needsInput], {
+    granted_permissions: ["repository.read"],
+    available_input_types: ["repository_tree"],
+    required_output_types: ["patch"]
+  });
+  assert.equal(missingOutput.rejected[0].reason, "required_output_unsupported");
 });
 
 test("rejects capabilities without declared verification methods", () => {

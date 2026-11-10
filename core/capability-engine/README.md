@@ -6,8 +6,10 @@ A deterministic, in-memory capability filter and ranker for DEVKIT.
 
 - Validates the problem and every capability against the shared Problem Engine contracts.
 - Filters by declared domain and optional problem type.
+- Checks required input availability and requested output compatibility.
 - Requires every declared permission to be explicitly granted.
 - Defaults to read-only and recommendation modes.
+- Requires explicit opt-in for non-default execution modes.
 - Uses enabled capabilities by default. Experimental capabilities require explicit opt-in.
 - Rejects duplicate IDs and capabilities without verification methods.
 - Ranks eligible capabilities by explicit preference, domain match, declared cost, then stable ID.

@@ -33,6 +33,8 @@ export function rankCapabilities(problem, capabilities, options = {}) {
     if (!VALID_EXECUTION_MODES.has(mode)) throw new TypeError("Unsupported execution mode: " + mode);
   }
   const preferredIds = requireStringList(options.preferred_capability_ids ?? [], "preferred_capability_ids");
+  const availableInputs = requireStringList(options.available_input_types ?? [], "available_input_types");
+  const requiredOutputs = requireStringList(options.required_output_types ?? [], "required_output_types");
   const problemType = options.problem_type;
   if (problemType !== undefined && (typeof problemType !== "string" || !problemType.trim())) {
     throw new TypeError("problem_type must be a non-empty string when supplied");
@@ -74,6 +76,17 @@ export function rankCapabilities(problem, capabilities, options = {}) {
       continue;
     }
 
+    const missingInputs = (capability.required_input_types ?? []).filter((input) => !availableInputs.includes(input));
+    if (missingInputs.length > 0) {
+      rejected.push(reject(capability, "required_input_unavailable", missingInputs));
+      continue;
+    }
+    const unsupportedOutputs = requiredOutputs.filter((output) => !capability.output_types.includes(output));
+    if (unsupportedOutputs.length > 0) {
+      rejected.push(reject(capability, "required_output_unsupported", unsupportedOutputs));
+      continue;
+    }
+
     const missingPermissions = capability.permissions.filter((permission) => !grantedPermissions.includes(permission));
     if (missingPermissions.length > 0) {
       rejected.push(reject(capability, "permission_not_granted", missingPermissions));
@@ -92,6 +105,8 @@ export function rankCapabilities(problem, capabilities, options = {}) {
     const reasons = [];
     if (matchedDomains.length > 0) reasons.push("Matches problem domains: " + matchedDomains.join(", "));
     if (problemType) reasons.push("Declares support for problem type: " + problemType);
+    if ((capability.required_input_types ?? []).length > 0) reasons.push("Required inputs are available.");
+    if (requiredOutputs.length > 0) reasons.push("Required outputs are supported.");
     reasons.push("All declared permissions are granted.");
     reasons.push("Allowed execution mode: " + compatibleModes.join(", "));
     reasons.push("Verification methods are declared.");
