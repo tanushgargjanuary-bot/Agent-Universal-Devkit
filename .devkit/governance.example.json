@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "level": "L2",
+  "excludePaths": [
+    "vendor",
+    "third_party"
+  ],
+  "checks": {
+    "secretPatterns": true,
+    "generatedFiles": true,
+    "naming": true
+  }
+}
