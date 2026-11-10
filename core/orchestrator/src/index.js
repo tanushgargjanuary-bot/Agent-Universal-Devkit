@@ -52,7 +52,6 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low", kno
   }
 
   const ordered = orderTasks(tasks);
-  const approvalRequired = false;
   const planDigest = createPlanDigest({ taskId: task_id, goal, repository, risk, tasks: ordered });
   const taskPolicies = new Map(ordered.map((task) => [task.id, evaluatePolicy({
     risk,
