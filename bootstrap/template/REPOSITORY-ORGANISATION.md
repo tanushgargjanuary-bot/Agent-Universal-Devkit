@@ -16,6 +16,7 @@ At project intake:
 2. Preserve existing conventions and uncommitted user work.
 3. Select the governance level and relevant project rubrics.
 4. Record important gaps. Do not perform broad cleanup without evidence.
+5. If the repository has adopted the Devkit checker, run it and review the report. Do not treat warnings as automatic instructions to rename or delete files.
 
 During work:
 - Keep files in predictable locations.
@@ -35,5 +36,8 @@ Before finishing:
 - Report changed files, evidence, risks, and follow-up work.
 
 Do not reorganise files only to satisfy a preferred folder layout. Follow project conventions. Do not claim security certification or compliance without independent evidence.
+
+The checker is read-only. It reports likely issues. It does not prove security or clean files automatically. See the canonical checker guide:
+https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/docs/REPOSITORY-HYGIENE-CHECKER.md
 
 This file is a pointer, not a replacement for the full guide. Keep this bootstrap file small.

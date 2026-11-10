@@ -27,6 +27,13 @@ https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/docs/R
 
 Select a governance level based on actual risk. Keep files, tasks, decisions, tests, and documentation organised. Preserve existing conventions and user work. Review the full diff and working tree before finishing. Do not perform broad cleanup or destructive changes without approval.
 
+At intake and before final review, run:
+```bash
+node .devkit/scripts/repository-hygiene/check.mjs
+```
+Review findings in context. The checker is read-only. It does not delete, rename, or move files. Do not change valid project structure only to silence a warning. See:
+https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/docs/REPOSITORY-HYGIENE-CHECKER.md
+
 ## Tool and dependency safety
 
 Before installing or running a suggested tool, check its source, license, version, permissions, and relevance to this project. Ask before changing dependencies or executing commands with broad access.

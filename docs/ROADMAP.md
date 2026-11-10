@@ -31,7 +31,8 @@ equal priority. The native Knowledge Library supports both.
 ## Gate C — Universal capability and pack model
 - [x] Define risk-based repository governance and agent workspace hygiene guidance.
 - [x] Add a lightweight bootstrap pointer for connected repositories.
-- [ ] Add automated repository hygiene checks and governance-level validation.
+- [x] Add a read-only repository hygiene checker, JSON output, tests, and CI scan.
+- [ ] Add governance-level policy enforcement and integrate the checker into a versioned bootstrap installer.
 - [ ] Add policy-aware orchestration gates for high-risk repository operations.
 - [x] Define a universal project quality rubric and specialist rubrics for major engineering and research domains.
 - [x] Add a bootstrap entry point so connected repositories select relevant rubrics and maintain local quality records.
