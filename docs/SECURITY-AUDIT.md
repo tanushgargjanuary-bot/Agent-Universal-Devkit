@@ -99,3 +99,11 @@ This document is not a certification, penetration test, or proof of security. A 
 - The store signs approvals with Ed25519, binds them to exact plan/action scope, enforces expiry, prevents repeat transitions, and checks current persisted status so revocation invalidates stale approval objects.
 - Production authentication and private-key provisioning/rotation remain host responsibilities. The store is not an executor sandbox and does not prevent adapters from bypassing policy unless they are wired through an enforcement gate.
 - CodeQL was still running when this record was written.
+
+
+## Execution Gate verification — 2026-11-11
+
+- The Orchestrator Core Tests passed 61/61 on commit `90a5e92`.
+- Orchestration quality, repository hygiene, continuity checks, and secret-history scan passed. CodeQL was queued at the time of the record.
+- The gate validates plan digests and dependency order, evaluates policy before adapter lookup, verifies live approvals, checks harness/capability compatibility, requires an audit callback, and executes sequentially.
+- It is not an OS sandbox. A host that exposes raw adapter methods can bypass it. No production adapters, identity provider, key provisioning/rotation, durable audit backend, or process isolation are supplied by this module.

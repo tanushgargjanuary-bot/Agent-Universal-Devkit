@@ -166,7 +166,7 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `89891a5` | Approval Store | First CI run exposed a DDL separator error. Fixed. Latest Orchestrator Core Tests passed 43/43; Orchestration quality, repository hygiene, and secret-history scan passed. CodeQL pending. |
 
-| 2026-11-11 | `execution-gate` | Execution Gate | Initial run passed 57/57. Follow-up hardening normalises IDs, redacts raw errors, evaluates policy before adapter lookup, audits denials, and validates dependency order; CI rerun pending. |
+| 2026-11-11 | `90a5e92` | Execution Gate | Passed 61/61 tests. Orchestration quality, repository hygiene, continuity checks, and secret-history scan passed. CodeQL pending. |
 
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.

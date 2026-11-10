@@ -415,3 +415,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 
 - **Changes:** Evaluate policy before adapter lookup; audit policy denials; validate dependency existence and topological order even when a caller recomputes the plan digest; bind adapter execute methods to their original instance; add regression coverage for dependency order and post-execution audit failure.
 - **Verification:** Initial Execution Gate implementation passed 57/57 tests. The follow-up edge-case fixes require CI rerun.
+
+
+### 2026-11-11 — Execution Gate CI green
+
+- **Commit:** `90a5e92`.
+- **Verification:** Orchestrator Core Tests passed 61/61. Orchestration quality, repository hygiene, continuity diff, and secret-history scan passed. CodeQL remained queued at the time of this entry.
+- **Hardening:** Policy is evaluated before adapter resolution; denials are audited; dependency order is checked independently of the plan digest; adapter IDs are normalised before duplicate checks; adapter methods retain their owning instance; raw adapter exception messages are not written to audit events.
+- **Remaining:** No built-in adapters exist. Production identity provider, protected key management, durable audit sink, adapter isolation, and executor-specific least privilege remain host integration work. The gate is not an OS sandbox.
