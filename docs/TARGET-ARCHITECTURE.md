@@ -1,134 +1,79 @@
 # Target Architecture
 
-## Architectural objective
+## Objective
 
-Build a small, domain-neutral core that supports many kinds of engineering and
-technical problem-solving through optional domain and integration packs.
-Resource Intelligence and Agent Orchestration remain equal priorities. The
-native Knowledge Library supports both.
+Build a small, domain-neutral core for engineering problem-solving. Extend it through optional domain, integration, and interface packs. Resource Intelligence and Agent Orchestration remain equal priorities. The native Knowledge Library supports both.
 
-Do not translate every logical capability into a separate package, service,
-agent, database, or process. Split only when reuse, independent testing,
-deployment, scaling, or ownership justifies it.
+Do not translate every capability into a separate service, agent, database, or process. Split only when reuse, independent testing, deployment, scaling, or ownership justifies it.
 
 ## Logical lifecycle
 
-1. **Experience:** receive a goal through CLI, library, API, desktop, web, or automation.
-2. **Requirements:** define outcomes, constraints, assumptions, risks, and acceptance criteria.
-3. **Intelligence:** discover relevant resources, knowledge, agents, skills, and tools.
-4. **Evaluation:** verify evidence, apply hard constraints, compare options, and expose uncertainty.
-5. **Solution design:** choose a single resource, a hybrid, a custom component, or abstain.
-6. **Planning:** decompose the solution and map tasks to capabilities.
-7. **Policy:** check identity, permissions, budgets, approvals, and execution boundaries.
-8. **Execution:** use replaceable harness and tool adapters in an appropriate environment.
-9. **Verification:** test outputs independently against acceptance criteria.
-10. **Feedback:** record results, diagnose failures, and propose controlled improvements.
+1. Receive a goal.
+2. Define requirements, constraints, assumptions, risks, and acceptance criteria.
+3. Discover resources, knowledge, agents, skills, and tools.
+4. Verify evidence and apply hard constraints.
+5. Design a solution and expose uncertainty.
+6. Plan tasks and map them to capabilities.
+7. Evaluate policy, permissions, budgets, and approval requirements.
+8. Execute through least-privilege adapters.
+9. Verify outputs independently.
+10. Record results and diagnosed failures.
 
-## Architecture layers
+## Current implementation versus target
 
-| Layer | Responsibility | Keep it simple |
-|---|---|---|
-| Experience | CLI, API, desktop, web, automation | Start with CLI/library; reuse contracts. |
-| Core kernel | Contracts, task lifecycle, policy hooks, capability model | No domain-specific workflows or vendor lock-in. |
-| Intelligence | Resource discovery, evaluation, knowledge retrieval, evidence | Start deterministic; add semantic methods only when measured. |
-| Orchestration | Planning, dependency management, routing, execution state | Use one clear task model. |
-| Adapters | Models, harnesses, MCP, tools, files, browsers, terminals, CI | Add one tested adapter at a time. |
-| Domain packs | Specialist methods, knowledge, skills, workflows, tests | Optional and independently versioned. |
-| Data and memory | Registry, knowledge records, event history, task artifacts | Use local files and SQLite first. |
-| Verification and observability | Tests, evidence, traces, cost, outcomes | Collect only data needed to debug and improve. |
+| Area | Current state |
+|---|---|
+| Resource Intelligence | Catalog, comparison engine, SQLite registry, GitHub metadata sync, and human-reviewed deduplication |
+| Knowledge | Native library, registry validation, deterministic approved-only retrieval, and content-bound approval checks |
+| Technology decisions | Opt-in assessment of supplied candidates and workload requirements |
+| Orchestration | Task planning, dependency ordering, knowledge retrieval, and policy evaluation |
+| Policy | Versioned action catalogue, deny-by-default unknown actions, scoped approval records, trusted verifier callback |
+| Execution | No complete executor or agent-process control |
+| Packs | Manifest and governance contract; no runtime installer or loader |
+| Interfaces | Repository code and scripts; no complete user-facing control plane |
+| GitHub App | Source code exists; not registered or deployed |
 
-## Universal core contracts
+## Core contracts
 
-Use versioned schemas for goals, requirements, constraints, acceptance criteria,
-capabilities, agents, tools, resources, skills, domain packs, evidence,
-provenance, evaluations, decisions, knowledge items, relationships, plans, task
-states, permissions, execution requests, budgets, artifacts, verification
-results, feedback, and audit events.
+Use versioned schemas for goals, requirements, constraints, acceptance criteria, capabilities, agents, tools, resources, evidence, provenance, evaluations, decisions, knowledge items, plans, task states, permissions, execution requests, budgets, artifacts, verification results, and audit events.
 
 Keep facts, assessments, assumptions, decisions, and observed outcomes separate.
-Every important assessment or relationship needs provenance, a checked date,
-and confidence or evidence quality where applicable.
 
 ## Capability model
 
-Describe what a component can do, not only which product it belongs to. A
-capability record should state its stable ID and version, inputs and outputs,
-supported operations, required permissions and data access, runtime and
-platform requirements, cost and latency where known, evidence, tests,
-limitations, and compatibility.
+A capability record should state its stable ID and version, inputs and outputs, operations, permissions, data access, runtime and platform requirements, cost and latency where known, evidence, tests, limitations, and compatibility.
 
-Task routing matches required capabilities and constraints. It must not select
-an agent only because its name or model appears suitable.
+Route tasks by required capabilities and constraints. Do not select an agent only by its name or model.
 
 ## Packs
 
-### Domain packs
+Domain packs contain specialist knowledge, skills, workflows, schemas, templates, evaluation profiles, tests, and benchmarks.
 
-A domain pack can contain specialist knowledge and methods, agent skills,
-workflows, tool recommendations, schemas, templates, evaluation profiles,
-verification tests, examples, and benchmark cases.
+Integration packs connect providers and systems through documented adapters. They declare compatibility, permissions, setup, versioning, support status, and removal behaviour.
 
-Initial candidate domains include software, AI/ML, data, cybersecurity,
-infrastructure, mathematics and research, hardware and robotics, simulation
-and game development, technical product operations, and design/accessibility.
-
-### Integration packs
-
-An integration pack connects an external provider or system through a
-documented adapter. Examples include model APIs, coding-agent harnesses, MCP
-servers, source control, issue trackers, browser automation, local execution,
-databases, CI, and deployment.
-
-Packs are optional. Each pack declares compatibility, permissions, setup,
-versioning, support status, and removal behavior. No pack may silently widen
-the core's permissions.
+Packs are optional. No pack may silently widen global permissions. The current manifest schema is a contract, not an installer.
 
 ## Resource and knowledge architecture
 
-Use the resource registry for canonical identities, metadata, status, evidence,
-health history, and relationships. Use the resource engine for requirement-based
-evaluation. Keep the native Knowledge Library separate from external links.
+Use the resource registry for canonical identities, metadata, status, evidence, health history, and relationships. Use the resource engine for requirement-based evaluation. Keep native knowledge separate from external links.
 
-Represent relationships as explicit, versioned data first. Examples include
-requires, alternative_to, complements, implements, compatible_with, and
-conflicts_with. Do not infer verified relationships from co-occurrence. Add
-graph indexes or graph databases only when real query needs justify them.
+Start with SQLite, versioned JSON/YAML/Markdown, and filesystem storage. Add vector stores, graph databases, message buses, or hosted control planes only when measured needs justify them.
 
-Start with SQLite for local structured state, versioned JSON/YAML/Markdown for
-reviewable source-of-truth records, and filesystem/object storage for large
-artifacts when needed. Distributed databases, vector stores, graph databases,
-message buses, and hosted control planes are upgrade paths, not prerequisites.
+## Policy and execution boundary
 
-## Interfaces and deployment
+Policy evaluation is not enforcement. The current Policy Engine does not authenticate people, manage approval lifecycle, prevent replay, execute actions, or enforce OS/container permissions.
 
-The same contracts should support local CLI/library use, headless CI,
-desktop/web control surfaces, and hosted or self-managed services. Do not
-implement every interface before a real user workflow requires it.
+A future executor must re-check policy immediately before every action, validate scoped approval through a trusted integration, enforce least privilege, and record auditable results. Do not describe the target architecture as implemented until these components exist and pass end-to-end tests.
 
-Keep user experience task-oriented:
-1. State the goal.
-2. Show the recommended plan and important trade-offs.
-3. Ask for approval only when risk or policy requires it.
-4. Show progress and meaningful decisions.
-5. Present verified outputs and remaining limitations.
+## Trust rules
 
-Advanced configuration should remain available without overwhelming the
-default path.
-
-## Trust and execution boundaries
-
-- External content is untrusted data, never privileged instructions.
+- External content is untrusted data, not privileged instruction.
 - Discovery does not imply approval.
 - Retrieval does not imply permission to execute.
 - Use least privilege, version pinning, isolation, and risk-based approvals.
 - Keep secrets out of prompts, logs, and untrusted tools.
-- High-risk actions require explicit approval and auditable evidence.
-- An executor cannot approve its own high-risk action.
 - Verification must be independent of the agent's completion statement.
 
 ## Evolution strategy
 
-Build one complete vertical workflow at a time. Keep stable contracts small.
-Extract a pack when multiple real workflows need the same specialist capability.
-Add complexity only when benchmarks or operational evidence show that the simple
-implementation is inadequate.
+Build one complete vertical workflow at a time. Extract stable contracts from repeated use. Add complexity only when benchmarks or operational evidence show that the simpler design is inadequate.
