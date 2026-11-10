@@ -4,6 +4,25 @@ The Devkit aims for broad problem-solving capability through a small universal c
 
 Status marks refer to repository implementation, not external configuration. A checked item does not imply that every production control is active.
 
+## Strategic direction — Unified Problem-Solving Workbench
+
+The long-term product direction is one coherent entry point for a broad range
+of supported problems. It uses a shared problem lifecycle and common contracts,
+with reusable specialist capabilities, domain packs, and integration adapters.
+This is a product direction, not a claim that broad support already exists.
+
+- [ ] Define and validate shared problem, context, evidence, finding, capability, plan, action, execution, verification, and memory contracts.
+- [ ] Establish project intelligence and safe context assembly as reusable services.
+- [ ] Build repo-scan as the first end-to-end workflow over the shared contracts.
+- [ ] Convert findings into prioritised plans with measurable acceptance criteria.
+- [ ] Demonstrate one complete find → plan → approved change → verify → remember workflow.
+- [ ] Add reusable debugging, dependency, test, security, environment, documentation, and PR workflows.
+- [ ] Integrate mature specialist tools and existing agents through tested adapters.
+- [ ] Add domain packs only after representative workflows and verification methods are validated.
+- [ ] Expose the same workflows through CLI/MCP first; add other interfaces when justified.
+
+Detailed design and constraints: [Unified Problem-Solving Model](UNIFIED-PROBLEM-SOLVING-MODEL.md).
+
 ## Gate A — Trustworthy foundations
 
 - [x] Establish repository structure, product principles, and target architecture.
