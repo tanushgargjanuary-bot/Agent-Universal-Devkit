@@ -198,3 +198,15 @@ test("catalogue exposes only explicit policy actions", () => {
   assert.ok(catalog.some((item) => item.action === "delete_repository_data" && item.minimum_risk === "critical"));
   assert.ok(catalog.every((item) => ["allow", "approval", "risk_gated"].includes(item.effect)));
 });
+
+test("medium-risk plans do not block read-only task actions", () => {
+  const result = createPlan({
+    task_id: "plan-read-only",
+    goal: "Inspect a repository",
+    repository: { full_name: "owner/repo", default_branch: "main" },
+    risk: "medium",
+    tasks: [{ id: "inspect", description: "Read project files", actions: [{ type: "read_repository", target: "src/" }] }]
+  });
+  assert.equal(result.approval_required, false);
+  assert.equal(result.tasks[0].policy.allowed, true);
+});
