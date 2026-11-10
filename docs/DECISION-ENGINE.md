@@ -2,104 +2,74 @@
 
 ## Purpose
 
-The Decision Engine chooses a suitable engineering approach for a specific problem. It must not select the most popular resource or blindly choose the highest numeric score.
+The Decision Engine helps select an engineering approach for a defined problem. It must not select the most popular resource or blindly choose the highest numeric score.
 
 ## Required input
 
-A decision request should include:
-- Problem statement and expected outcome.
-- Functional and non-functional requirements.
-- Hard constraints and prohibited approaches.
-- Required capabilities.
-- Environment, language, platform, and compatibility needs.
-- Security, privacy, and licensing constraints.
-- Budget and operational limits.
-- Acceptance criteria.
-- Known assumptions and unknowns.
+A decision request should include the problem, expected outcome, requirements, hard constraints, required capabilities, environment, security and license needs, budget, acceptance criteria, assumptions, and unknowns.
 
 If key requirements are missing, ask for clarification or mark the decision provisional.
 
 ## Decision pipeline
 
-1. **Clarify:** identify ambiguity, constraints, and acceptance criteria.
-2. **Discover:** find candidate resources, methods, algorithms, and architectures.
-3. **Collect evidence:** inspect primary documentation, source, releases, tests, licenses, advisories, and reproducible benchmarks.
-4. **Apply hard gates:** remove candidates that violate mandatory requirements or safety constraints.
-5. **Assess:** evaluate remaining candidates with category-specific criteria.
-6. **Compare:** identify strengths, weaknesses, uncertainty, and trade-offs.
-7. **Compose:** test whether a combination adds required capability without unacceptable overlap or integration cost.
-8. **Decide:** choose A, B, a justified hybrid, a custom approach, neither, or gather more evidence.
-9. **Validate:** test the selected approach against acceptance criteria.
-10. **Record:** store evidence, assumptions, decision rationale, limitations, and review conditions.
+1. Clarify the goal, constraints, and acceptance criteria.
+2. Discover candidate resources, methods, algorithms, and architectures.
+3. Collect primary-source evidence.
+4. Apply hard requirements and safety gates.
+5. Assess viable candidates with task-specific criteria.
+6. Compare trade-offs and uncertainty.
+7. Test whether a hybrid adds enough value to justify integration cost.
+8. Select one, a justified hybrid, a custom approach, none, or insufficient evidence.
+9. Validate against acceptance criteria.
+10. Record evidence, assumptions, decision, limitations, and review triggers.
 
-## Technology and language architecture decisions
+## Technology decisions
 
-When a decision affects a repository's language, runtime, framework, or component boundaries, follow [Technology and Language Architecture Selection](TECHNOLOGY-ARCHITECTURE-SELECTION.md).
+For language, runtime, framework, or component-boundary decisions, follow [Technology and Language Architecture Selection](TECHNOLOGY-ARCHITECTURE-SELECTION.md).
 
-Do not use an agent's familiar language as the default. Inspect the actual workload, existing stack, deployment environment, platform constraints, security needs, ecosystem, team skills, and lifecycle cost. Compare credible candidates. Prefer one coherent stack unless a hybrid provides a justified, testable benefit. Preserve established systems unless evidence supports migration. Record consequential decisions and obtain approval before broad changes.
+The current Technology Decision Engine is an opt-in proposal aid. It can inspect a bounded repository snapshot and compare caller-supplied candidates against explicit workload requirements. It does not discover candidates, independently verify supplied evidence, execute code, or apply migrations. Require human approval before stack additions, hybrid adoption, or migrations.
 
 ## Evidence model
 
 Keep these concepts separate:
 
-- **Fact:** directly supported by an identified source or test.
+- **Fact:** supported by an identified source or test.
 - **Assessment:** interpretation of one or more facts.
 - **Assumption:** a condition accepted temporarily but not verified.
 - **Unknown:** information not established.
 - **Decision:** selected action and rationale.
 - **Outcome:** observed result after implementation or testing.
 
-Evidence records should identify the claim, source, source type, checked date, and relevant excerpt or test artifact where practical. Prefer primary sources. A source URL alone does not prove every claim about that source.
+Prefer primary sources. Record the claim, source, source type, checked date, and relevant excerpt or test artifact where practical.
 
 ## Scoring and uncertainty
 
-Scoring is a comparison aid, not truth.
-
 - Apply hard gates before scoring.
 - Use criteria and weights that match the task.
-- Explain why each criterion matters.
 - Do not silently convert unknown values to zero or a high score.
 - Report evidence coverage and confidence separately from suitability.
-- Show critical trade-offs instead of hiding them in one aggregate number.
+- Show critical trade-offs instead of hiding them in one score.
 - Run sensitivity checks when small weight changes alter the winner.
-- Avoid false precision. Scores should not imply measurement accuracy that the evidence does not support.
-
-A candidate with incomplete evidence may remain under investigation. Missing information is not proof of poor quality.
+- Avoid false precision.
 
 ## Hybrid decisions
 
-A hybrid is viable only when:
-- It covers a required capability that a single option does not cover adequately, or materially improves a required outcome.
-- Interfaces and versions are compatible or can be integrated with a bounded effort.
-- Security, privacy, and license constraints are satisfied.
-- Capability overlap and operational complexity are acceptable.
-- Integration can be tested.
+A hybrid is viable only when it covers a required capability or materially improves an outcome, interfaces are compatible, security and license constraints are satisfied, integration cost is acceptable, and the combination can be tested.
 
-Repository declarations of complementarity are useful evidence, but are not mandatory. Agents may discover a possible combination. They must label it as a hypothesis until compatibility and integration are verified.
+A discovered relationship is a hypothesis until compatibility is verified.
 
 ## Decision outcomes
 
-Use one of these explicit outcomes:
-- `select_single`: use one candidate.
-- `select_hybrid`: combine candidates with a validated reason.
-- `custom_solution`: build a missing component when justified.
-- `select_none`: available candidates fail hard requirements.
-- `insufficient_evidence`: do not claim a winner yet.
+- `select_single`
+- `select_hybrid`
+- `custom_solution`
+- `select_none`
+- `insufficient_evidence`
 
 ## Required decision report
 
-Include:
-- Requirements and constraints used.
-- Selected outcome and rationale.
-- Candidates considered.
-- Rejected candidates and reasons.
-- Evidence and checked dates.
-- Unknowns, assumptions, and confidence.
-- Cost and integration estimate.
-- Security and license considerations.
-- Validation plan and acceptance results.
-- Conditions that should trigger a re-evaluation.
+Include requirements, constraints, outcome, rationale, candidates, rejected options, evidence, checked dates, unknowns, assumptions, confidence, cost, security and license considerations, validation results, and re-evaluation triggers.
 
 ## Evaluation quality controls
 
-Use benchmark tasks with known requirements and independently assessed outcomes. Track recommendation suitability, evidence coverage, false claims, execution success, verification misses, cost, and maintenance burden. Do not let one metric dominate. Diagnose whether failures came from requirements, evidence, resource defects, agent mistakes, integration, environment, or an unknown cause before changing resource assessments.
+Use benchmark tasks with known requirements and independently assessed outcomes. Track suitability, evidence coverage, false claims, execution success, verification misses, cost, and maintenance burden. Diagnose failure causes before changing resource assessments.
