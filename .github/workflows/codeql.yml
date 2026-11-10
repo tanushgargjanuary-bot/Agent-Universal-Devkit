@@ -1,22 +1,11 @@
-name: CodeQL
-
 on:
   push:
     branches: [main]
-    paths:
-      - "**/*.js"
-      - "**/*.mjs"
-      - "**/*.cjs"
-      - "**/*.py"
-      - ".github/workflows/codeql.yml"
   pull_request:
     branches: [main]
-    paths:
-      - "**/*.js"
-      - "**/*.mjs"
-      - "**/*.cjs"
-      - "**/*.py"
-      - ".github/workflows/codeql.yml"
+  schedule:
+    - cron: "41 5 * * 1"
+  workflow_dispatch:
   schedule:
     - cron: "41 5 * * 1"
   workflow_dispatch:
