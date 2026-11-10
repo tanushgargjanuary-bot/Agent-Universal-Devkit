@@ -7,19 +7,27 @@ function help() {
 Commands:
   init [--db PATH]
   add --url URL --name NAME --description TEXT --category TAG [--capability TAG]
-  list [--status candidate|approved|deprecated|rejected]
-  search QUERY
-  dedupe
-  reviews
+  list [--status candidate|approved|deprecated|rejected] [--category TAG] [--limit N] [--offset N]
+  search QUERY [--limit N]
+  dedupe [--max-records N] [--max-comparisons N]
+  reviews [--limit N]
+  review --left ID --right ID --decision DECISION [--reason TEXT]
   stats
 
 Options:
-  --db PATH       SQLite database path (default: data/resource-registry.sqlite)
+  --db PATH       SQLite database path (default: data/resource-registry.sqlite)\n\nReview decisions:\n  duplicate_keep_left | duplicate_keep_right | alternative | complement | distinct | reject_both
 
 Notes:
   The tool never deletes records automatically. Deduplication writes review proposals.
   Only an explicit duplicate_keep_left/right decision marks a record deprecated.
 `);
+}
+function numberOption(options, name, fallback) {
+  if (options[name] === undefined) return fallback;
+  if (!/^(0|[1-9]\\d*)$/.test(options[name])) throw new Error(`--${name} must be a non-negative integer`);
+  const value = Number(options[name]);
+  if (!Number.isSafeInteger(value)) throw new Error(`--${name} is outside the safe integer range`);
+  return value;
 }
 function argsOf(argv) {
   const positional=[], options={};
@@ -44,10 +52,10 @@ async function main() {
     else if(command==="add"){
       if(!options.url||!options.name) throw new Error("add requires --url and --name");
       output=registry.upsert({url:options.url,name:options.name,description:options.description??"",categories:options.category?[options.category]:[],capabilities:options.capability?[options.capability]:[]});
-    } else if(command==="list") output=registry.list({status:options.status});
-    else if(command==="search") output=registry.search(positional.slice(1).join(" "));
-    else if(command==="dedupe") output=registry.findDuplicates();
-    else if(command==="reviews") output=registry.pendingReviews();
+    } else if(command==="list") output=registry.list({status:options.status,category:options.category,limit:numberOption(options,"limit",100),offset:numberOption(options,"offset",0)});
+    else if(command==="search") output=registry.search(positional.slice(1).join(" "),{limit:numberOption(options,"limit",50)});
+    else if(command==="dedupe") output=registry.findDuplicates({maxRecords:numberOption(options,"max-records",9999),maxComparisons:numberOption(options,"max-comparisons",250000)});
+    else if(command==="reviews") output=registry.pendingReviews({limit:numberOption(options,"limit",100)});
     else if(command==="review"){
       if(!options.left||!options.right||!options.decision) throw new Error("review requires --left, --right, and --decision");
       output=registry.reviewPair(options.left,options.right,{decision:options.decision,reason:options.reason??"",reviewedBy:"cli-human"});
