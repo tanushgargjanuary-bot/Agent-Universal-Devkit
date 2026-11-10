@@ -11,7 +11,7 @@ resources:
       source_url: https://github.com/sindresorhus/awesome/blob/main/license
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [curated-discovery, topic-index]
     alternatives: []
     complements: []
     maintenance:
@@ -39,7 +39,7 @@ resources:
       source_url: https://github.com/TheAlgorithms/Python/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [algorithm-reference, data-structures, educational-implementations]
     alternatives: []
     complements: []
     maintenance:
@@ -67,7 +67,7 @@ resources:
       source_url: https://github.com/codecrafters-io/build-your-own-x/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [systems-learning, project-based-tutorials]
     alternatives: []
     complements: []
     maintenance:
@@ -95,7 +95,7 @@ resources:
       source_url: https://github.com/ripienaar/free-for-dev/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [developer-service-discovery, free-tier-reference]
     alternatives: []
     complements: []
     maintenance:
@@ -123,7 +123,7 @@ resources:
       source_url: https://github.com/EbookFoundation/free-programming-books/blob/main/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [learning-material-index, programming-books]
     alternatives: []
     complements: []
     maintenance:
@@ -151,7 +151,7 @@ resources:
       source_url: https://github.com/nilbuild/developer-roadmap
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [learning-roadmaps, role-skill-mapping]
     alternatives: []
     complements: []
     maintenance:
@@ -179,7 +179,7 @@ resources:
       source_url: https://github.com/ossu/computer-science/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [computer-science-curriculum, course-index]
     alternatives: []
     complements: []
     maintenance:
@@ -207,7 +207,7 @@ resources:
       source_url: https://github.com/kilimchoi/engineering-blogs/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [engineering-practice-discovery, technical-case-studies]
     alternatives: []
     complements: []
     maintenance:
@@ -235,7 +235,7 @@ resources:
       source_url: https://github.com/donnemartin/system-design-primer/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [system-design-reference, architecture-learning]
     alternatives: []
     complements: []
     maintenance:
@@ -263,7 +263,7 @@ resources:
       source_url: https://github.com/public-apis/public-apis/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [api-discovery, integration-prototyping]
     alternatives: []
     complements: []
     maintenance:
@@ -291,7 +291,7 @@ resources:
       source_url: https://github.com/btw-so/open-source-alternatives/blob/main/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [tool-alternative-discovery]
     alternatives: []
     complements: []
     maintenance:
@@ -319,7 +319,7 @@ resources:
       source_url: https://github.com/papers-we-love/papers-we-love
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [research-paper-discovery, computer-science-research]
     alternatives: []
     complements: []
     maintenance:
@@ -347,7 +347,7 @@ resources:
       source_url: https://github.com/sdmg15/Best-websites-a-programmer-should-visit
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [learning-resource-index]
     alternatives: []
     complements: []
     maintenance:
@@ -375,7 +375,7 @@ resources:
       source_url: https://github.com/rasbt/LLMs-from-scratch/blob/main/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [llm-education, model-implementation-reference]
     alternatives: []
     complements: []
     maintenance:
@@ -403,7 +403,7 @@ resources:
       source_url: https://github.com/eriklindernoren/ML-From-Scratch/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [machine-learning-education, algorithm-implementations]
     alternatives: []
     complements: []
     maintenance:
@@ -431,7 +431,7 @@ resources:
       source_url: https://github.com/GokuMohandas/Made-With-ML/blob/main/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [mlops-learning, machine-learning-engineering]
     alternatives: []
     complements: []
     maintenance:
@@ -459,7 +459,7 @@ resources:
       source_url: https://github.com/OWASP/ASVS/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [security-requirements, application-security-verification]
     alternatives: []
     complements: []
     maintenance:
@@ -487,7 +487,7 @@ resources:
       source_url: https://github.com/OWASP/CheatSheetSeries/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [secure-development-guidance, application-security]
     alternatives: []
     complements: []
     maintenance:
@@ -515,7 +515,7 @@ resources:
       source_url: https://github.com/practical-tutorials/project-based-learning/blob/master/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [project-based-learning, implementation-tutorials]
     alternatives: []
     complements: []
     maintenance:
@@ -543,7 +543,7 @@ resources:
       source_url: https://github.com/jwasham/coding-interview-university/blob/main/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [computer-science-learning, interview-preparation]
     alternatives: []
     complements: []
     maintenance:
@@ -571,7 +571,7 @@ resources:
       source_url: https://github.com/microsoft/generative-ai-for-beginners/blob/main/LICENSE
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [generative-ai-education, llm-application-learning]
     alternatives: []
     complements: []
     maintenance:
@@ -599,7 +599,7 @@ resources:
       source_url: https://github.com/trailofbits/skills
       review_status: unreviewed
     status: candidate
-    capabilities: []
+    capabilities: [agent-security-skills, security-testing-workflows]
     alternatives: []
     complements: []
     maintenance:
@@ -614,5 +614,245 @@ resources:
     evidence:
       - claim: "Upstream identity verified; license remains unreviewed."
         url: https://github.com/trailofbits/skills
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: github-spec-kit
+    name: "GitHub Spec Kit"
+    url: https://github.com/github/spec-kit
+    kind: repository
+    categories: [agent-workflows, spec-driven-development, process-automation]
+    description: "Composable, agent-agnostic processes, templates, extensions, presets, and workflow mechanisms for spec-driven development and related engineering workflows."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/github/spec-kit/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: [specification-workflows, agent-process-orchestration, engineering-quality-gates, workflow-templates]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "High strategic fit. Overlaps the Devkit's planning and workflow surface; integrate selectively and compare before copying patterns."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Relevant candidate; requires feature-level comparison and independent review."
+    evidence:
+      - claim: "Upstream repository identity and public README inspected; license remains unreviewed."
+        url: https://github.com/github/spec-kit
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: matt-pocock-skills
+    name: "Matt Pocock Skills"
+    url: https://github.com/mattpocock/skills
+    kind: skill
+    categories: [agent-skills, engineering-practices, workflow-skills]
+    description: "Composable engineering and productivity skills covering specification, TDD, code review, domain modelling, architecture, triage, and handoff."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/mattpocock/skills/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: [engineering-skill-library, specification-workflows, tdd-guidance, code-review-workflows, architecture-improvement, domain-modelling]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "High strategic fit. Skill-level capabilities overlap internal agent guidance; evaluate each skill separately before adoption."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Relevant candidate; requires feature-level comparison and independent review."
+    evidence:
+      - claim: "Upstream repository identity and public README inspected; license remains unreviewed."
+        url: https://github.com/mattpocock/skills
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: claude-mem
+    name: "Claude-Mem"
+    url: https://github.com/thedotmack/claude-mem
+    kind: tool
+    categories: [agent-memory, context-management, cross-session-state]
+    description: "Persistent agent memory with searchable observations, context retrieval, and integrations for several coding-agent harnesses."
+    license:
+      spdx_id: NOASSERTION
+      source_url: https://github.com/thedotmack/claude-mem
+      review_status: unreviewed
+    status: candidate
+    capabilities: [cross-session-agent-memory, observation-indexing, context-retrieval, mcp-memory-tools]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "Useful reference for memory design. Review its service, telemetry, provider and data-retention model before adoption; overlaps the Devkit state-store direction."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Relevant candidate; requires feature-level comparison and independent review."
+    evidence:
+      - claim: "Upstream repository identity and public README inspected; license remains unreviewed."
+        url: https://github.com/thedotmack/claude-mem
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: openmausbot
+    name: "OpenMausBot"
+    url: https://github.com/milind-soni/OpenMausBot
+    kind: tool
+    categories: [agent-workspaces, agent-orchestration, mcp]
+    description: "Local-first desktop workspace for teams of agents, with model and harness selection, tools, computers, tasks, and an MCP control plane."
+    license:
+      spdx_id: Apache-2.0
+      source_url: https://github.com/milind-soni/OpenMausBot/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: [agent-team-control-plane, agent-session-management, mcp-agent-control, local-first-agent-workspace, computer-use]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "High strategic reference. Compare against Devkit orchestration scope; do not duplicate the whole desktop app."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Relevant candidate; requires feature-level comparison and independent review."
+    evidence:
+      - claim: "Upstream repository identity and public README inspected; license remains unreviewed."
+        url: https://github.com/milind-soni/OpenMausBot
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: scrapling
+    name: "Scrapling"
+    url: https://github.com/D4Vinci/Scrapling
+    kind: library
+    categories: [web-acquisition, web-scraping, agent-tools]
+    description: "Python framework for HTTP and browser-based fetching, adaptive parsing, concurrent crawling, CLI, and MCP integration."
+    license:
+      spdx_id: BSD-3-Clause
+      source_url: https://github.com/D4Vinci/Scrapling/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: [http-fetching, browser-fetching, web-crawling, adaptive-html-parsing, mcp-web-fetching]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "Strong fit for optional web research connectors. Browser/fetcher extras install dependencies; sandbox and permission boundaries are required."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Relevant candidate; requires feature-level comparison and independent review."
+    evidence:
+      - claim: "Upstream repository identity and public README inspected; license remains unreviewed."
+        url: https://github.com/D4Vinci/Scrapling
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: nvidia-auto-ontology
+    name: "NVIDIA Auto Ontology"
+    url: https://github.com/NVIDIA/auto-ontology
+    kind: tool
+    categories: [knowledge-graphs, ontology, data-grounding, mcp]
+    description: "Builds and serves enterprise ontologies from data metadata, with certified definitions, relationships, query validation, and provenance for agent analytics."
+    license:
+      spdx_id: Apache-2.0
+      source_url: https://github.com/NVIDIA/auto-ontology/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: [ontology-generation, semantic-data-catalog, entity-relationship-discovery, metric-definition-grounding, query-lineage, mcp-context-serving]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "Relevant to enterprise knowledge and retrieval. Heavy infrastructure and NVIDIA NIM defaults make it an optional integration/reference, not a core dependency."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Relevant candidate; requires feature-level comparison and independent review."
+    evidence:
+      - claim: "Upstream repository identity and public README inspected; license remains unreviewed."
+        url: https://github.com/NVIDIA/auto-ontology
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: t3code
+    name: "T3 Code"
+    url: https://github.com/pingdotgg/t3code
+    kind: tool
+    categories: [agent-harnesses, agent-control-surfaces, developer-workspaces]
+    description: "Open agent-harness control surface with web, desktop, and mobile clients for local coding-agent CLIs and subscriptions."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/pingdotgg/t3code/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: [multi-harness-control-surface, agent-session-ui, remote-agent-access, local-agent-workspace]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "Useful as a harness UX and interoperability reference. It is not itself a harness and is an early-stage application; avoid duplicating its UI layer in the core Devkit."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Relevant candidate; requires feature-level comparison and independent review."
+    evidence:
+      - claim: "Upstream repository identity and public README inspected; license remains unreviewed."
+        url: https://github.com/pingdotgg/t3code
+        checked_at: "2026-11-10T00:00:00Z"
+    last_reviewed: "2026-11-10T00:00:00Z"
+  - id: hallmark-design-skill
+    name: "Hallmark Design Skill"
+    url: https://github.com/Nutlope/hallmark
+    kind: skill
+    categories: [frontend-design, agent-skills, ui-quality]
+    description: "Frontend design skill with design themes, accessibility floor checks, responsive browser rendering, and a visual-quality lint workflow."
+    license:
+      spdx_id: MIT
+      source_url: https://github.com/Nutlope/hallmark/blob/main/LICENSE
+      review_status: unreviewed
+    status: candidate
+    capabilities: [frontend-design-guidance, accessibility-checks, responsive-visual-validation, ui-design-linting]
+    alternatives: []
+    complements: []
+    compatibility:
+      notes: "Optional specialization. Include only for UI/frontend tasks; overlaps generic frontend-design skills, so compare at skill granularity."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-10"
+    evaluation:
+      status: not_evaluated
+      reason: "Relevant candidate; requires feature-level comparison and independent review."
+    evidence:
+      - claim: "Upstream repository identity and public README inspected; license remains unreviewed."
+        url: https://github.com/Nutlope/hallmark
         checked_at: "2026-11-10T00:00:00Z"
     last_reviewed: "2026-11-10T00:00:00Z"
