@@ -22,6 +22,12 @@
 - Never commit secrets, tokens, private keys, or personal data.
 - Avoid unnecessary branches, files, dependencies, and commits.
 
+## Select technology architecture deliberately
+
+For every new repository, inspect its purpose, constraints, existing files, runtimes, deployment target, and team context before selecting a stack. Do not default to Python or any other language.
+
+Follow `docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md`. Compare credible language and runtime candidates against the actual workload. Prefer one coherent stack unless a hybrid has a documented, testable benefit. Preserve an established stack unless evidence justifies change. Record consequential decisions and their trade-offs. Do not perform broad migrations without approval.
+
 ## Use the native Knowledge Library
 
 1. Check `knowledge/registry.json` when a task involves algorithm selection, data structures, mathematical reasoning, statistics, optimisation, protocols, security methods, or another topic covered by the library.
