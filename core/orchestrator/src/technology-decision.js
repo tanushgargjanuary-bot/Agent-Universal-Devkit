@@ -195,6 +195,7 @@ export async function inspectLocalRepository(rootPath, { maxFiles = 20000, maxMa
 
   return {
     root,
+    files,
     ...inspectRepository(files),
     snapshot_mode: "local_static",
     symlinks_followed: false,
