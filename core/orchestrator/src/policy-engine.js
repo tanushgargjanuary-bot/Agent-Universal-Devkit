@@ -190,3 +190,25 @@ export function getPolicyActionCatalog() {
     minimum_risk: rule.minimumRisk
   }));
 }
+
+export function createPlanDigest({ taskId, goal, repository, risk = "low", tasks = [] }) {
+  if (!taskId || !goal || !repository?.full_name || !repository?.default_branch || !Array.isArray(tasks)) {
+    throw new Error("A complete plan identity is required to create its digest");
+  }
+  const canonical = {
+    task_id: taskId,
+    goal,
+    repository: {
+      full_name: repository.full_name,
+      default_branch: repository.default_branch
+    },
+    risk,
+    tasks: tasks.map((task) => ({
+      id: task.id,
+      description: task.description ?? "",
+      depends_on: [...(task.depends_on ?? [])],
+      actions: (task.actions ?? []).map((action) => normaliseAction(action))
+    }))
+  };
+  return digest(canonical);
+}
