@@ -29,6 +29,9 @@ equal priority. The native Knowledge Library supports both.
 - [ ] Generate periodic catalog health and consolidation reports.
 
 ## Gate C — Universal capability and pack model
+- [x] Define a universal project quality rubric and specialist rubrics for major engineering and research domains.
+- [x] Add a bootstrap entry point so connected repositories select relevant rubrics and maintain local quality records.
+- [ ] Add rubric-aware planning and evidence-based quality reporting to the orchestrator.
 - [ ] Finalise versioned capability, pack, adapter, and compatibility contracts.
 - [ ] Add pack manifests, dependency resolution, enable/disable, and safe removal.
 - [ ] Add domain-pack quality gates and compatibility tests.
