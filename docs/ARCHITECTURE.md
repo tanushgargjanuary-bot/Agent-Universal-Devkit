@@ -53,7 +53,7 @@ The orchestration layer should:
 9. Verify results independently.
 10. Report evidence, limitations, and failures.
 
-The orchestrator now retrieves approved native knowledge during plan creation and attaches ranked matches, reasons, limitations, and prerequisite status to each task. Draft and review entries remain excluded by default. The orchestrator is still a planning and safety core, not a multi-agent execution service.
+The orchestrator retrieves approved native knowledge during plan creation and attaches ranked matches, reasons, limitations, and prerequisite status to each task. Draft and review entries remain excluded by default. An opt-in Technology Decision Engine inspects repository file and manifest signals, then compares caller-supplied architecture candidates against explicit workload capabilities, platform requirements, and security controls. It returns a ranked proposal with evidence, cost estimates, uncertainty, and an approval requirement. It does not invent candidates, run repository code, or perform migrations. The orchestrator is still a planning and safety core, not a multi-agent execution service.
 
 ## Interoperability
 
