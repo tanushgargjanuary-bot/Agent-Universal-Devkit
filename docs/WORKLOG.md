@@ -30,9 +30,17 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Next action:** Verify CI and complete the remaining DEVKIT audit.
 
 ### 2026-11-10 — Tighten work-log entry validation
-- **Commit:** pending
+- **Commit:** `072275ac3debc66e5fbf18620c46a66a828610f9`
 - **Goal:** Ensure a documentation update contains a new dated work-log entry, not only a file touch.
 - **Changes:** Added placeholder checks for unfilled project-state templates. The diff checker now compares work-log entries against the base commit and requires a new dated entry.
 - **Verification:** Awaiting GitHub Actions.
 - **Open risks / blockers:** The checker verifies structure and changed entries, not factual accuracy.
 - **Next action:** Verify the new tests and finish the DEVKIT audit.
+
+### 2026-11-10 — Correct continuity checker regex regression
+- **Commit:** pending
+- **Goal:** Restore the canonical checker syntax after the first placeholder-check implementation escaped existing path expressions incorrectly.
+- **Changes:** Reapplied the placeholder and work-log-entry checks on top of the last passing checker implementation without changing existing escape sequences.
+- **Verification:** Awaiting GitHub Actions.
+- **Open risks / blockers:** The new checks must pass in CI before they are considered active.
+- **Next action:** Verify tests, then finish the DEVKIT audit.

@@ -66,7 +66,7 @@ function add(findings, severity, rule, file, message, line = null) {
 
 function walk(root, config, findings) {
   const files = [];
-  const ignored = new Set([...DEFAULT_IGNORES, ...config.excludePaths.map(x => x.replaceAll("\", "/").replace(/^\/+|\/+$/g, ""))]);
+  const ignored = new Set([...DEFAULT_IGNORES, ...config.excludePaths.map(x => x.replaceAll("\\", "/").replace(/^\/+|\/+$/g, ""))]);
   function visit(dir, relative = "") {
     let entries;
     try { entries = fs.readdirSync(dir, { withFileTypes: true }); }
