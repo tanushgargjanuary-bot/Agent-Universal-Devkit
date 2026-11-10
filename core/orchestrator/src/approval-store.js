@@ -10,7 +10,8 @@ const DDL = [
  "CREATE TABLE IF NOT EXISTS approval_requests(request_id TEXT PRIMARY KEY,policy_version TEXT NOT NULL,plan_id TEXT NOT NULL,plan_digest TEXT NOT NULL,action TEXT NOT NULL,target TEXT NOT NULL,status TEXT NOT NULL CHECK(status IN ('pending','approved','rejected','revoked','expired')),requested_at TEXT NOT NULL,expires_at TEXT NOT NULL,approved_by TEXT,approved_at TEXT,signature TEXT,key_id TEXT,reviewed_by TEXT,reviewed_at TEXT,reason TEXT NOT NULL DEFAULT '',created_at TEXT NOT NULL,updated_at TEXT NOT NULL)",
  "CREATE INDEX IF NOT EXISTS idx_approval_requests_status_expiry ON approval_requests(status,expires_at)",
  "CREATE TABLE IF NOT EXISTS approval_events(id INTEGER PRIMARY KEY AUTOINCREMENT,request_id TEXT NOT NULL REFERENCES approval_requests(request_id),event_type TEXT NOT NULL,actor TEXT,detail_json TEXT NOT NULL,created_at TEXT NOT NULL)",
- "CREATE INDEX IF NOT EXISTS idx_approval_events_request ON approval_events(request_id,created_at)"
+ "CREATE INDEX IF NOT EXISTS idx_approval_events_request ON approval_events(request_id,created_at)",
+ "CREATE TABLE IF NOT EXISTS approval_consumptions(request_id TEXT PRIMARY KEY REFERENCES approval_requests(request_id),execution_id TEXT NOT NULL,consumed_at TEXT NOT NULL)"
 ].join(";\n") + ";";
 
 function stableValue(value) {
@@ -180,7 +181,7 @@ export class ApprovalStore {
   getApproval(requestId) {
     this.#assertOpen();
     if (typeof requestId !== "string" || !requestId.trim()) throw new Error("requestId is required");
-    const row = this.db.prepare("SELECT * FROM approval_requests WHERE request_id=?").get(requestId);
+    const row = this.db.prepare("SELECT r.*,c.consumed_at FROM approval_requests r LEFT JOIN approval_consumptions c ON c.request_id=r.request_id WHERE r.request_id=?").get(requestId);
     return row ? this.#decode(row) : null;
   }
 
@@ -197,6 +198,25 @@ export class ApprovalStore {
       .all(now, limit).map(row => this.#decode(row));
   }
 
+
+  consumeApproval(requestId, signature, executionId) {
+    this.#assertOpen();
+    if (typeof signature !== "string" || !signature || typeof executionId !== "string" || !executionId.trim()) {
+      throw new Error("A signed approval and executionId are required");
+    }
+    const row = this.db.prepare("SELECT * FROM approval_requests WHERE request_id=?").get(requestId);
+    if (!row || row.status !== "approved" || row.signature !== signature) throw new Error("Approval is not valid for consumption");
+    const consumedAt = timestamp(this.clock).toISOString();
+    if (Date.parse(row.expires_at) <= Date.parse(consumedAt)) throw new Error("Approval has expired");
+    this.#transaction(() => {
+      const inserted = this.db.prepare("INSERT OR IGNORE INTO approval_consumptions(request_id,execution_id,consumed_at) VALUES(?,?,?)")
+        .run(requestId, executionId, consumedAt);
+      if (inserted.changes !== 1) throw new Error("Approval has already been consumed");
+      this.#event(requestId, "consumed", "execution-gate", { execution_id: executionId }, consumedAt);
+    });
+    return { request_id: requestId, execution_id: executionId, consumed_at: consumedAt };
+  }
+
   verifyApproval(record, request) {
     this.#assertOpen();
     if (!record || !request || record.status !== "approved" || !record.signature || !this.publicKey ||
@@ -209,7 +229,7 @@ export class ApprovalStore {
       return false;
     }
     const current = this.getApproval(record.request_id);
-    if (!current || current.status !== "approved" || current.signature !== record.signature) return false;
+    if (!current || current.status !== "approved" || current.signature !== record.signature || current.consumed_at) return false;
     try {
       return verify(null, Buffer.from(stableJson(this.#signaturePayload(record))), this.publicKey, Buffer.from(record.signature, "base64"));
     } catch {
@@ -261,7 +281,7 @@ export class ApprovalStore {
       plan_digest: row.plan_digest, action: row.action, target: row.target, status: row.status,
       requested_at: row.requested_at, expires_at: row.expires_at, approved_by: row.approved_by,
       approved_at: row.approved_at, signature: row.signature, key_id: row.key_id,
-      reviewed_by: row.reviewed_by, reviewed_at: row.reviewed_at, reason: row.reason
+      reviewed_by: row.reviewed_by, reviewed_at: row.reviewed_at, reason: row.reason, consumed_at: row.consumed_at ?? null
     };
   }
 

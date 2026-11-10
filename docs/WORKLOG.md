@@ -423,3 +423,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Orchestrator Core Tests passed 61/61. Orchestration quality, repository hygiene, continuity diff, and secret-history scan passed. CodeQL remained queued at the time of this entry.
 - **Hardening:** Policy is evaluated before adapter resolution; denials are audited; dependency order is checked independently of the plan digest; adapter IDs are normalised before duplicate checks; adapter methods retain their owning instance; raw adapter exception messages are not written to audit events.
 - **Remaining:** No built-in adapters exist. Production identity provider, protected key management, durable audit sink, adapter isolation, and executor-specific least privilege remain host integration work. The gate is not an OS sandbox.
+
+
+### 2026-11-11 — One-time approval consumption
+
+- **Finding:** The first Execution Gate allowed the same still-valid approval to authorise repeated executions until expiry. That is replay, even though approval state transitions were single-use.
+- **Fix:** Added an atomic approval-consumption ledger. The gate consumes a signed approval immediately before adapter execution. Verification rejects consumed approvals, including stale copies. Execution IDs are included in audit events.
+- **Tests:** Direct double-consumption rejection and end-to-end prevention of replay through the Execution Gate.
+- **Verification:** Awaiting CI.

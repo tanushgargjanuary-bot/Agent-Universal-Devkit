@@ -41,7 +41,7 @@ Use `core/orchestrator/src/policy-engine.js` to evaluate actions before executio
 
 ## Approval Store
 
-`src/approval-store.js` provides a SQLite-backed approval lifecycle. It stores pending requests, authenticated decisions, signed approvals, expiry, rejection, revocation, and an append-only event history. The integration must provide an `authenticateApprover` callback that validates a real credential and returns a stable subject. The store signs approvals with an Ed25519 private key; keep that key outside the repository. Verification checks the signature, exact scope, expiry, key ID, and current stored status. Pass `store.verifyApproval.bind(store)` to the Policy Engine.
+`src/approval-store.js` provides a SQLite-backed approval lifecycle. It stores pending requests, authenticated decisions, signed approvals, expiry, rejection, revocation, and an append-only event history. The integration must provide an `authenticateApprover` callback that validates a real credential and returns a stable subject. The store signs approvals with an Ed25519 private key; keep that key outside the repository. Verification checks the signature, exact scope, expiry, key ID, current stored status, and whether the approval has already been consumed. The Execution Gate atomically consumes each approval immediately before adapter execution; one approval cannot authorise repeated runs. Pass `store.verifyApproval.bind(store)` to the Policy Engine.
 
 The store does not implement a user interface, identity provider, key provisioning/rotation, distributed locking, or executor-side enforcement. Do not pass a caller-created identity object as proof of authentication.
 

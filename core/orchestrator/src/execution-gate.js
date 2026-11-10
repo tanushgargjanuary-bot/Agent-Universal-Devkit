@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { createPlanDigest, evaluatePolicy, POLICY_VERSION } from "./policy-engine.js";
 
 export class ExecutionGateError extends Error {
@@ -31,7 +32,7 @@ export class ExecutionGate {
   constructor({ approvalStore = null, audit = null } = {}) {
     if (approvalStore !== null &&
         (typeof approvalStore.getApproval !== "function" || typeof approvalStore.verifyApproval !== "function" ||
-         typeof approvalStore.requestApproval !== "function")) {
+         typeof approvalStore.requestApproval !== "function" || typeof approvalStore.consumeApproval !== "function")) {
       throw new Error("approvalStore must implement requestApproval, getApproval, and verifyApproval");
     }
     if (audit !== null && typeof audit !== "function") throw new Error("audit must be a function");
@@ -106,6 +107,7 @@ export class ExecutionGate {
       throw new ExecutionGateError("AUDIT_REQUIRED", "A durable audit callback is required before execution");
     }
     const results = [];
+    const executionId = randomUUID();
     for (const task of plan.tasks) {
       if (!task || typeof task.id !== "string" || !task.id.trim() || !Array.isArray(task.actions)) {
         throw new ExecutionGateError("INVALID_PLAN", "Every task requires an id and an actions array");
@@ -115,11 +117,12 @@ export class ExecutionGate {
           throw new ExecutionGateError("EXECUTION_ABORTED", "Execution was aborted", { results });
         }
         const action = normalisePlannedAction(rawAction, task.id);
+        let approvals = [];
         let decision = evaluatePolicy({
           risk: plan.risk, actions: [action], planId: plan.task_id, planDigest: plan.plan_digest
         });
         if (decision.approval_required) {
-          const approvals = this.approvalStore
+          approvals = this.approvalStore
             ? decision.approval_requests.map(request => this.approvalStore.getApproval(request.request_id)).filter(Boolean)
             : [];
           decision = evaluatePolicy({
@@ -144,7 +147,7 @@ export class ExecutionGate {
           continue;
         }
         const auditBase = {
-          plan_id: plan.task_id, plan_digest: plan.plan_digest, task_id: task.id,
+          execution_id: executionId, plan_id: plan.task_id, plan_digest: plan.plan_digest, task_id: task.id,
           action: action.type, target: action.target, adapter_id: adapter.id, adapter_version: adapter.version
         };
         try {
@@ -153,6 +156,18 @@ export class ExecutionGate {
           throw new ExecutionGateError("AUDIT_FAILED", "Audit sink rejected the execution-start event", {
             ...auditBase, results, cause: error.message
           });
+        }
+        for (const request of decision.approval_requests ?? []) {
+          const approval = approvals.find(item => item.request_id === request.request_id);
+          if (!approval || !this.approvalStore) {
+            throw new ExecutionGateError("APPROVAL_REQUIRED", "A current approval record is required", { ...auditBase });
+          }
+          try {
+            this.approvalStore.consumeApproval(request.request_id, approval.signature, executionId);
+          } catch {
+            try { await this.audit({ event: "approval_consumption_failed", ...auditBase }); } catch {}
+            throw new ExecutionGateError("APPROVAL_REPLAYED", "Approval is invalid, expired, or already consumed", { ...auditBase });
+          }
         }
         let output;
         try {
@@ -177,7 +192,7 @@ export class ExecutionGate {
         }
       }
     }
-    return { plan_id: plan.task_id, plan_digest: plan.plan_digest, status: dryRun ? "dry_run" : "completed", results };
+    return { execution_id: executionId, plan_id: plan.task_id, plan_digest: plan.plan_digest, status: dryRun ? "dry_run" : "completed", results };
   }
 
   #validatePlan(plan) {

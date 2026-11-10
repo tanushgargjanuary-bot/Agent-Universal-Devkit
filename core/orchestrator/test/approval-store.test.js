@@ -109,3 +109,17 @@ test("rejected approvals cannot be verified or approved later", async () => {
   await assert.rejects(() => store.approve(request.request_id, "valid-token"), /not pending/);
   store.close();
 });
+
+
+test("approval consumption is one-time and invalidates stale approval objects", async () => {
+ const store=await new ApprovalStore(storeOptions(keys())).open();
+ const request=scope();
+ store.requestApproval(request);
+ const approved=await store.approve(request.request_id,"valid-token");
+ assert.equal(store.verifyApproval(approved,request),true);
+ const consumed=store.consumeApproval(request.request_id,approved.signature,"execution-1");
+ assert.equal(consumed.execution_id,"execution-1");
+ assert.equal(store.verifyApproval(approved,request),false);
+ assert.throws(()=>store.consumeApproval(request.request_id,approved.signature,"execution-2"),/already been consumed/);
+ store.close();
+});

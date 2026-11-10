@@ -231,3 +231,18 @@ test("audit completion failure reports that the action already executed", async 
  );
  assert.equal(calls,1);
 });
+
+
+test("an approval is consumed after one execution and cannot be replayed", async () => {
+ const store=await makeStore().open();
+ const value=plan({risk:"medium",action:{type:"install_dependency",target:"package:sample@1.0.0"}});
+ const gate=new ExecutionGate({approvalStore:store,audit:async()=>{}});
+ gate.registerAdapter(adapter());
+ const request=gate.requestApprovals(value)[0];
+ await store.approve(request.request_id,"ok");
+ const first=await gate.executePlan(value);
+ assert.equal(first.status,"completed");
+ assert.ok(store.getApproval(request.request_id).consumed_at);
+ await assert.rejects(()=>gate.executePlan(value),error=>error.code==="POLICY_DENIED");
+ store.close();
+});
