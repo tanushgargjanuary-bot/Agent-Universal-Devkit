@@ -5,6 +5,26 @@ export const POLICY_VERSION = policyRules.policy_version;
 const ACTION_RULES = Object.freeze(policyRules.actions);
 const RISK_ORDER = Object.freeze(policyRules.risk_order);
 const MUTATING_ACTIONS = new Set(policyRules.mutating_actions);
+const VALID_EFFECTS = new Set(["allow", "approval", "risk_gated"]);
+for (const risk of ["low", "medium", "high", "critical"]) {
+  if (!Object.hasOwn(RISK_ORDER, risk) || !Number.isSafeInteger(RISK_ORDER[risk])) {
+    throw new Error("Policy rules must define every risk level with an integer order");
+  }
+}
+if (typeof POLICY_VERSION !== "string" || !POLICY_VERSION.trim() ||
+    !policyRules.actions || typeof policyRules.actions !== "object" ||
+    !Array.isArray(policyRules.mutating_actions)) {
+  throw new Error("Canonical policy rules are malformed");
+}
+for (const [action, rule] of Object.entries(ACTION_RULES)) {
+  if (!action.trim() || !rule || !VALID_EFFECTS.has(rule.effect) || !Object.hasOwn(RISK_ORDER, rule.minimumRisk)) {
+    throw new Error("Invalid canonical policy rule: " + action);
+  }
+}
+for (const action of MUTATING_ACTIONS) {
+  if (!Object.hasOwn(ACTION_RULES, action)) throw new Error("Unknown mutating action in canonical policy rules: " + action);
+}
+
 
 function stableValue(value) {
   if (Array.isArray(value)) return value.map(stableValue);

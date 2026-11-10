@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
@@ -265,4 +266,18 @@ test("approval records must have approved status and malformed approval collecti
  });
  assert.equal(malformed.allowed,false);
  assert.match(malformed.reasons[0],/Approvals must be an array/);
+});
+
+
+test("policy YAML points to the canonical runtime action catalogue", async () => {
+ const yaml=await readFile(new URL("../policy.yaml",import.meta.url),"utf8");
+ const rules=JSON.parse(await readFile(new URL("../policy.rules.json",import.meta.url),"utf8"));
+ assert.match(yaml,/source: \.\/policy\.rules\.json/);
+ assert.doesNotMatch(yaml,/blocked_without_human_approval|^permissions:/m);
+ assert.equal(POLICY_VERSION,rules.policy_version);
+ assert.equal(getPolicyActionCatalog().length,Object.keys(rules.actions).length);
+});
+
+test("approval requests reject malformed plan digests", () => {
+ assert.throws(()=>createApprovalRequest({...plan,planDigest:"not-a-digest"}),/SHA-256 planDigest/);
 });
