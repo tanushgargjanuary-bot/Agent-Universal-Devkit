@@ -1,18 +1,22 @@
-name: Discover Open-Source Repositories
+name: Discover and curate trending open-source repositories
 
 on:
   schedule:
-    - cron: "23 4 * * 1"
+    - cron: "23 4 * * *"
   workflow_dispatch:
     inputs:
       days:
-        description: "How many days back to search"
+        description: "Lookback window for topic-based active-repository discovery"
         required: false
         default: "30"
 
 permissions:
   contents: write
   pull-requests: write
+
+concurrency:
+  group: resource-discovery
+  cancel-in-progress: false
 
 jobs:
   discover:
@@ -27,30 +31,47 @@ jobs:
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.12"
-      - name: Discover candidates and measure star growth
+      - name: Test trending discovery filters
+        working-directory: scripts
+        run: python -m unittest -v test_discover_trending_repositories.py
+      - name: Discover active repositories and measure star growth
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCOVERY_DAYS: ${{ inputs.days || '30' }}
           DISCOVERY_MIN_STARS: "5"
           DISCOVERY_PER_CATEGORY: "20"
         run: python scripts/discover_repositories.py
+      - name: Discover daily and weekly trending repositories
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TRENDING_MIN_STARS: "10"
+          TRENDING_MAX_PUSH_AGE_DAYS: "180"
+        run: python scripts/discover_trending_repositories.py
       - name: Open review pull request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet -- catalog/inbox/discovery-candidates.json catalog/inbox/repository-history.json; then
+          changed_files="catalog/resources.yaml catalog/inbox/discovery-candidates.json catalog/inbox/repository-history.json catalog/inbox/trending-discovery-latest.json"
+          if git diff --quiet -- $changed_files; then
             echo "No discovery changes."
             exit 0
           fi
           branch="automation/resource-discovery"
+          git fetch origin "$branch" || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B "$branch"
-          git add catalog/inbox/discovery-candidates.json catalog/inbox/repository-history.json
-          git commit -m "chore: refresh open-source discovery candidates"
+          git add $changed_files
+          git commit -m "chore: refresh trending resource candidates"
           auth_header="$(printf "x-access-token:%s" "$GH_TOKEN" | base64 -w0)"
-          git -c http.extraheader="AUTHORIZATION: basic $auth_header" push --force-with-lease origin "$branch"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            git fetch origin "refs/heads/$branch:refs/remotes/origin/$branch"
+            expected="$(git rev-parse "refs/remotes/origin/$branch")"
+            git -c http.extraheader="AUTHORIZATION: basic $auth_header" push --force-with-lease="refs/heads/$branch:$expected" origin "$branch"
+          else
+            git -c http.extraheader="AUTHORIZATION: basic $auth_header" push origin "$branch"
+          fi
           gh pr create --base main --head "$branch" \
-            --title "chore: refresh open-source discovery candidates" \
-            --body "Automated discovery results with observed star-growth signals. These are candidates only, not approved recommendations. Review project fit, maintenance, security, compatibility, and license before adding entries to the approved catalog." \
+            --title "chore: refresh daily and weekly trending resource candidates" \
+            --body "Automated daily/weekly GitHub Trending discovery. Filtered repositories are added as status=candidate with license.review_status=unreviewed. This is not approval or endorsement. Review source, dependencies, security, maintenance, compatibility, project fit, and license before promotion." \
             || gh pr view "$branch" --json url
