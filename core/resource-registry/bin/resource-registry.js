@@ -24,7 +24,7 @@ Notes:
 }
 function numberOption(options, name, fallback) {
   if (options[name] === undefined) return fallback;
-  if (!/^(0|[1-9]\\d*)$/.test(options[name])) throw new Error(`--${name} must be a non-negative integer`);
+  if (!/^(0|[1-9]\d*)$/.test(options[name])) throw new Error(`--${name} must be a non-negative integer`);
   const value = Number(options[name]);
   if (!Number.isSafeInteger(value)) throw new Error(`--${name} is outside the safe integer range`);
   return value;
