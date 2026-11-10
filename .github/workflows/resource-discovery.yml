@@ -1,0 +1,56 @@
+name: Discover Open-Source Repositories
+
+on:
+  schedule:
+    - cron: "23 4 * * 1"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days back to search"
+        required: false
+        default: "30"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          ref: main
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - name: Discover candidates and measure star growth
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCOVERY_DAYS: ${{ inputs.days || '30' }}
+          DISCOVERY_MIN_STARS: "5"
+          DISCOVERY_PER_CATEGORY: "20"
+        run: python scripts/discover_repositories.py
+      - name: Open review pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- catalog/inbox/discovery-candidates.json catalog/inbox/repository-history.json; then
+            echo "No discovery changes."
+            exit 0
+          fi
+          branch="automation/resource-discovery"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add catalog/inbox/discovery-candidates.json catalog/inbox/repository-history.json
+          git commit -m "chore: refresh open-source discovery candidates"
+          auth_header="$(printf "x-access-token:%s" "$GH_TOKEN" | base64 -w0)"
+          git -c http.extraheader="AUTHORIZATION: basic $auth_header" push --force-with-lease origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "chore: refresh open-source discovery candidates" \
+            --body "Automated discovery results with observed star-growth signals. These are candidates only, not approved recommendations. Review project fit, maintenance, security, compatibility, and license before adding entries to the approved catalog." \
+            || gh pr view "$branch" --json url

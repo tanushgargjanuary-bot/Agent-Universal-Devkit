@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Devkit Capability Pack Manifest",
+  "type": "object",
+  "required": ["id", "name", "version", "type", "description", "capabilities", "permissions", "compatibility", "lifecycle", "evidence", "status"],
+  "properties": {
+    "id": {"type":"string","pattern":"^[a-z0-9][a-z0-9.-]*$"},
+    "name": {"type":"string","minLength":1},
+    "version": {"type":"string","pattern":"^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$"},
+    "type": {"enum":["domain","integration","interface"]},
+    "description": {"type":"string","minLength":1},
+    "domain": {"type":"string"},
+    "capabilities": {"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},
+    "dependencies": {
+      "type":"array",
+      "items":{
+        "type":"object","required":["id","version"],
+        "properties":{"id":{"type":"string"},"version":{"type":"string"}},
+        "additionalProperties":false
+      }
+    },
+    "permissions": {
+      "type":"object",
+      "properties":{
+        "filesystem":{"enum":["none","read","scoped-write","write"]},
+        "network":{"type":"array","items":{"type":"string"}},
+        "secrets":{"type":"array","items":{"type":"string"}},
+        "execution":{"enum":["none","sandboxed","host-approval","unrestricted"]}
+      },
+      "additionalProperties":false
+    },
+    "compatibility": {
+      "type":"object",
+      "properties":{
+        "devkit_api":{"type":"string"},
+        "operating_systems":{"type":"array","items":{"type":"string"}},
+        "runtimes":{"type":"array","items":{"type":"string"}},
+        "harnesses":{"type":"array","items":{"type":"string"}}
+      },
+      "additionalProperties":true
+    },
+    "lifecycle": {
+      "type":"object",
+      "required":["configure","health_check","remove"],
+      "properties":{
+        "install":{"type":"string"},
+        "configure":{"type":"string"},
+        "health_check":{"type":"string"},
+        "remove":{"type":"string"},
+        "rollback":{"type":"string"}
+      },
+      "additionalProperties":false
+    },
+    "entrypoints":{"type":"array","items":{"type":"string"}},
+    "evidence":{
+      "type":"array","minItems":1,
+      "items":{
+        "type":"object","required":["claim","url","checked_at"],
+        "properties":{
+          "claim":{"type":"string"},
+          "url":{"type":"string","format":"uri"},
+          "checked_at":{"type":"string","format":"date-time"}
+        },
+        "additionalProperties":false
+      }
+    },
+    "tests":{"type":"array","items":{"type":"string"}},
+    "known_limitations":{"type":"array","items":{"type":"string"}},
+    "status":{"enum":["candidate","experimental","supported","deprecated","rejected"]}
+  },
+  "additionalProperties":false
+}

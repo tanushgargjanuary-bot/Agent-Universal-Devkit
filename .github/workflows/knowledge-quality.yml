@@ -1,0 +1,46 @@
+name: Knowledge quality
+
+on:
+  push:
+    paths:
+      - "knowledge/**"
+      - "schemas/knowledge-item.schema.json"
+      - "core/knowledge-engine/**"
+      - ".github/workflows/knowledge-quality.yml"
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+  pull_request:
+    paths:
+      - "knowledge/**"
+      - "schemas/knowledge-item.schema.json"
+      - "core/knowledge-engine/**"
+      - ".github/workflows/knowledge-quality.yml"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+      - name: Validate schema, registry, and approval digests
+        run: node core/knowledge-engine/scripts/validate-registry.js
+      - name: Verify GitHub review identity and approval commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node core/knowledge-engine/scripts/verify-approvals.js
+      - name: Run knowledge engine tests
+        working-directory: core/knowledge-engine
+        run: npm test
+      - name: Run retrieval benchmark
+        working-directory: core/knowledge-engine
+        run: npm run benchmark

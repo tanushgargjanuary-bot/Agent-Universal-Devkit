@@ -1,0 +1,30 @@
+schema_version: 1
+harnesses:
+  - id: opencode
+    name: OpenCode
+    adapter_path: agents/opencode
+    status: planned
+  - id: claude-code
+    name: Claude Code
+    adapter_path: agents/claude-code
+    status: planned
+  - id: codex
+    name: OpenAI Codex
+    adapter_path: agents/codex
+    status: planned
+  - id: gemini-cli
+    name: Gemini CLI
+    adapter_path: agents/gemini-cli
+    status: planned
+  - id: antigravity
+    name: Antigravity
+    adapter_path: agents/antigravity
+    status: planned
+  - id: cursor
+    name: Cursor
+    adapter_path: agents/cursor
+    status: planned
+  - id: github-copilot
+    name: GitHub Copilot
+    adapter_path: agents/github-copilot
+    status: planned
