@@ -79,7 +79,7 @@
 3. **Expand deterministic checks.** Add dependency, test, CI, configuration, and documentation checks only where source evidence is available. Keep read-only defaults and bounded file access.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
 5. **Prove a find-to-fix-to-verify workflow.** Keep execution disabled until the plan digest, policy source, task schema, trusted approval lifecycle, and executor-side enforcement gaps are closed.
-6. **Verify Resource Registry hardening in CI.** Confirm the dedicated workflow passes, then add labelled deduplication benchmarks and review consistency tests. Do not claim runtime validation until the workflow completes.
+6. **Improve Resource Registry evidence quality.** Add labelled deduplication benchmarks and review-consistency tests. The dedicated registry workflow now passes 12/12 tests; this does not validate semantic accuracy or production-scale performance.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
 8. **Review automated trending candidates.** Inspect each daily/weekly discovery PR, verify source/dependencies/security/license/project fit, and approve only reviewed resources.
 9. **Complete distribution and repository maintenance.** Build safe updates for existing repositories, validate GitHub App runtime, review stale branches and Dependabot PRs, and verify owner-only protection settings.
@@ -156,7 +156,9 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `a28d9ae` | Resource Registry hardening | Pagination, bounded search, category/capability candidate blocking, CLI import correction, and approval-status preservation implemented. Regression tests and dedicated CI added; workflow result pending. |
 
-| 2026-11-11 | `407679a` | Resource Registry tests | Failed: 11/12 passed. The remaining failure was a legacy test fixture with no shared tags; updated fixture now represents a valid overlap candidate. Awaiting rerun. |
+| 2026-11-11 | `407679a` | Resource Registry tests | Failed: 11/12 passed. The remaining failure was a legacy test fixture with no shared tags; corrected in `012837e`. |
+| 2026-11-11 | `012837e` | Resource Registry Tests | Passed: syntax check and 12/12 tests. |
+| 2026-11-11 | `9272cc0` | Repository hygiene and continuity diff | Passed: hygiene tests, trending-discovery tests, continuity diff, and repository scan. Secret-history scan passed; CodeQL still running at this handoff update. |
 
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
@@ -167,14 +169,14 @@ Do not report checks as passed unless they ran and passed.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.
 - **Verified:** Continuity presence, structure, placeholder completion, review-date freshness, and changed-file update requirements are checked by CI. The diff check requires a new dated work-log entry; L2–L4 cannot disable the checks or lower governance in the same change set. Semantic accuracy remains an agent/human responsibility.
-- **Verified audit findings (partly remediated in latest main commits):** Resource Registry CLI import, filter-before-pagination, metadata status preservation, bounded search, and deduplication workload limits have code changes and regression tests; dedicated CI is awaiting a completed run. Remaining orchestration findings: plan digest omits execution-relevant routing fields; policy YAML and JavaScript rules are not a single runtime source of truth.
-- **Unknown:** Whether every branch and open PR contains unique work or can be consolidated safely; inspect before merging/deleting.
-- **Owner action:** Verify branch protection, required status checks, GitHub App registration, and deployment configuration.
+- **Verified audit findings (partly remediated in latest main commits):** Resource Registry CLI import, filter-before-pagination, metadata status preservation, bounded search, and deduplication workload limits have code changes and regression tests; dedicated CI passed 12/12 tests on 2026-11-11. Remaining orchestration findings: plan digest omits execution-relevant routing fields; policy YAML and JavaScript rules are not a single runtime source of truth.
+- **Verified branch audit:** Six non-main branches are fully behind `main` with zero unique commits. Three squash-merged branches retain unique commit ancestry, but their changed content was checked against `main`: PR #17 dependency/workflow files match, PR #16 discovery code/tests/docs match and its workflow pins are older, and PR #5 technology-decision code matches while its schema/tests/docs on `main` contain later changes. All nine non-main branches are safe to delete; no branch-deletion action is available in the connected GitHub interface, so owner-side deletion remains.
+- **Owner action:** Delete the nine audited non-main branches; verify branch protection, required status checks, GitHub App registration, deployment configuration, and repository visibility. Live GitHub metadata currently reports `public`, despite the earlier instruction that the repository had been made private.
 - **Audit gap:** Documentation and agent instructions were reviewed. Core source, tests, manifests, workflows, GitHub App, and branch/PR state received a targeted static audit. Full package test execution, live webhook validation, dependency audit, and owner-only settings remain unverified.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-11
-- **Commit:** `407679ad8dcc6c84f6266c5f12e96cf455add1a9` (verify current `main` HEAD before next task).
+- **Commit:** `9272cc021876686d59221549e97951b6afddba72` (verify current `main` HEAD before next task).
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

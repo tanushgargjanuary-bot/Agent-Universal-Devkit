@@ -338,3 +338,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Finding:** The remaining CI failure came from a legacy review test that created two resources with no shared category or capability tags. Under the new candidate-blocking contract, that pair is not proposed for review.
 - **Change:** Updated the test fixture to declare a shared category and capability. This preserves the production rule that untagged unrelated records are not treated as likely overlaps.
 - **Verification:** Awaiting the next Resource Registry workflow run.
+
+
+### 2026-11-11 — Resource Registry CI passed; branch audit completed
+
+- **Verification:** Resource Registry workflow passed syntax checks and 12/12 tests on `012837e`. Repository hygiene and continuity diff passed on `9272cc0`; trending-discovery tests passed; secret-history scan passed. CodeQL was still running at the time of this entry.
+- **Branch audit:** Six non-main branches are fully behind `main` with zero unique commits. The three squash-merged branches were compared file-by-file: PR #17 dependency/workflow files match `main`; PR #16 discovery code/tests/docs match and its workflow uses older action pins; PR #5 technology-decision implementation matches while the branch's schema/tests/docs are stale relative to `main`. All nine non-main branches are safe to delete. The connected GitHub interface has no branch deletion action; deletion remains an owner-side task.
+- **Owner action:** Confirm repository visibility. GitHub metadata reports `public`, although the prior project discussion stated the repository had been made private. Delete the nine audited branches in GitHub after confirming visibility.
+- **Next:** Continue the orchestration/policy audit. Fix plan-digest coverage and make policy configuration a single validated source of truth before adding executor adapters.
