@@ -54,6 +54,7 @@ This is a narrow search. It is not proof that the repository contains no secrets
 - Full commit-SHA pins for the GitHub Actions used by repository workflows.
 - `persist-credentials: false` for checkout steps. The discovery workflow uses a one-command Git HTTP authorization header for its required branch push.
 - CodeQL workflow for JavaScript and Python on main pushes, pull requests, and a weekly schedule.
+- Full-history Gitleaks workflow. It checks out complete Git history, verifies the Gitleaks release archive against a pinned SHA-256 digest, and scans available Git refs with redacted output.
 - Public commit metadata guidance in `policies/SECURITY.md`.
 
 ## Verification status
@@ -62,7 +63,8 @@ This is a narrow search. It is not proof that the repository contains no secrets
 - Branch protection: confirmed disabled.
 - Repository rulesets: none returned.
 - Common secret-pattern code search: no matches in indexed current-branch code.
-- CodeQL: workflow added; initial runs were still in progress at audit time. Do not claim a clean CodeQL result until a completed run is reviewed.
+- CodeQL: workflow added; initial runs were still in progress at the latest check. Do not claim a clean CodeQL result until a completed run is reviewed.
+- Gitleaks: full-history workflow added; first run must complete before the historical scan can be reported as clean.
 - Secret-scanning alerts: the connected GitHub integration could not read the alert endpoint. The repository owner must inspect **Settings → Security → Code security and analysis** and the **Security** tab.
 - Full historical secret scan: not completed. Current-branch code search does not inspect every historical blob.
 - Dependabot: configuration added; open update pull requests still require review and CI.
@@ -73,7 +75,7 @@ This is a narrow search. It is not proof that the repository contains no secrets
 2. Configure branch protection or a ruleset on `main`.
 3. Confirm the CodeQL workflow completes successfully and review any findings.
 4. Set the GitHub `noreply` email for future commits.
-5. Run a dedicated full-history secret scanner before treating the historical audit as complete.
+5. Review the Gitleaks full-history scan result. Investigate any finding and rotate exposed credentials before considering history cleanup.
 6. Review Dependabot pull requests individually. Do not merge major updates solely because they are available.
 
 ## Scope limitation
