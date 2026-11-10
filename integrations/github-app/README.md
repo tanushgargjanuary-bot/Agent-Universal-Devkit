@@ -21,9 +21,7 @@ Required repository permissions:
 - **Metadata: Read-only**
 - **Contents: Read and write**
 
-The installation must have access to both:
-1. `Agent-Universal-Devkit` (to read the bootstrap templates; the repository is public, but the App installation still needs the target-repository write permission).
-2. New repositories that should receive the bootstrap (to write files).
+The installation must have access to each target repository that should receive bootstrap files. The Devkit source repository is public, so its templates can be read without granting the App installation access to the source repository.
 
 For automatic coverage, install the App for **all repositories**. If it is installed only on selected repositories, it cannot bootstrap repositories outside that selection.
 
