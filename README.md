@@ -52,6 +52,10 @@ Read [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](doc
 
 The resource comparison engine now applies mandatory hard constraints before weighted ranking. The knowledge engine has schema checks, content-bound approval metadata, GitHub-backed reviewer and commit verification, a two-pull-request approval procedure, a technical review checklist, and a labelled retrieval regression benchmark. These are early quality gates, not proof of complete correctness. Knowledge entries remain drafts and require technical review before production reliance. Required branch protection is documented but is not confirmed as enabled. The orchestrator does not yet run multi-agent workflows. The GitHub App is source code only and is not registered or deployed.
 
+## Security
+
+See [SECURITY.md](SECURITY.md) for vulnerability reporting and [the security policy](policies/SECURITY.md) for safe tool use, least privilege, and approval requirements. Do not commit credentials, private keys, local environment files, or personal data.
+
 ## License
 
 The Devkit's original code and documentation are licensed under MIT. Third-party resources retain their own licenses and terms.
