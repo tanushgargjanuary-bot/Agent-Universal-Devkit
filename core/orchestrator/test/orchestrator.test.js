@@ -224,3 +224,36 @@ test("blocks a plan when technology evidence is insufficient", () => {
   assert.equal(plan.technology_decision.decision, "insufficient_evidence");
   assert.equal(plan.approval_required, true);
 });
+
+
+test("retains a suitable existing language without adding a hybrid", () => {
+  const decision = evaluateTechnologyArchitecture({
+    repository: { full_name: "owner/web-app" },
+    files: ["src/app.ts", "src/server.ts", "package.json"],
+    workload: { required_capabilities: ["http-api", "web-ui"] },
+    candidates: [
+      {
+        id: "existing-typescript",
+        languages: ["TypeScript"],
+        capabilities: ["http-api", "web-ui"],
+        evidence: ["Existing CI and deployment tests"],
+        integration_complexity: 0,
+        operational_complexity: 0,
+        migration_cost: 0
+      },
+      {
+        id: "go-and-typescript",
+        languages: ["Go", "TypeScript"],
+        capabilities: ["http-api"],
+        evidence: ["Prototype only"],
+        integration_complexity: 3,
+        operational_complexity: 2,
+        migration_cost: 1
+      }
+    ]
+  });
+  assert.equal(decision.decision, "single_stack");
+  assert.equal(decision.recommendation.candidate_id, "existing-typescript");
+  assert.equal(decision.approval.required, false);
+  assert.equal(evaluateTechnologyChangeGate({ decision }).allowed, true);
+});
