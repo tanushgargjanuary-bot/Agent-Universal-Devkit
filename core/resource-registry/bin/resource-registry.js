@@ -48,6 +48,10 @@ async function main() {
     else if(command==="search") output=registry.search(positional.slice(1).join(" "));
     else if(command==="dedupe") output=registry.findDuplicates();
     else if(command==="reviews") output=registry.pendingReviews();
+    else if(command==="review"){
+      if(!options.left||!options.right||!options.decision) throw new Error("review requires --left, --right, and --decision");
+      output=registry.reviewPair(options.left,options.right,{decision:options.decision,reason:options.reason??"",reviewedBy:"cli-human"});
+    }
     else if(command==="stats") output=registry.stats();
     else throw new Error(`Unknown command: ${command}`);
     console.log(JSON.stringify(output,null,2));
