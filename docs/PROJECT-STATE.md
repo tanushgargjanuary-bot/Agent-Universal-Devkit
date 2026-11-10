@@ -16,8 +16,8 @@
 | Capability | Status | Evidence | Limitations |
 |---|---|---|---|
 | Read-only project discovery and repo-scan | Initial MVP implemented | `core/project-intelligence/` | Bounded metadata scan only; no code execution, semantic source analysis, vulnerability feeds, or persistent scan history |
-| Capability filtering and ranking | Initial deterministic selector implemented | `core/project-intelligence/` | Bounded repository discovery and evidence-backed scan findings | `core/project-intelligence/README.md` |
-| `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
+| README demonstration guidance | Standard and bootstrap instructions implemented; scanner signal check in progress | `docs/README-DEMO-STANDARD.md`, `bootstrap/template/AGENTS.md` | Does not judge visual quality or prove media/demo functionality |
+| Capability filtering and ranking | Initial deterministic selector implemented | `core/capability-engine/` | In-memory metadata filter/ranker; no persistence, runtime compatibility proof, composition, or execution |
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
 | Resource registry | Implemented foundation | `core/resource-registry/` | Metadata sync is not source or dependency auditing |
@@ -36,6 +36,7 @@
 | `catalog/` | External resource candidates and discovery metadata | `docs/RESOURCE-INTELLIGENCE.md` |
 | `knowledge/` | Original engineering knowledge and registry | `docs/KNOWLEDGE-LIBRARY.md` |
 | `core/schema-engine/` | Shared validation for the supported JSON Schema subset | `core/schema-engine/README.md` |
+| `core/project-intelligence/` | Read-only repository discovery and initial repo-scan findings | `core/project-intelligence/README.md` |
 | `core/capability-engine/` | Filters/ranks capability records using problem context and explicit permissions | `core/capability-engine/README.md` |
 | `core/problem-engine/` | Problem, evidence, finding, capability, plan, and verification contracts | `core/problem-engine/README.md` |
 | `core/knowledge-engine/` | Deterministic knowledge retrieval and validation | `core/knowledge-engine/README.md` |
@@ -47,7 +48,7 @@
 | `bootstrap/template/` | Small local governance and continuity entry points | `docs/REPOSITORY-GOVERNANCE.md` |
 | `schemas/` | Machine-readable contracts | Schema files |
 | `scripts/` | Discovery and repository maintenance | Script docs |
-| `docs/` | Product, architecture, security, quality, continuity, and roadmap records | This directory |
+| `docs/` | Product, architecture, security, quality, continuity, README demo standard, and roadmap records | This directory |
 | `rubrics/` | Universal and specialist project quality criteria | `rubrics/PROJECT-RUBRICS.md` |
 
 ## 4. Setup and operation
@@ -68,10 +69,10 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Extend the shared problem model.** Add context, action, execution, approval, and memory contracts only after defining their trust boundaries and required provenance. Add compatibility tests.
-2. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
-3. **Build project intelligence and safe context assembly.** Start with read-only repository discovery and reusable evidence collection.
-4. **Expand repo-scan carefully.** Add labelled fixtures and more deterministic checks only when evidence quality and false-positive rates are measured. Keep current scan read-only and bounded.
+1. **Finish README demo guidance and repo-scan detection.** Verify media heuristics against real README fixtures, add the standard to every bootstrap instruction path, and keep false positives low.
+2. **Expand repo-scan carefully.** Add labelled fixtures and deterministic checks only when evidence quality and false-positive rates are measured. Keep scans read-only and bounded.
+3. **Build project context assembly.** Add useful architecture and entry-point context without running untrusted code.
+4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
 5. **Prove a find-to-fix-to-verify workflow.** Keep execution disabled until the plan digest, policy source, task schema, trusted approval lifecycle, and executor-side enforcement gaps are closed.
 6. **Remediate audited Resource Registry defects and add package CI.** Correct the CLI import, preserve status on metadata updates, filter before pagination, and add lockfile/CI coverage.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
@@ -93,11 +94,18 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `cf35039` | Repository hygiene and continuity diff | Passed: 142 files, zero errors, warnings, or notes; continuity diff passed |
 | 2026-11-10 | `cf35039` | Secret history scan | Passed |
 | 2026-11-10 | `cf35039` | CodeQL | Still running at handoff update |
+| 2026-11-10 | `05d15fd` | Shared Contract Tests | Passed: schema 6/6, problem 7/7, capability 9/9, knowledge 30/30 |
+| 2026-11-10 | `d5bfb45` | Project Intelligence tests | Passed: 7/7 |
+| 2026-11-10 | `cf2e593` | Repository hygiene | Passed |
+| 2026-11-10 | `cf2e593` | Secret history scan | Passed |
+| 2026-11-10 | `cf2e593` | CodeQL | Passed |
 
 Do not report checks as passed unless they ran and passed.
 
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
+- **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
+- **Verified:** The README demo standard is guidance; the repo-scan demo heuristic does not validate media quality or functionality.
 - **Verified:** The capability selector filters and ranks metadata declarations only. It does not prove runtime compatibility or execute capabilities. It does not provide storage, cross-record integrity, capability discovery, execution, or approvals.
 - **Verified:** The orchestrator does not launch or coordinate real agent processes.
 - **Verified:** Policy Engine is not a complete execution security boundary.
@@ -110,7 +118,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** Verify current `main` HEAD before acting; this handoff includes the initial shared-contract foundation.
+- **Commit:** `cf2e593b1a8f70cfeee7932bb7000b870e208549` (before this change; verify new HEAD after commit).
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

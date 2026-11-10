@@ -23,6 +23,10 @@ For a new repository or a component whose current stack is inadequate:
 
 Follow `docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md` for the full decision process. If the remote Devkit documentation is unavailable, apply these rules and state the limitation.
 
+## Make the README demonstrate the real project
+
+For every new repository and major user-facing feature, follow the canonical [README Demonstration Standard](https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/docs/README-DEMO-STANDARD.md). Attempt a short, high-quality animated GIF for real workflows. Use screenshots for static states, video for longer flows, and a working interactive demo when it adds value. For CLI, library, API, data, and infrastructure projects, use a terminal capture, runnable example, request/response, notebook, plot, or architecture view as appropriate. Capture only real working behaviour. Add alt text, a caption, reproduction steps, and verified links. Do not expose secrets or private data. If no visual or interactive demo is suitable, explain why and provide the best alternative. Do not leave placeholder media or demo links.
+
 ## Use the Technology Decision Engine
 
 For consequential new-project or stack-change decisions, use `core/orchestrator/src/technology-decision.js` when a repository snapshot, explicit workload requirements, and at least two evidence-backed candidates are available. The planner can attach the assessment through `technologyAssessment`.

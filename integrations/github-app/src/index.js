@@ -10,6 +10,7 @@ export const BOOTSTRAP_FILES = [
   "bootstrap/template/.github/copilot-instructions.md",
   "bootstrap/template/PROJECT-RUBRICS.md",
   "bootstrap/template/REPOSITORY-ORGANISATION.md",
+  "bootstrap/template/docs/README-DEMO-STANDARD.md",
   "bootstrap/template/docs/PROJECT-STATE.md",
   "bootstrap/template/docs/WORKLOG.md",
   "bootstrap/template/.devkit/governance.json",

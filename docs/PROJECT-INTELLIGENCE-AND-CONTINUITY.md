@@ -115,6 +115,7 @@ Documentation is part of the deliverable whenever a change affects:
 | Change | Required update |
 |---|---|
 | Purpose, scope, user workflow | README and project state |
+| New project or major user-facing feature | README Demo section with real GIF/screenshots/video/interactive demo or documented project-appropriate alternative; follow `docs/README-DEMO-STANDARD.md` |
 | Architecture, interfaces, data model, trust boundary | Architecture docs and ADR if consequential |
 | Setup, commands, dependencies, configuration | README or operations guide |
 | Behaviour, API, schema, CLI | Relevant subsystem/API docs and examples |
@@ -128,7 +129,11 @@ Documentation is part of the deliverable whenever a change affects:
 
 Do not create duplicate sources of truth. Keep one canonical explanation and link to it. Mark stale or unverified information clearly. Do not update timestamps without reviewing the content.
 
-## 8. Handoff acceptance test
+## 8. README demonstration acceptance
+
+For a new repository or major user-facing feature, the README must include a real demonstration artifact or a justified project-appropriate alternative. Follow `docs/README-DEMO-STANDARD.md`. Agents should capture the working product, not a mock-up; add useful alt text and a caption; provide reproduction steps; verify local asset paths; optimise GIFs without harming readability; and remove secrets/private data. A scanner can detect some media and demo-link patterns, but human/agent review must confirm that the demonstration is accurate, useful, and safe.
+
+## 9. Handoff acceptance test
 
 A repository is handoff-ready when a competent agent with no access to prior chats can, using repository contents alone:
 
@@ -142,6 +147,6 @@ A repository is handoff-ready when a competent agent with no access to prior cha
 
 If this test fails, record the gap and fix the highest-impact missing information first.
 
-## 9. Honest limits
+## 10. Honest limits
 
 Repository documentation cannot preserve secrets, credentials, private external state, uncommitted work that was never saved, or decisions that were never recorded. It cannot prove that external deployments, permissions, backups, or services still work. The agent must state these limits and request the minimum required owner input. Never place secrets or sensitive personal data in continuity files.

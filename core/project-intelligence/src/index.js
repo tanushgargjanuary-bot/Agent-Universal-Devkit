@@ -28,16 +28,59 @@ const CI_PATHS = [
   /^\.buildkite\/pipeline\.yml$/i
 ];
 
+const DEMO_HINT = /demo|walkthrough|screenshot|screen[-_ ]?shot|preview|dashboard|terminal|output|interface|workflow|ui/i;
+const DEMO_LINK_HINT = /demo|live|playground|interactive|try it|storybook|preview/i;
+const BADGE_HINT = /shields\.io|badge\.fury\.io|codecov\.io|coveralls\.io|travis-ci\.com|\bbadge\b/i;
+
+function inspectReadmeDemo(content, readmePath, files) {
+  const signals = [];
+  const knownFiles = new Set(files);
+  const hasLocalTarget = (target) => {
+    let decoded;
+    try { decoded = decodeURIComponent(target.split(/[?#]/, 1)[0]); } catch { return false; }
+    if (!decoded || decoded.startsWith("#")) return false;
+    const resolved = decoded.startsWith("/")
+      ? path.posix.normalize(decoded.slice(1))
+      : path.posix.normalize(path.posix.join(path.posix.dirname(readmePath), decoded));
+    return resolved !== ".." && !resolved.startsWith("../") && !resolved.startsWith("/") && knownFiles.has(resolved);
+  };
+
+  for (const line of content.split("\n")) {
+    if (line.includes("![")) {
+      const image = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+      if (image) {
+        const target = image[2].trim().replace(/^<|>$/g, "").split(/[?#]/, 1)[0];
+        const isExternal = /^https?:\/\//i.test(target);
+        if (DEMO_HINT.test(image[1] + " " + target) && !BADGE_HINT.test(target) && (isExternal || hasLocalTarget(target))) {
+          signals.push("image:" + target);
+        }
+      }
+    }
+    const link = line.match(/\[([^\]]+)\]\(([^)]+)\)/);
+    if (link && DEMO_LINK_HINT.test(link[1])) {
+      const target = link[2].trim().replace(/^<|>$/g, "");
+      if (/^https?:\/\//i.test(target) || hasLocalTarget(target)) signals.push("demo-link:" + link[1].trim());
+    }
+  }
+  if (/<video\b[\s\S]*?<\/video>/i.test(content)) signals.push("embedded-video");
+  if (/<iframe\b[^>]*src=["'][^"']*(youtube|youtu\.be|vimeo|demo|playground|storybook|stackblitz|codesandbox)/i.test(content)) {
+    signals.push("interactive-embed");
+  }
+  return [...new Set(signals)].slice(0, 20);
+}
+
 function validateOptions(options) {
   if (options === null || typeof options !== "object" || Array.isArray(options)) throw new TypeError("options must be an object");
   const limits = {
     max_files: options.max_files ?? 20000,
     max_depth: options.max_depth ?? 20,
-    max_manifest_bytes: options.max_manifest_bytes ?? 1000000
+    max_manifest_bytes: options.max_manifest_bytes ?? 1000000,
+    max_readme_bytes: options.max_readme_bytes ?? 500000
   };
   if (!Number.isInteger(limits.max_files) || limits.max_files < 1 || limits.max_files > 100000) throw new RangeError("max_files must be an integer from 1 to 100000");
   if (!Number.isInteger(limits.max_depth) || limits.max_depth < 1 || limits.max_depth > 100) throw new RangeError("max_depth must be an integer from 1 to 100");
   if (!Number.isInteger(limits.max_manifest_bytes) || limits.max_manifest_bytes < 1 || limits.max_manifest_bytes > 5000000) throw new RangeError("max_manifest_bytes must be an integer from 1 to 5000000");
+  if (!Number.isInteger(limits.max_readme_bytes) || limits.max_readme_bytes < 1 || limits.max_readme_bytes > 5000000) throw new RangeError("max_readme_bytes must be an integer from 1 to 5000000");
   return limits;
 }
 
@@ -65,6 +108,26 @@ function detectEcosystems(manifests) {
 
 function detectFrameworks(packageManifest, manifestTexts) {
   const frameworks = new Set();
+  const rootReadmePaths = files.filter((entry) => !entry.includes("/") && /^readme(?:\..+)?$/i.test(entry)).sort((a, b) => {
+    const rank = (value) => value.toLowerCase() === "readme.md" ? 0 : value.toLowerCase() === "readme" ? 1 : 2;
+    return rank(a) - rank(b) || a.localeCompare(b);
+  });
+  const readmePath = rootReadmePaths[0] ?? null;
+  let readmeText = null;
+  const readmeErrors = [];
+  if (readmePath) {
+    try {
+      const absoluteReadme = path.join(absoluteRoot, readmePath);
+      const metadata = await stat(absoluteReadme);
+      if (metadata.size > limits.max_readme_bytes) readmeErrors.push({ path: readmePath, code: "README_TOO_LARGE" });
+      else readmeText = await readFile(absoluteReadme, "utf8");
+    } catch (error) {
+      readmeErrors.push({ path: readmePath, code: error.code ?? "README_READ_FAILED" });
+    }
+  }
+  const readmeDemoSignals = readmeText === null ? [] : inspectReadmeDemo(readmeText, readmePath, files);
+  const readmeScanComplete = readmeText !== null;
+
   const dependencies = {
     ...(packageManifest?.dependencies ?? {}),
     ...(packageManifest?.devDependencies ?? {}),
@@ -201,9 +264,9 @@ export async function discoverRepository(root, options = {}) {
     ...(packageManifest?.devDependencies ?? {})
   };
   const packageScriptsTest = typeof packageManifest?.scripts?.test === "string" && packageManifest.scripts.test.trim().length > 0;
-  const hasReadme = isRootFile([...files, ...symlinkPaths], /^readme(?:\..+)?$/i);
-  const hasLicense = isRootFile([...files, ...symlinkPaths], /^license(?:\..+)?$/i);
-  const hasSecurityPolicy = isRootFile([...files, ...symlinkPaths], /^security\.md$/i);
+  const hasReadme = rootReadmePaths.length > 0;
+  const hasLicense = isRootFile(files, /^license(?:\..+)?$/i);
+  const hasSecurityPolicy = isRootFile(files, /^security\.md$/i);
   const hasDocsDirectory = directories.includes("docs");
   const hasTests = testSignalPaths.length > 0 || packageScriptsTest;
   const hasCi = ciPaths.length > 0;
@@ -231,6 +294,11 @@ export async function discoverRepository(root, options = {}) {
     ci_paths: ciPaths.slice(0, 100),
     test_signal_paths: testSignalPaths.slice(0, 100),
     has_readme: hasReadme,
+    readme_path: readmePath,
+    readme_scan_complete: readmeScanComplete,
+    readme_errors: readmeErrors,
+    readme_demo_signals: readmeDemoSignals,
+    has_readme_demo: readmeDemoSignals.length > 0,
     has_license: hasLicense,
     has_security_policy: hasSecurityPolicy,
     has_docs_directory: hasDocsDirectory,
@@ -305,6 +373,15 @@ export async function scanRepository(root, problem, options = {}) {
       claim: "No root README file was found in the complete bounded inventory.",
       recommendation: "Add a README that explains the project's purpose, setup, usage, and support boundaries."
     });
+    if (profile.has_readme && profile.readme_scan_complete && !profile.has_readme_demo) addFinding({
+      ruleId: "repo.readme.demo-not-detected",
+      title: "README demonstration not detected",
+      description: "The README contains no recognised project screenshot, animated demonstration, embedded video, or explicit interactive/live-demo link.",
+      severity: "low", confidence: 0.7, status: "suspected",
+      claim: "No recognised README demonstration signal was found by the bounded Markdown/HTML heuristic.",
+      sourcePath: profile.readme_path,
+      recommendation: "Add a real screenshot or short animated GIF of a key workflow. For CLI or non-visual projects, add a terminal capture, runnable example, API example, notebook, or suitable interactive demo. See docs/README-DEMO-STANDARD.md."
+    });
     if (!profile.has_ci) addFinding({
       ruleId: "repo.ci.not-detected",
       title: "CI workflow not detected",
@@ -352,12 +429,14 @@ export async function scanRepository(root, problem, options = {}) {
     evidence,
     findings,
     summary: { finding_count: findings.length, by_severity: bySeverity },
-    coverage: ["bounded repository inventory", "known manifest discovery", "language and selected framework signals", "README/license/CI/test/lockfile presence checks"],
+    coverage: ["bounded repository inventory", "known manifest discovery", "language and selected framework signals", "README presence and demonstration-signal heuristic", "license/CI/test/lockfile presence checks"],
     limitations: [
       limitation,
       "No scripts, build hooks, package managers, tests, or repository commands were executed.",
       "No network access or external vulnerability/advisory lookup was performed.",
       "Source-code semantics, runtime behaviour, dependency health, license compliance, and security posture were not assessed.",
+      "README demo detection is heuristic. It does not render media, validate visual quality, verify external links, or prove that a demo works.",
+      "README demo findings are suppressed when the README cannot be read within configured limits.",
       "Absence-based findings are suppressed when the repository inventory is incomplete."
     ],
     incomplete: profile.incomplete

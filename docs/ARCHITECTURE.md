@@ -40,7 +40,11 @@ These packages establish data contracts only. They do not provide a persistent r
 
 The initial `core/project-intelligence/` package provides bounded, read-only repository discovery and a small set of deterministic checks. It detects project manifests, languages, selected frameworks, documentation, tests, CI signals, license files, lockfiles, and malformed package manifests. It creates shared Evidence and Finding records for supported checks.
 
-The scanner skips common generated/dependency directories, does not follow symlinks, applies file/depth/manifest-size limits, and suppresses absence-based findings when the inventory is incomplete. It does not run scripts, install dependencies, access the network, inspect source-code semantics, execute tests, check live vulnerability advisories, or prove security/compliance. Findings are limited to the checks listed in the package README.
+The scanner skips common generated/dependency directories, does not follow symlinks, applies file/depth/manifest/README-size limits, and suppresses absence-based findings when the inventory is incomplete. It also checks the root README for limited demonstration signals. That check is heuristic and does not validate visual quality or link availability. It does not run scripts, install dependencies, access the network, inspect source-code semantics, execute tests, check live vulnerability advisories, or prove security/compliance. Findings are limited to the checks listed in the package README.
+
+## README demonstration standard
+
+New repositories and major user-facing features must show real working behaviour in the README. Prefer a short, high-quality animated GIF for workflows. Use screenshots for static states, video for longer sequences, and working interactive demos when useful. CLI, library, API, data, and infrastructure projects may use terminal captures, runnable examples, request/response samples, notebooks, plots, or architecture views. Agents must follow `docs/README-DEMO-STANDARD.md`, protect private data, and record a justified alternative when a visual demo is unsuitable. The repo-scan check only detects limited Markdown/HTML signals; it cannot judge quality or verify functionality.
 
 ## Capability selection
 

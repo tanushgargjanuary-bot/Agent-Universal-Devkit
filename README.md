@@ -29,6 +29,7 @@ The native **Engineering Knowledge & Methods Library** supports both priorities.
 - Repository governance, project-type rubrics, bootstrap guidance, and a read-only hygiene checker.
 - GitHub workflows for tests, quality checks, CodeQL, and secret-history scanning.
 - Project intelligence and continuity protocol with durable project-state and work-log templates for agent handoffs.
+- A README Demonstration Standard that requires new projects to show real working behaviour through GIFs, screenshots, interactive demos, or project-appropriate alternatives.
 
 These are implemented foundations. They do not yet form a complete autonomous execution platform.
 
@@ -66,9 +67,10 @@ The Policy Engine evaluates known actions and denies unknown actions. It can req
 2. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
 3. Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md).
 4. Read [Project Intelligence and Continuity](docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md).
-5. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
-6. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
-7. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
+5. Read [README Demonstration Standard](docs/README-DEMO-STANDARD.md) before creating a repository or major user-facing feature.
+6. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
+7. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
+8. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
 
 Run the read-only hygiene check:
 

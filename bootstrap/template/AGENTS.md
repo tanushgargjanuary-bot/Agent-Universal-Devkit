@@ -48,6 +48,10 @@ node .devkit/scripts/repository-hygiene/check.mjs
 Review findings in context. The checker is read-only. It does not delete, rename, or move files. Do not change valid project structure only to silence a warning. See:
 https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/docs/REPOSITORY-HYGIENE-CHECKER.md
 
+## README demonstrations
+
+For every new repository and major user-facing feature, follow the local `docs/README-DEMO-STANDARD.md` and the canonical Devkit standard at https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/docs/README-DEMO-STANDARD.md. Attempt a real, high-quality animated GIF for short workflows. Use screenshots, video, a working interactive demo, terminal capture, notebook, API example, or runnable example when that format fits the project better. Capture actual working behaviour. Add alt text, a caption, and reproduction steps. Never fabricate features or expose secrets/private data. If no visual or interactive demo is suitable, explain why and provide the best project-appropriate alternative. Do not leave placeholder links.
+
 ## Tool and dependency safety
 
 Before installing or running a suggested tool, check its source, license, version, permissions, and relevance to this project. Ask before changing dependencies or executing commands with broad access.

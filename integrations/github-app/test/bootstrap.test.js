@@ -52,6 +52,7 @@ function makeContext({ existing = {}, source = Object.fromEntries(BOOTSTRAP_FILE
 
 test("bootstrap allow-list includes all continuity and local checker files", () => {
   assert.equal(new Set(BOOTSTRAP_FILES).size, BOOTSTRAP_FILES.length);
+  assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/docs/README-DEMO-STANDARD.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/docs/PROJECT-STATE.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/docs/WORKLOG.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/.devkit/scripts/repository-hygiene/check.mjs"));

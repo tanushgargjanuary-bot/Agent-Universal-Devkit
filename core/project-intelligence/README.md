@@ -10,6 +10,7 @@ This package provides bounded, read-only repository discovery and the first dete
 - Known package/build manifests.
 - Selected framework signals from package and Python manifests.
 - Root README, LICENSE, SECURITY.md, and docs directory presence.
+- README demonstration signals: descriptive screenshot/GIF paths, embedded video, and explicit demo/playground links. Badge-only images do not count.
 - Common CI configuration paths.
 - Common test path and package test-script signals.
 - Common dependency lockfiles.
@@ -22,7 +23,8 @@ It emits shared Evidence and Finding records from the Problem Engine.
 - Does not execute project scripts, build hooks, package managers, or tests.
 - Does not install dependencies or access the network.
 - Does not follow symlinks.
-- Applies configurable file-count, depth, and manifest-size limits.
+- Applies configurable file-count, depth, manifest-size, and README-size limits.
+- Reads only the root README selected by a deterministic filename preference.
 - Skips common dependency and generated directories.
 - Suppresses absence-based findings when the inventory is incomplete.
 
@@ -47,6 +49,8 @@ console.log(report.findings);
 
 ## Limitations
 
-This is an initial metadata scan, not a full code audit. It does not inspect source-code semantics, execute tests, measure performance, check live dependency advisories, verify licenses, or prove security. Missing test/CI/license/lockfile signals are suggestions, not verified defects. The scanner reports its coverage and limitations in every report.
+This is an initial metadata scan, not a full code audit. It does not inspect source-code semantics, execute tests, measure performance, check live dependency advisories, verify licenses, or prove security. Missing test/CI/license/lockfile signals are suggestions, not verified defects. README demo detection is a heuristic: it does not render media, judge quality, verify links, or prove a demo works. Oversized or unreadable READMEs are not assessed for demo signals. The scanner reports its coverage and limitations in every report.
+
+For the authoring standard, see `docs/README-DEMO-STANDARD.md` in the Devkit repository.
 
 Run tests with `npm test`.

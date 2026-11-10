@@ -10,6 +10,10 @@ This repository uses Agent-Universal-Devkit.
 
 Devkit: https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit
 
+## README demonstrations
+
+For new repositories and major user-facing features, follow `docs/README-DEMO-STANDARD.md`. Include a real animated GIF, screenshots, video, working interactive demo, terminal capture, notebook, or runnable example as appropriate. Never fabricate a demo or expose secrets. Record a reason and an alternative when no visual/interactive format fits.
+
 ## Technology architecture
 
 Do not assume Python or any other language is the default. Inspect the repository's purpose, existing stack, runtime, tests, deployment target, and constraints before selecting technology. Prefer the simplest coherent stack. Use multiple languages only when component boundaries and benefits are clear. Preserve existing architecture unless evidence justifies a change. Do not perform broad migrations without approval.

@@ -36,6 +36,10 @@ Follow `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
 - Do not duplicate large documentation. Link to canonical sources.
 - A replacement agent must be able to identify the current state and next action from the repository, without prior chat access.
 
+## README demonstrations
+
+For every new repository and major user-facing feature, follow `docs/README-DEMO-STANDARD.md`. Make a serious attempt to include a real, high-quality animated GIF for short workflows, or screenshots, video, an interactive demo, terminal capture, notebook, or runnable example when that format fits better. Capture the working project; do not fabricate or imply unimplemented behaviour. Add useful alt text, a caption, reproduction steps, and verified links. Protect secrets and private data. If no visual/interactive demo is suitable, explain why and provide the best project-appropriate alternative. Do not declare a new project or major user-facing feature complete until this requirement is met or a justified exception is recorded.
+
 ## Technology decisions
 
 For a new repository or a component whose current stack is inadequate, follow `docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md`. Inspect the workload, constraints, existing stack, deployment target, security needs, team skills, and lifecycle cost. Compare credible candidates. Prefer one coherent stack unless a hybrid has a documented, testable benefit. Do not rewrite working code for language preference.
