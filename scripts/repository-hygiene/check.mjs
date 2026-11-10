@@ -152,20 +152,20 @@ function scan(root, config) {
 function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
-    process.stdout.write("Usage: node scripts/repository-hygiene/check.mjs [--root PATH] [--config PATH] [--format text|json]\\n");
+    process.stdout.write("Usage: node scripts/repository-hygiene/check.mjs [--root PATH] [--config PATH] [--format text|json]\n");
     return;
   }
   if (!fs.existsSync(args.root) || !fs.statSync(args.root).isDirectory()) throw new Error("Root must be an existing directory");
   const config = loadConfig(args.root, args.config);
   const report = scan(args.root, config);
   if (args.format === "json") {
-    process.stdout.write(JSON.stringify(report, null, 2) + "\\n");
+    process.stdout.write(JSON.stringify(report, null, 2) + "\n");
   } else {
-    process.stdout.write("Repository hygiene — " + report.governanceLevel + "\\n");
-    process.stdout.write(report.summary.filesScanned + " files scanned; " + report.summary.errors + " errors; " + report.summary.warnings + " warnings; " + report.summary.info + " notes.\\n");
+    process.stdout.write("Repository hygiene — " + report.governanceLevel + "\n");
+    process.stdout.write(report.summary.filesScanned + " files scanned; " + report.summary.errors + " errors; " + report.summary.warnings + " warnings; " + report.summary.info + " notes.\n");
     for (const finding of report.findings) {
       const location = finding.path + (finding.line ? ":" + finding.line : "");
-      process.stdout.write("[" + finding.severity.toUpperCase() + "] " + finding.rule + " " + location + " — " + finding.message + "\\n");
+      process.stdout.write("[" + finding.severity.toUpperCase() + "] " + finding.rule + " " + location + " — " + finding.message + "\n");
     }
   }
   if (report.summary.errors > 0) process.exitCode = 1;
@@ -173,6 +173,6 @@ function main() {
 
 try { main(); }
 catch (error) {
-  process.stderr.write("Repository hygiene check failed: " + error.message + "\\n");
+  process.stderr.write("Repository hygiene check failed: " + error.message + "\n");
   process.exitCode = 2;
 }
