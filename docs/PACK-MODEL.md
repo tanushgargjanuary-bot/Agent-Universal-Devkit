@@ -2,50 +2,33 @@
 
 ## Purpose
 
-Packs extend the Devkit without expanding its universal core. A pack is a
-versioned, optional unit of capability with explicit compatibility,
-permissions, dependencies, evidence, and removal behavior.
+Packs extend the Devkit without expanding its universal core. A pack is a versioned, optional unit of capability with explicit compatibility, permissions, dependencies, evidence, and removal behaviour.
 
-The first implementation is a manifest contract and governance model. It is
-not yet a package installer or runtime loader.
+**Current status:** the repository defines a manifest schema and governance model. It does not yet provide a package installer, runtime loader, dependency resolver, or activation manager.
 
 ## Pack types
 
 ### Domain pack
 
-Adds specialist capability for a problem area. It may contain knowledge and
-methods, skills and task workflows, tool/resource recommendations, schemas,
-templates, reference implementations, evaluation profiles, verification
-tests, and benchmark cases.
+Adds specialist capability for a problem area. It may contain knowledge, methods, skills, task workflows, tool recommendations, schemas, templates, reference implementations, evaluation profiles, verification tests, and benchmark cases.
 
-Examples include software engineering, cybersecurity, AI/ML, robotics, and game
-development.
+Examples: software engineering, cybersecurity, AI/ML, robotics, and game development.
 
 ### Integration pack
 
-Connects an external system through a tested adapter. It may contain a provider
-or harness adapter, authentication and permission declarations, input/output
-mapping, compatibility tests, operational health checks, and setup/update/
-removal instructions.
+Connects an external system through a tested adapter. It may contain provider or harness adapters, authentication and permission declarations, input/output mapping, compatibility tests, health checks, and setup/update/removal instructions.
 
-Examples include model providers, agent harnesses, MCP servers, source control,
-and CI.
+Examples: model providers, agent harnesses, MCP servers, source control, and CI.
 
 ### Interface pack
 
-Adds a user-facing interaction surface while using the same core contracts.
-Examples may include a desktop client or specialised web console. Interface
-packs must not fork the task lifecycle or policy model.
+Adds a user-facing interaction surface while using the same core contracts. Interface packs must not fork the task lifecycle or policy model.
 
 ## Manifest
 
-A pack manifest uses the pack schema. It declares a stable ID, version, type,
-owner, purpose, supported capabilities, entry points, dependencies,
-compatibility constraints, permissions, data access, network requirements,
-lifecycle operations, evidence, tests, support status, and known limitations.
+A pack manifest uses the pack schema. It declares a stable ID, version, type, owner, purpose, capabilities, entry points, dependencies, compatibility, permissions, data access, network requirements, lifecycle operations, evidence, tests, support status, and known limitations.
 
-A pack must use semantic versioning or document its version policy. Breaking
-contract changes require a major version or an explicit migration path.
+Use semantic versioning or document the version policy. Breaking contract changes require a major version or an explicit migration path.
 
 ## Safety and trust
 
@@ -61,30 +44,20 @@ contract changes require a major version or an explicit migration path.
 
 ## Dependency and compatibility rules
 
-- Declare dependencies explicitly.
-- Reject dependency cycles.
-- Resolve version constraints before activation.
-- Detect conflicting capabilities and permissions.
-- Permit alternatives to coexist; do not force one global winner.
-- Require explicit precedence when two packs provide the same capability.
-- Keep the core usable when optional packs are absent or fail.
+Declare dependencies, reject cycles, resolve version constraints before activation, detect conflicting capabilities and permissions, and require explicit precedence when multiple packs provide the same capability.
 
-## User experience
+Keep the core usable when optional packs are absent or fail.
+
+## Intended user flow
 
 1. The user states a goal.
 2. The Devkit identifies required capabilities.
 3. It recommends the smallest suitable set of packs.
 4. It explains permissions, cost, and trade-offs.
-5. It asks for approval only when required.
-6. It checks compatibility and activates selected packs.
-7. It verifies the task and records outcomes.
+5. It requests approval when policy requires it.
+6. A future pack runtime checks compatibility and activates selected packs.
+7. The system verifies the task and records outcomes.
 
-Advanced users can select versions and configure dependencies directly.
-The default user should not need to understand the full architecture.
+## Completion criteria for a pack runtime
 
-## Current status
-
-The manifest schema and governance rules define the target contract. Runtime
-discovery, installation, dependency resolution, activation, rollback, and safe
-removal are future work. Do not describe packs as installable until those
-operations are implemented and tested.
+Do not mark the runtime complete until installation, dependency resolution, compatibility checks, permission review, activation, disable, update, rollback, and safe removal have automated tests and documented recovery behaviour.
