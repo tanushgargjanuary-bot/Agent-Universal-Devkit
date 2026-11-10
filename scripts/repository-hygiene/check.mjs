@@ -69,7 +69,7 @@ function walk(root, config, findings) {
     catch { add(findings, "warning", "SCAN_UNREADABLE", relative || ".", "Directory could not be read."); return; }
     for (const entry of entries) {
       const rel = relative ? relative + "/" + entry.name : entry.name;
-      if (ignored.has(rel) || ignored.has(entry.name) && !relative) continue;
+      if (ignored.has(rel) || DEFAULT_IGNORES.has(entry.name)) continue;
       if (entry.isSymbolicLink()) continue;
       const full = path.join(dir, entry.name);
       if (entry.isDirectory()) {
