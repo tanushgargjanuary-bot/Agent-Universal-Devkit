@@ -118,3 +118,12 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Shared Contract Tests passed: schema engine 6/6, problem engine 7/7, knowledge engine 30/30. Repository hygiene passed: 142 files, zero errors, warnings, or notes. Continuity diff passed. Secret history scan passed. CodeQL was still running when this entry was prepared.
 - **Decision:** Keep the schema validator's supported subset explicit. Do not claim full JSON Schema support.
 - **Next action:** Build a deterministic capability selector that checks problem fit, explicit permissions, execution modes, active status, and verification support before a capability can be recommended.
+
+### 2026-11-10 — Add deterministic capability filtering and ranking
+- **Commit:** `cf35039276dcd771f5d3817f1cbdbbc92205e257`
+- **Goal:** Give the unified workbench a shared way to find suitable specialist capabilities without hard-coding feature names into every workflow.
+- **Changes:** Added `core/capability-engine/`. It validates capability records, filters by problem domain and optional problem type, requires explicit permission grants, defaults to read-only/recommend modes, requires declared verification methods, gates experimental capabilities behind opt-in, rejects duplicate IDs, and ranks candidates deterministically by user preference, domain match, declared cost, and ID. Added tests, package documentation, CI coverage, and architecture/roadmap updates.
+- **Verification:** Shared Contract Tests passed: schema engine 6/6, problem engine 7/7, capability engine 8/8, knowledge engine 30/30. Repository hygiene passed: 142 files, zero errors, warnings, or notes. Continuity diff passed. Secret history scan passed. CodeQL was still running at the time of this entry.
+- **Decisions:** The selector returns a recommendation and alternatives; it does not invoke capabilities. Missing permission is a hard rejection. Experimental capabilities require explicit opt-in. The ranking is deterministic metadata ranking, not a quality guarantee.
+- **Limitations:** No persistent capability registry, provenance review, compatibility proof against live tools, capability composition, or execution adapter exists yet.
+- **Next action:** Add capability provenance and compatibility checks. Then build read-only project discovery and the first repo-scan workflow over the shared problem/evidence/finding/capability contracts.

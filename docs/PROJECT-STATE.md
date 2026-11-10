@@ -67,7 +67,7 @@
 
 ## 6. Active work and next actions
 1. **Extend the shared problem model.** Add context, action, execution, approval, and memory contracts only after defining their trust boundaries and required provenance. Add compatibility tests.
-2. **Build capability discovery and selection.** Define a registry contract, validate capability declarations, and select only compatible capabilities using task fit, permissions, cost, and verification support.
+2. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
 3. **Build project intelligence and safe context assembly.** Start with read-only repository discovery and reusable evidence collection.
 4. **Build repo-scan as the first complete workflow.** Produce evidence-backed findings, prioritised plans, and agent-ready context. Do not claim universal ecosystem coverage.
 5. **Prove a find-to-fix-to-verify workflow.** Keep execution disabled until the plan digest, policy source, task schema, trusted approval lifecycle, and executor-side enforcement gaps are closed.
@@ -87,7 +87,10 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `de0ea26` | Shared contract workflow | Passed: schema engine 6/6, problem engine 7/7, knowledge engine 30/30 |
 | 2026-11-10 | `de0ea26` | Repository hygiene and continuity diff | Passed: 142 files, 0 errors, 0 warnings, 0 notes; continuity diff passed |
 | 2026-11-10 | `de0ea26` | Secret history scan | Passed |
-| 2026-11-10 | pending | Capability selector tests and updated shared-contract workflow | Awaiting GitHub Actions result |
+| 2026-11-10 | `cf35039` | Shared Contract Tests | Passed: schema engine 6/6, problem engine 7/7, capability engine 8/8, knowledge engine 30/30 |
+| 2026-11-10 | `cf35039` | Repository hygiene and continuity diff | Passed: 142 files, zero errors, warnings, or notes; continuity diff passed |
+| 2026-11-10 | `cf35039` | Secret history scan | Passed |
+| 2026-11-10 | `cf35039` | CodeQL | Still running at handoff update |
 
 Do not report checks as passed unless they ran and passed.
 
