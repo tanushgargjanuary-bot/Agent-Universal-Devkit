@@ -1,59 +1,73 @@
 # Orchestration Layer
 
-The orchestration layer coordinates work. It does not replace the AI coding harness.
+The orchestrator is a planning and policy-decision foundation. It does not replace an AI coding harness and does not yet execute work through agent processes.
 
-## What it should do
+## Current capabilities
 
-1. Receive a goal and repository context.
-2. Inspect the project and identify its language, framework, tests, and constraints.
-3. Derive requirements and acceptance criteria.
-4. Break the goal into small tasks.
-5. Match each task to a suitable agent capability and approved tool.
-6. Retrieve relevant approved knowledge and resources.
-7. Check permissions, risk, and required approvals.
-8. Run tasks through a supported harness adapter.
-9. Verify results with tests and independent checks.
-10. Return a clear report and record diagnosed failures.
+- Task planning and dependency ordering.
+- Task metadata validation.
+- Approved-only Knowledge Engine retrieval during plan creation.
+- Opt-in technology architecture assessment using caller-supplied candidates and evidence.
+- Versioned action Policy Engine.
+- Deny-by-default handling for unknown actions.
+- Approval requests bound to action, target, policy version, plan ID, and plan digest.
+- Trusted approval-verification callback support.
+- Tests for policy and orchestration behaviour.
 
 ## Main parts
 
 - **Planner:** turns a goal into ordered tasks.
-- **Router:** chooses a compatible agent or harness for each task.
-- **Tool selector:** recommends tools from the Devkit catalog.
-- **Knowledge selector:** retrieves relevant algorithms, mathematics, and methods.
-- **Technology decision engine:** inspects repository signals and compares evidence-backed language and architecture candidates against explicit workload requirements.
-- **Architecture approval gate:** blocks stack additions, hybrid adoption, and migrations until a human approves the proposal.
-- **Policy Engine:** classifies actions, denies unknown actions, and creates target- and plan-bound approval requests.
-- **Approval verifier:** checks an approval through a trusted adapter before the policy gate allows the action.
-- **Executor adapters:** connect to supported coding harnesses.
-- **Verifier:** checks tests, diffs, and task completion.
-- **State store:** tracks task status and evidence.
+- **Knowledge selector:** retrieves relevant approved engineering methods.
+- **Technology Decision Engine:** assesses candidate language and architecture choices against workload requirements.
+- **Policy Engine:** evaluates planned actions and determines whether approval is required.
+- **Approval verifier interface:** delegates approval validation to a trusted integration.
+- **Future executor adapters:** will connect to supported coding harnesses and tools.
+- **Future verifier and state store:** will record execution evidence and task outcomes.
 
-## Current implementation boundary
+## Policy Engine contract
 
-The current orchestrator implements task planning, dependency ordering, metadata validation, a versioned action Policy Engine, scoped approval checks, approved-knowledge retrieval, and an opt-in technology architecture assessment. The technology engine can inspect a bounded local repository snapshot or supplied file records, then compare caller-supplied candidates. It does not discover candidates automatically, execute code, or apply migrations. The Policy Engine is a deterministic decision core. It does not authenticate a human approver by itself. A trusted integration must implement `verifyApproval`; without that verifier, an approval-controlled action remains blocked. It does not execute actions or enforce operating-system permissions. It does not yet launch or control OpenCode, Codex, Claude Code, or Antigravity.
+Use `core/orchestrator/src/policy-engine.js` to evaluate actions before execution.
 
-The Knowledge Engine is called during plan creation. The technology decision engine is called when the planner receives an explicit workload and at least two candidate architectures. Both are decision aids; agents must inspect evidence, assumptions, and limitations.
+- Known read and test actions can pass without approval when their risk and context allow it.
+- Repository writes use risk-gated approval rules.
+- Dependency, network, permission, secret, deployment, migration, deletion, and other privileged actions use explicit approval rules.
+- Unknown actions are denied.
+- Approval records must match the action, exact target, policy version, plan ID, and plan digest.
+- A trusted `verifyApproval` callback must return `true`.
+- A boolean such as `humanApproved: true` is not an approval record.
+- A plan change changes its digest. An approval for the old plan must not be reused.
 
-Each harness needs a tested executor adapter before the orchestrator can run it.
+## Critical limitation
+
+The Policy Engine is a deterministic decision core. It does **not**:
+
+- Authenticate the human approver.
+- Store or manage approval records.
+- Enforce approval expiry or replay protection.
+- Execute tools or agent processes.
+- Enforce operating-system or container permissions.
+- Guarantee that an executor follows the policy result.
+
+The integration must provide trusted identity and approval storage. An executor must re-evaluate policy immediately before each action and enforce the result with least-privilege controls. Until that exists, policy evaluation is not a complete execution security boundary.
+
+## Technology assessment boundary
+
+The technology engine can inspect a bounded repository snapshot or supplied file records. It compares caller-supplied candidates against explicit workload requirements. It does not discover candidates automatically, verify supplied evidence, run code, or apply migrations. Treat its output as a proposal.
+
+## Test
+
+From this directory:
+
+```bash
+npm test
+```
+
+Run this command in an environment with the package's declared Node.js runtime. Report the actual result. Do not infer test status from source inspection.
 
 ## Execution model
 
+The intended lifecycle is:
+
 `understand → retrieve → plan → approve → execute → verify → report`
 
-Never allow an agent to approve its own high-risk action. Never treat an agent's statement that a task is complete as proof. Use test results, diffs, and other evidence.
-
-## Policy Engine
-
-Use `core/orchestrator/src/policy-engine.js` to evaluate planned actions before execution.
-
-- Known read and test actions can pass without approval at low risk.
-- Known write, dependency, network, permission, secret, deployment, migration, and deletion actions have explicit risk thresholds.
-- Unknown actions are denied.
-- Approval requests bind the policy version, plan ID, plan digest, action, and exact target.
-- An approval is accepted only when its fields match and a trusted `verifyApproval` callback returns `true`.
-- A boolean such as `humanApproved: true` is not an approval record.
-- A plan change produces a different digest. Old approvals then fail.
-- The policy result is advisory until an executor checks it immediately before the action and applies least-privilege controls.
-
-The core cannot prove that a callback is trustworthy. Each integration must authenticate the approver, protect approval records, prevent replay, and enforce the returned decision at the execution boundary.
+The current implementation reaches planning and policy evaluation. Harness execution, approval lifecycle management, audit records, retries, and independent runtime verification remain future work.
