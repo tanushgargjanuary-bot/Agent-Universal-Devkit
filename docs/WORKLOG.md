@@ -294,3 +294,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Verification:** Repository hygiene passed, Python compilation passed, all 5 trending-discovery unit tests passed, continuity diff passed, secret history scan passed, and CodeQL passed on the PR head.
 - **Limitations:** No live GitHub Trending run has been completed yet. The parser still depends on GitHub's HTML structure. Candidate records remain unapproved and require human review.
 - **Next action:** Merge after required checks are green, trigger the discovery workflow, inspect the generated report and catalog output, then remove the merged feature branch.
+
+
+### 2026-11-10 — Consolidate stale Dependabot updates
+- **Goal:** Preserve the useful dependency updates from PRs #4, #13, #14, and #15 without merging stale, diverged branches.
+- **Changes:** Reapplied the intended updates onto the current main tree in one review branch. The proposed updates pin actions/checkout to v7.0.1, actions/setup-node to v7.1.0, actions/setup-python to v7.1.0, and Probot to ^14.3.7. No package lockfile exists for the GitHub App.
+- **Review:** The original branches were behind and diverged from main. PRs #13 and #15 failed continuity enforcement because their workflow changes did not update the required continuity documents. The setup-python and Probot PRs were also substantially behind main. Their intended dependency changes are carried forward from a fresh main-based branch.
+- **Verification:** The old Probot PR's GitHub App tests and CodeQL passed. The old setup-node PR's non-hygiene test suites and CodeQL passed. The old setup-python PR's CodeQL and secret scan passed. The two old workflow PRs failed the continuity gate. These results do not validate the consolidated commit. Fresh CI is required.
+- **Next action:** Review the consolidated diff and wait for all required checks before merging. Close superseded Dependabot PRs only after the replacement PR is open.
