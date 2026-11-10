@@ -346,3 +346,12 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Branch audit:** Six non-main branches are fully behind `main` with zero unique commits. The three squash-merged branches were compared file-by-file: PR #17 dependency/workflow files match `main`; PR #16 discovery code/tests/docs match and its workflow uses older action pins; PR #5 technology-decision implementation matches while the branch's schema/tests/docs are stale relative to `main`. All nine non-main branches are safe to delete. The connected GitHub interface has no branch deletion action; deletion remains an owner-side task.
 - **Owner action:** Confirm repository visibility. GitHub metadata reports `public`, although the prior project discussion stated the repository had been made private. Delete the nine audited branches in GitHub after confirming visibility.
 - **Next:** Continue the orchestration/policy audit. Fix plan-digest coverage and make policy configuration a single validated source of truth before adding executor adapters.
+
+
+### 2026-11-11 — Policy source and plan-digest hardening
+
+- **Commit:** `17ff5d8` and `1d2b92e`.
+- **Changes:** Moved the runtime action catalogue to `core/orchestrator/policy.rules.json`; made `policy.yaml` reference the canonical file instead of duplicating action and risk rules; bumped the policy version to `1.1.0`; included policy version, repository languages/frameworks, technology decision, task context, dependencies, required capabilities, preferred harness, tools, and action targets in the plan digest; canonicalised object keys and set-like arrays; validated digest inputs; required approval records to have approved status; made malformed approval collections fail closed.
+- **Tests added:** Digest invalidation when routing fields change; stable digest under object-key and set-like-array reordering; invalid routing list and duplicate task ID rejection; approved-status and malformed approval collection checks; YAML-to-canonical-JSON linkage.
+- **Verification:** Awaiting orchestrator and shared-contract CI. Do not report these tests as passed until the workflow completes.
+- **Remaining:** Authenticated approval storage, approver identity, expiry/replay protection, and executor-side enforcement remain unimplemented.

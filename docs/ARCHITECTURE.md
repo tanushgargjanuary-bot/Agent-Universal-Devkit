@@ -105,7 +105,9 @@ The current planner supports task planning, dependency ordering, approved-knowle
 
 ## Policy and trust boundaries
 
-The Policy Engine uses a versioned action catalogue. Unknown actions are denied. Approval-controlled actions require a record bound to the exact action, target, policy version, plan ID, and plan digest. A trusted `verifyApproval` callback must validate that record.
+The Policy Engine loads its versioned runtime action catalogue from `core/orchestrator/policy.rules.json`. The human-readable `policy.yaml` points to that canonical file and no longer duplicates action rules. Unknown actions are denied. Approval-controlled actions require an explicitly approved record bound to the exact action, target, policy version, plan ID, and plan digest. A trusted `verifyApproval` callback must validate that record.
+
+The plan digest covers repository identity and default branch, detected languages and frameworks, the technology decision, task descriptions and context, dependencies, required capabilities, preferred harness, tools, and action targets. Object keys and set-like arrays are canonicalised before hashing. A change to routing or technology selection therefore changes the approval binding. The policy version is part of the digest.
 
 The core does not authenticate humans, store approval records, prevent replay, execute actions, or enforce OS-level permissions. Executor adapters must re-check policy immediately before action and apply least-privilege controls. Until those adapters exist, policy results are decisions for integration code, not an execution security boundary.
 

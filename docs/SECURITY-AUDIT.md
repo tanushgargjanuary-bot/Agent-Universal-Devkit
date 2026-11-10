@@ -10,6 +10,20 @@
 
 This is a historical evidence record. It does not describe a fresh security audit of the current `main` head. Re-run the checks after material workflow, permission, dependency, or repository changes. Do not use old scan results as current assurance.
 
+## Policy Engine hardening — 2026-11-11
+
+A code-level hardening pass was committed after the historical audit:
+
+- Runtime action rules now load from core/orchestrator/policy.rules.json.
+- core/orchestrator/policy.yaml references that canonical file and no longer duplicates action lists or risk permission tables.
+- Policy version is part of the plan digest.
+- Plan digest coverage includes repository identity/default branch/languages/frameworks, technology decision, task context, dependencies, capabilities, preferred harness, tools, and action targets.
+- Object keys and set-like arrays are canonicalised before hashing.
+- Approval records must have an explicit approved status and pass a trusted verifier.
+- Malformed approval collections fail closed.
+
+This is a source-level change, not a complete security boundary. It does not add authenticated approval storage, expiry, replay protection, executor-side enforcement, or OS/container isolation. The orchestrator test workflow must pass before this hardening is treated as verified. This section does not replace a fresh security audit.
+
 ## Findings recorded in the audit
 
 ### Branch protection was disabled

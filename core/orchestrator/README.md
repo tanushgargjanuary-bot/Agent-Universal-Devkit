@@ -10,7 +10,7 @@ The orchestrator is a planning and policy-decision foundation. It does not repla
 - Opt-in technology architecture assessment using caller-supplied candidates and evidence.
 - Versioned action Policy Engine.
 - Deny-by-default handling for unknown actions.
-- Approval requests bound to action, target, policy version, plan ID, and plan digest.
+- Approval requests bound to action, exact target, policy version, plan ID, and a routing-complete plan digest.
 - Trusted approval-verification callback support.
 - Tests for policy and orchestration behaviour.
 
@@ -33,7 +33,9 @@ Use `core/orchestrator/src/policy-engine.js` to evaluate actions before executio
 - Dependency, network, permission, secret, deployment, migration, deletion, and other privileged actions use explicit approval rules.
 - Unknown actions are denied.
 - Approval records must match the action, exact target, policy version, plan ID, and plan digest.
-- A trusted `verifyApproval` callback must return `true`.
+- Approval records must have `status: approved`, valid approver identity metadata, and a trusted `verifyApproval` callback must return `true`.
+- The canonical runtime action catalogue lives in `policy.rules.json`. `policy.yaml` points to that file and does not maintain a second action list.
+- Plan digests bind repository identity, branch, languages, frameworks, technology decision, task dependencies, capabilities, harness, tools, and actions. Set-like arrays and object keys are canonicalised before hashing.
 - A boolean such as `humanApproved: true` is not an approval record.
 - A plan change changes its digest. An approval for the old plan must not be reused.
 
