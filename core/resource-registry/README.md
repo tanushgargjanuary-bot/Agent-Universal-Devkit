@@ -55,10 +55,6 @@ The first version uses canonical identity, declared capability overlap, category
 
 A human must classify a pair as duplicate, alternative, complement, or distinct. Only an explicit duplicate decision can mark a record deprecated. History remains stored.
 
-## Commands
-
-`init`, `add`, `list`, `search`, `dedupe`, `reviews`, `review`, and `stats`.
-
 ## Limits
 
 - Similarity is heuristic, not semantic proof.

@@ -78,3 +78,29 @@ test("repository URLs reject credentials and non-standard ports", () => {
  assert.throws(()=>normalizeRepositoryUrl("https://user:pass@github.com/owner/repo"),/Only public HTTPS GitHub/);
  assert.throws(()=>normalizeRepositoryUrl("https://github.com:8443/owner/repo"),/Only public HTTPS GitHub/);
 });
+
+
+test("metadata refresh preserves approved status unless status is explicitly supplied", async () => {
+ const db=await new ResourceRegistry({dbPath:":memory:"}).open();
+ db.upsert({id:"approved",name:"Approved",url:"https://github.com/example/approved",status:"approved",categories:["tools"]});
+ const refreshed=db.upsert({id:"approved",name:"Approved Updated",url:"https://github.com/example/approved",description:"Fresh metadata"});
+ assert.equal(refreshed.status,"approved");
+ assert.equal(refreshed.name,"Approved Updated");
+ const reset=db.upsert({id:"approved",name:"Approved Updated",url:"https://github.com/example/approved",status:"candidate"});
+ assert.equal(reset.status,"candidate");
+ db.close();
+});
+
+test("registry CLI resolves its package import and supports init", async () => {
+ const {spawnSync}=await import("node:child_process");
+ const {mkdtemp,rm}=await import("node:fs/promises");
+ const {tmpdir}=await import("node:os");
+ const {join}=await import("node:path");
+ const dir=await mkdtemp(join(tmpdir(),"devkit-registry-cli-"));
+ const dbPath=join(dir,"registry.sqlite");
+ const cliPath=new URL("../bin/resource-registry.js",import.meta.url).pathname;
+ const result=spawnSync(process.execPath,[cliPath,"init","--db",dbPath],{encoding:"utf8"});
+ assert.equal(result.status,0,result.stderr);
+ assert.match(result.stdout,/"total": 0/);
+ await rm(dir,{recursive:true,force:true});
+});

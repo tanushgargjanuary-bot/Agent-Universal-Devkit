@@ -24,7 +24,7 @@
 | Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
 | Daily and weekly trending resource intake | Implemented in PR #16; Python compilation, 5 unit tests, repository hygiene, continuity, secret-history scan, and CodeQL passed | `.github/workflows/resource-discovery.yml`, `scripts/discover_trending_repositories.py`, `docs/TRENDING-RESOURCE-DISCOVERY.md` | Metadata-only filters include public visibility and repository identity checks; candidates remain unapproved; GitHub Trending HTML can change |
-| Resource registry | Implemented foundation | `core/resource-registry/` | Metadata sync is not source or dependency auditing |
+| Resource registry | Implemented foundation; pagination, bounded search, blocked deduplication, lifecycle-preserving metadata refresh, CLI entry point, and dedicated CI added in the latest hardening pass | `core/resource-registry/`, `.github/workflows/resource-registry-tests.yml` | Heuristic deduplication still needs labelled benchmarks; metadata sync is not source or dependency auditing |
 | Native knowledge library | Implemented foundation | `knowledge/`, `core/knowledge-engine/` | Retrieval is deterministic metadata matching, not semantic understanding |
 | Task planning | Implemented foundation | `core/orchestrator/` | Does not launch agent processes |
 | Policy Engine | Implemented decision core | `core/orchestrator/src/policy-engine.js`, policy docs | No approval store, identity provider, replay control, or executor enforcement |
@@ -79,7 +79,7 @@
 3. **Expand deterministic checks.** Add dependency, test, CI, configuration, and documentation checks only where source evidence is available. Keep read-only defaults and bounded file access.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
 5. **Prove a find-to-fix-to-verify workflow.** Keep execution disabled until the plan digest, policy source, task schema, trusted approval lifecycle, and executor-side enforcement gaps are closed.
-6. **Remediate audited Resource Registry defects and add package CI.** Correct the CLI import, preserve status on metadata updates, filter before pagination, and add lockfile/CI coverage.
+6. **Verify Resource Registry hardening in CI.** Confirm the dedicated workflow passes, then add labelled deduplication benchmarks and review consistency tests. Do not claim runtime validation until the workflow completes.
 7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
 8. **Review automated trending candidates.** Inspect each daily/weekly discovery PR, verify source/dependencies/security/license/project fit, and approve only reviewed resources.
 9. **Complete distribution and repository maintenance.** Build safe updates for existing repositories, validate GitHub App runtime, review stale branches and Dependabot PRs, and verify owner-only protection settings.
@@ -154,6 +154,8 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-10 | `0587f93` | Project Intelligence tests | Failed: 22 passed, 1 failed; the generic H1 title `# Example` was misclassified as a demo section, so the installation command under H2 was counted. |
 | 2026-11-10 | pending | Restrict README demo sections to H2 or deeper | Awaiting CI rerun |
 
+| 2026-11-11 | `a28d9ae` | Resource Registry hardening | Pagination, bounded search, category/capability candidate blocking, CLI import correction, and approval-status preservation implemented. Regression tests and dedicated CI added; workflow result pending. |
+
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
@@ -163,14 +165,14 @@ Do not report checks as passed unless they ran and passed.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.
 - **Verified:** Continuity presence, structure, placeholder completion, review-date freshness, and changed-file update requirements are checked by CI. The diff check requires a new dated work-log entry; L2–L4 cannot disable the checks or lower governance in the same change set. Semantic accuracy remains an agent/human responsibility.
-- **Verified audit findings:** Resource Registry CLI has an incorrect relative import; registry filtering applies LIMIT before status/category filtering; registry updates can reset status to candidate; plan digest omits execution-relevant routing fields; policy YAML and JavaScript rules are not a single runtime source of truth.
+- **Verified audit findings (partly remediated in latest main commits):** Resource Registry CLI import, filter-before-pagination, metadata status preservation, bounded search, and deduplication workload limits have code changes and regression tests; dedicated CI is awaiting a completed run. Remaining orchestration findings: plan digest omits execution-relevant routing fields; policy YAML and JavaScript rules are not a single runtime source of truth.
 - **Unknown:** Whether every branch and open PR contains unique work or can be consolidated safely; inspect before merging/deleting.
 - **Owner action:** Verify branch protection, required status checks, GitHub App registration, and deployment configuration.
 - **Audit gap:** Documentation and agent instructions were reviewed. Core source, tests, manifests, workflows, GitHub App, and branch/PR state received a targeted static audit. Full package test execution, live webhook validation, dependency audit, and owner-only settings remain unverified.
 
 ## 9. Handoff metadata
-- **Last reviewed:** 2026-11-10
-- **Commit:** Verify the current `main` HEAD before handoff; the latest merge and branch audit are recorded in this file and `docs/WORKLOG.md`.
+- **Last reviewed:** 2026-11-11
+- **Commit:** `a28d9aeb8a5e8dbf582c9ed82c44017e89423803` (verify current `main` HEAD before next task).
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
