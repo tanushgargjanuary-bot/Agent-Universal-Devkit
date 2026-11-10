@@ -80,6 +80,17 @@ Capabilities must interoperate through versioned contracts. They must not depend
 
 Use schemas and compatibility tests before choosing complex infrastructure. Do not add a graph database, vector database, message broker, or hosted control plane without measured need.
 
+### Initial contract implementation
+
+The first implementation now exists in `core/problem-engine/`:
+
+- `problem`, `evidence`, `finding`, `capability`, `plan`, and `verification` records.
+- Explicit schema version `1.0.0` for each record.
+- Strict unknown-field rejection.
+- Semantic checks for plan dependency graphs and verification outcomes.
+
+The shared validator is in `core/schema-engine/`. It supports only the documented schema subset. This is a contract foundation, not yet a complete problem-management or execution system. Context, action, execution, approval, persistence, and memory contracts remain future work.
+
 ## 5. Capability architecture
 
 ### A. Universal core

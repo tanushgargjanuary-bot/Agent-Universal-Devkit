@@ -11,7 +11,9 @@ of supported problems. It uses a shared problem lifecycle and common contracts,
 with reusable specialist capabilities, domain packs, and integration adapters.
 This is a product direction, not a claim that broad support already exists.
 
-- [ ] Define and validate shared problem, context, evidence, finding, capability, plan, action, execution, verification, and memory contracts.
+- [ ] Define and validate the complete shared problem, context, evidence, finding, capability, plan, action, execution, approval, verification, and memory model.
+- [x] Implement initial versioned contracts for problem, evidence, finding, capability, plan, and verification records.
+- [x] Add a dependency-free schema engine for the documented contract-schema subset, with tests and CI.
 - [ ] Establish project intelligence and safe context assembly as reusable services.
 - [ ] Build repo-scan as the first end-to-end workflow over the shared contracts.
 - [ ] Convert findings into prioritised plans with measurable acceptance criteria.

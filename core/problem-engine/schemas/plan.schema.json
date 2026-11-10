@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devkit.local/schemas/plan.schema.json",
+  "title": "DEVKIT Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "record_type", "schema_version", "problem_id", "created_at", "status", "steps"],
+  "properties": {
+    "id": { "type": "string", "minLength": 3, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$" },
+    "record_type": { "const": "plan" },
+    "schema_version": { "const": "1.0.0" },
+    "problem_id": { "type": "string", "minLength": 3, "maxLength": 128 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "status": { "type": "string", "enum": ["draft", "proposed", "approved", "in_progress", "completed", "blocked", "cancelled"] },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "description", "capability_ids", "depends_on", "risk", "acceptance_criteria"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "maxLength": 128 },
+          "title": { "type": "string", "minLength": 1, "maxLength": 300 },
+          "description": { "type": "string", "minLength": 1, "maxLength": 5000 },
+          "capability_ids": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "maxItems": 100 },
+          "depends_on": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "maxItems": 100 },
+          "risk": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+          "acceptance_criteria": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "maxItems": 100 },
+          "recovery_strategy": { "type": "string", "maxLength": 2000 }
+        }
+      }
+    },
+    "assumptions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 },
+    "limitations": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 }
+  }
+}

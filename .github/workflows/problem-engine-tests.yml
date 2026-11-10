@@ -1,0 +1,40 @@
+name: Shared Contract Tests
+
+on:
+  push:
+    paths:
+      - "core/schema-engine/**"
+      - "core/problem-engine/**"
+      - "core/knowledge-engine/src/json-schema.js"
+      - "core/knowledge-engine/test/**"
+      - ".github/workflows/problem-engine-tests.yml"
+  pull_request:
+    paths:
+      - "core/schema-engine/**"
+      - "core/problem-engine/**"
+      - "core/knowledge-engine/src/json-schema.js"
+      - "core/knowledge-engine/test/**"
+      - ".github/workflows/problem-engine-tests.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+      - name: Test shared schema engine
+        run: npm test
+        working-directory: core/schema-engine
+      - name: Test shared problem contracts
+        run: npm test
+        working-directory: core/problem-engine
+      - name: Test knowledge engine compatibility
+        run: npm test
+        working-directory: core/knowledge-engine

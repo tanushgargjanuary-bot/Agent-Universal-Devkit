@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devkit.local/schemas/evidence.schema.json",
+  "title": "DEVKIT Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "record_type", "schema_version", "observed_at", "evidence_type", "claim", "confidence", "source"],
+  "properties": {
+    "id": { "type": "string", "minLength": 3, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$" },
+    "record_type": { "const": "evidence" },
+    "schema_version": { "const": "1.0.0" },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "evidence_type": { "type": "string", "enum": ["observation", "test_result", "scan_result", "measurement", "human_report", "derived"] },
+    "claim": { "type": "string", "minLength": 1, "maxLength": 10000 },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "reference"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["local_file", "git_commit", "command", "test", "log", "url", "user_input", "other"] },
+        "reference": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "tool": { "type": "string", "maxLength": 200 },
+        "tool_version": { "type": "string", "maxLength": 100 },
+        "checksum": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "limitations": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 }
+  }
+}

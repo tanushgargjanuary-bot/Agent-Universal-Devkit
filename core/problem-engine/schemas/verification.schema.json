@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devkit.local/schemas/verification.schema.json",
+  "title": "DEVKIT Verification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "record_type", "schema_version", "plan_id", "performed_at", "outcome", "checks", "verifier", "limitations"],
+  "properties": {
+    "id": { "type": "string", "minLength": 3, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$" },
+    "record_type": { "const": "verification" },
+    "schema_version": { "const": "1.0.0" },
+    "plan_id": { "type": "string", "minLength": 3, "maxLength": 128 },
+    "performed_at": { "type": "string", "format": "date-time" },
+    "outcome": { "type": "string", "enum": ["passed", "failed", "partial", "not_run"] },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 500,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["criterion", "result", "evidence_ids"],
+        "properties": {
+          "criterion": { "type": "string", "minLength": 1, "maxLength": 2000 },
+          "result": { "type": "string", "enum": ["passed", "failed", "not_run"] },
+          "evidence_ids": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "maxItems": 100 }
+        }
+      }
+    },
+    "verifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "name"],
+      "properties": {
+        "kind": { "type": "string", "enum": ["human", "agent", "tool", "ci"] },
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "version": { "type": "string", "maxLength": 100 }
+      }
+    },
+    "limitations": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 }
+  }
+}

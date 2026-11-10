@@ -15,6 +15,7 @@
 
 | Capability | Status | Evidence | Limitations |
 |---|---|---|---|
+| Shared schema and problem contracts | Initial foundation implemented | `core/schema-engine/`, `core/problem-engine/` | Six versioned record types; no persistence, cross-record store, capability registry, or end-to-end workflow |
 | Resource catalog and comparison | Implemented foundation | `catalog/`, `core/resource-engine/`, subsystem docs | Evidence quality, freshness, and breadth remain incomplete |
 | Resource registry | Implemented foundation | `core/resource-registry/` | Metadata sync is not source or dependency auditing |
 | Native knowledge library | Implemented foundation | `knowledge/`, `core/knowledge-engine/` | Retrieval is deterministic metadata matching, not semantic understanding |
@@ -31,6 +32,8 @@
 |---|---|---|
 | `catalog/` | External resource candidates and discovery metadata | `docs/RESOURCE-INTELLIGENCE.md` |
 | `knowledge/` | Original engineering knowledge and registry | `docs/KNOWLEDGE-LIBRARY.md` |
+| `core/schema-engine/` | Shared validation for the supported JSON Schema subset | `core/schema-engine/README.md` |
+| `core/problem-engine/` | Problem, evidence, finding, capability, plan, and verification contracts | `core/problem-engine/README.md` |
 | `core/knowledge-engine/` | Deterministic knowledge retrieval and validation | `core/knowledge-engine/README.md` |
 | `core/resource-engine/` | Requirement-based resource evaluation | Package and tests |
 | `core/resource-registry/` | SQLite resource identity, metadata, and review history | `core/resource-registry/README.md` |
@@ -46,7 +49,7 @@
 ## 4. Setup and operation
 - **Runtime:** Node.js 22+ is required by several subsystems; resource registry documents Node.js 22.13+.
 - **Hygiene check:** `node scripts/repository-hygiene/check.mjs`
-- **Subsystem tests:** Run `npm test` from each subsystem package directory where defined.
+- **Subsystem tests:** Run `npm test` from each subsystem package directory where defined. Shared contract tests run in `.github/workflows/problem-engine-tests.yml`.
 - **Build/deploy:** No single full-product build or deployment path is established.
 - **External state:** GitHub App registration/deployment and repository protection settings require owner-side verification.
 - **Configuration:** Never record secret values here. Record variable names and secret-management locations only.
@@ -61,26 +64,28 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Fix Resource Registry correctness and CI.** Correct the CLI import, preserve status on metadata updates, apply filters before pagination, and add package-level CI and lockfile coverage.
-2. **Close orchestrator approval-contract gaps before executor work.** Bind the complete execution-relevant plan to the digest, unify policy definitions, align task schemas, and review test/branch action risk.
-3. **Build safe updates for existing repositories.** Use managed-file hashes and reviewable update PRs. Deploy the GitHub App only after permissions and webhook tests pass.
-4. **Validate the Knowledge Library.** Independently review and approve an initial set of entries, then test approved-only retrieval against real tasks.
-5. **Improve hybrid resource selection** with all-pair search, combined integration cost, and benchmarks.
-6. **Clean up branches and Dependabot PRs** after reviewing unique work. Complete owner-only About and branch-protection settings. Evaluate whether planning protocol templates, task schemas, and orchestrator outputs should encode acceptance criteria, adversarial review, risk, recovery, and future-scope classification.
-4. **Continue policy-aware execution work.** Approval lifecycle, trusted identity, replay protection, executor-side enforcement, audit records, simulated executor, and adversarial end-to-end tests.
-5. **Continue resource and knowledge roadmap items** based on the next audited priority.
+1. **Extend the shared problem model.** Add context, action, execution, approval, and memory contracts only after defining their trust boundaries and required provenance. Add compatibility tests.
+2. **Build capability discovery and selection.** Define a registry contract, validate capability declarations, and select only compatible capabilities using task fit, permissions, cost, and verification support.
+3. **Build project intelligence and safe context assembly.** Start with read-only repository discovery and reusable evidence collection.
+4. **Build repo-scan as the first complete workflow.** Produce evidence-backed findings, prioritised plans, and agent-ready context. Do not claim universal ecosystem coverage.
+5. **Prove a find-to-fix-to-verify workflow.** Keep execution disabled until the plan digest, policy source, task schema, trusted approval lifecycle, and executor-side enforcement gaps are closed.
+6. **Remediate audited Resource Registry defects and add package CI.** Correct the CLI import, preserve status on metadata updates, filter before pagination, and add lockfile/CI coverage.
+7. **Improve resource and knowledge quality.** Review initial knowledge entries, improve hybrid resource selection, and add benchmarks.
+8. **Complete distribution and repository maintenance.** Build safe updates for existing repositories, validate GitHub App runtime, review stale branches and Dependabot PRs, and verify owner-only protection settings.
 
-The order may change after the repository audit. Do not start major implementation from this summary alone.
+The previous targeted audit remains relevant. Its P1 correctness and policy findings are blockers before real executor adapters.
 
 ## 7. Verification record
 | Date | Commit | Check | Result |
 |---|---|---|---|
 | 2026-11-10 | `2625ded` | GitHub tree inventory and selected documentation/source inspection | Completed; full repository audit still pending |
-| 2026-11-10 | `2625ded` | Automated test suite / CI | Not run in this remote editing session |
+| 2026-11-10 | `2625ded` | Automated test suite / CI | Not run in that remote editing session |
+| 2026-11-10 | pending | Shared schema/problem contract tests | Added; awaiting GitHub Actions result |
 
 Do not report checks as passed unless they ran and passed.
 
 ## 8. Risks, known issues, and unknowns
+- **Verified:** The initial shared contract layer defines six record types. It does not provide storage, cross-record integrity, capability discovery, execution, or approvals.
 - **Verified:** The orchestrator does not launch or coordinate real agent processes.
 - **Verified:** Policy Engine is not a complete execution security boundary.
 - **Verified:** Harness adapters are not all validated against real harness versions.
@@ -92,7 +97,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `a81276314e720ea86fc84a91b9befa6ba055fd5d`
+- **Commit:** Verify current `main` HEAD before acting; this handoff includes the initial shared-contract foundation.
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.

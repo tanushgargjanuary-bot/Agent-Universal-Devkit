@@ -13,6 +13,8 @@ The native Engineering Knowledge & Methods Library supports both systems.
 
 | Capability | Current state | Boundary |
 |---|---|---|
+| Shared Schema Engine | Initial implementation | Validates the documented JSON Schema subset; not a complete JSON Schema implementation. |
+| Shared Problem Engine | Initial contracts implemented | Versioned problem, evidence, finding, capability, plan, and verification records. No persistence, capability discovery, execution, or approval lifecycle yet. |
 | Resource catalog | Implemented | Entries are candidates unless separately approved. |
 | Resource comparison | Implemented | Hard constraints precede weighted ranking; evidence quality still limits conclusions. |
 | Resource registry | Implemented | SQLite identity, metadata, GitHub sync, and human-reviewed deduplication. |
@@ -23,6 +25,14 @@ The native Engineering Knowledge & Methods Library supports both systems.
 | Executor adapters | Not implemented as an execution system | No runtime action enforcement or agent process control. |
 | Pack runtime | Not implemented | Manifest and governance contract only. |
 | GitHub App | Source code exists | Not registered or deployed. |
+
+## Shared problem contracts
+
+The initial `core/problem-engine/` package defines versioned JSON contracts for problem, evidence, finding, capability, plan, and verification records. It rejects unknown fields and validates key cross-field rules, including plan dependency cycles and consistency between verification summaries and individual checks.
+
+The reusable `core/schema-engine/` package validates the JSON Schema subset used by DEVKIT contracts. It is dependency-free and documents its supported keywords. It is not a full JSON Schema implementation.
+
+These packages establish data contracts only. They do not provide a persistent record store, cross-record reference resolution, capability registry, capability selection, problem intake, execution, approval authentication, or runtime policy enforcement.
 
 ## Problem-solving lifecycle
 

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://devkit.local/schemas/problem.schema.json",
+  "title": "DEVKIT Problem",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "record_type", "schema_version", "goal", "created_at", "constraints", "domain_hints", "priority"],
+  "properties": {
+    "id": { "type": "string", "minLength": 3, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$" },
+    "record_type": { "const": "problem" },
+    "schema_version": { "const": "1.0.0" },
+    "goal": { "type": "string", "minLength": 1, "maxLength": 5000 },
+    "description": { "type": "string", "maxLength": 20000 },
+    "requested_outcome": { "type": "string", "maxLength": 5000 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "priority": { "type": "string", "enum": ["low", "normal", "high", "urgent"] },
+    "constraints": { "type": "array", "items": { "type": "string", "minLength": 1 }, "maxItems": 100 },
+    "domain_hints": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "maxItems": 50 },
+    "context_refs": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "maxItems": 500 }
+  }
+}
