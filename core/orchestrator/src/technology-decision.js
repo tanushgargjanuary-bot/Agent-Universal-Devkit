@@ -1,3 +1,6 @@
+import { readdir, readFile, realpath, stat } from "node:fs/promises";
+import path from "node:path";
+
 const SOURCE_EXTENSIONS = {
   ".py": "Python",
   ".pyi": "Python",
@@ -128,6 +131,74 @@ export function inspectRepository(files) {
       "Generated files, vendored code, and examples can distort language signals.",
       "Build scripts and repository code were not executed."
     ]
+  };
+}
+
+
+const IGNORED_DIRECTORIES = new Set([
+  ".git", ".hg", ".svn", "node_modules", "vendor", ".venv", "venv",
+  "dist", "build", "coverage", ".next", ".nuxt", "target", "out", "bin", "obj"
+]);
+
+const MANIFEST_FILES = new Set([
+  "package.json", "pyproject.toml", "requirements.txt", "Pipfile",
+  "Cargo.toml", "go.mod", "pom.xml", "build.gradle", "build.gradle.kts",
+  "composer.json", "Gemfile", "pubspec.yaml", "mix.exs"
+]);
+
+/**
+ * Read a bounded local repository snapshot without following symlinks or
+ * executing repository content. Only known manifests are read for framework hints.
+ */
+export async function inspectLocalRepository(rootPath, { maxFiles = 20000, maxManifestBytes = 262144 } = {}) {
+  if (typeof rootPath !== "string" || !rootPath.trim()) throw new Error("A repository root path is required");
+  if (!Number.isInteger(maxFiles) || maxFiles < 1 || maxFiles > 100000) {
+    throw new Error("maxFiles must be an integer between 1 and 100000");
+  }
+  if (!Number.isInteger(maxManifestBytes) || maxManifestBytes < 1) {
+    throw new Error("maxManifestBytes must be a positive integer");
+  }
+
+  const root = await realpath(rootPath);
+  const rootInfo = await stat(root);
+  if (!rootInfo.isDirectory()) throw new Error("Repository root must be a directory");
+
+  const files = [];
+  const queue = [root];
+
+  while (queue.length > 0) {
+    const current = queue.pop();
+    const entries = await readdir(current, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.isSymbolicLink()) continue;
+      if (entry.isDirectory()) {
+        if (!IGNORED_DIRECTORIES.has(entry.name)) queue.push(path.join(current, entry.name));
+        continue;
+      }
+      if (!entry.isFile()) continue;
+
+      const absolutePath = path.join(current, entry.name);
+      const relativePath = path.relative(root, absolutePath).split(path.sep).join("/");
+      const record = { path: relativePath };
+      if (MANIFEST_FILES.has(entry.name) || /\.csproj$/i.test(entry.name)) {
+        const info = await stat(absolutePath);
+        if (info.size <= maxManifestBytes) {
+          record.content = await readFile(absolutePath, "utf8");
+        }
+      }
+      files.push(record);
+      if (files.length > maxFiles) {
+        throw new Error(`Repository snapshot exceeded maxFiles (${maxFiles}); narrow the scan or raise the explicit limit`);
+      }
+    }
+  }
+
+  return {
+    root,
+    ...inspectRepository(files),
+    snapshot_mode: "local_static",
+    symlinks_followed: false,
+    ignored_directories: [...IGNORED_DIRECTORIES].sort()
   };
 }
 
