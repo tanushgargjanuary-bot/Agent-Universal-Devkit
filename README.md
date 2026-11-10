@@ -13,6 +13,7 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 
 - An evidence-backed resource catalog and automated discovery.
 - Comparison of alternatives, including justified hybrid and custom approaches.
+- Evidence-based language and technology architecture selection for every new repository.
 - Hard filters for mandatory license, security, compatibility, platform, integration-cost, capability, and evidence-freshness requirements.
 - Native engineering study material stored in the repository, not only external links.
 - Context-triggered retrieval of algorithms and mathematical methods.
@@ -46,7 +47,7 @@ It also maintains a native **Engineering Knowledge & Methods Library**. This lib
 - Do not install or execute catalog entries automatically.
 - Verify engineering outputs independently.
 
-Read [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](docs/TARGET-ARCHITECTURE.md), [Decision Engine](docs/DECISION-ENGINE.md), [Knowledge Library](docs/KNOWLEDGE-LIBRARY.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), and [Roadmap](docs/ROADMAP.md).
+Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md), [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](docs/TARGET-ARCHITECTURE.md), [Decision Engine](docs/DECISION-ENGINE.md), [Knowledge Library](docs/KNOWLEDGE-LIBRARY.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), and [Roadmap](docs/ROADMAP.md).
 
 ## Current status
 
