@@ -1,74 +1,96 @@
 # Agent-Universal-Devkit
 
-A modular, vendor-neutral ecosystem for AI agents and the people who direct them. It connects engineering knowledge, resources, planning, controlled execution, and independent verification.
+A modular, vendor-neutral engineering ecosystem for AI agents and the people who direct them. It combines Resource Intelligence, native engineering knowledge, task planning, policy decisions, and independent verification.
 
-The long-term vision is broader than coding agents. A small universal core supports optional domain packs (software, AI/ML, cybersecurity, research, robotics, game development, and more) and integration packs (models, agent harnesses, MCP, tools, CI, and deployment). The default workflow stays simple. Advanced capabilities remain optional.
+The long-term product uses a small universal core with optional domain, integration, and interface packs. It is not tied to one model, vendor, agent harness, language, or deployment model.
 
-Read [Vision and Scope](docs/VISION-AND-SCOPE.md) and [Pack Model](docs/PACK-MODEL.md) before expanding the architecture.
+## Two equal priorities
 
-The Devkit has **two equal priorities**:
+1. **Resource Intelligence:** discover, inspect, compare, relate, and maintain external engineering resources.
+2. **Agent Orchestration:** understand goals, plan work, evaluate actions, route tasks, execute through adapters, and verify results.
 
-1. **Resource Intelligence:** discover, evaluate, compare, and maintain excellent open-source resources.
-2. **Agent Orchestration:** plan, route, coordinate, execute, and verify engineering work.
+The native **Engineering Knowledge & Methods Library** supports both priorities. It stores original material on algorithms, mathematics, methods, and engineering procedures.
 
-It also maintains a native **Engineering Knowledge & Methods Library**. This library contains original explanations of algorithms, mathematics, formulas, patterns, protocols, and engineering procedures. A local Knowledge Engine retrieves relevant material when task signals indicate it is useful.
+## What exists now
 
-## What it provides
+- Resource catalog with candidate and approval distinctions.
+- Requirement-based resource comparison with hard constraints before weighted ranking.
+- SQLite resource registry with canonical identity, metadata sync, and human-reviewed deduplication.
+- Native knowledge library and deterministic, approved-only retrieval.
+- Knowledge schema, relationship, approval-attestation, and content-digest checks.
+- Technology Decision Engine for opt-in, evidence-backed architecture comparisons.
+- Task planner with dependency ordering and policy evaluation.
+- Versioned Policy Engine with a deny-by-default action catalogue and plan-bound approval records.
+- Repository governance, project-type rubrics, bootstrap guidance, and a read-only hygiene checker.
+- GitHub workflows for tests, quality checks, CodeQL, and secret-history scanning.
 
-- An evidence-backed resource catalog and automated discovery.
-- Comparison of alternatives, including justified hybrid and custom approaches.
-- Evidence-based language and technology architecture selection for every new repository.
-- Project-type-specific quality rubrics, selected per repository rather than applied as one generic checklist.
-- Risk-based repository governance for file organisation, task tracking, decision records, Git workflow, security, release, and recovery.
-- A read-only repository hygiene checker with JSON reports, secret-pattern detection, and CI tests.
-- Hard filters for mandatory license, security, compatibility, platform, integration-cost, capability, and evidence-freshness requirements.
-- Native engineering study material stored in the repository, not only external links.
-- Context-triggered retrieval of algorithms and mathematical methods.
-- Shared engineering knowledge, agent instructions, and harness adapters.
-- A vendor-neutral orchestration foundation.
+These are implemented foundations. They do not yet form a complete autonomous execution platform.
 
-## Main systems
+## Current architecture
 
-| Directory | Purpose |
+| Path | Responsibility |
 |---|---|
-| `catalog/` | Curated resources, tools, skills, and discovery candidates |
-| `knowledge/` | Original algorithms, mathematics, and engineering methods |
-| `core/knowledge-engine/` | Local, explainable knowledge retrieval |
-| `core/resource-engine/` | Evidence-based resource comparison |
-| `core/resource-registry/` | SQLite-backed resource storage, canonical identity, GitHub health sync, and deduplication review |
-| `core/orchestrator/` | Task planning, dependency ordering, and safety gates |
-| `agents/` | Instructions and harness adapters |
-| `bootstrap/template/` | Small files installed in new repositories |
-| `integrations/` | GitHub distribution and future protocol integrations |
+| `catalog/` | External resource candidates and discovery metadata |
+| `knowledge/` | Original engineering knowledge |
+| `core/knowledge-engine/` | Deterministic knowledge retrieval and validation |
+| `core/resource-engine/` | Requirement-based resource evaluation |
+| `core/resource-registry/` | SQLite resource identity, metadata, and review history |
+| `core/orchestrator/` | Planning, technology assessment, policy evaluation, and safety gates |
+| `agents/` | Shared guidance and harness adapter entry points |
+| `integrations/` | External system integrations |
+| `bootstrap/template/` | Small entry-point files for connected repositories |
 | `schemas/` | Machine-readable contracts |
-| `scripts/` | Discovery and maintenance automation |
-| `docs/` | Product principles, vision, architecture, decisions, and roadmap |
-| `rubrics/` | Universal and domain-specific project quality rubrics for connected repositories |
-| `docs/REPOSITORY-GOVERNANCE.md` | Repository organisation, task discipline, change control, security, release, and recovery standards |
+| `scripts/` | Discovery and repository maintenance |
+| `docs/` | Product, architecture, security, quality, and roadmap records |
+| `rubrics/` | Universal and specialist project quality criteria |
 
-## Important rules
+## Policy and execution boundary
+
+The Policy Engine evaluates known actions and denies unknown actions. It can require a scoped approval record tied to the exact action, target, policy version, plan ID, and plan digest. A trusted `verifyApproval` callback must validate the approval.
+
+**Important:** the Policy Engine is a decision core. It does not authenticate people, store approval records, prevent replay by itself, execute tools, or enforce operating-system permissions. No executor adapter currently enforces policy at the point of action. Do not describe this repository as a secure agent execution platform.
+
+## Start here
+
+1. Read [Vision and Scope](docs/VISION-AND-SCOPE.md).
+2. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
+3. Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md).
+4. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
+5. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
+6. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
+
+Run the read-only hygiene check:
+
+```bash
+node scripts/repository-hygiene/check.mjs
+```
+
+Run subsystem tests from their package directories with the scripts defined in each `package.json`. See each subsystem README for scope and limitations.
+
+## Important operating rules
 
 - Popularity is a discovery signal, not proof of quality.
-- Discovery candidates are not approved recommendations.
-- Select methods and resources against actual requirements.
-- Knowledge retrieval is a suggestion, not automatic execution.
-- Every formula and algorithm must state assumptions and limitations.
-- Do not copy third-party course notes or textbooks.
-- Do not install or execute catalog entries automatically.
-- Verify engineering outputs independently.
+- Discovery does not mean approval, installation, or execution.
+- Apply hard requirements before weighted comparison.
+- Keep facts, assessments, assumptions, and decisions distinct.
+- Retrieve only relevant knowledge. Draft and review entries are not validated guidance.
+- Never treat an agent's completion statement as verification.
+- Use least privilege and risk-based human approval.
+- Do not claim support for an agent harness until its adapter is tested.
+- Do not claim security, compliance, or production readiness without evidence.
 
-Run `node scripts/repository-hygiene/check.mjs` for a read-only hygiene scan. See [Repository Hygiene Checker](docs/REPOSITORY-HYGIENE-CHECKER.md) for rules, configuration, and limits.
+## Current limitations
 
-Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md), [Project-Type Engineering Rubrics](rubrics/PROJECT-RUBRICS.md), [Vision and Scope](docs/VISION-AND-SCOPE.md), [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md), [Product Principles](docs/PRODUCT-PRINCIPLES.md), [Target Architecture](docs/TARGET-ARCHITECTURE.md), [Decision Engine](docs/DECISION-ENGINE.md), [Knowledge Library](docs/KNOWLEDGE-LIBRARY.md), [Resource Intelligence](docs/RESOURCE-INTELLIGENCE.md), [Pack Model](docs/PACK-MODEL.md), and [Roadmap](docs/ROADMAP.md).
+- The orchestrator plans and evaluates policy. It does not launch or coordinate real agent processes.
+- Executor-side policy enforcement and approval lifecycle management remain future work.
+- Agent harness directories are mostly planned entry points, not validated adapters.
+- Pack manifests define a governance contract. Runtime installation, activation, dependency resolution, and safe removal are not implemented.
+- Knowledge retrieval is deterministic metadata matching. It does not understand arbitrary paraphrases or prove applicability.
+- Resource sync gathers GitHub metadata. It is not a full source, dependency, security, or legal audit.
+- Repository branch protection and security settings require owner-side verification. Documentation does not prove that settings are enabled.
 
-## Current status
+## Security and licensing
 
-The resource comparison engine now applies mandatory hard constraints before weighted ranking. The knowledge engine has schema checks, content-bound approval metadata, GitHub-backed reviewer and commit verification, a two-pull-request approval procedure, a technical review checklist, and a labelled retrieval regression benchmark. These are early quality gates, not proof of complete correctness. Knowledge entries remain drafts and require technical review before production reliance. Required branch protection is documented but is not confirmed as enabled. The orchestrator does not yet run multi-agent workflows. The GitHub App is source code only and is not registered or deployed.
+See [SECURITY.md](SECURITY.md), [policies/SECURITY.md](policies/SECURITY.md), and [Security Audit](docs/SECURITY-AUDIT.md). Report vulnerabilities through GitHub's private reporting path when available.
 
-## Security
-
-See [SECURITY.md](SECURITY.md) for vulnerability reporting, [the security policy](policies/SECURITY.md) for safe tool use, least privilege, and approval requirements, and the [public repository security audit](docs/SECURITY-AUDIT.md) for verified findings and remaining owner actions. Do not commit credentials, private keys, local environment files, or personal data.
-
-## License
-
-The Devkit's original code and documentation are licensed under MIT. Third-party resources retain their own licenses and terms.
+The Devkit's original code and documentation use the MIT License. Third-party resources retain their own licenses and terms.
