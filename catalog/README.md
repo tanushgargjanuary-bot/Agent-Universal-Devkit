@@ -1,52 +1,75 @@
 # Curated External Resource Catalog
 
-This file contains discovery candidates. It is not an endorsement list.
-The Devkit must verify the current license, security posture, maintenance,
-compatibility, and relevance before it approves or recommends an entry.
+This is the human-readable index. Full structured records live in
+`catalog/resources.yaml`. The SQLite registry in `core/resource-registry/`
+stores larger working sets and duplicate-review history.
 
-## Supplied resources
+All entries are candidates. Inclusion is not endorsement. Review licensing,
+maintenance, security, compatibility, and task fit before approving or using
+any resource.
 
-| Resource | Main value | Status / qualification |
+## General engineering references
+
+| Resource | Main value | Qualification |
 |---|---|---|
-| [Awesome](https://github.com/sindresorhus/awesome) | Topic-specific curated indexes | Candidate; use to discover, then verify individual projects. |
-| [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python) | Algorithm and data-structure examples | Candidate; educational reference, not production-ready code by default. |
-| [Build Your Own X](https://github.com/codecrafters-io/build-your-own-x) | Build systems and tools from first principles | Candidate; tutorial quality and project-specific licenses vary. |
-| [Free for Dev](https://github.com/ripienaar/free-for-dev) | Developer services with free tiers | Candidate; pricing and limits change often. |
-| [Free Programming Books](https://github.com/EbookFoundation/free-programming-books) | Books and learning material | Candidate; verify each linked work's rights and availability. |
-| [Developer Roadmap](https://github.com/nilbuild/developer-roadmap) | Role and topic learning paths | Candidate; shortened URL resolved to this repository. Confirm continuity before approval. |
-| [OSSU Computer Science](https://github.com/ossu/computer-science) | Structured computer-science curriculum | Candidate; verify course availability and sequencing. |
-| [Engineering Blogs](https://github.com/kilimchoi/engineering-blogs) | Engineering blogs and case studies | Candidate; treat links as an index, not vetted technical guidance. |
-| [System Design Primer](https://github.com/donnemartin/system-design-primer) | System design concepts and interview preparation | Candidate; cross-check design claims against current systems. |
-| [Public APIs](https://github.com/public-apis/public-apis) | API discovery | Candidate; validate uptime, terms, auth, rate limits, and data rights. |
-| [Open Source Alternatives](https://github.com/btw-so/open-source-alternatives) | Alternatives to commercial software | Candidate; verify project maturity and feature parity. |
-| [Papers We Love](https://github.com/papers-we-love/papers-we-love) | Foundational and influential CS papers | Candidate; linked paper rights can differ from repository license. |
-| [Best Websites a Programmer Should Visit](https://github.com/sdmg15/Best-websites-a-programmer-should-visit) | Programming websites index | Archived upstream repository; stale links and content are possible. |
-| [LLMs From Scratch](https://github.com/rasbt/LLMs-from-scratch) | Understand and implement LLM internals | Candidate; check book/code versions and dependencies. |
-| [ML From Scratch](https://github.com/eriklindernoren/ML-From-Scratch) | Educational ML implementations | Candidate; validate correctness and numerical assumptions. |
-| [Made With ML](https://github.com/GokuMohandas/Made-With-ML) | Practical ML engineering and MLOps | Candidate; verify current framework versions. |
+| [Awesome](https://github.com/sindresorhus/awesome) | Topic-specific curated indexes | Discovery source only; verify individual projects. |
+| [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python) | Algorithm and data-structure examples | Educational reference, not production-ready by default. |
+| [Build Your Own X](https://github.com/codecrafters-io/build-your-own-x) | Build systems from first principles | Tutorials can have project-specific rights. |
+| [Free for Dev](https://github.com/ripienaar/free-for-dev) | Developer services with free tiers | Pricing and limits change often. |
+| [Free Programming Books](https://github.com/EbookFoundation/free-programming-books) | Programming books | Verify rights and availability for each linked work. |
+| [Developer Roadmap](https://github.com/nilbuild/developer-roadmap) | Role and topic learning paths | Supplied shortened URL resolved to this repository; verify continuity before approval. |
+| [OSSU Computer Science](https://github.com/ossu/computer-science) | Structured CS curriculum | Verify current course availability. |
+| [Engineering Blogs](https://github.com/kilimchoi/engineering-blogs) | Engineering blogs and case studies | Link index, not vetted guidance. |
+| [System Design Primer](https://github.com/donnemartin/system-design-primer) | System design study | Cross-check design claims against current practice. |
+| [Public APIs](https://github.com/public-apis/public-apis) | API discovery | Validate terms, uptime, rate limits, and data rights. |
+| [Open Source Alternatives](https://github.com/btw-so/open-source-alternatives) | Open alternatives discovery | Check maturity and feature parity. |
+| [Papers We Love](https://github.com/papers-we-love/papers-we-love) | Foundational CS papers | Paper rights differ from repository license. |
+| [Best Websites a Programmer Should Visit](https://github.com/sdmg15/Best-websites-a-programmer-should-visit) | Programming websites index | Archived; retain as historical discovery only. |
+| [LLMs From Scratch](https://github.com/rasbt/LLMs-from-scratch) | LLM internals | Check version and dependencies. |
+| [ML From Scratch](https://github.com/eriklindernoren/ML-From-Scratch) | Educational ML implementations | Validate algorithms and numerical assumptions. |
+| [Made With ML](https://github.com/GokuMohandas/Made-With-ML) | ML engineering and MLOps | Verify current framework versions. |
 
-## Additional high-value candidates
+## Security, learning, and AI engineering
 
-| Resource | Main value | Why it belongs |
+| Resource | Main value | Qualification |
 |---|---|---|
-| [OWASP ASVS](https://github.com/OWASP/ASVS) | Application security verification requirements | A concrete security baseline for web apps and services. |
-| [OWASP Cheat Sheet Series](https://github.com/OWASP/CheatSheetSeries) | Practical secure-development guidance | Actionable controls for common application risks. |
-| [Project Based Learning](https://github.com/practical-tutorials/project-based-learning) | Build real projects from tutorials | Converts theory into working software across many languages. |
-| [Coding Interview University](https://github.com/jwasham/coding-interview-university) | Structured interview preparation | A broad checklist for CS fundamentals and interview topics. |
-| [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners) | GenAI concepts and application patterns | Lessons and runnable examples; provider choices and APIs can change. |
-| [Trail of Bits Skills](https://github.com/trailofbits/skills) | AI-assisted security analysis and testing skills | Directly relevant to agent workflows; inspect skill instructions before use. |
+| [OWASP ASVS](https://github.com/OWASP/ASVS) | Application security requirements | Use as a baseline, not proof of security. |
+| [OWASP Cheat Sheet Series](https://github.com/OWASP/CheatSheetSeries) | Secure-development guidance | Select controls for the real threat model. |
+| [Project Based Learning](https://github.com/practical-tutorials/project-based-learning) | Build real projects | Tutorial quality varies. |
+| [Coding Interview University](https://github.com/jwasham/coding-interview-university) | CS and interview study plan | Learning resource, not a hiring guarantee. |
+| [Generative AI for Beginners](https://github.com/microsoft/generative-ai-for-beginners) | GenAI application lessons | Provider APIs can change. |
+| [Trail of Bits Skills](https://github.com/trailofbits/skills) | Agent-assisted security work | Inspect individual skill instructions before use. |
 
-## Important limitations
+## Agent workflows, memory, and control surfaces
 
-- All entries remain candidates. License fields in `catalog/resources.yaml` are
-  unreviewed, even where an SPDX identifier is recorded as a starting point.
-- A repository license does not automatically cover every linked paper, book,
-  dataset, API, or external website.
-- The archived programmer-websites list is retained for historical discovery,
-  not as an actively maintained recommendation.
-- Google Engineering Practices was considered but excluded from active
-  candidates because its repository was archived on 2025-11-21. Its code-review
-  documents may still be useful as a historical reference.
-- Do not install, execute, or ingest content from a catalog entry automatically.
-- Re-check upstream activity, releases, advisories, license, and terms before
-  production use.
+| Resource | Main value | Why it is relevant |
+|---|---|---|
+| [GitHub Spec Kit](https://github.com/github/spec-kit) | Spec-driven and composable agent workflows | Strong reference for process definitions, templates, quality gates, and extension points. |
+| [Matt Pocock Skills](https://github.com/mattpocock/skills) | Engineering and productivity skills | Evaluate individual skills for TDD, code review, domain modelling, and architecture. Avoid duplicate installation. |
+| [Claude-Mem](https://github.com/thedotmack/claude-mem) | Cross-session agent memory | Reference for observation capture and progressive retrieval; review telemetry and storage boundaries. |
+| [OpenMausBot](https://github.com/milind-soni/OpenMausBot) | Local-first agent team workspace and MCP control plane | Compare with Devkit orchestration; do not clone its desktop app. |
+| [T3 Code](https://github.com/pingdotgg/t3code) | Multi-harness agent control surface | Useful for interoperability and UX patterns; not itself an agent harness. |
+| [Scrapling](https://github.com/D4Vinci/Scrapling) | HTTP/browser acquisition and parsing | Optional research connector; browser extras need sandboxing. |
+| [NVIDIA Auto Ontology](https://github.com/NVIDIA/auto-ontology) | Semantic ontology and grounded data context | Optional enterprise integration; substantial infrastructure and model requirements. |
+
+## Frontend specialist
+
+| Resource | Main value | Qualification |
+|---|---|---|
+| [Hallmark](https://github.com/Nutlope/hallmark) | Frontend design skill, accessibility floor, visual checks | Optional for frontend tasks only. Compare skill-level overlap before adopting. |
+
+## Explicit exclusions
+
+- [Ziwei Doushu](https://github.com/Renhuai123/ziwei-doushu): astrology-specific charting system. Not a general Devkit engineering capability.
+- [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios): game-development agent template. Too domain-specific for the core catalog; revisit only for game-development specialisation.
+- Google Engineering Practices: repository archived. Its documents may still be useful as a historical reference.
+
+## Rules
+
+- Discovery candidates are not approved recommendations.
+- Do not equate stars with quality.
+- Verify upstream activity, releases, advisories, license, and terms.
+- A repository license does not automatically cover linked books, papers, photos, datasets, APIs, or websites.
+- Do not copy or execute catalog content automatically.
+- Compare capabilities at the component or skill level, not only at repository level.
+- Mark stale entries; do not silently delete them.
