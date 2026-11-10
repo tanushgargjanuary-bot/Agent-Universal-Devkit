@@ -209,7 +209,7 @@ test("validates roots and scan limits", async (t) => {
 
 test("recognises a runnable CLI example inside a README Demo section", async (t) => {
   const root = await fixture(t);
-  await put(root, "README.md", "# Example\\n\\n## Demo\\n\\n```bash\\nnode src/cli.js . --format markdown\\n```\\n");
+  await put(root, "README.md", ["# Example", "", "## Demo", "", "```bash", "node src/cli.js . --format markdown", "```", ""].join("\n"));
   const profile = await discoverRepository(root);
   assert.equal(profile.has_readme_demo, true);
   assert.ok(profile.readme_demo_signals.includes("runnable-example:Demo"));
@@ -217,7 +217,7 @@ test("recognises a runnable CLI example inside a README Demo section", async (t)
 
 test("does not treat installation commands outside a demo section as a demonstration", async (t) => {
   const root = await fixture(t);
-  await put(root, "README.md", "# Example\\n\\n## Installation\\n\\n```bash\\nnpm install\\n```\\n");
+  await put(root, "README.md", ["# Example", "", "## Installation", "", "```bash", "npm install", "```", ""].join("\n"));
   const profile = await discoverRepository(root);
   assert.equal(profile.has_readme_demo, false);
 });

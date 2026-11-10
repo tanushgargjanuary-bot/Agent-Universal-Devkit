@@ -249,3 +249,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Change:** Replaced the stateful line parser with section-bounded heading parsing and fenced-code extraction. A signal is emitted only when a recognised command appears in a fenced block under a Demo/Examples/Screenshots section. Installation commands outside those sections remain excluded.
 - **Verification:** Corrected Project Intelligence and full CI are pending. The failed run remains recorded.
 - **Next action:** Confirm the parser test and the complete fixture corpus pass.
+
+### 2026-11-10 — Correct the README runnable-example test fixture
+- **Commit:** Pending Git history.
+- **Trigger:** The second Project Intelligence run still passed 22 of 23 tests. Inspection of the failing fixture showed that the test wrote literal backslash-n sequences instead of newline characters. The production heading and fenced-code parser was not receiving separate Markdown lines.
+- **Change:** Rebuilt the test README from an array of lines joined with actual newline characters. Kept the negative installation-section case.
+- **Verification:** Corrected Project Intelligence and full CI are pending. The ecosystem fixture corpus passed in both runs.
+- **Next action:** Confirm both runnable-example tests and all ecosystem fixture cases pass.
