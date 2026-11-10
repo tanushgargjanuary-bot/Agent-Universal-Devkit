@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { createPlan, evaluateExecutionGate, orderTasks } from "../src/index.js";
 import { evaluateTechnologyArchitecture, evaluateTechnologyChangeGate, inspectLocalRepository, inspectRepository } from "../src/technology-decision.js";
+import { createApprovalRequest } from "../src/policy-engine.js";
 
 test("orders tasks after their dependencies", () => {
   const ordered = orderTasks([
@@ -36,16 +37,35 @@ test("creates a plan with scoped approval for a medium-risk dependency action", 
   assert.equal(plan.tasks[0].status, "planned");
 });
 
-test("blocks privileged actions until a human approves", () => {
+test("blocks privileged actions until a scoped approval is verified", () => {
+  const scope = {
+    planId: "deploy-plan",
+    planDigest: "d".repeat(64),
+    action: "deploy_to_production",
+    target: "service:production"
+  };
+  const request = createApprovalRequest(scope);
   const blocked = evaluateExecutionGate({
-    actions: ["deploy_to_production"]
+    risk: "critical",
+    actions: [{ type: scope.action, target: scope.target }],
+    planId: scope.planId,
+    planDigest: scope.planDigest
   });
   assert.equal(blocked.allowed, false);
   assert.equal(blocked.approval_required, true);
 
   const approved = evaluateExecutionGate({
-    actions: ["deploy_to_production"],
-    humanApproved: true
+    risk: "critical",
+    actions: [{ type: scope.action, target: scope.target }],
+    planId: scope.planId,
+    planDigest: scope.planDigest,
+    approvals: [{
+      ...request,
+      approval_id: "human-approval-1",
+      approved_by: "reviewer",
+      approved_at: "2026-11-10T10:00:00.000Z"
+    }],
+    verifyApproval: (record, expected) => record.approval_id === "human-approval-1" && record.request_id === expected.request_id
   });
   assert.equal(approved.allowed, true);
 });
