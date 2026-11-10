@@ -38,7 +38,7 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Next action:** Verify the new tests and finish the DEVKIT audit.
 
 ### 2026-11-10 — Correct continuity checker regex regression
-- **Commit:** pending
+- **Commit:** `75ba2e9c2bf2d13395d2d39aef8ef6d98ac95af7`
 - **Goal:** Restore the canonical checker syntax after the first placeholder-check implementation escaped existing path expressions incorrectly.
 - **Changes:** Reapplied the placeholder and work-log-entry checks on top of the last passing checker implementation without changing existing escape sequences.
 - **Verification:** Awaiting GitHub Actions.
@@ -46,7 +46,7 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Next action:** Verify tests, then finish the DEVKIT audit.
 
 ### 2026-11-10 — Prevent continuity policy bypass
-- **Commit:** pending
+- **Commit:** `a81276314e720ea86fc84a91b9befa6ba055fd5d`
 - **Goal:** Prevent L2–L4 repositories from disabling continuity checks or lowering governance level to bypass them.
 - **Changes:** L2–L4 enforce continuity checks even if configuration attempts to disable them. The diff checker compares base and head governance levels and rejects downgrades. L1 opt-out remains available.
 - **Verification:** Awaiting GitHub Actions.
@@ -63,8 +63,15 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Next action:** Fix Resource Registry correctness and CI, then close orchestrator approval-contract gaps before building executor adapters.
 
 ### 2026-11-10 — Document continuity enforcement boundaries
-- **Commit:** pending
+- **Commit:** `7899c83ac467a7ced3d8ad949f657d8e2a6d5108`
 - **Goal:** Make the governance-level restrictions explicit to repository owners and agents.
 - **Changes:** Documented that L2–L4 cannot disable continuity checks or downgrade governance in the same change set. L1 opt-out remains available for genuine prototypes.
 - **Verification:** Documentation-only update; continuity diff CI will verify a new work-log entry.
 - **Next action:** Begin the first remediation phase from the audit report.
+
+### 2026-11-10 — Reconcile continuity work-log references
+- **Commit:** recorded in Git history with this entry.
+- **Goal:** Replace temporary pending commit references after the related CI runs completed.
+- **Changes:** Recorded the final commit identifiers for the continuity checker fixes, governance bypass protection, and governance documentation.
+- **Verification:** Repository hygiene and secret-history workflows passed on the latest documentation commit.
+- **Next action:** Start Resource Registry remediation from the audit report.
