@@ -437,3 +437,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 
 - **Changes:** Approval records now have an atomic one-time consumption ledger. Execution Gate consumes a verified approval immediately before execution. A consumed approval cannot authorise a second run; stale approval objects fail verification.
 - **Verification:** Orchestrator Core Tests passed on the initial gate implementation; one-time consumption changes are awaiting CI. Repository hygiene identified a missing component-status update; this commit adds Approval Store and Execution Gate rows to the state document.
+
+
+### 2026-11-11 — One-time approval consumption verified
+
+- **Commit:** `c5565a1`.
+- **Verification:** Orchestrator Core Tests passed 63/63. Orchestration quality passed. Repository hygiene, continuity diff, and repository scan passed on the follow-up documentation commit. Secret-history scan passed on the implementation commit. CodeQL remained pending at the time of this entry.
+- **Security effect:** A signed approval is now consumed atomically immediately before an adapter runs. A second execution using the same approval is denied. Revocation and consumption both invalidate stale approval objects.
+- **Remaining:** Production identity provider, private-key provisioning/rotation, durable audit sink, and least-privilege adapters remain host integration work. The gate is not an OS sandbox.

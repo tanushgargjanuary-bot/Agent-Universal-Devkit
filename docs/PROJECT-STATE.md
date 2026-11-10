@@ -170,7 +170,7 @@ Do not report checks as passed unless they ran and passed.
 
 | 2026-11-11 | `90a5e92` | Execution Gate | Passed 61/61 tests. Orchestration quality, repository hygiene, continuity checks, and secret-history scan passed. CodeQL pending. |
 
-| 2026-11-11 | `c5565a1` | One-time approval consumption | Approval Store consumption ledger and Execution Gate single-use approval integration implemented. CI pending. |
+| 2026-11-11 | `c5565a1` | One-time approval consumption | Orchestrator Core Tests passed 63/63. Orchestration quality, repository hygiene, continuity diff, and secret-history scan passed. CodeQL pending. |
 
 ## 8. Risks, known issues, and unknowns
 - **Verified:** The initial shared contract layer defines six record types.

@@ -107,3 +107,11 @@ This document is not a certification, penetration test, or proof of security. A 
 - Orchestration quality, repository hygiene, continuity checks, and secret-history scan passed. CodeQL was queued at the time of the record.
 - The gate validates plan digests and dependency order, evaluates policy before adapter lookup, verifies live approvals, checks harness/capability compatibility, requires an audit callback, and executes sequentially.
 - It is not an OS sandbox. A host that exposes raw adapter methods can bypass it. No production adapters, identity provider, key provisioning/rotation, durable audit backend, or process isolation are supplied by this module.
+
+
+## One-time approval consumption — 2026-11-11
+
+- Added an atomic consumption ledger keyed by approval request ID. The Execution Gate consumes the signed approval immediately before invoking the adapter.
+- The store rejects duplicate consumption. Verification checks the current database state, so stale approval objects fail after consumption or revocation.
+- Orchestrator Core Tests passed 63/63. Orchestration quality, repository hygiene, continuity diff, and secret-history scan passed. CodeQL was pending at the time of this record.
+- This prevents replay through the shared gate. It does not prevent a host from bypassing the gate and directly invoking an adapter. Keep raw adapters private to the host integration.
