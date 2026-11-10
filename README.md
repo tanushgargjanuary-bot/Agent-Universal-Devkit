@@ -91,7 +91,7 @@ Run subsystem tests from their package directories with the scripts defined in e
 - Knowledge retrieval is deterministic metadata matching. It does not understand arbitrary paraphrases or prove applicability.
 - Resource sync gathers GitHub metadata. It is not a full source, dependency, security, or legal audit.
 - Repository branch protection and security settings require owner-side verification. Documentation does not prove that settings are enabled.
-- The continuity protocol depends on agents updating the records. Automated freshness enforcement is not yet implemented.
+- Continuity checks require project-state and work-log records, validate key handoff sections and review dates, and check that meaningful documentation/code changes update the records. They cannot prove that the recorded content is true or complete.
 
 ## Security and licensing
 

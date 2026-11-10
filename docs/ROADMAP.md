@@ -48,7 +48,9 @@ Status marks refer to repository implementation, not external configuration. A c
 - [x] Add a universal project quality rubric and specialist profiles.
 - [x] Add bootstrap entry points for local repository governance and quality records.
 - [x] Add a project intelligence and continuity protocol, with project-state and work-log templates for context-independent handoff.
-- [ ] Add automated continuity-document presence, structure, and freshness checks.
+- [x] Add automated continuity-document presence, structure, and freshness checks.
+- [x] Require continuity record updates for implementation/configuration changes and work-log entries for documentation-only changes.
+- [x] Expand the tested GitHub bootstrap payload to include handoff templates and the local hygiene checker.
 - [ ] Add governance-level policy enforcement and a versioned bootstrap installer.
 - [ ] Add rubric-aware planning and evidence-based quality reporting to the orchestrator.
 

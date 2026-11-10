@@ -30,7 +30,8 @@ Follow `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
 - Challenge the plan before implementation. Check assumptions, simpler options, edge cases, security boundaries, partial failure, and rollback.
 - Identify future scope, but classify it as Now, Next, Later, Explore, or Reject. Do not silently expand accepted scope.
 - Keep `docs/PROJECT-STATE.md` as the concise current handoff record and `docs/WORKLOG.md` as the chronological record of meaningful work.
-- Update these records after meaningful work and before an agent handoff or planned interruption. Update other canonical docs when behaviour, setup, architecture, security, tests, or operations change.
+- Update both records for implementation, configuration, schema, workflow, or other project changes. For documentation-only changes, append a work-log entry.
+- CI checks the changed-file set and rejects implementation changes without both continuity records (L1 reports warnings). Update other canonical docs when behaviour, setup, architecture, security, tests, or operations change.
 - Mark facts, assumptions, unknowns, and owner actions distinctly. Verify important status claims against source and test evidence.
 - Do not duplicate large documentation. Link to canonical sources.
 - A replacement agent must be able to identify the current state and next action from the repository, without prior chat access.

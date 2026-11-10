@@ -105,7 +105,7 @@ For each non-trivial proposal, state user value, evidence, dependencies, rough c
 - Add tests for changed behaviour and important failure modes.
 - Run relevant checks and report exact commands and outcomes. A skipped or unavailable check is not a pass.
 - Review the complete diff for regressions, unrelated changes, secrets, generated files, and accidental deletions.
-- Update `PROJECT-STATE.md`, `WORKLOG.md`, README, subsystem docs, API/config examples, and roadmap when the change affects them.
+- Update `PROJECT-STATE.md` and `WORKLOG.md` for implementation, configuration, schema, workflow, or other project changes. For documentation-only changes, append a work-log entry. Update README, subsystem docs, API/config examples, and roadmap when the change affects them.
 - Leave the repository in a clear state. If work is interrupted, write a handoff entry before stopping when possible.
 
 ## 7. Documentation freshness rules
@@ -123,6 +123,8 @@ Documentation is part of the deliverable whenever a change affects:
 | Milestones, blockers, next actions | Project state and roadmap/task tracker |
 | Important decision or rejected option | ADR or durable issue record |
 | Meaningful completed session | Work log and project state |
+| Implementation/configuration/schema/workflow change | Project state and work log |
+| Documentation-only change | Work log |
 
 Do not create duplicate sources of truth. Keep one canonical explanation and link to it. Mark stale or unverified information clearly. Do not update timestamps without reviewing the content.
 
