@@ -2,14 +2,15 @@
 
 A small, local-first retrieval engine for the Devkit's native Engineering Knowledge Library.
 
-## Current scope
+## Current behaviour
 
-- Reads a supplied registry object; file loading is left to the caller.
-- Matches explicit task tags, phrases, domains, and required capabilities.
+- Accepts a registry object supplied by the caller.
+- Matches task tags, phrases, domains, and required capabilities.
 - Supports required-tag combinations and exclusion phrases.
 - Returns ranked items with matched signals and reasons.
-- Defaults to approved material only. Draft and review entries require an explicit status override.
-- Uses no network, embeddings, paid API, or third-party dependency.
+- Defaults to approved material only.
+- Requires an explicit status override for draft or review preview.
+- Uses no network, embeddings, paid API, or third-party runtime dependency.
 
 ## Usage
 
@@ -18,7 +19,7 @@ import { selectKnowledge } from "./src/index.js";
 import registry from "../../knowledge/registry.json" with { type: "json" };
 
 const result = selectKnowledge(registry, {
-  description: "Find the shortest path in a weighted graph with non-negative edges",
+  description: "Find a shortest path in a weighted graph with non-negative edges",
   tags: ["graph", "shortest-path", "weighted-graph"],
   domain: "algorithms",
   required_capabilities: ["pathfinding"]
@@ -27,12 +28,26 @@ const result = selectKnowledge(registry, {
 console.log(result.matches);
 ```
 
-The exact JSON import syntax depends on the Node.js version and runtime. A caller may also load and pass parsed JSON.
+JSON import syntax depends on the Node.js runtime. A caller may load and pass parsed JSON instead.
 
-For editorial preview only, a caller can explicitly request `statuses: ["draft", "review"]`. Do not treat draft or review content as validated engineering guidance.
+For editorial preview only, a caller can explicitly request `statuses: ["draft", "review"]`. Do not use preview content as validated engineering guidance.
 
-## Important limits
+## Trust boundary
 
-This is a deterministic metadata matcher, not semantic understanding. It can miss paraphrases and can return false matches. The calling agent must inspect the task and selected material. A result is guidance, not permission to execute code or a claim that the method is suitable.
+The engine validates registry metadata and performs deterministic matching. It does not authenticate the author, prove technical correctness, understand arbitrary paraphrases, or prove that a result applies to a task. The caller must inspect the full item, its prerequisites, assumptions, sources, and limitations.
 
-Add semantic retrieval only after creating an evaluation set and measuring precision and recall.
+Retrieval is not permission to execute code.
+
+## Validation
+
+Run the package tests from this directory:
+
+```bash
+npm test
+```
+
+Use the package scripts as the source of truth. Report the actual runtime and test result.
+
+## Future work
+
+Add semantic retrieval only after a labelled benchmark shows a measurable improvement in precision, recall, and abstention quality.
