@@ -16,7 +16,7 @@ A native Engineering Knowledge & Methods Library supplies algorithms, mathematic
 4. Compare individual resources and complete approaches.
 5. Design a solution and explain trade-offs.
 6. Plan tasks and match them to tested agent capabilities.
-7. Apply permissions and risk-based approvals.
+7. Evaluate every action against the versioned Policy Engine; require scoped human approval where policy says so.
 8. Execute through compatible adapters.
 9. Verify outputs independently.
 10. Record outcomes and diagnosed failure causes.
