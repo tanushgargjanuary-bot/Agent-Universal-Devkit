@@ -170,7 +170,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-10
-- **Commit:** `7223d5746ead506510d338ec0b694230364e2543` (verify current `main` HEAD before next task).
+- **Commit:** Verify the current `main` HEAD before handoff; the latest merge and branch audit are recorded in this file and `docs/WORKLOG.md`.
 - **Updated by:** ChatGPT GitHub integration
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
