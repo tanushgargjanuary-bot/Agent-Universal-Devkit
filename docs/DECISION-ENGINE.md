@@ -32,6 +32,12 @@ If key requirements are missing, ask for clarification or mark the decision prov
 9. **Validate:** test the selected approach against acceptance criteria.
 10. **Record:** store evidence, assumptions, decision rationale, limitations, and review conditions.
 
+## Technology and language architecture decisions
+
+When a decision affects a repository's language, runtime, framework, or component boundaries, follow [Technology and Language Architecture Selection](TECHNOLOGY-ARCHITECTURE-SELECTION.md).
+
+Do not use an agent's familiar language as the default. Inspect the actual workload, existing stack, deployment environment, platform constraints, security needs, ecosystem, team skills, and lifecycle cost. Compare credible candidates. Prefer one coherent stack unless a hybrid provides a justified, testable benefit. Preserve established systems unless evidence supports migration. Record consequential decisions and obtain approval before broad changes.
+
 ## Evidence model
 
 Keep these concepts separate:
