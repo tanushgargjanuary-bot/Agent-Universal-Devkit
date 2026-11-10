@@ -22,7 +22,7 @@ Required repository permissions:
 - **Contents: Read and write**
 
 The installation must have access to both:
-1. `Agent-Universal-Devkit` (to read the private template files).
+1. `Agent-Universal-Devkit` (to read the bootstrap templates; the repository is public, but the App installation still needs the target-repository write permission).
 2. New repositories that should receive the bootstrap (to write files).
 
 For automatic coverage, install the App for **all repositories**. If it is installed only on selected repositories, it cannot bootstrap repositories outside that selection.
@@ -43,5 +43,5 @@ Do not commit App credentials or private keys.
 - This code is not deployed. It will not receive webhooks until the GitHub App is created, installed, and connected to a running host.
 - The App does not force an AI agent to read the Devkit. It installs entry-point files that supported agents can discover.
 - Existing instruction files are never overwritten. A later conflict workflow should open an issue or provide a safe merge suggestion.
-- The source Devkit is currently private. Agents that need to fetch remote files must have access. The bootstrap keeps basic instructions locally so work can continue if remote access is unavailable.
+- The source Devkit is public. Agents can read its public files without private-repository access. The bootstrap keeps basic instructions locally so work can continue if remote access is unavailable.
 - GitHub App permissions and installation scope must be configured by the repository owner.
