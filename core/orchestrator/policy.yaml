@@ -16,24 +16,9 @@ routing:
   prefer_project_native_tools: true
   allow_fallback_harness: false
 
-permissions:
-  low:
-    approval: false
-  medium:
-    approval: true
-  high:
-    approval: true
-  critical:
-    approval: true
-
-blocked_without_human_approval:
-  - install_or_upgrade_dependencies
-  - change_repository_permissions
-  - access_or_export_secrets
-  - deploy_to_production
-  - destructive_database_migration
-  - delete_repository_data
-  - run_untrusted_code_with_broad_permissions
+action_catalog:
+  source: ./policy.rules.json
+  authority: canonical_runtime_rules
 
 verification:
   require_evidence: true

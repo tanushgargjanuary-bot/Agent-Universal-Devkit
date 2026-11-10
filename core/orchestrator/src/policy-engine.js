@@ -1,37 +1,22 @@
 import { createHash } from "node:crypto";
+import policyRules from "../policy.rules.json" with { type: "json" };
 
-export const POLICY_VERSION = "1.0.0";
+export const POLICY_VERSION = policyRules.policy_version;
+const ACTION_RULES = Object.freeze(policyRules.actions);
+const RISK_ORDER = Object.freeze(policyRules.risk_order);
+const MUTATING_ACTIONS = new Set(policyRules.mutating_actions);
 
-const ACTION_RULES = Object.freeze({
-  read_repository: { effect: "allow", minimumRisk: "low" },
-  read_tests: { effect: "allow", minimumRisk: "low" },
-  inspect_dependencies: { effect: "allow", minimumRisk: "low" },
-  run_tests: { effect: "allow", minimumRisk: "low" },
-  write_repository_file: { effect: "risk_gated", minimumRisk: "medium" },
-  create_branch: { effect: "allow", minimumRisk: "low" },
-  install_dependency: { effect: "approval", minimumRisk: "medium" },
-  upgrade_dependency: { effect: "approval", minimumRisk: "medium" },
-  network_access: { effect: "approval", minimumRisk: "medium" },
-  change_repository_permissions: { effect: "approval", minimumRisk: "high" },
-  access_secret: { effect: "approval", minimumRisk: "high" },
-  export_secret: { effect: "approval", minimumRisk: "critical" },
-  deploy_to_staging: { effect: "approval", minimumRisk: "high" },
-  deploy_to_production: { effect: "approval", minimumRisk: "critical" },
-  destructive_database_migration: { effect: "approval", minimumRisk: "critical" },
-  delete_repository_data: { effect: "approval", minimumRisk: "critical" },
-  execute_untrusted_code: { effect: "approval", minimumRisk: "critical" }
-});
-
-const RISK_ORDER = Object.freeze({ low: 0, medium: 1, high: 2, critical: 3 });
-const MUTATING_ACTIONS = new Set([
-  "write_repository_file", "install_dependency", "upgrade_dependency",
-  "change_repository_permissions", "export_secret", "deploy_to_staging",
-  "deploy_to_production", "destructive_database_migration",
-  "delete_repository_data", "execute_untrusted_code"
-]);
+function stableValue(value) {
+  if (Array.isArray(value)) return value.map(stableValue);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.keys(value).sort().filter((key) => value[key] !== undefined)
+      .map((key) => [key, stableValue(value[key])]));
+  }
+  return value;
+}
 
 function digest(value) {
-  return createHash("sha256").update(JSON.stringify(value)).digest("hex");
+  return createHash("sha256").update(JSON.stringify(stableValue(value))).digest("hex");
 }
 
 function normaliseAction(action) {
@@ -58,8 +43,8 @@ function approvalScope({ planId, planDigest, action, target }) {
 }
 
 export function createApprovalRequest({ planId, planDigest, action, target }) {
-  if (!planId || !planDigest || !action || !target) {
-    throw new Error("planId, planDigest, action, and target are required");
+  if (typeof planId !== "string" || !planId.trim() || typeof planDigest !== "string" || !/^[a-f0-9]{64}$/.test(planDigest) || typeof action !== "string" || !action.trim() || typeof target !== "string" || !target.trim()) {
+    throw new Error("planId, a SHA-256 planDigest, action, and target are required");
   }
   const scope = approvalScope({ planId, planDigest, action, target });
   return {
@@ -95,6 +80,13 @@ export function evaluatePolicy({
       decisions: [],
       reasons: ["Actions must be an array."]
     };
+  }
+
+  if (!Array.isArray(approvals)) {
+    return { policy_version: POLICY_VERSION, allowed: false, approval_required: true, decisions: [], reasons: ["Approvals must be an array."] };
+  }
+  if (verifyApproval !== null && typeof verifyApproval !== "function") {
+    return { policy_version: POLICY_VERSION, allowed: false, approval_required: true, decisions: [], reasons: ["Approval verifier must be a trusted function."] };
   }
 
   const decisions = [];
@@ -140,6 +132,7 @@ export function evaluatePolicy({
     });
     approvalRequests.push(request);
     const approval = approvals.find((item) =>
+      item?.status === "approved" &&
       item?.request_id === request.request_id &&
       item?.policy_version === POLICY_VERSION &&
       item?.plan_id === planId &&
@@ -191,24 +184,44 @@ export function getPolicyActionCatalog() {
   }));
 }
 
-export function createPlanDigest({ taskId, goal, repository, risk = "low", tasks = [] }) {
-  if (!taskId || !goal || !repository?.full_name || !repository?.default_branch || !Array.isArray(tasks)) {
+export function createPlanDigest({ taskId, goal, repository, risk = "low", tasks = [], technologyDecision = null }) {
+  if (typeof taskId !== "string" || !taskId.trim() || typeof goal !== "string" || !goal.trim() ||
+      !repository || typeof repository.full_name !== "string" || !repository.full_name.trim() ||
+      typeof repository.default_branch !== "string" || !repository.default_branch.trim() ||
+      !Array.isArray(tasks) || !Object.hasOwn(RISK_ORDER, risk)) {
     throw new Error("A complete plan identity is required to create its digest");
   }
   const canonical = {
+    policy_version: POLICY_VERSION,
     task_id: taskId,
     goal,
     repository: {
       full_name: repository.full_name,
-      default_branch: repository.default_branch
+      default_branch: repository.default_branch,
+      languages: [...(repository.languages ?? [])].sort(),
+      frameworks: [...(repository.frameworks ?? [])].sort()
     },
     risk,
-    tasks: tasks.map((task) => ({
-      id: task.id,
-      description: task.description ?? "",
-      depends_on: [...(task.depends_on ?? [])],
-      actions: (task.actions ?? []).map((action) => normaliseAction(action))
-    }))
+    technology_decision: technologyDecision,
+    tasks: tasks.map((task) => {
+      if (!task || typeof task !== "object" || Array.isArray(task) || typeof task.id !== "string" || !task.id.trim()) {
+        throw new Error("Every plan task must have a non-empty string id");
+      }
+      return {
+        id: task.id,
+        description: task.description ?? "",
+        goal: task.goal ?? "",
+        problem: task.problem ?? "",
+        context: task.context ?? "",
+        domain: task.domain ?? null,
+        tags: [...(task.tags ?? [])].sort(),
+        required_capabilities: [...(task.required_capabilities ?? [])].sort(),
+        preferred_harness: task.preferred_harness ?? null,
+        tools: [...(task.tools ?? [])].sort(),
+        depends_on: [...(task.depends_on ?? [])].sort(),
+        actions: (task.actions ?? []).map((action) => normaliseAction(action))
+      };
+    })
   };
   return digest(canonical);
 }

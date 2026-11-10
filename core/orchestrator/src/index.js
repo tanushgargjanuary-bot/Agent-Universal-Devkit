@@ -52,16 +52,18 @@ export function createPlan({ task_id, goal, repository, tasks, risk = "low", kno
   }
 
   const ordered = orderTasks(tasks);
-  const planDigest = createPlanDigest({ taskId: task_id, goal, repository, risk, tasks: ordered });
+  const technologyDecision = technologyAssessment
+    ? evaluateTechnologyArchitecture({ repository, ...technologyAssessment })
+    : null;
+  const planDigest = createPlanDigest({
+    taskId: task_id, goal, repository, risk, tasks: ordered, technologyDecision
+  });
   const taskPolicies = new Map(ordered.map((task) => [task.id, evaluatePolicy({
     risk,
     actions: task.actions ?? [],
     planId: task_id,
     planDigest
   })]));
-  const technologyDecision = technologyAssessment
-    ? evaluateTechnologyArchitecture({ repository, ...technologyAssessment })
-    : null;
   const policyApprovalRequired = [...taskPolicies.values()].some((policy) => policy.approval_required);
 
   return {
