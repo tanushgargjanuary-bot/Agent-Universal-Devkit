@@ -64,7 +64,7 @@ This is a narrow search. It is not proof that the repository contains no secrets
 - Repository rulesets: none returned.
 - Common secret-pattern code search: no matches in indexed current-branch code.
 - CodeQL: workflow added; its first runs remain in progress. Do not claim a clean CodeQL result until a completed run is reviewed.
-- Gitleaks: full-history workflow completed successfully on commit `080b853`. Checkout, verified installation, and history scan all passed. No Gitleaks finding was reported. The scan should run again on future changes.
+- Gitleaks: full-history workflow completed successfully on commit `a6be373`. Checkout, verified installation, and history scan all passed. No Gitleaks finding was reported. The scan should run again on future changes.
 - Secret-scanning alerts: the connected GitHub integration could not read the alert endpoint. The repository owner must inspect **Settings → Security → Code security and analysis** and the **Security** tab.
 - Full historical secret scan: Gitleaks scanned the available Git history and refs successfully. This is strong evidence, not a guarantee that every secret type or unreachable Git object was detected.
 - Dependabot: configuration added; open update pull requests still require review and CI.
