@@ -1,7 +1,9 @@
-# OpenCode adapter
+# OpenCode Adapter
 
-Status: planned; not yet compatibility-tested.
+**Status:** Planned. Compatibility has not been tested.
 
-This folder will contain OpenCode-native configuration and instructions. Do not mark support as active until the adapter is tested against a recorded OpenCode version.
+This directory is reserved for OpenCode-native configuration and instructions.
 
-OpenCode reference: https://opencode.ai/docs/
+Before marking this adapter supported, record the OpenCode version, verify configuration and instruction discovery, test the workflow and permissions, and document limitations. Do not infer compatibility from the existence of shared instructions.
+
+Reference: https://opencode.ai/docs/
