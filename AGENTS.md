@@ -53,6 +53,10 @@ The Knowledge Engine is integrated into plan creation. It attaches approved-only
 5. Update documentation and the roadmap when needed.
 6. Report exactly what changed and what was not tested.
 
+## Policy Engine
+
+Before an agent performs an action, classify it with `core/orchestrator/src/policy-engine.js`. Unknown actions must remain denied. Approval requests must bind the exact action, target, policy version, and plan digest. Never replace a scoped approval record with a boolean. The executor must re-check policy immediately before execution. A trusted integration must authenticate the human approver; the core callback is not an identity provider.
+
 ## Safety gates
 
 Ask for human approval before:
