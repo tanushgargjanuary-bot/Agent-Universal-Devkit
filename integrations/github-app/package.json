@@ -5,9 +5,13 @@
   "type": "module",
   "description": "GitHub App that adds Agent-Universal-Devkit bootstrap files to newly created repositories.",
   "scripts": {
-    "start": "probot run ./src/index.js"
+    "start": "probot run ./src/index.js",
+    "test": "node --test"
   },
   "dependencies": {
     "probot": "^13.4.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

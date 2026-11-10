@@ -2,12 +2,18 @@ const DEVKIT_OWNER = process.env.DEVKIT_OWNER || "tanushgargjanuary-bot";
 const DEVKIT_REPO = process.env.DEVKIT_REPO || "Agent-Universal-Devkit";
 const DEVKIT_REF = process.env.DEVKIT_REF || "main";
 
-const BOOTSTRAP_FILES = [
+export const BOOTSTRAP_FILES = [
   "bootstrap/template/AGENTS.md",
   "bootstrap/template/.agent-universal-devkit/config.yaml",
   "bootstrap/template/CLAUDE.md",
   "bootstrap/template/GEMINI.md",
-  "bootstrap/template/.github/copilot-instructions.md"
+  "bootstrap/template/.github/copilot-instructions.md",
+  "bootstrap/template/PROJECT-RUBRICS.md",
+  "bootstrap/template/REPOSITORY-ORGANISATION.md",
+  "bootstrap/template/docs/PROJECT-STATE.md",
+  "bootstrap/template/docs/WORKLOG.md",
+  "bootstrap/template/.devkit/governance.json",
+  "bootstrap/template/.devkit/scripts/repository-hygiene/check.mjs"
 ];
 
 async function getFile(octokit, owner, repo, path, ref) {
@@ -33,7 +39,7 @@ async function getFile(octokit, owner, repo, path, ref) {
   }
 }
 
-async function installBootstrap(context) {
+export async function installBootstrap(context) {
   const repository = context.payload.repository;
   const owner = repository.owner.login;
   const repo = repository.name;
