@@ -52,7 +52,7 @@ test("discovers manifests, frameworks, languages, docs, tests, and CI without ru
   assert.equal(profile.has_docs_directory, true);
   assert.deepEqual(profile.ecosystems, ["node"]);
   assert.deepEqual(profile.frameworks, ["Next.js", "React"]);
-  assert.equal(profile.languages.TypeScript, 1);
+  assert.equal(profile.languages.TypeScript, 2);
   assert.equal(profile.skipped_directory_count, 1);
   assert.equal(profile.incomplete, false);
 

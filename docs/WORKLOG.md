@@ -151,3 +151,10 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Safety:** The scanner is read-only. It does not execute repository scripts, install dependencies, access the network, or run tests. It does not claim full security, source-quality, or runtime analysis.
 - **Verification:** CI results are pending. Do not claim this workflow is complete until the new package tests, repository hygiene, continuity, secret scan, and CodeQL checks are reviewed.
 - **Next action:** Review false-positive behaviour on more fixture repositories, then add additional scanners only when they can produce reproducible evidence.
+
+### 2026-11-10 — Correct repo-scan language-count test expectation
+- **Commit:** Pending Git history.
+- **Trigger:** The first Project Intelligence test run passed six of seven tests. The discovery fixture contains two TypeScript files, but the assertion expected one.
+- **Changes:** Corrected the expected TypeScript file count to two. No scanner behaviour was changed.
+- **Verification:** The corrected shared-contract workflow is pending. The initial failure remains recorded.
+- **Next action:** Confirm the full shared-contract, hygiene, secret scan, and CodeQL results.
