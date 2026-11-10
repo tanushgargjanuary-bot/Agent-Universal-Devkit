@@ -12,6 +12,20 @@ function fixture(t) {
   fs.writeFileSync(path.join(root, "README.md"), "# Example\n");
   fs.writeFileSync(path.join(root, ".gitignore"), "node_modules/\n");
   fs.writeFileSync(path.join(root, "AGENTS.md"), "# Rules\n");
+  fs.mkdirSync(path.join(root, "docs"));
+  fs.writeFileSync(path.join(root, "docs", "PROJECT-STATE.md"), [
+    "# Project State",
+    "## Project identity",
+    "## Current implementation status",
+    "## Architecture map",
+    "## Active work",
+    "## Verification record",
+    "## Risks and known issues",
+    "## Next actions",
+    "## Handoff metadata",
+    "- Last reviewed: " + new Date().toISOString().slice(0, 10)
+  ].join("\\n"));
+  fs.writeFileSync(path.join(root, "docs", "WORKLOG.md"), "# Work Log\\n\\n## History\\n");
   return root;
 }
 function run(root, ...args) {
@@ -25,7 +39,7 @@ test("clean minimal repository returns a valid report", t => {
   const report = JSON.parse(result.stdout);
   assert.equal(report.schemaVersion, 1);
   assert.equal(report.summary.errors, 0);
-  assert.equal(report.summary.filesScanned, 3);
+  assert.equal(report.summary.filesScanned, 5);
 });
 
 test("detects likely credentials without printing their value", t => {
@@ -80,4 +94,52 @@ test("rejects unsupported config schema", t => {
   const result = run(root);
   assert.equal(result.status, 2);
   assert.match(result.stderr, /Unsupported governance config/);
+});
+
+
+test("requires continuity documents for maintained repositories", t => {
+  const root = fixture(t);
+  fs.unlinkSync(path.join(root, "docs", "PROJECT-STATE.md"));
+  fs.unlinkSync(path.join(root, "docs", "WORKLOG.md"));
+  const result = run(root);
+  const report = JSON.parse(result.stdout);
+  assert.equal(result.status, 1);
+  assert.equal(report.findings.filter(x => x.rule === "CONTINUITY_DOCUMENT_MISSING").length, 2);
+});
+
+test("downgrades missing continuity documents for L1 prototypes", t => {
+  const root = fixture(t);
+  fs.unlinkSync(path.join(root, "docs", "PROJECT-STATE.md"));
+  fs.unlinkSync(path.join(root, "docs", "WORKLOG.md"));
+  fs.mkdirSync(path.join(root, ".devkit"));
+  fs.writeFileSync(path.join(root, ".devkit", "governance.json"), JSON.stringify({
+    schemaVersion: 1, level: "L1"
+  }));
+  const result = run(root);
+  const report = JSON.parse(result.stdout);
+  assert.equal(result.status, 0);
+  assert.equal(report.findings.filter(x => x.rule === "CONTINUITY_DOCUMENT_MISSING").every(x => x.severity === "warning"), true);
+});
+
+test("detects incomplete handoff structure and stale state", t => {
+  const root = fixture(t);
+  fs.writeFileSync(path.join(root, "docs", "PROJECT-STATE.md"), "# Project State\\n\\n## Project identity\\n- Last reviewed: 2000-01-01\\n");
+  const result = run(root);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.findings.some(x => x.rule === "ARCHITECTURE_SECTION_MISSING"), true);
+  assert.equal(report.findings.some(x => x.rule === "PROJECT_STATE_STALE"), true);
+});
+
+test("allows continuity checks to be disabled by explicit config", t => {
+  const root = fixture(t);
+  fs.unlinkSync(path.join(root, "docs", "PROJECT-STATE.md"));
+  fs.unlinkSync(path.join(root, "docs", "WORKLOG.md"));
+  fs.mkdirSync(path.join(root, ".devkit"));
+  fs.writeFileSync(path.join(root, ".devkit", "governance.json"), JSON.stringify({
+    schemaVersion: 1, level: "L2", checks: { continuityDocs: false }
+  }));
+  const result = run(root);
+  const report = JSON.parse(result.stdout);
+  assert.equal(result.status, 0);
+  assert.equal(report.findings.some(x => x.rule === "CONTINUITY_DOCUMENT_MISSING"), false);
 });

@@ -89,7 +89,7 @@ Every maintained repository needs a README that explains purpose, users, current
 | docs/decisions/ADR-*.md | A consequential technical decision needs a durable record |
 | docs/operations/ | Operators need deployment, backup, restore, or incident procedures |
 
-Update docs when behaviour, setup, configuration, APIs, or operations change. Do not duplicate instructions; link to the canonical source. Remove stale instructions. Mark planned, partial, experimental, and implemented capabilities accurately. State tested OS/runtime versions. Never publish secrets or private data.
+Every Devkit-managed repository must maintain `docs/PROJECT-STATE.md` and `docs/WORKLOG.md`. The state file is the concise handoff record; the work log is the chronological record of meaningful work. Use the bootstrap templates when these files are absent, but never overwrite existing project content. Update both after meaningful changes and before handoff. Update README and canonical subsystem docs when purpose, behaviour, setup, architecture, security, tests, or operations change. Do not duplicate instructions; link to the canonical source. Remove stale instructions. Mark planned, partial, experimental, and implemented capabilities accurately. State tested OS/runtime versions. Never publish secrets or private data.
 
 ## 6. Work and task management
 Every meaningful task needs an outcome, scope, acceptance criteria, dependencies/risks when relevant, status, and completion evidence.
@@ -167,7 +167,7 @@ Every connected agent must:
 7. Never overwrite user edits or discard untracked files.
 8. Avoid broad formatting or directory changes unrelated to the task.
 9. Inspect the diff and run relevant checks after each logical change.
-10. Update docs only when the change requires it.
+10. Update canonical docs when the change affects them; always update project state and work log after meaningful work.
 11. Before finishing, inspect git status and the full diff. Remove only agent-created files confirmed disposable. Check for secrets and sensitive data.
 12. Report changed files, checks run, checks not run, risks, and follow-up tasks.
 

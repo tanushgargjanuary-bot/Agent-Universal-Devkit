@@ -47,6 +47,14 @@ Use `excludePaths` for known vendor or generated trees. Paths are repository-rel
 | `VAGUE_DIRECTORY_NAME` | Warning | A directory name suggests unclear or temporary purpose. |
 | `VAGUE_FILE_NAME` | Warning | A file name suggests a temporary or duplicate copy. |
 
+## Project continuity checks
+
+Continuity checks are enabled by default for Devkit-managed repositories. They require `docs/PROJECT-STATE.md` and `docs/WORKLOG.md`, check key handoff sections, check for a work-log History section, and warn when the state review date is missing, invalid, or older than the configured limit.
+
+For L2–L4, missing required records or structural sections are errors. For L1 prototypes, they are warnings. Set `checks.continuityDocs: false` only when a repository has a documented reason to opt out. Set `checks.maxStateAgeDays` to an integer from 1 to 3650; the default is 90 days. This is a static freshness signal, not proof that the state is accurate. Agents must still verify claims against source and tests.
+
+Use the templates in `bootstrap/template/docs/`. Do not overwrite existing project documentation when adopting the templates.
+
 The secret scan uses patterns. It can miss credentials and can flag examples or test fixtures. Review every finding. If a real credential was committed, remove it from active use and rotate it. Deleting it from the latest commit does not remove it from Git history.
 
 ## Exit codes

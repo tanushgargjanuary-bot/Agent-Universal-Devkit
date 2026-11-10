@@ -37,7 +37,7 @@ function parseArgs(argv) {
 function loadConfig(root, configPath) {
   const file = configPath ? path.resolve(root, configPath) : path.join(root, ".devkit", "governance.json");
   if (!fs.existsSync(file)) {
-    return { level: "L2", excludePaths: [], checks: { secretPatterns: true, generatedFiles: true, naming: true } };
+    return { level: "L2", excludePaths: [], checks: { secretPatterns: true, generatedFiles: true, naming: true, continuityDocs: true, maxStateAgeDays: 90 } };
   }
   const parsed = JSON.parse(fs.readFileSync(file, "utf8"));
   if (parsed.schemaVersion !== VERSION) throw new Error("Unsupported governance config schemaVersion");
@@ -51,7 +51,11 @@ function loadConfig(root, configPath) {
     checks: {
       secretPatterns: parsed.checks?.secretPatterns !== false,
       generatedFiles: parsed.checks?.generatedFiles !== false,
-      naming: parsed.checks?.naming !== false
+      naming: parsed.checks?.naming !== false,
+      continuityDocs: parsed.checks?.continuityDocs !== false,
+      maxStateAgeDays: Number.isInteger(parsed.checks?.maxStateAgeDays) && parsed.checks.maxStateAgeDays >= 1 && parsed.checks.maxStateAgeDays <= 3650
+        ? parsed.checks.maxStateAgeDays
+        : 90
     }
   };
 }
@@ -98,6 +102,65 @@ function scan(root, config) {
   }
   if (!byPath.has("AGENTS.md") && !byPath.has("CONTRIBUTING.md")) {
     add(findings, "info", "WORKING_RULES_NOT_FOUND", ".", "No root AGENTS.md or CONTRIBUTING.md was found. Add one only if the project needs shared working rules.");
+  }
+
+  if (config.checks.continuityDocs) {
+    const required = ["docs/PROJECT-STATE.md", "docs/WORKLOG.md"];
+    const severity = config.level === "L1" ? "warning" : "error";
+    for (const requiredPath of required) {
+      if (!byPath.has(requiredPath)) {
+        add(findings, severity, "CONTINUITY_DOCUMENT_MISSING", requiredPath,
+          "Add the project-state handoff or chronological work log. Use the Devkit templates and preserve project-specific content.");
+      }
+    }
+
+    const statePath = "docs/PROJECT-STATE.md";
+    if (byPath.has(statePath)) {
+      const stateFile = files.find(x => x.rel === statePath);
+      let state = "";
+      try { state = fs.readFileSync(stateFile.full, "utf8"); } catch {}
+      const requiredSections = [
+        ["PROJECT_IDENTITY_SECTION_MISSING", /project identity/i],
+        ["IMPLEMENTATION_STATUS_SECTION_MISSING", /current implementation|implementation status/i],
+        ["ARCHITECTURE_SECTION_MISSING", /architecture map|architecture overview/i],
+        ["ACTIVE_WORK_SECTION_MISSING", /active work|current work/i],
+        ["VERIFICATION_SECTION_MISSING", /verification record|verification status/i],
+        ["RISKS_SECTION_MISSING", /risks|known issues/i],
+        ["NEXT_ACTIONS_SECTION_MISSING", /next actions|next steps/i],
+        ["HANDOFF_METADATA_SECTION_MISSING", /handoff metadata|last reviewed/i]
+      ];
+      for (const [rule, pattern] of requiredSections) {
+        const headings = state.split(/\r?\n/).filter(line => /^#{1,6}\s+/.test(line));
+        if (!headings.some(line => pattern.test(line))) {
+          add(findings, severity, rule, statePath, "Add the missing handoff section. Keep it concise and link to canonical project documentation.");
+        }
+      }
+      const reviewed = state.match(/last reviewed\s*[:：]\s*\*{0,2}(\d{4}-\d{2}-\d{2})/i);
+      if (!reviewed) {
+        add(findings, "warning", "PROJECT_STATE_REVIEW_DATE_MISSING", statePath, "Record a valid Last reviewed date in YYYY-MM-DD format.");
+      } else {
+        const reviewedAt = new Date(reviewed[1] + "T00:00:00Z");
+        if (Number.isNaN(reviewedAt.getTime()) || reviewedAt.toISOString().slice(0, 10) !== reviewed[1]) {
+          add(findings, "warning", "PROJECT_STATE_REVIEW_DATE_INVALID", statePath, "Last reviewed must be a real date in YYYY-MM-DD format.");
+        } else {
+          const ageDays = Math.floor((Date.now() - reviewedAt.getTime()) / 86400000);
+          if (ageDays > config.checks.maxStateAgeDays) {
+            add(findings, "warning", "PROJECT_STATE_STALE", statePath,
+              "Project state was last reviewed " + ageDays + " days ago. Verify status, tests, risks, and next actions.");
+          }
+        }
+      }
+    }
+
+    const worklogPath = "docs/WORKLOG.md";
+    if (byPath.has(worklogPath)) {
+      const worklogFile = files.find(x => x.rel === worklogPath);
+      let worklog = "";
+      try { worklog = fs.readFileSync(worklogFile.full, "utf8"); } catch {}
+      if (!/^#{1,6}\s+.*history/im.test(worklog)) {
+        add(findings, severity, "WORKLOG_HISTORY_SECTION_MISSING", worklogPath, "Add a History section for meaningful completed or interrupted work sessions.");
+      }
+    }
   }
 
   for (const file of files) {

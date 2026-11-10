@@ -5,6 +5,8 @@
   "checks": {
     "secretPatterns": true,
     "generatedFiles": true,
-    "naming": true
+    "naming": true,
+    "continuityDocs": true,
+    "maxStateAgeDays": 90
   }
 }
