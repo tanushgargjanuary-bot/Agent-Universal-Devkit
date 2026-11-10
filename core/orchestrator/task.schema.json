@@ -113,6 +113,37 @@
             "items": {
               "type": "string"
             }
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "target"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "target": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "policy": {
+            "type": "object"
           }
         },
         "additionalProperties": false
@@ -189,6 +220,14 @@
         }
       },
       "additionalProperties": false
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "plan_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
     }
   },
   "additionalProperties": false
