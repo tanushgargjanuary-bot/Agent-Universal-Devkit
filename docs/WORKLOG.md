@@ -173,3 +173,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Decisions:** A GIF is preferred, not mandatory when it is a poor fit. Do not fabricate screenshots or force visual demos for CLI/library projects. Provide the best real alternative and record why. README scanning is heuristic only; it does not render images, validate links, judge visual quality, or prove functionality.
 - **Verification:** New Project Intelligence and GitHub App bootstrap tests are added. CI results are pending.
 - **Next action:** Review the new scanner tests and bootstrap workflow results. Then improve repo-scan coverage with labelled fixtures and architecture/context extraction.
+
+### 2026-11-10 — Correct README demo scanner placement after CI failure
+- **Commit:** Pending Git history.
+- **Trigger:** The first Shared Contract Tests run passed schema-engine 6/6 and problem-engine 7/7, then failed to parse Project Intelligence. CI showed an `await` statement inside the synchronous framework detector.
+- **Cause:** The README inspection block was inserted at the first dependency-manifest marker, which belonged to framework detection rather than repository discovery.
+- **Changes:** Moved README reading and demo detection into the asynchronous repository-discovery function. Kept framework detection synchronous. Added a real symlinked-README fixture so the scanner proves it does not follow README symlinks. Added the missing Project Intelligence pull-request path filter.
+- **Verification:** Corrected tests and workflow are pending. The failed run remains recorded. Repository hygiene, GitHub bootstrap app tests, and secret history scan passed on the original feature commit.
+- **Next action:** Confirm all Project Intelligence, shared contract, repository hygiene, bootstrap, secret scan, and CodeQL checks.

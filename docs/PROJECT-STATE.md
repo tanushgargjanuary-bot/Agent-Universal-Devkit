@@ -69,7 +69,7 @@
 | Preserve clear limits between policy decisions and runtime enforcement | Avoid false security claims | `docs/ARCHITECTURE.md`, `docs/SECURITY-AUDIT.md` | Executor enforcement is implemented and tested |
 
 ## 6. Active work and next actions
-1. **Finish README demo guidance and repo-scan detection.** Verify media heuristics against real README fixtures, add the standard to every bootstrap instruction path, and keep false positives low.
+1. **Finish README demo guidance and repo-scan detection.** Fix the first CI-discovered syntax error in README inspection, verify media heuristics against fixtures, and confirm every bootstrap instruction path is covered.
 2. **Expand repo-scan carefully.** Add labelled fixtures and deterministic checks only when evidence quality and false-positive rates are measured. Keep scans read-only and bounded.
 3. **Build project context assembly.** Add useful architecture and entry-point context without running untrusted code.
 4. **Complete capability infrastructure.** Add provenance, compatibility validation, registry persistence, and safe composition. The current selector is in-memory and metadata-based only.
@@ -99,6 +99,11 @@ The previous targeted audit remains relevant. Its P1 correctness and policy find
 | 2026-11-10 | `cf2e593` | Repository hygiene | Passed |
 | 2026-11-10 | `cf2e593` | Secret history scan | Passed |
 | 2026-11-10 | `cf2e593` | CodeQL | Passed |
+| 2026-11-10 | `af9bee8` | Repository hygiene | Passed |
+| 2026-11-10 | `af9bee8` | GitHub bootstrap app tests | Passed |
+| 2026-11-10 | `af9bee8` | Secret history scan | Passed |
+| 2026-11-10 | `af9bee8` | Shared Contract Tests | Failed: schema and problem suites passed; Project Intelligence failed to parse due to an async README read block placed inside a synchronous framework detector |
+| 2026-11-10 | pending | Corrected Project Intelligence and PR path filter | Awaiting CI |
 
 Do not report checks as passed unless they ran and passed.
 

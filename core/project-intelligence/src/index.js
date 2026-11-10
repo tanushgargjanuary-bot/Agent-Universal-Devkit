@@ -108,26 +108,6 @@ function detectEcosystems(manifests) {
 
 function detectFrameworks(packageManifest, manifestTexts) {
   const frameworks = new Set();
-  const rootReadmePaths = files.filter((entry) => !entry.includes("/") && /^readme(?:\..+)?$/i.test(entry)).sort((a, b) => {
-    const rank = (value) => value.toLowerCase() === "readme.md" ? 0 : value.toLowerCase() === "readme" ? 1 : 2;
-    return rank(a) - rank(b) || a.localeCompare(b);
-  });
-  const readmePath = rootReadmePaths[0] ?? null;
-  let readmeText = null;
-  const readmeErrors = [];
-  if (readmePath) {
-    try {
-      const absoluteReadme = path.join(absoluteRoot, readmePath);
-      const metadata = await stat(absoluteReadme);
-      if (metadata.size > limits.max_readme_bytes) readmeErrors.push({ path: readmePath, code: "README_TOO_LARGE" });
-      else readmeText = await readFile(absoluteReadme, "utf8");
-    } catch (error) {
-      readmeErrors.push({ path: readmePath, code: error.code ?? "README_READ_FAILED" });
-    }
-  }
-  const readmeDemoSignals = readmeText === null ? [] : inspectReadmeDemo(readmeText, readmePath, files);
-  const readmeScanComplete = readmeText !== null;
-
   const dependencies = {
     ...(packageManifest?.dependencies ?? {}),
     ...(packageManifest?.devDependencies ?? {}),
@@ -258,6 +238,26 @@ export async function discoverRepository(root, options = {}) {
       manifestErrors.push({ path: entry, code: error.code ?? "MANIFEST_READ_FAILED" });
     }
   }
+
+  const rootReadmePaths = files.filter((entry) => !entry.includes("/") && /^readme(?:\..+)?$/i.test(entry)).sort((a, b) => {
+    const rank = (value) => value.toLowerCase() === "readme.md" ? 0 : value.toLowerCase() === "readme" ? 1 : 2;
+    return rank(a) - rank(b) || a.localeCompare(b);
+  });
+  const readmePath = rootReadmePaths[0] ?? null;
+  let readmeText = null;
+  const readmeErrors = [];
+  if (readmePath) {
+    try {
+      const absoluteReadme = path.join(absoluteRoot, readmePath);
+      const metadata = await stat(absoluteReadme);
+      if (metadata.size > limits.max_readme_bytes) readmeErrors.push({ path: readmePath, code: "README_TOO_LARGE" });
+      else readmeText = await readFile(absoluteReadme, "utf8");
+    } catch (error) {
+      readmeErrors.push({ path: readmePath, code: error.code ?? "README_READ_FAILED" });
+    }
+  }
+  const readmeDemoSignals = readmeText === null ? [] : inspectReadmeDemo(readmeText, readmePath, files);
+  const readmeScanComplete = readmeText !== null;
 
   const dependencies = {
     ...(packageManifest?.dependencies ?? {}),

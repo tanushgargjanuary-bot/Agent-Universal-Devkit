@@ -139,9 +139,10 @@ test("does not follow symlinks or scan common dependency directories", async (t)
   const outside = await fixture(t);
   await put(outside, "README.md", "outside");
   await symlink(outside, path.join(root, "linked"));
+  await symlink(path.join(outside, "README.md"), path.join(root, "README.md"));
   await put(root, "vendor/secret/index.js", "ignored");
   const profile = await discoverRepository(root);
-  assert.equal(profile.symlink_count, 1);
+  assert.equal(profile.symlink_count, 2);
   assert.equal(profile.file_count, 0);
   assert.equal(profile.has_readme, false);
   assert.equal(profile.skipped_directory_count, 1);
