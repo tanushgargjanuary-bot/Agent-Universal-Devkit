@@ -7,7 +7,7 @@ const ACTION_RULES = Object.freeze({
   read_tests: { effect: "allow", minimumRisk: "low" },
   inspect_dependencies: { effect: "allow", minimumRisk: "low" },
   run_tests: { effect: "allow", minimumRisk: "low" },
-  write_repository_file: { effect: "approval", minimumRisk: "medium" },
+  write_repository_file: { effect: "risk_gated", minimumRisk: "medium" },
   create_branch: { effect: "allow", minimumRisk: "low" },
   install_dependency: { effect: "approval", minimumRisk: "medium" },
   upgrade_dependency: { effect: "approval", minimumRisk: "medium" },
@@ -111,9 +111,9 @@ export function evaluatePolicy({
       continue;
     }
 
-    const riskRequiresApproval = RISK_ORDER[risk] >= RISK_ORDER[rule.minimumRisk] && rule.minimumRisk !== "low";
-    const requiresApproval = rule.effect === "approval" || (risk === "critical" && MUTATING_ACTIONS.has(action.type));
-    if (!requiresApproval || !riskRequiresApproval) {
+    const riskRequiresApproval = rule.effect === "risk_gated" && RISK_ORDER[risk] >= RISK_ORDER[rule.minimumRisk];
+    const requiresApproval = rule.effect === "approval" || riskRequiresApproval || (risk === "critical" && MUTATING_ACTIONS.has(action.type));
+    if (!requiresApproval) {
       decisions.push({ action: action.type, target: action.target, allowed: true, approval_required: false, reason: "Allowed by policy." });
       continue;
     }
