@@ -2,7 +2,9 @@
 
 A modular, vendor-neutral engineering ecosystem for AI agents and the people who direct them. It combines Resource Intelligence, native engineering knowledge, task planning, policy decisions, and independent verification.
 
-The long-term product uses a small universal core with optional domain, integration, and interface packs. It is not tied to one model, vendor, agent harness, language, or deployment model.
+The long-term product is a unified problem-solving workbench: one entry point and shared workflow for supported problems, powered by a small universal core and optional domain, integration, and interface packs. It integrates existing tools and agents rather than trying to replace them. It is not tied to one model, vendor, agent harness, language, or deployment model.
+
+See [Unified Problem-Solving Model](docs/UNIFIED-PROBLEM-SOLVING-MODEL.md) for the intended product direction. This is a future target, not a claim that the full workbench exists today.
 
 ## Two equal priorities
 
