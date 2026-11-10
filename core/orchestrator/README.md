@@ -30,7 +30,7 @@ The orchestration layer coordinates work. It does not replace the AI coding harn
 
 ## Current implementation boundary
 
-The current orchestrator implements task planning, dependency ordering, metadata validation, safety gates, approved-knowledge retrieval, and an opt-in technology architecture assessment. The technology engine performs static repository inspection and compares caller-supplied candidates. It does not discover candidates automatically, execute code, or apply migrations. It does not yet launch or control OpenCode, Codex, Claude Code, or Antigravity.
+The current orchestrator implements task planning, dependency ordering, metadata validation, safety gates, approved-knowledge retrieval, and an opt-in technology architecture assessment. The technology engine can inspect a bounded local repository snapshot or supplied file records, then compare caller-supplied candidates. It does not discover candidates automatically, execute code, or apply migrations. It does not yet launch or control OpenCode, Codex, Claude Code, or Antigravity.
 
 The Knowledge Engine is called during plan creation. The technology decision engine is called when the planner receives an explicit workload and at least two candidate architectures. Both are decision aids; agents must inspect evidence, assumptions, and limitations.
 
