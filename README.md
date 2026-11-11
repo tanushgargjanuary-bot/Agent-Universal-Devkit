@@ -94,6 +94,9 @@ The Policy Engine evaluates known actions and denies unknown actions. It can req
 7. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
 8. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
 9. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
+10. Read the [Agent Operating Model](docs/AGENT-OPERATING-MODEL.md) for permissions and session rules.
+11. Read [Cross-Repository Operations](docs/CROSS-REPOSITORY-OPERATIONS.md) before multi-repository work.
+12. Read the [Context Export Specification](docs/CONTEXT-EXPORT-SPEC.md) and [Decision Register](docs/DECISION-REGISTER.md) when working on continuity or architecture decisions.
 
 Run the read-only hygiene check:
 
@@ -116,9 +119,15 @@ Run subsystem tests from their package directories with the scripts defined in e
 - Do not claim security, compliance, or production readiness without evidence.
 - Keep project state and work history in the repository so a replacement agent can continue without prior chat access.
 
-## Next orchestration milestone
+## Next engineering milestone
 
-The next step is the provider-neutral [Host Trust Integration Contract](docs/HOST-TRUST-INTEGRATION.md). It defines authenticated approver identity, protected key operations, durable audit acknowledgement, and isolated adapter execution. The current in-process gate remains non-production and is not a sandbox.
+The next product milestone is **Project Context Assembly**. The current scanner is bounded and read-only, but it does not yet produce a complete reusable evidence-backed project context for planning. See [Agent Onboarding](docs/AGENT-ONBOARDING.md) and the [Roadmap](docs/ROADMAP.md).
+
+The following continuity milestone is the automated [Context Exporter](docs/CONTEXT-EXPORT-SPEC.md). It is specified but not implemented.
+
+The proposed [DEVKIT Hub](docs/CROSS-REPOSITORY-OPERATIONS.md) will coordinate explicitly registered repositories. It is a product direction, not an existing cross-repository control plane.
+
+**Security prerequisite:** [Host Trust Integration](docs/HOST-TRUST-INTEGRATION.md) remains mandatory before production adapters or write-capable execution. The current in-process gate is not a sandbox.
 
 ## Current limitations
 
