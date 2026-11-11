@@ -478,3 +478,9 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Finding:** The first documentation update caused continuity CI to fail because the changed `core/orchestrator/README.md` is classified as an implementation path. The checker requires both the project state and a new dated work-log entry for such a path.
 - **Correction:** Updated the canonical project-state architecture map and added this dated entry. No continuity rule was weakened.
 - **Verification:** The latest workflow before this correction reported the repository hygiene unit tests and trending discovery tests passing; continuity diff failed only on the missing project-state/work-log update. A fresh run is required after this correction.
+
+### 2026-11-11 — Refresh handoff review metadata
+
+- **Change:** Updated the project-state reviewed-source reference to the latest coherence-review documentation snapshot, `3263224`.
+- **Reason:** The prior reference still pointed to the pre-review baseline and no longer identified the reviewed snapshot.
+- **Verification:** The follow-up continuity CI run on `cac71a1` passed all steps, including 13 hygiene tests, five trending-discovery tests, continuity diff, and the 167-file repository scan with zero findings. CodeQL and secret-history scan passed on `3263224`.
