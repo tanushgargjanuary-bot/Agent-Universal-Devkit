@@ -8,7 +8,7 @@
 4. Read `docs/AGENT-OPERATING-MODEL.md` for session flow, permissions, multi-agent coordination, and completion rules.
 5. Read `README.md`, `docs/PROJECT-STATE.md`, `docs/PRODUCT-PRINCIPLES.md`, `docs/ARCHITECTURE.md`, `docs/ROADMAP.md`, and `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
 6. Read `docs/CROSS-REPOSITORY-OPERATIONS.md` before work that affects more than one repository. Read `docs/CONTEXT-EXPORT-SPEC.md` before changing handoff/export behaviour.
-7. Read recent `docs/WORKLOG.md` entries and relevant decision records. Verify claims against code and Git state.
+7. Read recent `docs/WORKLOG.md` entries and `docs/DECISION-REGISTER.md`. Verify claims against code and Git state.
 8. Inspect the current branch, working tree, repository tree, source, tests, manifests, workflows, and live CI.
 9. Read the relevant subsystem README and governing policy before changing that subsystem.
 10. Do not infer completion from a roadmap checkbox or design document alone.
