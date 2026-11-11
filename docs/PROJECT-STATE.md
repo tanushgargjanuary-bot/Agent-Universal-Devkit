@@ -177,7 +177,10 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-11 | `80bbaae` | Orchestrator Core Tests | Passed: 63/63. Orchestration quality, repository hygiene/continuity, and secret-history scan passed. CodeQL was still running at the last check. |
 
 ## 8. Risks, known issues, and unknowns
-- **Next engineering milestone:** Implement the provider-neutral host trust integration contract in `docs/HOST-TRUST-INTEGRATION.md`. It covers authenticated approver identity, protected signing-key lifecycle, durable audit acknowledgement, and isolated adapter execution. No production adapter may be enabled before its acceptance gate and independent security review pass.
+- **Next engineering milestone:** Project Context Assembly. The bounded scanner does not yet produce a complete reusable evidence-backed project context. Follow the staged acceptance criteria in `docs/AGENT-ONBOARDING.md`.
+- **Following milestone:** Implement the automated Context Exporter specified in `docs/CONTEXT-EXPORT-SPEC.md` and pass the clean-room handoff test.
+- **Security prerequisite:** Host Trust Integration remains mandatory before production adapters or write-capable execution. See `docs/HOST-TRUST-INTEGRATION.md`; a contract document is not implementation.
+- **Product direction:** A DEVKIT Hub should coordinate explicitly registered repositories using DEVKIT Core. The cross-repository control plane is not implemented. See `docs/CROSS-REPOSITORY-OPERATIONS.md`.
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
 - **Verified:** The README demo standard is guidance; the repo-scan demo heuristic does not validate media quality or functionality.
@@ -193,8 +196,8 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-11
-- **Reviewed source HEAD:** `ef0d9f2369feff913be52cb7ab90425955ca99ee` (reviewed 2026-11-11; re-check live HEAD before acting).
-- **Updated by:** ChatGPT GitHub integration; handoff documentation reconciled on 2026-11-11
+- **Reviewed code baseline:** `ef0d9f2369feff913be52cb7ab90425955ca99ee` (2026-11-11 code audit). Later commits in this documentation pass update handoff records only; re-check live HEAD and CI before acting.
+- **Updated by:** ChatGPT GitHub integration; documentation completeness reconciliation on 2026-11-11
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
 
