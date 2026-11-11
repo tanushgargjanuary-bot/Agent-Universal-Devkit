@@ -28,6 +28,7 @@ Read these files in this order:
 1. `HANDOFF.md` — startup map, working preferences, architecture, current owner actions.
 2. `AGENTS.md` — mandatory repository rules and safety constraints.
 3. This file — fast product and current-work orientation.
+4. Read `docs/AGENT-OPERATING-MODEL.md` for session, permission, collaboration, and completion rules.
 4. `README.md` — user-facing scope and supported workflows.
 5. `docs/PROJECT-STATE.md` — detailed implementation truth, architecture map, commands, risks, next actions.
 6. Latest dated entries in `docs/WORKLOG.md` — what changed and why. Verify important claims.
