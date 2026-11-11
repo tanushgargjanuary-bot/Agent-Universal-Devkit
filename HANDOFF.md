@@ -9,12 +9,13 @@ A replacement agent must follow this order:
 
 1. Read this file completely.
 2. Read `AGENTS.md` and any harness-specific instructions.
-3. Read `README.md` for product scope and user-facing claims.
-4. Read `docs/PROJECT-STATE.md` for implementation truth, architecture map, next actions, verification, and owner actions.
-5. Read the latest meaningful entries in `docs/WORKLOG.md`. Treat old pending/failing entries as historical unless the latest entry or current CI confirms they remain open.
-6. Read `docs/ROADMAP.md` to distinguish implemented work from accepted future scope.
-7. For the task at hand, read the relevant subsystem README, source, tests, schemas, policy, and workflows.
-8. Inspect the live repository before editing:
+3. Read `docs/AGENT-ONBOARDING.md` for the self-contained mission, architecture, implementation truth, next milestone, operating protocol, and source-of-truth rules.
+4. Read `README.md` for product scope and user-facing claims.
+5. Read `docs/PROJECT-STATE.md` for the detailed current implementation snapshot.
+6. Read the latest meaningful entries in `docs/WORKLOG.md`. Treat old pending/failing entries as history unless current CI or a later entry confirms they remain open.
+7. Read `docs/ROADMAP.md` to distinguish implemented work from accepted future scope.
+8. For the task at hand, read the relevant subsystem README, source, tests, schemas, policy, and workflows.
+9. Inspect the live repository before editing:
    - `git status --short --branch`
    - `git rev-parse HEAD`
    - `git branch --all --verbose`
@@ -119,17 +120,15 @@ The last reviewed repository snapshot was:
 
 - Repository: `tanushgargjanuary-bot/Agent-Universal-Devkit`
 - Default branch: `main`
-- Reviewed HEAD: `72172341b537e320db22eb11fd94e57efcd36e12`
+- Reviewed HEAD: `ef0d9f2369feff913be52cb7ab90425955ca99ee` (2026-11-11 snapshot; always re-check live HEAD)
 - Repository visibility returned by GitHub: **public**.
 - Owner previously stated that the repository had been made private. This conflicts with live GitHub metadata. Treat visibility as an **owner action**; do not assume privacy and do not change it without owner direction.
 
-Verification evidence at the last review:
-- Orchestrator Core Tests: **63/63 passed** on implementation commit `c5565a1`.
-- Orchestration quality: passed on that implementation sequence.
-- Repository hygiene and continuity checks: passed on the follow-up documentation sequence.
-- Secret-history scan: passed on the implementation and latest documentation commits.
-- CodeQL: passed on reviewed HEAD `7217234`.
-- Repository hygiene: passed on reviewed HEAD `7217234`.
+Verification evidence at the 2026-11-11 review:
+- Repository hygiene: passed on `ef0d9f2`, including 13 checker tests, 5 trending-discovery tests, continuity enforcement, and a 167-file scan with zero findings.
+- CodeQL: passed on `ef0d9f2`.
+- Secret-history scan: passed on `ef0d9f2`.
+- Orchestrator Core Tests: 63/63 passed on the earlier implementation sequence; do not claim this ran on `ef0d9f2` without a current run.
 
 These are dated results, not a guarantee about a later commit. Re-check current Actions before relying on them.
 
@@ -143,20 +142,11 @@ These are dated results, not a guarantee about a later commit. Re-check current 
 
 ## 8. Recommended next work
 
-Keep the two product pillars balanced. For the orchestration path, the safe order is:
+The next recommended product milestone is **Project Context Assembly**. The existing scanner is bounded and read-only, but DEVKIT does not yet assemble a complete, reusable, evidence-backed context record for downstream planning. Follow the staged plan and acceptance criteria in `docs/AGENT-ONBOARDING.md`.
 
-1. Define and implement a host integration contract for real approver authentication, protected signing-key lifecycle, and durable audit storage.
-2. Add a minimal read-only adapter that can only be invoked through the Execution Gate.
-3. Add adversarial tests for direct adapter bypass, replay, revocation races, expiry boundaries, audit failures, malformed plans, cancellation, and partial execution.
-4. Add process isolation and least-privilege controls before write-capable adapters.
-5. Build bounded project-context assembly so agents can load verified project facts, conventions, commands, architecture, and active work without dumping the entire repository into context.
+The host-trust contract in `docs/HOST-TRUST-INTEGRATION.md` remains a prerequisite before any production adapter or write-capable execution. Do not treat documentation of that contract as implementation.
 
-In parallel, continue Resource Intelligence:
-- Run live daily/weekly discovery and review candidate quality.
-- Improve evidence provenance, freshness, and conflict handling.
-- Benchmark registry deduplication and resource evaluation.
-
-Do not treat this ordering as permission to expand scope. Select one measurable milestone, record acceptance criteria, and finish it before starting unrelated work.
+Continue Resource Intelligence in parallel only through small, independently testable improvements to provenance, freshness, conflict handling, deduplication benchmarks, and candidate review. Do not expand into unrelated features before one milestone is complete.
 
 ## 9. Required engineering workflow
 
