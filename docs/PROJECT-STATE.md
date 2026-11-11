@@ -178,7 +178,6 @@ Do not report checks as passed unless they ran and passed.
 
 ## 8. Risks, known issues, and unknowns
 - **Next engineering milestone:** Implement the provider-neutral host trust integration contract in `docs/HOST-TRUST-INTEGRATION.md`. It covers authenticated approver identity, protected signing-key lifecycle, durable audit acknowledgement, and isolated adapter execution. No production adapter may be enabled before its acceptance gate and independent security review pass.
-- **Next engineering milestone:** Implement the provider-neutral host trust integration contract in `docs/HOST-TRUST-INTEGRATION.md`. It covers authenticated approver identity, protected signing-key lifecycle, durable audit acknowledgement, and isolated adapter execution. No production adapter may be enabled before its acceptance gate and independent security review pass.
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
 - **Verified:** The README demo standard is guidance; the repo-scan demo heuristic does not validate media quality or functionality.
@@ -194,7 +193,7 @@ Do not report checks as passed unless they ran and passed.
 
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-11
-- **Reviewed source HEAD:** `3263224cee3974d4773b4506b71171338f9627ae` (latest coherence-review documentation snapshot).
+- **Reviewed source HEAD:** `ef0d9f2369feff913be52cb7ab90425955ca99ee` (reviewed 2026-11-11; re-check live HEAD before acting).
 - **Updated by:** ChatGPT GitHub integration; handoff documentation reconciled on 2026-11-11
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
