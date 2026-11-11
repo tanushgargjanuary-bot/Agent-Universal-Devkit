@@ -17,15 +17,15 @@ A replacement agent must follow this order:
 8. Read `docs/ROADMAP.md` to distinguish implemented work from accepted future scope.
 9. Before cross-repository work, read `docs/CROSS-REPOSITORY-OPERATIONS.md`. Before changing handoff/export behaviour, read `docs/CONTEXT-EXPORT-SPEC.md`.
 10. For the task, read the relevant subsystem README, source, tests, schemas, policy, and workflows.
-9. Inspect the live repository before editing:
+11. Inspect the live repository before editing:
    - `git status --short --branch`
    - `git rev-parse HEAD`
    - `git branch --all --verbose`
    - `git log -12 --oneline --decorate`
    - `git ls-files`
    - current GitHub Actions runs, open PRs, issues, and repository settings where access permits.
-10. Run the repository hygiene check and relevant subsystem tests. Verify every important handoff claim against code and test evidence.
-11. Before finishing, update the project state and work log, run required checks, review the complete diff, and record the exact final commit.
+12. Run the repository hygiene check and relevant subsystem tests. Verify every important handoff claim against code and test evidence.
+13. Before finishing, update the project state and work log, run required checks, review the complete diff, and record the exact final commit.
 
 Do not ask the user to repeat information that is already in these files. If a fact is not recorded or cannot be verified, label it **Unknown** and ask only when it blocks safe progress.
 
@@ -122,7 +122,7 @@ The last reviewed repository snapshot was:
 
 - Repository: `tanushgargjanuary-bot/Agent-Universal-Devkit`
 - Default branch: `main`
-- Reviewed HEAD: `ef0d9f2369feff913be52cb7ab90425955ca99ee` (2026-11-11 snapshot; always re-check live HEAD)
+- Reviewed code/CI baseline: `ef0d9f2369feff913be52cb7ab90425955ca99ee` (2026-11-11). Later commits in this pass are documentation-only; always re-check live HEAD and CI.
 - Repository visibility returned by GitHub: **public**.
 - Owner previously stated that the repository had been made private. This conflicts with live GitHub metadata. Treat visibility as an **owner action**; do not assume privacy and do not change it without owner direction.
 
@@ -182,6 +182,7 @@ For subsystem tests, read the package README and `package.json`, then run the do
 - **`docs/AGENT-OPERATING-MODEL.md`:** canonical agent lifecycle, permissions, coordination, and completion standard.
 - **`docs/CROSS-REPOSITORY-OPERATIONS.md`:** proposed central Hub model and per-repository safety contract.
 - **`docs/CONTEXT-EXPORT-SPEC.md`:** proposed automated handoff package contract; not implemented.
+- **`docs/DECISION-REGISTER.md`:** recorded architecture decisions and explicit unknown historical context.
 - **`docs/PROJECT-STATE.md`:** detailed current implementation truth, architecture, next actions, verification, risks, and owner actions.
 - **`docs/WORKLOG.md`:** chronological history. Old failures remain as history; the latest verified state wins.
 - **`docs/ROADMAP.md`:** accepted future scope and milestone status.
