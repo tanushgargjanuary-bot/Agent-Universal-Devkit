@@ -121,6 +121,18 @@ Capabilities do not automatically require separate services or packages. Split t
 
 Use versioned structured records before adopting a graph database. Model relationships explicitly and attach evidence, provenance, confidence, and verification time. Do not treat inferred relationships as verified facts.
 
+## DEVKIT Hub and cross-repository control plane
+
+The proposed Hub is a configured control plane that uses DEVKIT Core to register and coordinate explicitly authorised repositories. It is distinct from the reusable core and must not treat repository registration, organisation membership, or Hub access as permission to modify a target.
+
+The target architecture includes a repository registry with stable provider IDs and observed commit baselines, a portfolio-level planner, per-repository policy and approval checks, isolated execution adapters, a durable operation ledger, and independent per-target verification. Cross-repository operations are not atomic; the system must preserve per-target outcomes and support safe resume rather than assuming global rollback.
+
+**Current status:** this control plane is not implemented. Existing repo-scan, bootstrap templates, and GitHub App source do not provide repository portfolio management or remote control. See `docs/CROSS-REPOSITORY-OPERATIONS.md` for the proposed workflow, phases, trust boundaries, and unresolved choices.
+
+## Agent operation and context export
+
+The portable agent lifecycle, P0–P4 permission levels, multi-agent coordination, and completion rules are defined in `docs/AGENT-OPERATING-MODEL.md`. The automated Context Exporter is specified in `docs/CONTEXT-EXPORT-SPEC.md` but is not implemented. Canonical project state and work logs remain the current manual source of continuity.
+
 ## Bootstrap and distribution
 
 A new project receives a small bootstrap payload. It points to this repository and explains how compatible agents find relevant resources and instructions.
