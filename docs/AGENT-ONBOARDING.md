@@ -31,7 +31,7 @@ Read these files in this order:
 4. `docs/AGENT-OPERATING-MODEL.md` — session lifecycle, permissions, collaboration, and completion rules.
 5. `README.md` — user-facing scope and supported workflows.
 6. `docs/PROJECT-STATE.md` — detailed implementation truth, architecture map, commands, risks, next actions.
-7. Latest dated entries in `docs/WORKLOG.md` — what changed and why. Verify important claims.
+7. Latest dated entries in `docs/WORKLOG.md` — what changed and why. Verify important claims. Read `docs/DECISION-REGISTER.md` for accepted decisions and unresolved historical context.
 8. `docs/ROADMAP.md` — accepted future scope. A checkbox is not proof of implementation.
 9. `docs/ARCHITECTURE.md` and `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
 10. `docs/CROSS-REPOSITORY-OPERATIONS.md` before cross-repository work; `docs/CONTEXT-EXPORT-SPEC.md` before changing handoff/export behaviour.
