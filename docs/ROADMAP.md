@@ -91,6 +91,8 @@ Detailed design and constraints: [Unified Problem-Solving Model](UNIFIED-PROBLEM
 
 ## Gate F — Policy-aware orchestration
 
+- [ ] Define and test provider-neutral host trust interfaces for approver identity, signing-key lifecycle, durable audit acknowledgement, and isolated adapter execution. See [Host Trust Integration Contract](HOST-TRUST-INTEGRATION.md).
+
 - [x] Retrieve approved knowledge during planning with reasons, limitations, and prerequisite status.
 - [x] Add opt-in technology architecture assessment with evidence and human approval gates.
 - [x] Add a versioned action policy catalogue with deny-by-default handling for unknown actions.
