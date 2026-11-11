@@ -4,6 +4,16 @@ Record meaningful work sessions so a different person or AI agent can continue w
 
 ## History
 
+### 2026-11-11 — Complete agent handoff and cross-repository documentation
+
+- **Scope:** Documentation-only completeness audit and reconciliation. No runtime capability is claimed as implemented.
+- **Changes:** Added the canonical Agent Operating Model with session lifecycle, P0–P4 permissions, approval requirements, harness compatibility, multi-agent coordination, failure states, and completion criteria. Added the DEVKIT Hub / Cross-Repository Operations architecture with per-target access control, registry and plan contracts, partial-failure semantics, security gates, and staged delivery. Added the Context Export Specification with manifest, provenance, freshness, redaction, validation, and clean-room acceptance requirements. Added a Decision Register that separates recorded decisions from unknown historical context.
+- **Reconciliation:** Aligned the intake order in HANDOFF.md, AGENTS.md, and AGENT-ONBOARDING.md. Corrected the next milestone to Project Context Assembly, followed by Context Export. Kept Host Trust Integration as a hard prerequisite for production adapters and write-capable execution. Corrected stale product-boundary wording about approval and replay protection. Linked the Hub and context-export specifications from the README, architecture, project state, and roadmap.
+- **Commits:** 98d7b90, 3996dda, 60a3f11, 46ceae2, c145f31, 28ed8a9, 61a98ce, 711c265, be1f79d, a7e0f09, e66175d, 99ff98f, 70a311b, a4754a4, 35db803.
+- **Verification:** Documentation changes were applied through GitHub's file API on main. No local checkout was available, so Markdown linting, link checking, repository hygiene, package tests, and a clean-room handoff test were not run in this session. Current CI must be checked before treating the documentation pass as verified.
+- **Known limits:** The Context Exporter, DEVKIT Hub runtime, portfolio registry, cross-repository planner, permission broker, durable operation ledger, production adapters, and host-trust services are not implemented by this documentation work. Historical failed experiments not preserved in Git or the work log remain unknown.
+- **Next action:** Build Project Context Assembly as the next engineering milestone. Then implement the Context Exporter and run a clean-room test. Start Hub Phase 0 only after those foundations are validated. Do not enable production write execution before Host Trust Integration and independent security review.
+
 ### 2026-11-10 — Add project intelligence and continuity protocol
 - **Commit:** `2625ded2f2d160660f4173244a999fc4d2da1311`
 - **Goal:** Make connected repositories recoverable across agent failures, context loss, and changes of AI environment. Add a robust planning protocol and future-scope discipline.
