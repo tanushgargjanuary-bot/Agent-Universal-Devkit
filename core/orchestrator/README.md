@@ -49,6 +49,10 @@ The store does not implement a user interface, identity provider, key provisioni
 
 Keep execution disabled until a real identity provider, protected key management, durable audit sink, and least-privilege adapters are integrated.
 
+## Host trust integration contract
+
+Before enabling a production adapter, implement the provider-neutral contracts and acceptance gate in [`docs/HOST-TRUST-INTEGRATION.md`](../../docs/HOST-TRUST-INTEGRATION.md). The host must supply authenticated approver identity, protected signing-key operations, acknowledged durable audit storage, and isolated least-privilege execution. Add versioned schemas and adversarial integration tests. Do not select a provider or enable an adapter until the deployment target is known and the boundary has passed independent review.
+
 ## Critical limitation and security boundary
 
 The Policy Engine remains a deterministic decision core. The Approval Store and Execution Gate add approval lifecycle and a standard adapter invocation path:
