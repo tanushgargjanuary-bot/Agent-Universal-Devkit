@@ -2,13 +2,16 @@
 
 ## Required intake
 
-1. Read root `HANDOFF.md` first. It is the startup map for agents taking over without chat history.
-2. Read this file.
-3. Read `README.md`, `docs/PROJECT-STATE.md`, `docs/PRODUCT-PRINCIPLES.md`, `docs/ARCHITECTURE.md`, `docs/ROADMAP.md`, and `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
-4. Inspect the branch, working tree, repository tree, relevant source, tests, manifests, and CI.
-5. Read the relevant subsystem README and governing policy before changing that subsystem.
-6. Read recent `docs/WORKLOG.md` entries. Verify their claims against code and Git state.
-7. Check current implementation. Do not infer completion from a roadmap checkbox or design document alone.
+1. Read root `HANDOFF.md` completely.
+2. Read this file and applicable harness-specific instructions.
+3. Read `docs/AGENT-ONBOARDING.md`.
+4. Read `docs/AGENT-OPERATING-MODEL.md` for session flow, permissions, multi-agent coordination, and completion rules.
+5. Read `README.md`, `docs/PROJECT-STATE.md`, `docs/PRODUCT-PRINCIPLES.md`, `docs/ARCHITECTURE.md`, `docs/ROADMAP.md`, and `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
+6. Read `docs/CROSS-REPOSITORY-OPERATIONS.md` before work that affects more than one repository. Read `docs/CONTEXT-EXPORT-SPEC.md` before changing handoff/export behaviour.
+7. Read recent `docs/WORKLOG.md` entries and relevant decision records. Verify claims against code and Git state.
+8. Inspect the current branch, working tree, repository tree, source, tests, manifests, workflows, and live CI.
+9. Read the relevant subsystem README and governing policy before changing that subsystem.
+10. Do not infer completion from a roadmap checkbox or design document alone.
 
 ## Repository rules
 
@@ -36,7 +39,10 @@ Follow `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
 - CI checks the changed-file set and rejects implementation changes without both continuity records (L1 reports warnings). Update other canonical docs when behaviour, setup, architecture, security, tests, or operations change.
 - Mark facts, assumptions, unknowns, and owner actions distinctly. Verify important status claims against source and test evidence.
 - Do not duplicate large documentation. Link to canonical sources.
-- A replacement agent must be able to identify the current state and next action from the repository, without prior chat access.
+- A replacement agent must be able to identify current state and next action from repository contents, without prior chat access.
+- Follow `docs/AGENT-OPERATING-MODEL.md` for the P0–P4 permission model. Tool availability is not authorisation.
+- Treat cross-repository work as a separate trust boundary. Use explicit target allowlists and per-repository approvals; follow `docs/CROSS-REPOSITORY-OPERATIONS.md`.
+- Do not claim that a Context Exporter exists. `docs/CONTEXT-EXPORT-SPEC.md` is a specification until code, tests, and a clean-room acceptance run exist.
 
 ## README demonstrations
 
