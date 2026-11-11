@@ -13,7 +13,7 @@ A replacement agent must follow this order:
 4. Read `docs/AGENT-OPERATING-MODEL.md` for session, permission, collaboration, and completion rules.
 5. Read `README.md` for user-facing scope and claims.
 6. Read `docs/PROJECT-STATE.md` for current implementation truth.
-7. Read the latest meaningful entries in `docs/WORKLOG.md`. Treat old pending/failing entries as history unless current CI or a later entry confirms they remain open.
+7. Read the latest meaningful entries in `docs/WORKLOG.md` and `docs/DECISION-REGISTER.md`. Treat old pending/failing entries as history unless current CI or a later entry confirms they remain open.
 8. Read `docs/ROADMAP.md` to distinguish implemented work from accepted future scope.
 9. Before cross-repository work, read `docs/CROSS-REPOSITORY-OPERATIONS.md`. Before changing handoff/export behaviour, read `docs/CONTEXT-EXPORT-SPEC.md`.
 10. For the task, read the relevant subsystem README, source, tests, schemas, policy, and workflows.
