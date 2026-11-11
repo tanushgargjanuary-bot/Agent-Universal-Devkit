@@ -490,3 +490,11 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Change:** Updated the handoff metadata to identify the latest reviewed coherence snapshot, `3263224`.
 - **Continuity:** This update is recorded as a separate dated work-log entry so the documentation-only continuity check can verify it.
 - **Verification:** The continuity job initially rejected the state-only commit because this work-log record was not yet present in the parent snapshot. The subsequent work-log commit will trigger the canonical continuity gate again.
+
+### 2026-11-11 — Self-contained agent onboarding brief
+
+- **Goal:** Make a replacement agent able to understand DEVKIT and choose the next task using repository contents alone, without prior chat history.
+- **Changes:** Added `docs/AGENT-ONBOARDING.md` as a concise but self-contained orientation: mission, principles, architecture map, implemented/incomplete boundaries, verified repository snapshot, exact next milestone, acceptance criteria, operating protocol, read-only permission limits, and source-of-truth precedence. Updated `HANDOFF.md` to make the onboarding brief mandatory and refreshed its stale snapshot, CI evidence, and next-work recommendation. Removed a duplicate host-trust milestone in project state and refreshed its reviewed snapshot.
+- **Current evidence checked:** Live `main` HEAD `ef0d9f2`; zero open PRs; nine non-main branches; repository hygiene, CodeQL, and secret-history scan passed on `ef0d9f2`. Branch protection is flagged as enabled, but required status-check enforcement reports off. Repository visibility reports public.
+- **Next:** Build the Project Context Assembly Engine in small, evidence-backed stages as specified in `docs/AGENT-ONBOARDING.md`. Keep production execution disabled until the host trust contract is implemented and independently reviewed.
+- **Limits:** Repository documentation cannot transfer credentials, permissions, hidden chat state, or unrecorded owner intent. Read-only access permits analysis and planning, not pushes, merges, settings changes, or deployment.
