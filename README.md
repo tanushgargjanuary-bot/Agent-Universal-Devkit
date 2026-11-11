@@ -116,6 +116,10 @@ Run subsystem tests from their package directories with the scripts defined in e
 - Do not claim security, compliance, or production readiness without evidence.
 - Keep project state and work history in the repository so a replacement agent can continue without prior chat access.
 
+## Next orchestration milestone
+
+The next step is the provider-neutral [Host Trust Integration Contract](docs/HOST-TRUST-INTEGRATION.md). It defines authenticated approver identity, protected key operations, durable audit acknowledgement, and isolated adapter execution. The current in-process gate remains non-production and is not a sandbox.
+
 ## Current limitations
 
 - The orchestrator plans and provides a policy-enforcing Execution Gate, but it does not launch or coordinate real agent processes.
