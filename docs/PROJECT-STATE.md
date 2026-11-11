@@ -207,7 +207,7 @@ The DEVKIT Hub is distinct from DEVKIT Core. Repository registration must not gr
 
 The automated Context Exporter is not available. Until it is implemented and passes a clean-room test, agents must maintain the canonical handoff files manually.
 
-## 9. Handoff metadata
+## 10. Handoff metadata
 - **Last reviewed:** 2026-11-11
 - **Reviewed code baseline:** `ef0d9f2369feff913be52cb7ab90425955ca99ee` (2026-11-11 code audit). Later commits in this documentation pass update handoff records only; re-check live HEAD and CI before acting.
 - **Updated by:** ChatGPT GitHub integration; documentation completeness reconciliation on 2026-11-11
@@ -215,8 +215,12 @@ The automated Context Exporter is not available. Until it is implemented and pas
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
 
 ## Recovery checklist
-- [ ] Read root `HANDOFF.md`, then `AGENTS.md` and this file.
+- [ ] Read root `HANDOFF.md`, then `AGENTS.md` and `docs/AGENT-ONBOARDING.md`.
+- [ ] Read `docs/AGENT-OPERATING-MODEL.md` and this file.
+- [ ] Read `docs/DECISION-REGISTER.md`.
 - [ ] Read `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
+- [ ] Read `docs/CROSS-REPOSITORY-OPERATIONS.md` before multi-repository work.
+- [ ] Read `docs/CONTEXT-EXPORT-SPEC.md` before changing handoff/export behaviour.
 - [ ] Read recent `docs/WORKLOG.md` entries.
 - [ ] Verify current branch, commit, and working tree.
 - [ ] Confirm implementation and tests for the task.
