@@ -9,12 +9,14 @@ A replacement agent must follow this order:
 
 1. Read this file completely.
 2. Read `AGENTS.md` and any harness-specific instructions.
-3. Read `docs/AGENT-ONBOARDING.md` for the self-contained mission, architecture, implementation truth, next milestone, operating protocol, and source-of-truth rules.
-4. Read `README.md` for product scope and user-facing claims.
-5. Read `docs/PROJECT-STATE.md` for the detailed current implementation snapshot.
-6. Read the latest meaningful entries in `docs/WORKLOG.md`. Treat old pending/failing entries as history unless current CI or a later entry confirms they remain open.
-7. Read `docs/ROADMAP.md` to distinguish implemented work from accepted future scope.
-8. For the task at hand, read the relevant subsystem README, source, tests, schemas, policy, and workflows.
+3. Read `docs/AGENT-ONBOARDING.md` for the self-contained product and implementation orientation.
+4. Read `docs/AGENT-OPERATING-MODEL.md` for session, permission, collaboration, and completion rules.
+5. Read `README.md` for user-facing scope and claims.
+6. Read `docs/PROJECT-STATE.md` for current implementation truth.
+7. Read the latest meaningful entries in `docs/WORKLOG.md`. Treat old pending/failing entries as history unless current CI or a later entry confirms they remain open.
+8. Read `docs/ROADMAP.md` to distinguish implemented work from accepted future scope.
+9. Before cross-repository work, read `docs/CROSS-REPOSITORY-OPERATIONS.md`. Before changing handoff/export behaviour, read `docs/CONTEXT-EXPORT-SPEC.md`.
+10. For the task, read the relevant subsystem README, source, tests, schemas, policy, and workflows.
 9. Inspect the live repository before editing:
    - `git status --short --branch`
    - `git rev-parse HEAD`
@@ -22,8 +24,8 @@ A replacement agent must follow this order:
    - `git log -12 --oneline --decorate`
    - `git ls-files`
    - current GitHub Actions runs, open PRs, issues, and repository settings where access permits.
-9. Run the repository hygiene check and the relevant subsystem tests. Verify every important handoff claim against code and test evidence.
-10. Before finishing, update the project state and work log, run the required checks, review the complete diff, and record the exact final commit.
+10. Run the repository hygiene check and relevant subsystem tests. Verify every important handoff claim against code and test evidence.
+11. Before finishing, update the project state and work log, run required checks, review the complete diff, and record the exact final commit.
 
 Do not ask the user to repeat information that is already in these files. If a fact is not recorded or cannot be verified, label it **Unknown** and ask only when it blocks safe progress.
 
@@ -144,6 +146,8 @@ These are dated results, not a guarantee about a later commit. Re-check current 
 
 The next recommended product milestone is **Project Context Assembly**. The existing scanner is bounded and read-only, but DEVKIT does not yet assemble a complete, reusable, evidence-backed context record for downstream planning. Follow the staged plan and acceptance criteria in `docs/AGENT-ONBOARDING.md`.
 
+After that milestone, implement the Context Exporter from `docs/CONTEXT-EXPORT-SPEC.md` and run its clean-room acceptance test. Cross-repository inventory and planning follow the staged gates in `docs/CROSS-REPOSITORY-OPERATIONS.md`. Production write-capable execution remains blocked on the Host Trust Integration acceptance gate and independent security review.
+
 The host-trust contract in `docs/HOST-TRUST-INTEGRATION.md` remains a prerequisite before any production adapter or write-capable execution. Do not treat documentation of that contract as implementation.
 
 Continue Resource Intelligence in parallel only through small, independently testable improvements to provenance, freshness, conflict handling, deduplication benchmarks, and candidate review. Do not expand into unrelated features before one milestone is complete.
@@ -175,6 +179,9 @@ For subsystem tests, read the package README and `package.json`, then run the do
 
 - **This file:** fast startup map and handoff instructions.
 - **`AGENTS.md`:** mandatory repository-wide agent rules.
+- **`docs/AGENT-OPERATING-MODEL.md`:** canonical agent lifecycle, permissions, coordination, and completion standard.
+- **`docs/CROSS-REPOSITORY-OPERATIONS.md`:** proposed central Hub model and per-repository safety contract.
+- **`docs/CONTEXT-EXPORT-SPEC.md`:** proposed automated handoff package contract; not implemented.
 - **`docs/PROJECT-STATE.md`:** detailed current implementation truth, architecture, next actions, verification, risks, and owner actions.
 - **`docs/WORKLOG.md`:** chronological history. Old failures remain as history; the latest verified state wins.
 - **`docs/ROADMAP.md`:** accepted future scope and milestone status.
