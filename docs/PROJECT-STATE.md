@@ -194,6 +194,19 @@ Do not report checks as passed unless they ran and passed.
 - **Owner action:** Re-check the nine non-main branches against live `main` before deletion; verify branch protection, required status checks, GitHub App registration, deployment configuration, and repository visibility. Live GitHub metadata currently reports `public`, despite the earlier instruction that the repository had been made private.
 - **Audit gap:** Documentation and agent instructions were reviewed. Core source, tests, manifests, workflows, GitHub App, and branch/PR state received a targeted static audit. Full package test execution, live webhook validation, dependency audit, and owner-only settings remain unverified.
 
+## 9. Canonical agent and portfolio documents
+
+| Document | Authority | Status |
+|---|---|---|
+| `docs/AGENT-OPERATING-MODEL.md` | Agent lifecycle, P0–P4 permissions, multi-agent coordination, failure states, completion | Policy/guidance; runtime enforcement depends on host |
+| `docs/CROSS-REPOSITORY-OPERATIONS.md` | DEVKIT Hub direction, repository registry contract, cross-repo plan and trust model | Proposed architecture; runtime not implemented |
+| `docs/CONTEXT-EXPORT-SPEC.md` | Automated handoff package, manifest, redaction, validation, clean-room test | Specification; exporter not implemented |
+| `docs/DECISION-REGISTER.md` | Recorded decisions, current constraints, unknown historical context | Documentation index; full ADR history remains incomplete |
+
+The DEVKIT Hub is distinct from DEVKIT Core. Repository registration must not grant write permission. Every target needs its own access check, allowlist, policy decision, and approval. Cross-repository operations are non-atomic and must preserve per-target state.
+
+The automated Context Exporter is not available. Until it is implemented and passes a clean-room test, agents must maintain the canonical handoff files manually.
+
 ## 9. Handoff metadata
 - **Last reviewed:** 2026-11-11
 - **Reviewed code baseline:** `ef0d9f2369feff913be52cb7ab90425955ca99ee` (2026-11-11 code audit). Later commits in this documentation pass update handoff records only; re-check live HEAD and CI before acting.
