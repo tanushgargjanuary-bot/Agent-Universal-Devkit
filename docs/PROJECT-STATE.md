@@ -48,7 +48,7 @@
 | `core/knowledge-engine/` | Deterministic knowledge retrieval and validation | `core/knowledge-engine/README.md` |
 | `core/resource-engine/` | Requirement-based resource evaluation | Package and tests |
 | `core/resource-registry/` | SQLite resource identity, metadata, and review history | `core/resource-registry/README.md` |
-| `core/orchestrator/` | Task planning, technology assessment, and policy evaluation | `core/orchestrator/README.md` |
+| `core/orchestrator/` | Task planning, technology assessment, policy evaluation, signed approval lifecycle, and the in-process Execution Gate | `core/orchestrator/README.md` |
 | `agents/` | Shared agent guidance and harness entry points | `agents/universal/INSTRUCTIONS.md` |
 | `integrations/` | External system integrations | Subsystem READMEs |
 | `bootstrap/template/` | Small local governance and continuity entry points | `docs/REPOSITORY-GOVERNANCE.md` |
@@ -177,6 +177,7 @@ Do not report checks as passed unless they ran and passed.
 | 2026-11-11 | `80bbaae` | Orchestrator Core Tests | Passed: 63/63. Orchestration quality, repository hygiene/continuity, and secret-history scan passed. CodeQL was still running at the last check. |
 
 ## 8. Risks, known issues, and unknowns
+- **Next engineering milestone:** Implement the provider-neutral host trust integration contract in `docs/HOST-TRUST-INTEGRATION.md`. It covers authenticated approver identity, protected signing-key lifecycle, durable audit acknowledgement, and isolated adapter execution. No production adapter may be enabled before its acceptance gate and independent security review pass.
 - **Next engineering milestone:** Implement the provider-neutral host trust integration contract in `docs/HOST-TRUST-INTEGRATION.md`. It covers authenticated approver identity, protected signing-key lifecycle, durable audit acknowledgement, and isolated adapter execution. No production adapter may be enabled before its acceptance gate and independent security review pass.
 - **Verified:** The initial shared contract layer defines six record types.
 - **Verified:** The initial repo-scan is a bounded metadata scanner. It does not inspect source semantics, run tests, access the network, or prove security.
