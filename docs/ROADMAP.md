@@ -31,6 +31,24 @@ This is a product direction, not a claim that broad support already exists.
 
 Detailed design and constraints: [Unified Problem-Solving Model](UNIFIED-PROBLEM-SOLVING-MODEL.md).
 
+## Agent continuity and portfolio coordination
+
+- [x] Define a repository-first continuity protocol and enforce required state/work-log updates in CI.
+- [x] Define the portable agent lifecycle, P0–P4 permission levels, multi-agent coordination, and completion standard.
+- [x] Define a central DEVKIT Hub direction separately from the reusable DEVKIT Core.
+- [x] Define the cross-repository registry, planning, approval, partial-failure, and verification contracts.
+- [x] Establish a decision register that distinguishes recorded decisions from unknown historical context.
+- [ ] Build Project Context Assembly on top of the existing bounded scanner and shared evidence contracts.
+- [ ] Build a deterministic, secret-safe Context Exporter and validate it with a clean-room agent handoff test.
+- [ ] Add named-harness compatibility tests for instruction discovery, permissions, tools, cancellation, and output contracts.
+- [ ] Build Hub Phase 0: explicit repository registration, access verification, read-only inventory, and freshness reporting.
+- [ ] Build Hub Phase 1: portfolio search and dependency-aware cross-repository planning with no writes.
+- [ ] Build Hub Phase 2: per-repository change proposals and scoped approvals.
+- [ ] Build Hub Phase 3: isolated, audited execution only after Host Trust Integration and independent security review.
+- [ ] Build Hub Phase 4: verified portfolio operations, safe resume, and global acceptance reporting.
+
+The checkboxes above mark documentation/specification work as complete only where stated. They do not mark the proposed runtime features as implemented. See [Agent Operating Model](AGENT-OPERATING-MODEL.md), [Context Export Specification](CONTEXT-EXPORT-SPEC.md), [Cross-Repository Operations](CROSS-REPOSITORY-OPERATIONS.md), and [Decision Register](DECISION-REGISTER.md).
+
 ## Gate A — Trustworthy foundations
 
 - [x] Establish repository structure, product principles, and target architecture.
