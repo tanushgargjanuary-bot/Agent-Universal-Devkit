@@ -472,3 +472,9 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Change:** Added `docs/HOST-TRUST-INTEGRATION.md` with provider-neutral interfaces, security invariants, failure/recovery semantics, adversarial tests, and a production acceptance gate. Linked it from the roadmap, project state, README, and orchestrator README.
 - **Verification:** Live GitHub Actions metadata was inspected. No local checkout was available; no package tests were executed in this session. Checks are reported only for their exact commit SHAs.
 - **Next:** Implement the versioned identity, key-provider, audit-event, and executor schemas plus contract tests. Keep execution disabled until the deployment boundary passes independent review.
+
+### 2026-11-11 — Continuity gate correction after documentation audit
+
+- **Finding:** The first documentation update caused continuity CI to fail because the changed `core/orchestrator/README.md` is classified as an implementation path. The checker requires both the project state and a new dated work-log entry for such a path.
+- **Correction:** Updated the canonical project-state architecture map and added this dated entry. No continuity rule was weakened.
+- **Verification:** The latest workflow before this correction reported the repository hygiene unit tests and trending discovery tests passing; continuity diff failed only on the missing project-state/work-log update. A fresh run is required after this correction.
