@@ -58,6 +58,14 @@ packs. See [Unified Problem-Solving Model](UNIFIED-PROBLEM-SOLVING-MODEL.md).
 - **Integration packs:** adapters for models, agent harnesses, MCP, source control, browsers, terminals, storage, CI, and deployment.
 - **Interfaces:** CLI, library, desktop, web, headless automation, and hosted modes may use the same contracts.
 
+## Cross-repository product direction
+
+DEVKIT Core is the reusable framework. DEVKIT Hub is the proposed configured control plane for an explicitly registered portfolio of repositories. Hub registration must not grant permissions. Every target requires its own access check, allowlist, policy decision, and approval. The Hub is not implemented yet; see `docs/CROSS-REPOSITORY-OPERATIONS.md`.
+
+## Continuity and agent handoff
+
+Repository-first handoff is a product requirement. Canonical state, work history, decisions, verification evidence, and next actions must survive a change of agent or chat session. An automated Context Exporter is a planned tool, not an existing capability; see `docs/CONTEXT-EXPORT-SPEC.md`.
+
 ## Two equal priorities
 
 **Resource Intelligence** discovers, evaluates, relates, and maintains resources and knowledge.
@@ -70,7 +78,7 @@ Neither priority is subordinate.
 
 The repository has working foundations for resource evaluation, registry operations, knowledge retrieval, planning, technology assessment, and policy decisions.
 
-The Policy Engine is not an execution security boundary. Executor-side enforcement, trusted approval lifecycle, replay protection, audit records, and agent-harness execution remain future work. Pack runtime operations are also future work.
+The repository implements a deny-by-default Policy Engine, a SQLite Approval Store with Ed25519-signed approval records, expiry, revocation and one-time consumption, and an in-process Execution Gate with plan/dependency validation, adapter routing, and an audit callback. These are orchestration controls, not a complete production security boundary. A production identity provider, protected key lifecycle, durable tamper-evident audit backend, production adapters, OS/container isolation, and validated agent-harness execution remain incomplete. Pack installation, activation, dependency resolution, and safe removal are also future work. See `docs/PROJECT-STATE.md` and `docs/HOST-TRUST-INTEGRATION.md`.
 
 ## Non-goals
 
