@@ -462,3 +462,13 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Review correction:** Fixed the numbered intake sequence in `AGENTS.md` and removed a stale project-state claim that orchestrator verification was pending.
 - **Verification:** On handoff commit `80bbaae`, Orchestrator Core Tests passed 63/63; orchestration quality, repository hygiene including continuity enforcement, and secret-history scan passed. CodeQL was still running at the time of this record.
 - **Next:** Confirm CodeQL completion. Re-check the public/private visibility mismatch and external GitHub settings with the owner.
+
+### 2026-11-11 — Repository coherence review and host trust contract
+
+- **Reviewed HEAD:** `3d692d665c370afcb9695f9f9257d1d5aca69582`.
+- **Repository state:** `main` is protected. No open PRs were found. Nine non-main branches remain; prior file-level audit records all nine as safe to delete, but this GitHub connection has no branch-deletion action. Latest HEAD CI: repository hygiene, CodeQL, and secret-history scan passed. Orchestrator core and orchestration quality passed on parent `80bbaae`.
+- **Coherence assessment:** Product pillars and current implementation boundaries are consistent across the README, handoff, architecture, project state, and roadmap. DEVKIT remains a foundations-stage repository, not a complete workbench. Approval Store and Execution Gate status are correctly separated from production readiness.
+- **Finding:** The host trust boundary was described in several files but had no single, normative contract or acceptance gate. A callback alone cannot prove identity assurance, key custody/rotation, audit durability/tamper evidence, or process isolation.
+- **Change:** Added `docs/HOST-TRUST-INTEGRATION.md` with provider-neutral interfaces, security invariants, failure/recovery semantics, adversarial tests, and a production acceptance gate. Linked it from the roadmap, project state, README, and orchestrator README.
+- **Verification:** Live GitHub Actions metadata was inspected. No local checkout was available; no package tests were executed in this session. Checks are reported only for their exact commit SHAs.
+- **Next:** Implement the versioned identity, key-provider, audit-event, and executor schemas plus contract tests. Keep execution disabled until the deployment boundary passes independent review.
