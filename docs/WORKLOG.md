@@ -4,6 +4,15 @@ Record meaningful work sessions so a different person or AI agent can continue w
 
 ## History
 
+### 2026-11-11 — Final handoff consistency pass
+
+- **Goal:** Remove the remaining startup-order and current-state inconsistencies after the documentation completeness audit.
+- **Changes:** Added the Decision Register to mandatory intake; corrected duplicate numbering in HANDOFF.md; clarified that the recorded CI snapshot is a dated code baseline rather than live status; completed the PROJECT-STATE recovery checklist and canonical document index.
+- **Commits:** 5c2f871, 497b98f, ed7c29e, ce82c67.
+- **Verification:** Re-fetched the canonical handoff, onboarding, README, project-state, roadmap, architecture, product-principles, and new specification files from main. Confirmed that the stale README host-trust milestone and stale project-state next-milestone text are no longer present in current file contents. GitHub code search returned older indexed revisions, so fetched file contents were used as the current source.
+- **Checks not run:** No local checkout was available. Markdown lint/link validation, repository hygiene, package tests, Actions completion for the final documentation commits, and the clean-room agent test remain unverified.
+- **Next:** Project Context Assembly, then automated Context Exporter with clean-room validation. DEVKIT Hub Phase 0 follows after those foundations. Host Trust Integration remains a prerequisite for production write execution.
+
 ### 2026-11-11 — Complete agent handoff and cross-repository documentation
 
 - **Scope:** Documentation-only completeness audit and reconciliation. No runtime capability is claimed as implemented.
