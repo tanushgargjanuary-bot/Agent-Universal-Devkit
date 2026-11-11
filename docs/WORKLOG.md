@@ -484,3 +484,9 @@ Record meaningful work sessions so a different person or AI agent can continue w
 - **Change:** Updated the project-state reviewed-source reference to the latest coherence-review documentation snapshot, `3263224`.
 - **Reason:** The prior reference still pointed to the pre-review baseline and no longer identified the reviewed snapshot.
 - **Verification:** The follow-up continuity CI run on `cac71a1` passed all steps, including 13 hygiene tests, five trending-discovery tests, continuity diff, and the 167-file repository scan with zero findings. CodeQL and secret-history scan passed on `3263224`.
+
+### 2026-11-11 — Project-state snapshot metadata refresh
+
+- **Change:** Updated the handoff metadata to identify the latest reviewed coherence snapshot, `3263224`.
+- **Continuity:** This update is recorded as a separate dated work-log entry so the documentation-only continuity check can verify it.
+- **Verification:** The continuity job initially rejected the state-only commit because this work-log record was not yet present in the parent snapshot. The subsequent work-log commit will trigger the canonical continuity gate again.
