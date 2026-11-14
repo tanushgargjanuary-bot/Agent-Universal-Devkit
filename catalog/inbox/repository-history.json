@@ -1,4 +1,2337 @@
 {
   "schema_version": 1,
-  "repositories": {}
+  "updated_at": "2026-11-14T11:36:23.864898+00:00",
+  "repositories": {
+    "dimthink/awesome-ai-podcast-notes": {
+      "full_name": "dimthink/awesome-ai-podcast-notes",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 12
+        }
+      ]
+    },
+    "das-rebel/a3m-router": {
+      "full_name": "Das-rebel/a3m-router",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 18
+        }
+      ]
+    },
+    "erbharatmalhotra/open-source-ai-radar": {
+      "full_name": "ErBharatMalhotra/open-source-ai-radar",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 19
+        }
+      ]
+    },
+    "luminous-dynamics/symthaea": {
+      "full_name": "Luminous-Dynamics/symthaea",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 11
+        }
+      ]
+    },
+    "irsyadmr354/kestrel": {
+      "full_name": "Irsyadmr354/KESTREL",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 98
+        }
+      ]
+    },
+    "aleksnestu/ai-real-estate-assistant": {
+      "full_name": "AleksNeStu/ai-real-estate-assistant",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 323
+        }
+      ]
+    },
+    "amey-thakur/amey-thakur": {
+      "full_name": "Amey-Thakur/Amey-Thakur",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 15
+        }
+      ]
+    },
+    "significant-gravitas/autogpt": {
+      "full_name": "Significant-Gravitas/AutoGPT",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 188024
+        }
+      ]
+    },
+    "burlakovmb/nowa-bio-inspired-ai": {
+      "full_name": "burlakovmb/NOWA-Bio-Inspired-AI",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 10
+        }
+      ]
+    },
+    "eigenwise/atomic-agents": {
+      "full_name": "Eigenwise/atomic-agents",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6329
+        }
+      ]
+    },
+    "c1t1zen1/markgitup-research-desk": {
+      "full_name": "c1t1zen1/markgitup-research-desk",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9
+        }
+      ]
+    },
+    "mwakidenis/smart-farmer": {
+      "full_name": "mwakidenis/smart-farmer",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 15
+        }
+      ]
+    },
+    "jsboige/coursia": {
+      "full_name": "jsboige/CoursIA",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 17
+        }
+      ]
+    },
+    "undreamt-oss/gabby": {
+      "full_name": "undreamt-oss/gabby",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "spiceai/spiceai": {
+      "full_name": "spiceai/spiceai",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 3150
+        }
+      ]
+    },
+    "adops-tool/awesome-lead-generation": {
+      "full_name": "adops-tool/awesome-lead-generation",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 8
+        }
+      ]
+    },
+    "didilili/mianstack": {
+      "full_name": "didilili/mianstack",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 188
+        }
+      ]
+    },
+    "carla-simulator/carla": {
+      "full_name": "carla-simulator/carla",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 14603
+        }
+      ]
+    },
+    "gitstore-dev/gitstore": {
+      "full_name": "gitstore-dev/GitStore",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 19
+        }
+      ]
+    },
+    "vickyvenu190-web/precision-arena-trainer": {
+      "full_name": "vickyvenu190-web/precision-arena-trainer",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 55
+        }
+      ]
+    },
+    "rpatrik96/hallmark": {
+      "full_name": "rpatrik96/hallmark",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 16
+        }
+      ]
+    },
+    "cambriantech/continuum": {
+      "full_name": "CambrianTech/continuum",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 39
+        }
+      ]
+    },
+    "hookprobe/hookprobe": {
+      "full_name": "hookprobe/hookprobe",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 52
+        }
+      ]
+    },
+    "john-rocky/coreml-models": {
+      "full_name": "john-rocky/CoreML-Models",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1896
+        }
+      ]
+    },
+    "mwakidenis/techlearn-kenya": {
+      "full_name": "mwakidenis/TechLearn-Kenya",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 16
+        }
+      ]
+    },
+    "pytorch/pytorch": {
+      "full_name": "pytorch/pytorch",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 105479
+        }
+      ]
+    },
+    "ilgrad/betula-cluster": {
+      "full_name": "ilgrad/betula-cluster",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "lance-format/lance": {
+      "full_name": "lance-format/lance",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7294
+        }
+      ]
+    },
+    "rohitg00/ai-engineering-from-scratch": {
+      "full_name": "rohitg00/ai-engineering-from-scratch",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 78754
+        }
+      ]
+    },
+    "egdaemon/eg": {
+      "full_name": "egdaemon/eg",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 12
+        }
+      ]
+    },
+    "mafdet-ai/mafdet": {
+      "full_name": "Mafdet-AI/mafdet",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 81
+        }
+      ]
+    },
+    "netdata/netdata": {
+      "full_name": "netdata/netdata",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 81409
+        }
+      ]
+    },
+    "maurodruwel/nimstats": {
+      "full_name": "MauroDruwel/NIMStats",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 57
+        }
+      ]
+    },
+    "aqsaalirazajamali/ai-study-assistant": {
+      "full_name": "AqsaAliRazaJamali/ai-study-assistant",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "tensorflow/tensorflow": {
+      "full_name": "tensorflow/tensorflow",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 201593
+        }
+      ]
+    },
+    "myylogic/cevahir-ai": {
+      "full_name": "myylogic/cevahir-ai",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 291
+        }
+      ]
+    },
+    "sheaf-lang/sheaf": {
+      "full_name": "sheaf-lang/sheaf",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 58
+        }
+      ]
+    },
+    "m96-chan/ai_research_dashboard": {
+      "full_name": "m96-chan/ai_research_dashboard",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 13
+        }
+      ]
+    },
+    "squid-protocol/gitgalaxy": {
+      "full_name": "squid-protocol/gitgalaxy",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 66
+        }
+      ]
+    },
+    "sepjs/aegis-guard": {
+      "full_name": "SepJs/aegis-guard",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9
+        }
+      ]
+    },
+    "mohammadthabethassan/web-posture-check": {
+      "full_name": "MohammadThabetHassan/web-posture-check",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "juergen2025sys/netshield": {
+      "full_name": "juergen2025sys/NETSHIELD",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 18
+        }
+      ]
+    },
+    "tempest-solutions-company/threat-feeds": {
+      "full_name": "Tempest-Solutions-Company/threat-feeds",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "lecodev-26/nexus-q": {
+      "full_name": "lecodev-26/nexus-q",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 13
+        }
+      ]
+    },
+    "spydisec/spydithreatintel": {
+      "full_name": "spydisec/spydithreatintel",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 59
+        }
+      ]
+    },
+    "duggytuxy/data-shield_ipv4_blocklist": {
+      "full_name": "duggytuxy/Data-Shield_IPv4_Blocklist",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 636
+        }
+      ]
+    },
+    "lf3551/human-risk-graph": {
+      "full_name": "LF3551/human-risk-graph",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 66
+        }
+      ]
+    },
+    "bittersecurity/decepticon": {
+      "full_name": "BitterSecurity/Decepticon",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6601
+        }
+      ]
+    },
+    "clivoa/awesome-security-feeds": {
+      "full_name": "clivoa/awesome-security-feeds",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 40
+        }
+      ]
+    },
+    "debugactiveprocess/maldoctrace": {
+      "full_name": "debugactiveprocess/MaldocTrace",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 12
+        }
+      ]
+    },
+    "fankh/vulnerability-poc": {
+      "full_name": "fankh/vulnerability-poc",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 139
+        }
+      ]
+    },
+    "phishdestroy/destroylist": {
+      "full_name": "phishdestroy/destroylist",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 2063
+        }
+      ]
+    },
+    "fadouse/clash-threat-intel": {
+      "full_name": "Fadouse/clash-threat-intel",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "ranakhan77/website-vulnerability-scanner": {
+      "full_name": "RanaKhan77/Website-Vulnerability-Scanner",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "beenuar/aisoc": {
+      "full_name": "beenuar/AiSOC",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7522
+        }
+      ]
+    },
+    "owasp/cve-lite-cli": {
+      "full_name": "OWASP/cve-lite-cli",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 794
+        }
+      ]
+    },
+    "openosint/openosint": {
+      "full_name": "OpenOSINT/OpenOSINT",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1935
+        }
+      ]
+    },
+    "helmforgedev/charts": {
+      "full_name": "helmforgedev/charts",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 126
+        }
+      ]
+    },
+    "rorkai/app-store-connect-cli": {
+      "full_name": "rorkai/App-Store-Connect-CLI",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 8347
+        }
+      ]
+    },
+    "marcusquinn/aidevops": {
+      "full_name": "marcusquinn/aidevops",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 455
+        }
+      ]
+    },
+    "conn3xorg/conn3x": {
+      "full_name": "conn3xorg/conn3x",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9
+        }
+      ]
+    },
+    "jenkinsci/jenkins": {
+      "full_name": "jenkinsci/jenkins",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 26772
+        }
+      ]
+    },
+    "openova-io/openova": {
+      "full_name": "openova-io/openova",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "dante0747/geekspulse.dev": {
+      "full_name": "dante0747/geekspulse.dev",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 10
+        }
+      ]
+    },
+    "martian56/tessery": {
+      "full_name": "martian56/tessery",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 26
+        }
+      ]
+    },
+    "gotempsh/temps": {
+      "full_name": "gotempsh/temps",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 915
+        }
+      ]
+    },
+    "stephrobert/dsoxlab": {
+      "full_name": "stephrobert/dsoxlab",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 109
+        }
+      ]
+    },
+    "stephrobert/feint": {
+      "full_name": "stephrobert/feint",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 165
+        }
+      ]
+    },
+    "versuscontrol/devops-vn-blog": {
+      "full_name": "VersusControl/devops-vn-blog",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 77
+        }
+      ]
+    },
+    "paliydmn/kermo": {
+      "full_name": "paliydmn/kermo",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "bytebase/bytebase": {
+      "full_name": "bytebase/bytebase",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 14715
+        }
+      ]
+    },
+    "achisolomon/open-software-factory": {
+      "full_name": "achisolomon/open-software-factory",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "pipe-cd/pipecd": {
+      "full_name": "pipe-cd/pipecd",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1371
+        }
+      ]
+    },
+    "artifact-keeper/artifact-keeper": {
+      "full_name": "artifact-keeper/artifact-keeper",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1289
+        }
+      ]
+    },
+    "databasus/databasus": {
+      "full_name": "databasus/databasus",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9276
+        }
+      ]
+    },
+    "the-devops-daily/devops-daily": {
+      "full_name": "The-DevOps-Daily/devops-daily",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1201
+        }
+      ]
+    },
+    "rabee-elkholy/android-agent-harness": {
+      "full_name": "rabee-elkholy/android-agent-harness",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 8
+        }
+      ]
+    },
+    "sworrl/claudit": {
+      "full_name": "sworrl/ClAudit",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "qwenlm/qwen-code": {
+      "full_name": "QwenLM/qwen-code",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 30140
+        }
+      ]
+    },
+    "openmachinelabs/openmachine": {
+      "full_name": "OpenMachineLabs/openmachine",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 36
+        }
+      ]
+    },
+    "bahadryalcn/bycoda": {
+      "full_name": "bahadryalcn/bycoda",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "dmlguq456/hearting": {
+      "full_name": "dmlguq456/hearting",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9
+        }
+      ]
+    },
+    "autonomous-ai/openharness": {
+      "full_name": "autonomous-ai/openharness",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1487
+        }
+      ]
+    },
+    "kdlbs/kandev": {
+      "full_name": "kdlbs/kandev",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1129
+        }
+      ]
+    },
+    "zzet/gortex": {
+      "full_name": "zzet/gortex",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 2077
+        }
+      ]
+    },
+    "debugbundle/debugbundle": {
+      "full_name": "debugbundle/debugbundle",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "baksohyeon/mogui-ade-orchestrator": {
+      "full_name": "baksohyeon/mogui-ADE-orchestrator",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 22
+        }
+      ]
+    },
+    "asheshgoplani/agent-deck": {
+      "full_name": "asheshgoplani/agent-deck",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1256
+        }
+      ]
+    },
+    "nujufas/jsonquery_gui": {
+      "full_name": "nujufas/jsonquery_gui",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 12
+        }
+      ]
+    },
+    "usecornercase/cornercase-gpui": {
+      "full_name": "usecornercase/cornercase-gpui",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "better-er/dsh-edit-diff": {
+      "full_name": "better-er/dsh-edit-diff",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 14
+        }
+      ]
+    },
+    "mickeyyaya/evolve-loop": {
+      "full_name": "mickeyyaya/evolve-loop",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "iamramanarora/topautomationtools": {
+      "full_name": "iamramanarora/TopAutomationTools",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 159
+        }
+      ]
+    },
+    "tt-a1i/skillroster": {
+      "full_name": "tt-a1i/skillroster",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 54
+        }
+      ]
+    },
+    "makurea/testing-literature": {
+      "full_name": "makurea/Testing-Literature",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 44
+        }
+      ]
+    },
+    "piwitests/piwi": {
+      "full_name": "PiwiTests/piwi",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 50
+        }
+      ]
+    },
+    "storybookjs/storybook": {
+      "full_name": "storybookjs/storybook",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 91562
+        }
+      ]
+    },
+    "donislawdev/testingfilesgenerator": {
+      "full_name": "donislawdev/TestingFilesGenerator",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 43
+        }
+      ]
+    },
+    "test-bit-sys/dz-sandbox": {
+      "full_name": "test-bit-sys/dz-sandbox",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 14
+        }
+      ]
+    },
+    "antonihub/c0d3x": {
+      "full_name": "AntoniHub/C0D3X",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "sonukapoor/warpdom": {
+      "full_name": "sonukapoor/warpdom",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "jo-duchan/tapflow": {
+      "full_name": "jo-duchan/tapflow",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1987
+        }
+      ]
+    },
+    "nubo-db/dynoxide": {
+      "full_name": "nubo-db/dynoxide",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 111
+        }
+      ]
+    },
+    "alexvanyo/composelife": {
+      "full_name": "alexvanyo/composelife",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 268
+        }
+      ]
+    },
+    "paritysuite/dynamodb-conformance": {
+      "full_name": "paritysuite/dynamodb-conformance",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 23
+        }
+      ]
+    },
+    "danfry1/vitest-native": {
+      "full_name": "danfry1/vitest-native",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 63
+        }
+      ]
+    },
+    "mikeparcewski/wicked-garden": {
+      "full_name": "mikeparcewski/wicked-garden",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9
+        }
+      ]
+    },
+    "web-platform-tests/wpt": {
+      "full_name": "web-platform-tests/wpt",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6314
+        }
+      ]
+    },
+    "lolgab/snaptest": {
+      "full_name": "lolgab/snaptest",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 15
+        }
+      ]
+    },
+    "pestphp/pest": {
+      "full_name": "pestphp/pest",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 11772
+        }
+      ]
+    },
+    "aldevtools/businesscentral.al.runner": {
+      "full_name": "aldevtools/BusinessCentral.AL.Runner",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 56
+        }
+      ]
+    },
+    "rubocop/rubocop-rspec": {
+      "full_name": "rubocop/rubocop-rspec",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 861
+        }
+      ]
+    },
+    "rubocop/rubocop-rspec_rails": {
+      "full_name": "rubocop/rubocop-rspec_rails",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 44
+        }
+      ]
+    },
+    "lerd-env/lerd": {
+      "full_name": "lerd-env/lerd",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1520
+        }
+      ]
+    },
+    "citry-dev/citry": {
+      "full_name": "citry-dev/citry",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 46
+        }
+      ]
+    },
+    "fand/vfx-js": {
+      "full_name": "fand/vfx-js",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1186
+        }
+      ]
+    },
+    "html-validate/html-validate": {
+      "full_name": "html-validate/html-validate",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 19
+        }
+      ]
+    },
+    "mdn/translated-content": {
+      "full_name": "mdn/translated-content",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 2047
+        }
+      ]
+    },
+    "rakeshkumar0804/kohli-analytics": {
+      "full_name": "rakeshkumar0804/kohli-analytics",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "mezentsevs/mezentsevs": {
+      "full_name": "mezentsevs/mezentsevs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "vinenastudio/knobs": {
+      "full_name": "vinenastudio/knobs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "correia-jpv/fucking-awesome-wpo": {
+      "full_name": "Correia-jpv/fucking-awesome-wpo",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 8
+        }
+      ]
+    },
+    "atluri0001/lms": {
+      "full_name": "ATLURI0001/LMS",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 88
+        }
+      ]
+    },
+    "lovedolove/lovedolove": {
+      "full_name": "LoveDoLove/LoveDoLove",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "vutov-mykola/css-classes-from-html": {
+      "full_name": "VuToV-Mykola/css-classes-from-html",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "pnnnhan99/awesome-free-portfolio-templates": {
+      "full_name": "pnnnhan99/awesome-free-portfolio-templates",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "illhammf/boilerplate": {
+      "full_name": "illhammf/boilerplate",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "the-akira/cc33z": {
+      "full_name": "the-akira/CC33Z",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 70
+        }
+      ]
+    },
+    "monzeromer-lab/webfluent": {
+      "full_name": "monzeromer-lab/WebFluent",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 12
+        }
+      ]
+    },
+    "clockworklabs/spacetimedb": {
+      "full_name": "clockworklabs/SpacetimeDB",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 25547
+        }
+      ]
+    },
+    "ritualdev-lab/devshelf": {
+      "full_name": "RitualDev-Lab/DevShelf",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 14
+        }
+      ]
+    },
+    "ostdb/soundtracks": {
+      "full_name": "OSTDB/soundtracks",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "stokaro/ptah": {
+      "full_name": "stokaro/ptah",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 20
+        }
+      ]
+    },
+    "cognica-io/uqa-engine": {
+      "full_name": "cognica-io/uqa-engine",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9
+        }
+      ]
+    },
+    "minianon/1shot-sql": {
+      "full_name": "minianon/1Shot-SQL",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 8
+        }
+      ]
+    },
+    "busabase/busabase": {
+      "full_name": "busabase/busabase",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 880
+        }
+      ]
+    },
+    "dicklesworthstone/frankensqlite": {
+      "full_name": "Dicklesworthstone/frankensqlite",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 251
+        }
+      ]
+    },
+    "dalisoft/awesome-hosting": {
+      "full_name": "dalisoft/awesome-hosting",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 967
+        }
+      ]
+    },
+    "clickhouse/clickhouse": {
+      "full_name": "ClickHouse/ClickHouse",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 50923
+        }
+      ]
+    },
+    "dbeaver/dbeaver": {
+      "full_name": "dbeaver/dbeaver",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 52433
+        }
+      ]
+    },
+    "tradik/mddb": {
+      "full_name": "tradik/mddb",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "valkey-io/valkey": {
+      "full_name": "valkey-io/valkey",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 27712
+        }
+      ]
+    },
+    "haneoka-gakuen/haneoka": {
+      "full_name": "haneoka-gakuen/haneoka",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 31
+        }
+      ]
+    },
+    "linjiang12/video2book-courses": {
+      "full_name": "LINJIANG12/video2book-courses",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 384
+        }
+      ]
+    },
+    "kividbio/kividb": {
+      "full_name": "kividbio/kividb",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1116
+        }
+      ]
+    },
+    "qumirlabs/qumirdb": {
+      "full_name": "QumirLabs/qumirdb",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 10
+        }
+      ]
+    },
+    "backenly/backenly": {
+      "full_name": "backenly/backenly",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 84
+        }
+      ]
+    },
+    "dissinet/inkvisitor": {
+      "full_name": "DISSINET/InkVisitor",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 19
+        }
+      ]
+    },
+    "sayanpal514-hue/fancode-auto-updated-playlist": {
+      "full_name": "sayanpal514-hue/FANCODE-AUTO-UPDATED-PLAYLIST",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "sportlive18/sonyliv-playlist-autoupdate": {
+      "full_name": "sportlive18/Sonyliv-Playlist-Autoupdate",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 14
+        }
+      ]
+    },
+    "sayanpal514-hue/sonyliv-auto-updated-playlist": {
+      "full_name": "sayanpal514-hue/SONYLIV-AUTO-UPDATED-PLAYLIST",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "stablyai/orca": {
+      "full_name": "stablyai/orca",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 124624
+        }
+      ]
+    },
+    "kostas2370/video-creator": {
+      "full_name": "kostas2370/Video-Creator",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 28
+        }
+      ]
+    },
+    "mohammadbahemmat/v2ray-collector": {
+      "full_name": "MohammadBahemmat/V2ray-Collector",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 93
+        }
+      ]
+    },
+    "vinix24/vnx-orchestration": {
+      "full_name": "Vinix24/vnx-orchestration",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 63
+        }
+      ]
+    },
+    "n8n-io/n8n": {
+      "full_name": "n8n-io/n8n",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 210455
+        }
+      ]
+    },
+    "wptangtoc/wptangtoc-ols": {
+      "full_name": "wptangtoc/wptangtoc-ols",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 56
+        }
+      ]
+    },
+    "jackey670/dsh-douyin-whale": {
+      "full_name": "jackey670/dsh-douyin-whale",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "vidakhoshpey22/news-daily-bot": {
+      "full_name": "VIDAKHOSHPEY22/news-daily-bot",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "onehumanbeing/esp32-iphone-agent": {
+      "full_name": "onehumanbeing/esp32-iphone-agent",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 4934
+        }
+      ]
+    },
+    "xutongxue233/crazywaterworld": {
+      "full_name": "xutongxue233/crazywaterworld",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 13
+        }
+      ]
+    },
+    "wycliffrotich-dev/aethergrid": {
+      "full_name": "wycliffRotich-dev/aethergrid",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 10
+        }
+      ]
+    },
+    "taskade/integrations": {
+      "full_name": "taskade/integrations",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9
+        }
+      ]
+    },
+    "josssphzhou/poki": {
+      "full_name": "JosssphZhou/poki",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1171
+        }
+      ]
+    },
+    "fahthiz/oasis": {
+      "full_name": "FAHTHIZ/oasis",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "n8n-io/nod": {
+      "full_name": "n8n-io/nod",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1094
+        }
+      ]
+    },
+    "sqlstack-io/sqlbuild": {
+      "full_name": "sqlstack-io/sqlbuild",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 49
+        }
+      ]
+    },
+    "faucet-hq/faucet-stream": {
+      "full_name": "faucet-hq/faucet-stream",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 22
+        }
+      ]
+    },
+    "hugues31/duckpad": {
+      "full_name": "hugues31/duckpad",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 319
+        }
+      ]
+    },
+    "andreabozzo/dataprof": {
+      "full_name": "AndreaBozzo/dataprof",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 34
+        }
+      ]
+    },
+    "avison9/cdclint": {
+      "full_name": "avison9/cdclint",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 12
+        }
+      ]
+    },
+    "apache/superset": {
+      "full_name": "apache/superset",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 75523
+        }
+      ]
+    },
+    "query-farm/vgi-typesafe": {
+      "full_name": "Query-farm/vgi-typesafe",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "yash-814800/gh-breakout": {
+      "full_name": "Yash-814800/GH-Breakout",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "open-lakehouse/mangrove": {
+      "full_name": "open-lakehouse/mangrove",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "artevisualenvivo/fabric-pipeline-express-7": {
+      "full_name": "ArteVisualenVivo/fabric-pipeline-express-7",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 149
+        }
+      ]
+    },
+    "maurinruneacco/luau-diagrams-and-defects": {
+      "full_name": "maurinruneacco/luau-diagrams-and-defects",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 69
+        }
+      ]
+    },
+    "ubayd-hattas/sa_datahub": {
+      "full_name": "ubayd-hattas/SA_DataHub",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "hadziqmtqn/erd-builder-pro": {
+      "full_name": "hadziqmtqn/erd-builder-pro",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 209
+        }
+      ]
+    },
+    "dlt-hub/dlt": {
+      "full_name": "dlt-hub/dlt",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6092
+        }
+      ]
+    },
+    "apache/airflow": {
+      "full_name": "apache/airflow",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 47475
+        }
+      ]
+    },
+    "get-dre/dre": {
+      "full_name": "get-dre/dre",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 9
+        }
+      ]
+    },
+    "prefecthq/prefect": {
+      "full_name": "PrefectHQ/prefect",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 24155
+        }
+      ]
+    },
+    "pyjanitor-devs/pyjanitor": {
+      "full_name": "pyjanitor-devs/pyjanitor",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1498
+        }
+      ]
+    },
+    "altimateai/altimate-code": {
+      "full_name": "AltimateAI/altimate-code",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 819
+        }
+      ]
+    },
+    "lakehq/sail": {
+      "full_name": "lakehq/sail",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 3497
+        }
+      ]
+    },
+    "damiansire/web-worker-patterns": {
+      "full_name": "damiansire/web-worker-patterns",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 173
+        }
+      ]
+    },
+    "cristipufu/culprit-sql-studio": {
+      "full_name": "cristipufu/culprit-sql-studio",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 26
+        }
+      ]
+    },
+    "eunomia-bpf/bpf-benchmark": {
+      "full_name": "eunomia-bpf/bpf-benchmark",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 26
+        }
+      ]
+    },
+    "kasianov-mikhail/scout": {
+      "full_name": "kasianov-mikhail/scout",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 32
+        }
+      ]
+    },
+    "the-benchmarker/web-frameworks": {
+      "full_name": "the-benchmarker/web-frameworks",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7096
+        }
+      ]
+    },
+    "velt-lang/velt": {
+      "full_name": "velt-lang/velt",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 14
+        }
+      ]
+    },
+    "hakandundar34coding/system-monitoring-center": {
+      "full_name": "hakandundar34coding/system-monitoring-center",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 987
+        }
+      ]
+    },
+    "ubugeeei-prod/vize": {
+      "full_name": "ubugeeei-prod/vize",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 934
+        }
+      ]
+    },
+    "solidjs/solid": {
+      "full_name": "solidjs/solid",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 36264
+        }
+      ]
+    },
+    "ling9ling7/redmagic-fanextreme": {
+      "full_name": "ling9ling7/RedMagic-FanExtreme",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 37
+        }
+      ]
+    },
+    "certinia/debug-log-analyzer": {
+      "full_name": "certinia/debug-log-analyzer",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 116
+        }
+      ]
+    },
+    "meriyah/meriyah": {
+      "full_name": "meriyah/meriyah",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1225
+        }
+      ]
+    },
+    "epiphyt/embed-privacy": {
+      "full_name": "epiphyt/embed-privacy",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 21
+        }
+      ]
+    },
+    "credfeto/credfeto-enum-source-generation": {
+      "full_name": "credfeto/credfeto-enum-source-generation",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 24
+        }
+      ]
+    },
+    "volmitsoftware/react": {
+      "full_name": "VolmitSoftware/React",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 107
+        }
+      ]
+    },
+    "stew675/llama-cpp-rdna-boosts": {
+      "full_name": "stew675/llama-cpp-rdna-boosts",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 250
+        }
+      ]
+    },
+    "dy/jz": {
+      "full_name": "dy/jz",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 222
+        }
+      ]
+    },
+    "syahmellow51/neuz-strap-lite": {
+      "full_name": "Syahmellow51/Neuz-Strap-Lite",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 68
+        }
+      ]
+    },
+    "uptrace/uptrace": {
+      "full_name": "uptrace/uptrace",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 4313
+        }
+      ]
+    },
+    "vitaliyboyko/seq-intellij-mcp": {
+      "full_name": "VitaliyBoyko/seq-intellij-mcp",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "reliablyobserve/loki-vl-proxy": {
+      "full_name": "ReliablyObserve/loki-vl-proxy",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 50
+        }
+      ]
+    },
+    "eternalgarden/rzeka": {
+      "full_name": "eternalgarden/rzeka",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "tsouza/cerberus": {
+      "full_name": "tsouza/cerberus",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 73
+        }
+      ]
+    },
+    "practice019/multi2api": {
+      "full_name": "Practice019/multi2api",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 33
+        }
+      ]
+    },
+    "future-agi/future-agi": {
+      "full_name": "future-agi/future-agi",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 2276
+        }
+      ]
+    },
+    "wiziscool/oh-my-cpa": {
+      "full_name": "WizisCool/oh-my-cpa",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 391
+        }
+      ]
+    },
+    "evloghq/evlog": {
+      "full_name": "evloghq/evlog",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1938
+        }
+      ]
+    },
+    "superloglabs/responder-oss": {
+      "full_name": "superloglabs/responder-oss",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 38
+        }
+      ]
+    },
+    "himanshu231204/system-design-fundamentals": {
+      "full_name": "himanshu231204/system-design-fundamentals",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "theopenco/llmgateway": {
+      "full_name": "theopenco/llmgateway",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1741
+        }
+      ]
+    },
+    "glassflow/tares": {
+      "full_name": "glassflow/tares",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 47
+        }
+      ]
+    },
+    "cygnux-labs/tracekit": {
+      "full_name": "Cygnux-Labs/Tracekit",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 726
+        }
+      ]
+    },
+    "oxyzenq/zejtron": {
+      "full_name": "oxyzenQ/zejtron",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "pklavc/pklavc.github.io": {
+      "full_name": "PkLavc/PkLavc.github.io",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 33
+        }
+      ]
+    },
+    "777genius/social-monitor": {
+      "full_name": "777genius/social-monitor",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 52
+        }
+      ]
+    },
+    "odoo/documentation": {
+      "full_name": "odoo/documentation",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1377
+        }
+      ]
+    },
+    "alexskrypnyk/scaffold": {
+      "full_name": "AlexSkrypnyk/scaffold",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 12
+        }
+      ]
+    },
+    "picsart/picsart-mcp-cli-docs": {
+      "full_name": "PicsArt/picsart-mcp-cli-docs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "correia-jpv/fucking-beautiful-docs": {
+      "full_name": "Correia-jpv/fucking-beautiful-docs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 15
+        }
+      ]
+    },
+    "redeclipse/docs": {
+      "full_name": "redeclipse/docs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "home-assistant/home-assistant.io": {
+      "full_name": "home-assistant/home-assistant.io",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 10175
+        }
+      ]
+    },
+    "docmost/docmost": {
+      "full_name": "docmost/docmost",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 22336
+        }
+      ]
+    },
+    "agent-ix/quoin": {
+      "full_name": "agent-ix/quoin",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 20
+        }
+      ]
+    },
+    "glidernet/ogn-aprs-protocol": {
+      "full_name": "glidernet/ogn-aprs-protocol",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 21
+        }
+      ]
+    },
+    "mex-memory/mex": {
+      "full_name": "mex-memory/mex",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1795
+        }
+      ]
+    },
+    "tasmota/docs": {
+      "full_name": "tasmota/docs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 189
+        }
+      ]
+    },
+    "requarks/wiki": {
+      "full_name": "requarks/wiki",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 29287
+        }
+      ]
+    },
+    "asyncapi/generator": {
+      "full_name": "asyncapi/generator",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1086
+        }
+      ]
+    },
+    "jaredchu/context-docs": {
+      "full_name": "jaredchu/context-docs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 188
+        }
+      ]
+    },
+    "jkaluya907-collab/pi-roblox-native-docs": {
+      "full_name": "jkaluya907-collab/pi-roblox-native-docs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 68
+        }
+      ]
+    },
+    "codaqui/institucional": {
+      "full_name": "codaqui/institucional",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 35
+        }
+      ]
+    },
+    "apache/pekko-sbt-paradox": {
+      "full_name": "apache/pekko-sbt-paradox",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 6
+        }
+      ]
+    },
+    "roblox/creator-docs": {
+      "full_name": "Roblox/creator-docs",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 904
+        }
+      ]
+    },
+    "rickstrahl/markdownmonster": {
+      "full_name": "RickStrahl/MarkdownMonster",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1702
+        }
+      ]
+    },
+    "klarlabs-studio/scout": {
+      "full_name": "klarlabs-studio/scout",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 14
+        }
+      ]
+    },
+    "robithyusuf/mcp-stealth-chrome": {
+      "full_name": "RobithYusuf/mcp-stealth-chrome",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 29
+        }
+      ]
+    },
+    "eliteresearchlab/metldr": {
+      "full_name": "eliteresearchlab/metldr",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 7
+        }
+      ]
+    },
+    "omdsh-dev/dsh-browser": {
+      "full_name": "omdsh-dev/dsh-browser",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1062
+        }
+      ]
+    },
+    "agentes-chat/agentes-chat": {
+      "full_name": "agentes-chat/agentes-chat",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 1364
+        }
+      ]
+    },
+    "oss-invisible/playwright": {
+      "full_name": "oss-invisible/playwright",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 2577
+        }
+      ]
+    },
+    "copilotkit/openbot": {
+      "full_name": "CopilotKit/OpenBot",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 12183
+        }
+      ]
+    },
+    "lexmount/moli": {
+      "full_name": "lexmount/moli",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 23720
+        }
+      ]
+    },
+    "mearlhq/mearl": {
+      "full_name": "mearlhq/mearl",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 8
+        }
+      ]
+    },
+    "vstorm-co/agenticos": {
+      "full_name": "vstorm-co/agenticos",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 270
+        }
+      ]
+    },
+    "3x-haust/ondra": {
+      "full_name": "3x-haust/ondra",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "vmoranv/jshookmcp": {
+      "full_name": "vmoranv/jshookmcp",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 2114
+        }
+      ]
+    },
+    "openwong2kim/wmux": {
+      "full_name": "openwong2kim/wmux",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 455
+        }
+      ]
+    },
+    "master-norna/yan": {
+      "full_name": "Master-Norna/yan",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 17
+        }
+      ]
+    },
+    "vostride/agent-qa": {
+      "full_name": "vostride/agent-qa",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 857
+        }
+      ]
+    },
+    "ianonymous3000/site-behavior-lab": {
+      "full_name": "iAnonymous3000/site-behavior-lab",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "dankezo/antirea": {
+      "full_name": "dankezo/antiRea",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 5
+        }
+      ]
+    },
+    "figranium/figranium": {
+      "full_name": "figranium/figranium",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 786
+        }
+      ]
+    },
+    "h4ckf0r0day/obscura": {
+      "full_name": "h4ckf0r0day/obscura",
+      "snapshots": [
+        {
+          "checked_at": "2026-11-14T11:36:23.864898+00:00",
+          "stars": 35227
+        }
+      ]
+    }
+  }
 }

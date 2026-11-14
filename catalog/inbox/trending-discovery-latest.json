@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-14T11:36:33Z",
+  "source": "GitHub Trending pages and GitHub repository metadata API",
+  "periods": {
+    "daily": {
+      "url": "https://github.com/trending?since=daily",
+      "repositories": [
+        "alibaba/open-code-review",
+        "GoogleChrome/modern-web-guidance-src",
+        "openai/codex-security",
+        "ZhuLinsen/daily_stock_analysis",
+        "we-promise/sure",
+        "backnotprop/plannotator",
+        "louislam/uptime-kuma",
+        "block/buzz",
+        "tradermonty/claude-trading-skills",
+        "tailscale/tailcat",
+        "Likely7/Veyra-NRVideo",
+        "ChromeDevTools/chrome-devtools-mcp"
+      ]
+    },
+    "weekly": {
+      "url": "https://github.com/trending?since=weekly",
+      "repositories": [
+        "sherlock-project/sherlock",
+        "anthropics/skills",
+        "milind-soni/OpenMausBot",
+        "vercel-labs/agent-browser",
+        "google/elephant-goldfish-model",
+        "ZhuLinsen/daily_stock_analysis",
+        "NVIDIA/auto-ontology",
+        "google-deepmind/mujoco",
+        "mattpocock/skills",
+        "addyosmani/agent-skills",
+        "cloudflare/security-audit-skill",
+        "zed-industries/zed",
+        "anthropics/claude-quickstarts",
+        "vercel-labs/agent-desktop",
+        "lobehub/lobehub"
+      ]
+    }
+  },
+  "metadata_records": 26,
+  "accepted_by_metadata_filter": [
+    "addyosmani/agent-skills",
+    "alibaba/open-code-review",
+    "anthropics/claude-quickstarts",
+    "backnotprop/plannotator",
+    "block/buzz",
+    "ChromeDevTools/chrome-devtools-mcp",
+    "cloudflare/security-audit-skill",
+    "google-deepmind/mujoco",
+    "google/elephant-goldfish-model",
+    "GoogleChrome/modern-web-guidance-src",
+    "Likely7/Veyra-NRVideo",
+    "louislam/uptime-kuma",
+    "mattpocock/skills",
+    "milind-soni/OpenMausBot",
+    "NVIDIA/auto-ontology",
+    "openai/codex-security",
+    "sherlock-project/sherlock",
+    "tailscale/tailcat",
+    "tradermonty/claude-trading-skills",
+    "vercel-labs/agent-browser",
+    "vercel-labs/agent-desktop",
+    "we-promise/sure",
+    "ZhuLinsen/daily_stock_analysis"
+  ],
+  "added_to_catalog_as_candidates": [
+    "addyosmani/agent-skills",
+    "alibaba/open-code-review",
+    "anthropics/claude-quickstarts",
+    "backnotprop/plannotator",
+    "block/buzz",
+    "ChromeDevTools/chrome-devtools-mcp",
+    "cloudflare/security-audit-skill",
+    "google-deepmind/mujoco",
+    "google/elephant-goldfish-model",
+    "GoogleChrome/modern-web-guidance-src",
+    "Likely7/Veyra-NRVideo",
+    "louislam/uptime-kuma",
+    "openai/codex-security",
+    "sherlock-project/sherlock",
+    "tailscale/tailcat",
+    "tradermonty/claude-trading-skills",
+    "vercel-labs/agent-browser",
+    "vercel-labs/agent-desktop",
+    "we-promise/sure",
+    "ZhuLinsen/daily_stock_analysis"
+  ],
+  "already_present": [
+    "NVIDIA/auto-ontology",
+    "mattpocock/skills",
+    "milind-soni/OpenMausBot"
+  ],
+  "filtered_out": [
+    {
+      "full_name": "anthropics/skills",
+      "reasons": [
+        "license_not_identified"
+      ]
+    },
+    {
+      "full_name": "lobehub/lobehub",
+      "reasons": [
+        "license_not_identified"
+      ]
+    },
+    {
+      "full_name": "zed-industries/zed",
+      "reasons": [
+        "license_not_identified"
+      ]
+    }
+  ],
+  "unavailable": [],
+  "filter_policy": {
+    "minimum_stars": 10,
+    "maximum_days_since_last_push": 180,
+    "exclude_archived_disabled_forks": true,
+    "require_description": true,
+    "require_identified_license": true,
+    "approval": "Never automatic. All additions remain candidate with unreviewed license status."
+  },
+  "limitations": [
+    "GitHub Trending is HTML, not a stable versioned API. Markup changes can stop parsing.",
+    "Metadata filters do not inspect source code, dependencies, advisories, maintainer trust, or project quality.",
+    "A license identifier is not a legal review of all assets or linked content.",
+    "GitHub Trending is not a complete index of every repository gaining stars."
+  ]
+}
