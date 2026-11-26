@@ -4,6 +4,8 @@ This repository follows the Agent-Universal-Devkit Vibe Coding Playbook.
 
 **Canonical playbook:** https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/playbooks/VIBE-CODING-PLAYBOOK.md
 
+**Detailed master reference:** https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit/blob/main/playbooks/VIBE-CODING-AGENT-MASTER-PLAYBOOK.md
+
 ## Required use
 
 At the start of substantial coding work:
