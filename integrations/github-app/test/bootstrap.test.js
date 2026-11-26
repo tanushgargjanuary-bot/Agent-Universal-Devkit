@@ -54,6 +54,7 @@ function makeContext({ existing = {}, source = Object.fromEntries(BOOTSTRAP_FILE
 test("bootstrap allow-list includes all continuity and local checker files", () => {
   assert.equal(new Set(BOOTSTRAP_FILES).size, BOOTSTRAP_FILES.length);
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/AGENTS.md"));
+  assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/VIBE-CODING-PLAYBOOK.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/CLAUDE.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/GEMINI.md"));
   assert.ok(BOOTSTRAP_FILES.includes("bootstrap/template/.github/copilot-instructions.md"));
@@ -100,6 +101,21 @@ test("fails closed when a required upstream template is missing", async () => {
   assert.equal(writes.length, BOOTSTRAP_FILES.indexOf("bootstrap/template/docs/PROJECT-STATE.md"));
 });
 
+
+test("new repositories receive the shared vibe coding playbook pointer", async () => {
+  const root = new URL("../../../", import.meta.url);
+  const [templateInstructions, copilotInstructions, pointer] = await Promise.all([
+    readFile(new URL("bootstrap/template/AGENTS.md", root), "utf8"),
+    readFile(new URL("bootstrap/template/.github/copilot-instructions.md", root), "utf8"),
+    readFile(new URL("bootstrap/template/VIBE-CODING-PLAYBOOK.md", root), "utf8")
+  ]);
+
+  assert.match(templateInstructions, /VIBE-CODING-PLAYBOOK\.md/);
+  assert.match(copilotInstructions, /VIBE-CODING-PLAYBOOK\.md/);
+  assert.match(pointer, /playbooks\/VIBE-CODING-PLAYBOOK\.md/);
+  assert.match(pointer, /long-term maintainability/i);
+  assert.match(pointer, /Ask before destructive/i);
+});
 
 test("new repositories receive the strict README demonstration standard", async () => {
   const root = new URL("../../../", import.meta.url);
