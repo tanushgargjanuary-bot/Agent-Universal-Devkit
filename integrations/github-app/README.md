@@ -8,6 +8,7 @@ This Probot app listens for newly created repositories and copies the small, loc
 - Skips archived repositories or repositories without a default branch.
 - Supports opt-out with `.agent-universal-devkit/opt-out`.
 - Installs shared agent entry points, project rubrics, repository organisation guidance, project-state and work-log templates, and the local read-only hygiene checker.
+- Installs a lightweight Vibe Coding Playbook pointer; the canonical playbook remains in the Devkit and is retrieved by agents when needed.
 - Never overwrites an existing target file. It logs which files it added or skipped.
 - Uses a small, explicit allow-list. It does not copy the full Devkit repository.
 
