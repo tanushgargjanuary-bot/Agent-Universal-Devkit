@@ -2,17 +2,17 @@
 
 ## Required intake
 
-0. Read `playbooks/VIBE-CODING-PLAYBOOK.md` as the shared engineering baseline; apply it with the risk-based and project-specific rules below.
 1. Read root `HANDOFF.md` completely.
 2. Read this file and applicable harness-specific instructions.
-3. Read `docs/AGENT-ONBOARDING.md`.
-4. Read `docs/AGENT-OPERATING-MODEL.md` for session flow, permissions, multi-agent coordination, and completion rules.
-5. Read `README.md`, `docs/PROJECT-STATE.md`, `docs/PRODUCT-PRINCIPLES.md`, `docs/ARCHITECTURE.md`, `docs/ROADMAP.md`, and `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
-6. Read `docs/CROSS-REPOSITORY-OPERATIONS.md` before work that affects more than one repository. Read `docs/CONTEXT-EXPORT-SPEC.md` before changing handoff/export behaviour.
-7. Read recent `docs/WORKLOG.md` entries and `docs/DECISION-REGISTER.md`. Verify claims against code and Git state.
-8. Inspect the current branch, working tree, repository tree, source, tests, manifests, workflows, and live CI.
-9. Read the relevant subsystem README and governing policy before changing that subsystem.
-10. Do not infer completion from a roadmap checkbox or design document alone.
+3. Read `playbooks/VIBE-CODING-PLAYBOOK.md` as the shared engineering baseline; apply it with the risk-based and project-specific rules below.
+4. Read `docs/AGENT-ONBOARDING.md`.
+5. Read `docs/AGENT-OPERATING-MODEL.md` for session flow, permissions, multi-agent coordination, and completion rules.
+6. Read `README.md`, `docs/PROJECT-STATE.md`, `docs/PRODUCT-PRINCIPLES.md`, `docs/ARCHITECTURE.md`, `docs/ROADMAP.md`, and `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`.
+7. Read `docs/CROSS-REPOSITORY-OPERATIONS.md` before work that affects more than one repository. Read `docs/CONTEXT-EXPORT-SPEC.md` before changing handoff/export behaviour.
+8. Read recent `docs/WORKLOG.md` entries and `docs/DECISION-REGISTER.md`. Verify claims against code and Git state.
+9. Inspect the current branch, working tree, repository tree, source, tests, manifests, workflows, and live CI.
+10. Read the relevant subsystem README and governing policy before changing that subsystem.
+11. Do not infer completion from a roadmap checkbox or design document alone.
 
 ## Repository rules
 
