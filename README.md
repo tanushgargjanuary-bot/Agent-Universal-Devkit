@@ -88,7 +88,7 @@ The Policy Engine evaluates known actions and denies unknown actions. It can req
 
 1. Read the [Vibe Coding Playbook](playbooks/VIBE-CODING-PLAYBOOK.md) for the shared engineering workflow.
 2. Read [Agent Handoff](HANDOFF.md) when taking over this repository without prior chat context.
-2. Read [Vision and Scope](docs/VISION-AND-SCOPE.md).
+3. Read [Vision and Scope](docs/VISION-AND-SCOPE.md).
 4. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
 5. Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md).
 6. Read [Project Intelligence and Continuity](docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md).
@@ -99,7 +99,6 @@ The Policy Engine evaluates known actions and denies unknown actions. It can req
 11. Read the [Agent Operating Model](docs/AGENT-OPERATING-MODEL.md) for permissions and session rules.
 12. Read [Cross-Repository Operations](docs/CROSS-REPOSITORY-OPERATIONS.md) before multi-repository work.
 13. Read the [Context Export Specification](docs/CONTEXT-EXPORT-SPEC.md) and [Decision Register](docs/DECISION-REGISTER.md) when working on continuity or architecture decisions.
-
 Run the read-only hygiene check:
 
 ```bash
