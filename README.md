@@ -87,18 +87,18 @@ The Policy Engine evaluates known actions and denies unknown actions. It can req
 ## Start here
 
 1. Read the [Vibe Coding Playbook](playbooks/VIBE-CODING-PLAYBOOK.md) for the shared engineering workflow.
-1. Read [Agent Handoff](HANDOFF.md) when taking over this repository without prior chat context.
+2. Read [Agent Handoff](HANDOFF.md) when taking over this repository without prior chat context.
 2. Read [Vision and Scope](docs/VISION-AND-SCOPE.md).
-3. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
-4. Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md).
-5. Read [Project Intelligence and Continuity](docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md).
-6. Read [README Demonstration Standard](docs/README-DEMO-STANDARD.md) before creating a repository or major user-facing feature.
-7. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
-8. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
-9. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
-10. Read the [Agent Operating Model](docs/AGENT-OPERATING-MODEL.md) for permissions and session rules.
-11. Read [Cross-Repository Operations](docs/CROSS-REPOSITORY-OPERATIONS.md) before multi-repository work.
-12. Read the [Context Export Specification](docs/CONTEXT-EXPORT-SPEC.md) and [Decision Register](docs/DECISION-REGISTER.md) when working on continuity or architecture decisions.
+4. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
+5. Read [Repository Governance](docs/REPOSITORY-GOVERNANCE.md).
+6. Read [Project Intelligence and Continuity](docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md).
+7. Read [README Demonstration Standard](docs/README-DEMO-STANDARD.md) before creating a repository or major user-facing feature.
+8. Read [Technology Architecture Selection](docs/TECHNOLOGY-ARCHITECTURE-SELECTION.md).
+9. Read [Roadmap](docs/ROADMAP.md) for implemented work and remaining gates.
+10. Read [AGENTS.md](AGENTS.md) before using an AI agent in this repository.
+11. Read the [Agent Operating Model](docs/AGENT-OPERATING-MODEL.md) for permissions and session rules.
+12. Read [Cross-Repository Operations](docs/CROSS-REPOSITORY-OPERATIONS.md) before multi-repository work.
+13. Read the [Context Export Specification](docs/CONTEXT-EXPORT-SPEC.md) and [Decision Register](docs/DECISION-REGISTER.md) when working on continuity or architecture decisions.
 
 Run the read-only hygiene check:
 
