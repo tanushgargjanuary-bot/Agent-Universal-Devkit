@@ -2,6 +2,7 @@
 
 ## Required intake
 
+0. Read `playbooks/VIBE-CODING-PLAYBOOK.md` as the shared engineering baseline; apply it with the risk-based and project-specific rules below.
 1. Read root `HANDOFF.md` completely.
 2. Read this file and applicable harness-specific instructions.
 3. Read `docs/AGENT-ONBOARDING.md`.
