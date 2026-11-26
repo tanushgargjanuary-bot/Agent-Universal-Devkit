@@ -3,6 +3,7 @@
 This repository uses Agent-Universal-Devkit.
 
 1. Read `AGENTS.md` and `.agent-universal-devkit/config.yaml`.
+2. Read `VIBE-CODING-PLAYBOOK.md` and retrieve the canonical playbook linked there.
 2. Follow project-specific instructions and existing conventions.
 3. Use only Devkit tools relevant to this project.
 4. Check tool source, license, version, and permissions before use.
