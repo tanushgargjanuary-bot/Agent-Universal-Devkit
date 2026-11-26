@@ -6,6 +6,8 @@ devkit:
   branch: main
   manifest: manifest.yaml
   instructions:
+    vibe_coding_playbook: VIBE-CODING-PLAYBOOK.md
+    canonical_playbook: playbooks/VIBE-CODING-PLAYBOOK.md
     universal: agents/universal/INSTRUCTIONS.md
     security: policies/SECURITY.md
   catalogs:
