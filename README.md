@@ -31,6 +31,7 @@ The native **Engineering Knowledge & Methods Library** supports both priorities.
 - Repository governance, project-type rubrics, bootstrap guidance, and a read-only hygiene checker.
 - GitHub workflows for tests, quality checks, CodeQL, and secret-history scanning.
 - Project intelligence and continuity protocol with durable project-state and work-log templates for agent handoffs.
+- Reusable Vibe Coding Playbook with a lightweight pointer installed into newly bootstrapped repositories.
 - A README Demonstration Standard that requires new projects to show real working behaviour through GIFs, screenshots, interactive demos, or project-appropriate alternatives.
 
 These are implemented foundations. They do not yet form a complete autonomous execution platform.
@@ -85,6 +86,7 @@ The Policy Engine evaluates known actions and denies unknown actions. It can req
 
 ## Start here
 
+1. Read the [Vibe Coding Playbook](playbooks/VIBE-CODING-PLAYBOOK.md) for the shared engineering workflow.
 1. Read [Agent Handoff](HANDOFF.md) when taking over this repository without prior chat context.
 2. Read [Vision and Scope](docs/VISION-AND-SCOPE.md).
 3. Read [Product Principles](docs/PRODUCT-PRINCIPLES.md) and [Architecture](docs/ARCHITECTURE.md).
