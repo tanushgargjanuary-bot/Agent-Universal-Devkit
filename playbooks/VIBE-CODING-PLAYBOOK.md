@@ -2,6 +2,8 @@
 
 Reusable operating standard for AI-assisted software development across projects. Load this at the beginning of each substantial coding session.
 
+The detailed source document supplied for this workflow is preserved in [VIBE-CODING-AGENT-MASTER-PLAYBOOK.md](VIBE-CODING-AGENT-MASTER-PLAYBOOK.md). This concise playbook is the safer cross-project operating layer; apply detailed skills and templates from the master reference when relevant.
+
 ## 1. Core principles
 - Treat the human as product owner and technical decision-maker; the agent is an implementation partner.
 - Prioritize working, verified software over impressive plans or large amounts of generated code.
