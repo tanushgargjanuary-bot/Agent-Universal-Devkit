@@ -4,11 +4,16 @@ This repository uses Agent-Universal-Devkit.
 
 ## Start here
 1. Read `.agent-universal-devkit/config.yaml`.
-2. Read this project's README and existing project-specific instructions.
-3. Read `docs/PROJECT-STATE.md` and the latest relevant entries in `docs/WORKLOG.md`. If either file is missing, create it from the templates in the Devkit repository after inspecting the project.
-4. Read `PROJECT-RUBRICS.md` before major planning, architecture, implementation, or review work.
-5. Follow local project rules when they define project-specific behaviour.
-6. Use the Devkit's shared rules and relevant tool guidance when they apply.
+2. Read `VIBE-CODING-PLAYBOOK.md` and retrieve the canonical playbook linked there.
+3. Read this project's README and existing project-specific instructions.
+4. Read `docs/PROJECT-STATE.md` and the latest relevant entries in `docs/WORKLOG.md`. If either file is missing, create it from the templates in the Devkit repository after inspecting the project.
+5. Read `PROJECT-RUBRICS.md` before major planning, architecture, implementation, or review work.
+6. Follow local project rules when they define project-specific behaviour.
+7. Use the Devkit's shared rules and relevant tool guidance when they apply.
+
+## Long-term engineering default
+
+Prefer maintainable, reliable, secure, portable, scalable, and recoverable solutions over the shortest immediate implementation. Proactively identify high-value improvements when relevant and proportionate, but do not silently expand scope or add speculative complexity. Preserve user work. Ask before destructive, irreversible, costly, permission-changing, deployment, publication, or externally consequential actions.
 
 Devkit: https://github.com/tanushgargjanuary-bot/Agent-Universal-Devkit
 
