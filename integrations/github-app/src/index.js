@@ -4,6 +4,7 @@ const DEVKIT_REF = process.env.DEVKIT_REF || "main";
 
 export const BOOTSTRAP_FILES = [
   "bootstrap/template/AGENTS.md",
+  "bootstrap/template/VIBE-CODING-PLAYBOOK.md",
   "bootstrap/template/.agent-universal-devkit/config.yaml",
   "bootstrap/template/CLAUDE.md",
   "bootstrap/template/GEMINI.md",
