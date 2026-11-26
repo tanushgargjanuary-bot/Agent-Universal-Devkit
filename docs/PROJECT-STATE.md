@@ -32,6 +32,7 @@
 | Execution Gate | Per-action policy enforcement, digest/dependency validation, approval consumption, adapter routing, audit callback, sequential execution | `core/orchestrator/src/execution-gate.js` | No built-in adapters or OS sandbox; host must prevent direct adapter bypass |
 | Repository governance and quality rubrics | Implemented guidance and checker | `docs/REPOSITORY-GOVERNANCE.md`, `rubrics/`, `bootstrap/template/` | Governance-level policy enforcement remains incomplete |
 | Project intelligence and continuity protocol | Guidance, templates, static checks, and diff-based CI enforcement implemented | `docs/PROJECT-INTELLIGENCE-AND-CONTINUITY.md`, `bootstrap/template/docs/`, repository-hygiene scripts | Checks cannot prove semantic accuracy or recover uncommitted work after a hard environment loss |
+| Vibe Coding Playbook and bootstrap pointer | Canonical shared playbook, lightweight local pointer, agent instructions, GitHub App allow-list, and regression coverage added; CI verification pending | `playbooks/VIBE-CODING-PLAYBOOK.md`, `bootstrap/template/VIBE-CODING-PLAYBOOK.md`, `integrations/github-app/` | Existing repositories are not automatically updated; new repository delivery requires the GitHub App to be deployed and installed |
 | Pack runtime | Planned | `docs/PACK-MODEL.md`, roadmap | Dependency resolution, activation, and safe removal are not implemented |
 | Harness adapters and execution | Mostly planned | `agents/`, `integrations/`, architecture docs | No complete, validated multi-harness execution path |
 
@@ -51,7 +52,7 @@
 | `core/orchestrator/` | Task planning, technology assessment, policy evaluation, signed approval lifecycle, and the in-process Execution Gate | `core/orchestrator/README.md` |
 | `agents/` | Shared agent guidance and harness entry points | `agents/universal/INSTRUCTIONS.md` |
 | `integrations/` | External system integrations | Subsystem READMEs |
-| `bootstrap/template/` | Small local governance and continuity entry points | `docs/REPOSITORY-GOVERNANCE.md` |
+| `bootstrap/template/` | Small local governance, continuity, and Vibe Coding Playbook entry points | `docs/REPOSITORY-GOVERNANCE.md`, `playbooks/VIBE-CODING-PLAYBOOK.md` |
 | `schemas/` | Machine-readable contracts | Schema files |
 | `scripts/` | Discovery and repository maintenance | Script docs |
 | `docs/` | Product, architecture, security, quality, continuity, README demo standard, and roadmap records | This directory |
@@ -208,9 +209,9 @@ The DEVKIT Hub is distinct from DEVKIT Core. Repository registration must not gr
 The automated Context Exporter is not available. Until it is implemented and passes a clean-room test, agents must maintain the canonical handoff files manually.
 
 ## 10. Handoff metadata
-- **Last reviewed:** 2026-11-11
+- **Last reviewed:** 2026-11-26
 - **Reviewed code baseline:** `ef0d9f2369feff913be52cb7ab90425955ca99ee` (2026-11-11 code audit). Later commits in this documentation pass update handoff records only; re-check live HEAD and CI before acting.
-- **Updated by:** ChatGPT GitHub integration; documentation completeness reconciliation on 2026-11-11
+- **Updated by:** ChatGPT GitHub integration; playbook bootstrap integration on 2026-11-26
 - **Working tree:** GitHub commit-based editing; no local working tree was available for inspection.
 - **External state:** CI, branch protection, GitHub App deployment, and external service state require direct verification.
 
