@@ -4,6 +4,7 @@ Reusable, cross-project operating standards for AI-assisted engineering.
 
 ## Available playbooks
 - [Vibe Coding Playbook](VIBE-CODING-PLAYBOOK.md) — project discovery, systems thinking, implementation discipline, verification, Git hygiene, and session continuity.
+- [Vibe Coding Agent Master Playbook](VIBE-CODING-AGENT-MASTER-PLAYBOOK.md) — the complete supplied reference with execution phases, prompt templates, and 18 agent-skill specifications.
 
 ## How to apply
 At the start of every substantial project or coding session:
