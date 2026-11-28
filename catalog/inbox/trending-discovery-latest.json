@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-28T13:13:43Z",
+  "source": "GitHub Trending pages and GitHub repository metadata API",
+  "periods": {
+    "daily": {
+      "url": "https://github.com/trending?since=daily",
+      "repositories": [
+        "elementalsouls/Claude-BugHunter",
+        "obra/superpowers",
+        "HKUDS/CLI-Anything",
+        "jingyaogong/minimind",
+        "cursor/plugins",
+        "firecrawl/firecrawl",
+        "nginx/nginx",
+        "openvinotoolkit/openvino",
+        "cathrynlavery/diagram-design",
+        "mvanhorn/last30days-skill",
+        "google-labs-code/stitch-skills",
+        "mjmirza/app-store-compliance",
+        "Tracer-Cloud/opensre",
+        "toeverything/AFFiNE",
+        "XiaoYouChR/Ghost-Downloader-3",
+        "zhouxiaoka/autoclip"
+      ]
+    },
+    "weekly": {
+      "url": "https://github.com/trending?since=weekly",
+      "repositories": [
+        "backnotprop/plannotator",
+        "google-labs-code/stitch-skills",
+        "GoogleChrome/modern-web-guidance-src",
+        "n8n-io/nod",
+        "alibaba/open-code-review",
+        "mvanhorn/last30days-skill",
+        "ChromeDevTools/chrome-devtools-mcp",
+        "tradermonty/claude-trading-skills",
+        "ag-ui-protocol/ag-ui",
+        "meta/astryx",
+        "pookjw/HermesEnabler",
+        "we-promise/sure",
+        "obsidianmd/obsidian-skills",
+        "dream-num/univer",
+        "kajisho5/ffmpeg-skill"
+      ]
+    }
+  },
+  "metadata_records": 29,
+  "accepted_by_metadata_filter": [
+    "ag-ui-protocol/ag-ui",
+    "alibaba/open-code-review",
+    "backnotprop/plannotator",
+    "cathrynlavery/diagram-design",
+    "ChromeDevTools/chrome-devtools-mcp",
+    "dream-num/univer",
+    "elementalsouls/Claude-BugHunter",
+    "firecrawl/firecrawl",
+    "google-labs-code/stitch-skills",
+    "GoogleChrome/modern-web-guidance-src",
+    "HKUDS/CLI-Anything",
+    "jingyaogong/minimind",
+    "kajisho5/ffmpeg-skill",
+    "meta/astryx",
+    "mvanhorn/last30days-skill",
+    "n8n-io/nod",
+    "nginx/nginx",
+    "obra/superpowers",
+    "obsidianmd/obsidian-skills",
+    "openvinotoolkit/openvino",
+    "pookjw/HermesEnabler",
+    "Tracer-Cloud/opensre",
+    "tradermonty/claude-trading-skills",
+    "we-promise/sure",
+    "XiaoYouChR/Ghost-Downloader-3",
+    "zhouxiaoka/autoclip"
+  ],
+  "added_to_catalog_as_candidates": [
+    "ag-ui-protocol/ag-ui",
+    "alibaba/open-code-review",
+    "backnotprop/plannotator",
+    "cathrynlavery/diagram-design",
+    "ChromeDevTools/chrome-devtools-mcp",
+    "dream-num/univer",
+    "elementalsouls/Claude-BugHunter",
+    "firecrawl/firecrawl",
+    "google-labs-code/stitch-skills",
+    "GoogleChrome/modern-web-guidance-src",
+    "HKUDS/CLI-Anything",
+    "jingyaogong/minimind",
+    "kajisho5/ffmpeg-skill",
+    "meta/astryx",
+    "mvanhorn/last30days-skill",
+    "n8n-io/nod",
+    "nginx/nginx",
+    "obra/superpowers",
+    "obsidianmd/obsidian-skills",
+    "openvinotoolkit/openvino",
+    "pookjw/HermesEnabler",
+    "Tracer-Cloud/opensre",
+    "tradermonty/claude-trading-skills",
+    "we-promise/sure",
+    "XiaoYouChR/Ghost-Downloader-3",
+    "zhouxiaoka/autoclip"
+  ],
+  "already_present": [],
+  "filtered_out": [
+    {
+      "full_name": "cursor/plugins",
+      "reasons": [
+        "license_not_identified"
+      ]
+    },
+    {
+      "full_name": "mjmirza/app-store-compliance",
+      "reasons": [
+        "license_not_identified"
+      ]
+    },
+    {
+      "full_name": "toeverything/AFFiNE",
+      "reasons": [
+        "license_not_identified"
+      ]
+    }
+  ],
+  "unavailable": [],
+  "filter_policy": {
+    "minimum_stars": 10,
+    "maximum_days_since_last_push": 180,
+    "exclude_archived_disabled_forks": true,
+    "require_description": true,
+    "require_identified_license": true,
+    "approval": "Never automatic. All additions remain candidate with unreviewed license status."
+  },
+  "limitations": [
+    "GitHub Trending is HTML, not a stable versioned API. Markup changes can stop parsing.",
+    "Metadata filters do not inspect source code, dependencies, advisories, maintainer trust, or project quality.",
+    "A license identifier is not a legal review of all assets or linked content.",
+    "GitHub Trending is not a complete index of every repository gaining stars."
+  ]
+}

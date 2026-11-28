@@ -886,3 +886,841 @@ resources:
         url: https://github.com/Donchitos/Claude-Code-Game-Studios
         checked_at: "2026-11-10T00:00:00Z"
     last_reviewed: "2026-11-10T00:00:00Z"
+
+  - id: "github-ag-ui-protocol--ag-ui"
+    name: "ag-ui-protocol/ag-ui"
+    url: "https://github.com/ag-ui-protocol/ag-ui"
+    full_name: "ag-ui-protocol/ag-ui"
+    kind: repository
+    categories: ["ag-ui-protocol", "agent-frontend", "agent-ui", "agentic-workflow", "ai-agents"]
+    description: "AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications."
+    capabilities: ["ag-ui-protocol", "agent-frontend", "agent-ui", "agentic-workflow", "ai-agents"]
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/ag-ui-protocol/ag-ui"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/ag-ui-protocol/ag-ui"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-alibaba--open-code-review"
+    name: "alibaba/open-code-review"
+    url: "https://github.com/alibaba/open-code-review"
+    full_name: "alibaba/open-code-review"
+    kind: repository
+    categories: ["agent", "agent-skills", "code-review", "code-review-assistant", "harness", "repository-level-context"]
+    description: "Secure, fast, efficient, battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in multi-language ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible."
+    capabilities: ["agent", "agent-skills", "code-review", "code-review-assistant", "harness", "repository-level-context"]
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/alibaba/open-code-review"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/alibaba/open-code-review"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-backnotprop--plannotator"
+    name: "backnotprop/plannotator"
+    url: "https://github.com/backnotprop/plannotator"
+    full_name: "backnotprop/plannotator"
+    kind: repository
+    categories: ["agents", "claude-code", "code-review", "codex", "obsidian", "opencode", "pi-mono", "plan-mode", "skills"]
+    description: "The workspace to stay in the loop and on top of agents - shape, decide, plan, annotate, review code, share with team, and send all feedback to agents with one click."
+    capabilities: ["agents", "claude-code", "code-review", "codex", "obsidian", "opencode", "pi-mono", "plan-mode", "skills"]
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/backnotprop/plannotator"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/backnotprop/plannotator"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-cathrynlavery--diagram-design"
+    name: "cathrynlavery/diagram-design"
+    url: "https://github.com/cathrynlavery/diagram-design"
+    full_name: "cathrynlavery/diagram-design"
+    kind: repository
+    categories: ["agent-skills", "claude-code", "codex", "data-visualization", "diagrams", "drawio", "mermaid", "svg"]
+    description: "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop."
+    capabilities: ["agent-skills", "claude-code", "codex", "data-visualization", "diagrams", "drawio", "mermaid", "svg"]
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/cathrynlavery/diagram-design"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/cathrynlavery/diagram-design"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-chromedevtools--chrome-devtools-mcp"
+    name: "ChromeDevTools/chrome-devtools-mcp"
+    url: "https://github.com/ChromeDevTools/chrome-devtools-mcp"
+    full_name: "ChromeDevTools/chrome-devtools-mcp"
+    kind: repository
+    categories: ["browser", "chrome", "chrome-devtools", "debugging", "devtools", "mcp", "mcp-server", "puppeteer"]
+    description: "Chrome DevTools for coding agents"
+    capabilities: ["browser", "chrome", "chrome-devtools", "debugging", "devtools", "mcp", "mcp-server", "puppeteer"]
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/ChromeDevTools/chrome-devtools-mcp"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/ChromeDevTools/chrome-devtools-mcp"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-dream-num--univer"
+    name: "dream-num/univer"
+    url: "https://github.com/dream-num/univer"
+    full_name: "dream-num/univer"
+    kind: repository
+    categories: ["board", "collaboration", "doc", "docx", "excel", "offce365", "office", "pdf", "ppt", "pptx", "presentation", "sdk", "sheet", "slides", "spreadsheet", "univer", "word", "wordprocessor", "workspace", "xlsx"]
+    description: "Build your own AI office with Univer Office SDK. Bring editing, calculation, collaboration, and file processing into your product for people and AI agents. Built on an extensible open-source core."
+    capabilities: ["board", "collaboration", "doc", "docx", "excel", "offce365", "office", "pdf", "ppt", "pptx", "presentation", "sdk", "sheet", "slides", "spreadsheet", "univer", "word", "wordprocessor", "workspace", "xlsx"]
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/dream-num/univer"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/dream-num/univer"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-elementalsouls--claude-bughunter"
+    name: "elementalsouls/Claude-BugHunter"
+    url: "https://github.com/elementalsouls/Claude-BugHunter"
+    full_name: "elementalsouls/Claude-BugHunter"
+    kind: repository
+    categories: ["ai-security", "anthropic", "application-security", "bug-bounty", "bugbounty", "bugcrowd", "claude", "claude-code", "claude-skills", "ethical-hacking", "hackerone", "offensive-security", "pentesting", "red-team", "security-tools", "web-security"]
+    description: "A Claude Code skill bundle for bug hunting and external red-team work - 85 skills, 16 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices."
+    capabilities: ["ai-security", "anthropic", "application-security", "bug-bounty", "bugbounty", "bugcrowd", "claude", "claude-code", "claude-skills", "ethical-hacking", "hackerone", "offensive-security", "pentesting", "red-team", "security-tools", "web-security"]
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/elementalsouls/Claude-BugHunter"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/elementalsouls/Claude-BugHunter"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-firecrawl--firecrawl"
+    name: "firecrawl/firecrawl"
+    url: "https://github.com/firecrawl/firecrawl"
+    full_name: "firecrawl/firecrawl"
+    kind: repository
+    categories: ["ai", "ai-agents", "ai-crawler", "ai-scraping", "ai-search", "crawler", "data-extraction", "html-to-markdown", "llm", "markdown", "scraper", "scraping", "web-crawler", "web-data", "web-data-extraction", "web-scraper", "web-scraping", "web-search", "webscraping"]
+    description: "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API."
+    capabilities: ["ai", "ai-agents", "ai-crawler", "ai-scraping", "ai-search", "crawler", "data-extraction", "html-to-markdown", "llm", "markdown", "scraper", "scraping", "web-crawler", "web-data", "web-data-extraction", "web-scraper", "web-scraping", "web-search", "webscraping"]
+    license:
+      spdx_id: "AGPL-3.0"
+      source_url: "https://github.com/firecrawl/firecrawl"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/firecrawl/firecrawl"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-google-labs-code--stitch-skills"
+    name: "google-labs-code/stitch-skills"
+    url: "https://github.com/google-labs-code/stitch-skills"
+    full_name: "google-labs-code/stitch-skills"
+    kind: repository
+    categories: ["trending"]
+    description: "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor."
+    capabilities: []
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/google-labs-code/stitch-skills"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/google-labs-code/stitch-skills"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-googlechrome--modern-web-guidance-src"
+    name: "GoogleChrome/modern-web-guidance-src"
+    url: "https://github.com/GoogleChrome/modern-web-guidance-src"
+    full_name: "GoogleChrome/modern-web-guidance-src"
+    kind: repository
+    categories: ["trending"]
+    description: "Keep your coding agent up to date with the latest web best practices"
+    capabilities: []
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/GoogleChrome/modern-web-guidance-src"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/GoogleChrome/modern-web-guidance-src"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-hkuds--cli-anything"
+    name: "HKUDS/CLI-Anything"
+    url: "https://github.com/HKUDS/CLI-Anything"
+    full_name: "HKUDS/CLI-Anything"
+    kind: repository
+    categories: ["trending"]
+    description: "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/"
+    capabilities: []
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/HKUDS/CLI-Anything"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/HKUDS/CLI-Anything"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-jingyaogong--minimind"
+    name: "jingyaogong/minimind"
+    url: "https://github.com/jingyaogong/minimind"
+    full_name: "jingyaogong/minimind"
+    kind: repository
+    categories: ["artificial-intelligence", "large-language-model"]
+    description: "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours."
+    capabilities: ["artificial-intelligence", "large-language-model"]
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/jingyaogong/minimind"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/jingyaogong/minimind"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-kajisho5--ffmpeg-skill"
+    name: "kajisho5/ffmpeg-skill"
+    url: "https://github.com/kajisho5/ffmpeg-skill"
+    full_name: "kajisho5/ffmpeg-skill"
+    kind: repository
+    categories: ["agent-skills", "ai-agents", "audio-processing", "captions", "claude-code", "codex", "coding-agent", "cursor", "ffmpeg", "gemini-cli-extension", "loudness-normalization", "mcp", "mcp-server", "model-context-protocol", "python", "subtitles", "transcoding", "video", "video-editing", "whisper"]
+    description: "Local video editor for coding agents: 42 FFmpeg tools with a machine-readable contract and an MCP server, for Claude Code, Cursor and Codex. Cut, captions, reframe, loudness, platform exports. No cloud, no API keys."
+    capabilities: ["agent-skills", "ai-agents", "audio-processing", "captions", "claude-code", "codex", "coding-agent", "cursor", "ffmpeg", "gemini-cli-extension", "loudness-normalization", "mcp", "mcp-server", "model-context-protocol", "python", "subtitles", "transcoding", "video", "video-editing", "whisper"]
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/kajisho5/ffmpeg-skill"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/kajisho5/ffmpeg-skill"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-meta--astryx"
+    name: "meta/astryx"
+    url: "https://github.com/meta/astryx"
+    full_name: "meta/astryx"
+    kind: repository
+    categories: ["trending"]
+    description: "An open source design system that's fully customizable and agent ready"
+    capabilities: []
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/meta/astryx"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/meta/astryx"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-mvanhorn--last30days-skill"
+    name: "mvanhorn/last30days-skill"
+    url: "https://github.com/mvanhorn/last30days-skill"
+    full_name: "mvanhorn/last30days-skill"
+    kind: repository
+    categories: ["agent-skills", "artificial-intelligence", "automation", "bot", "command-line", "data-science", "dsh", "dsh-plugin", "golang", "instagram", "llms", "nlp", "osint", "polymarket", "python3", "reddit", "terminal", "tiktok", "twitter", "youtube"]
+    description: "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary"
+    capabilities: ["agent-skills", "artificial-intelligence", "automation", "bot", "command-line", "data-science", "dsh", "dsh-plugin", "golang", "instagram", "llms", "nlp", "osint", "polymarket", "python3", "reddit", "terminal", "tiktok", "twitter", "youtube"]
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/mvanhorn/last30days-skill"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/mvanhorn/last30days-skill"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-n8n-io--nod"
+    name: "n8n-io/nod"
+    url: "https://github.com/n8n-io/nod"
+    full_name: "n8n-io/nod"
+    kind: repository
+    categories: ["agents", "ai-agent", "ai-assistant", "anthropic", "automation", "browser-automation", "computer-use", "electron", "llm", "local-first", "mcp", "n8n", "openai", "personal-agent", "personal-assistant", "privacy", "self-hosted", "telegram-bot", "typescript", "whatsapp-bot"]
+    description: "Open source personal agent with its own computer. It chases invoices, preps your calls and cancels trials on real websites, and asks before it acts. Runs on your machine with the model you choose. By n8n."
+    capabilities: ["agents", "ai-agent", "ai-assistant", "anthropic", "automation", "browser-automation", "computer-use", "electron", "llm", "local-first", "mcp", "n8n", "openai", "personal-agent", "personal-assistant", "privacy", "self-hosted", "telegram-bot", "typescript", "whatsapp-bot"]
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/n8n-io/nod"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/n8n-io/nod"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-nginx--nginx"
+    name: "nginx/nginx"
+    url: "https://github.com/nginx/nginx"
+    full_name: "nginx/nginx"
+    kind: repository
+    categories: ["content-cache", "http", "http2", "http3", "https", "load-balancer", "mail-proxy-server", "nginx", "quic", "reverse-proxy", "security", "tcp-proxy-server", "tls", "udp-proxy-server", "web-server"]
+    description: "The official NGINX Open Source repository."
+    capabilities: ["content-cache", "http", "http2", "http3", "https", "load-balancer", "mail-proxy-server", "nginx", "quic", "reverse-proxy", "security", "tcp-proxy-server", "tls", "udp-proxy-server", "web-server"]
+    license:
+      spdx_id: "BSD-2-Clause"
+      source_url: "https://github.com/nginx/nginx"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/nginx/nginx"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-obra--superpowers"
+    name: "obra/superpowers"
+    url: "https://github.com/obra/superpowers"
+    full_name: "obra/superpowers"
+    kind: repository
+    categories: ["ai", "brainstorming", "coding", "obra", "sdlc", "skills", "subagent-driven-development", "superpowers"]
+    description: "An agentic skills framework & software development methodology that works."
+    capabilities: ["ai", "brainstorming", "coding", "obra", "sdlc", "skills", "subagent-driven-development", "superpowers"]
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/obra/superpowers"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/obra/superpowers"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-obsidianmd--obsidian-skills"
+    name: "obsidianmd/obsidian-skills"
+    url: "https://github.com/obsidianmd/obsidian-skills"
+    full_name: "obsidianmd/obsidian-skills"
+    kind: repository
+    categories: ["agents", "agentskills", "bases", "chatgpt", "claude", "claude-code", "claude-skills", "cli", "codex", "defuddle", "grok-bot", "hermes", "jsoncanvas", "knap", "markdown", "md", "obsidian", "openclaw", "opencode", "skills"]
+    description: "Teach your agent to use Obsidian and open formats including Markdown, Bases, JSON Canvas."
+    capabilities: ["agents", "agentskills", "bases", "chatgpt", "claude", "claude-code", "claude-skills", "cli", "codex", "defuddle", "grok-bot", "hermes", "jsoncanvas", "knap", "markdown", "md", "obsidian", "openclaw", "opencode", "skills"]
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/obsidianmd/obsidian-skills"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/obsidianmd/obsidian-skills"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-openvinotoolkit--openvino"
+    name: "openvinotoolkit/openvino"
+    url: "https://github.com/openvinotoolkit/openvino"
+    full_name: "openvinotoolkit/openvino"
+    kind: repository
+    categories: ["ai", "computer-vision", "deep-learning", "deploy-ai", "diffusion-models", "generative-ai", "good-first-issue", "inference", "llm-inference", "natural-language-processing", "nlp", "openvino", "optimize-ai", "performance-boost", "recommendation-system", "speech-recognition", "stable-diffusion", "transformers", "yolo"]
+    description: "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference"
+    capabilities: ["ai", "computer-vision", "deep-learning", "deploy-ai", "diffusion-models", "generative-ai", "good-first-issue", "inference", "llm-inference", "natural-language-processing", "nlp", "openvino", "optimize-ai", "performance-boost", "recommendation-system", "speech-recognition", "stable-diffusion", "transformers", "yolo"]
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/openvinotoolkit/openvino"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/openvinotoolkit/openvino"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-pookjw--hermesenabler"
+    name: "pookjw/HermesEnabler"
+    url: "https://github.com/pookjw/HermesEnabler"
+    full_name: "pookjw/HermesEnabler"
+    kind: repository
+    categories: ["trending"]
+    description: "Enable Hermès Watch Faces on any Apple Watch devices"
+    capabilities: []
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/pookjw/HermesEnabler"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/pookjw/HermesEnabler"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-tracer-cloud--opensre"
+    name: "Tracer-Cloud/opensre"
+    url: "https://github.com/Tracer-Cloud/opensre"
+    full_name: "Tracer-Cloud/opensre"
+    kind: repository
+    categories: ["alerting", "ci-cd", "cli", "datadog", "devops", "gitlab-ci", "grafana", "incident-management", "llm", "observability", "ollama", "remediation", "root-cause-analysis", "site-reliability-engineering", "slack"]
+    description: "The open-source agent for CI/CD reliability."
+    capabilities: ["alerting", "ci-cd", "cli", "datadog", "devops", "gitlab-ci", "grafana", "incident-management", "llm", "observability", "ollama", "remediation", "root-cause-analysis", "site-reliability-engineering", "slack"]
+    license:
+      spdx_id: "Apache-2.0"
+      source_url: "https://github.com/Tracer-Cloud/opensre"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/Tracer-Cloud/opensre"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-tradermonty--claude-trading-skills"
+    name: "tradermonty/claude-trading-skills"
+    url: "https://github.com/tradermonty/claude-trading-skills"
+    full_name: "tradermonty/claude-trading-skills"
+    kind: repository
+    categories: ["trending"]
+    description: "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development."
+    capabilities: []
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/tradermonty/claude-trading-skills"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/tradermonty/claude-trading-skills"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-we-promise--sure"
+    name: "we-promise/sure"
+    url: "https://github.com/we-promise/sure"
+    full_name: "we-promise/sure"
+    kind: repository
+    categories: ["trending"]
+    description: "The personal finance app for everyone (by everyone)"
+    capabilities: []
+    license:
+      spdx_id: "AGPL-3.0"
+      source_url: "https://github.com/we-promise/sure"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (weekly)."
+        url: "https://github.com/trending?since=weekly"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/we-promise/sure"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-xiaoyouchr--ghost-downloader-3"
+    name: "XiaoYouChR/Ghost-Downloader-3"
+    url: "https://github.com/XiaoYouChR/Ghost-Downloader-3"
+    full_name: "XiaoYouChR/Ghost-Downloader-3"
+    kind: repository
+    categories: ["async", "asyncio", "bittorent", "bt", "cross-platform", "download-manager", "downloader", "fluent-design", "ftp", "http3", "magnet", "pyqt", "pyside6", "python", "qt", "quic", "react", "software", "streaming"]
+    description: "The only downloader you need. 下载器的集大成者。"
+    capabilities: ["async", "asyncio", "bittorent", "bt", "cross-platform", "download-manager", "downloader", "fluent-design", "ftp", "http3", "magnet", "pyqt", "pyside6", "python", "qt", "quic", "react", "software", "streaming"]
+    license:
+      spdx_id: "GPL-3.0"
+      source_url: "https://github.com/XiaoYouChR/Ghost-Downloader-3"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/XiaoYouChR/Ghost-Downloader-3"
+        checked_at: "2026-11-28T13:13:43Z"
+
+  - id: "github-zhouxiaoka--autoclip"
+    name: "zhouxiaoka/autoclip"
+    url: "https://github.com/zhouxiaoka/autoclip"
+    full_name: "zhouxiaoka/autoclip"
+    kind: repository
+    categories: ["ai-agent", "ai-video-editor", "claude-code", "content-repurposing", "desktop-app", "douyin", "instagram-reels", "local-first", "mcp", "mcp-server", "open-source", "opusclip-alternative", "podcast", "subtitles", "tiktok", "video-clipping", "video-editing-software", "whisper", "xiaohongshu", "youtube-shorts"]
+    description: "AutoClip｜The open-source OpusClip alternative — local-first AI clipping & MCP server, zero subscriptions. 一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。"
+    capabilities: ["ai-agent", "ai-video-editor", "claude-code", "content-repurposing", "desktop-app", "douyin", "instagram-reels", "local-first", "mcp", "mcp-server", "open-source", "opusclip-alternative", "podcast", "subtitles", "tiktok", "video-clipping", "video-editing-software", "whisper", "xiaohongshu", "youtube-shorts"]
+    license:
+      spdx_id: "MIT"
+      source_url: "https://github.com/zhouxiaoka/autoclip"
+      review_status: unreviewed
+    status: candidate
+    compatibility:
+      notes: "Trending discovery candidate; compatibility and feature claims have not been independently reviewed."
+    maintenance:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    security:
+      status: not_assessed
+      checked_at: "2026-11-28T13:13:43Z"
+    evaluation:
+      status: not_evaluated
+      reason: "Passed metadata filters only. Manual project-fit, source, dependency, security, and license review is required."
+    evidence:
+      - claim: "Listed on GitHub Trending (daily)."
+        url: "https://github.com/trending?since=daily"
+        checked_at: "2026-11-28T13:13:43Z"
+      - claim: "Repository metadata and license identifier retrieved from GitHub API; no source or dependency audit performed."
+        url: "https://github.com/zhouxiaoka/autoclip"
+        checked_at: "2026-11-28T13:13:43Z"
